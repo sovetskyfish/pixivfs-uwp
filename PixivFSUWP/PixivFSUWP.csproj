@@ -119,6 +119,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Data\OverAll.cs" />
     <Compile Include="LoginPage.xaml.cs">
       <DependentUpon>LoginPage.xaml</DependentUpon>
     </Compile>
@@ -162,6 +163,12 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
       <Version>6.2.8</Version>
+    </PackageReference>
+    <PackageReference Include="PixivFS">
+      <Version>0.1.1</Version>
+    </PackageReference>
+    <PackageReference Include="PixivFSCS">
+      <Version>0.1.1</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
