@@ -132,7 +132,6 @@
       <SubType>Designer</SubType>
     </AppxManifest>
     <None Include="PixivFSUWP_TemporaryKey.pfx" />
-    <None Include="README.md" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\LoginBG.jpg" />
