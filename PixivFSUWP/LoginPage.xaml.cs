@@ -20,6 +20,8 @@ using PixivFS;
 using PixivFSCS;
 using System.Threading.Tasks;
 using System.Diagnostics;
+using Windows.Security.Credentials;
+using static PixivFSUWP.Data.OverAll;
 
 // https://go.microsoft.com/fwlink/?LinkId=234238 上介绍了“空白页”项模板
 
@@ -30,6 +32,11 @@ namespace PixivFSUWP
     /// </summary>
     public sealed partial class LoginPage : Page
     {
+        private string username = null;
+        private string password = null;
+        private string refreshToken = null;
+        private bool useToken = false;
+
         public LoginPage()
         {
             this.InitializeComponent();
@@ -39,57 +46,124 @@ namespace PixivFSUWP
             view.TitleBar.ButtonForegroundColor = Colors.White;
             view.TitleBar.ButtonInactiveBackgroundColor = Colors.Transparent;
             view.TitleBar.ButtonInactiveForegroundColor = Colors.Gray;
+            var refreshTokenCredential = GetCredentialFromLocker(refreshTokenResource);
+            var passwordCredential = GetCredentialFromLocker(passwordResource);
+            if (passwordCredential != null)
+            {
+                passwordCredential.RetrievePassword();
+                username = passwordCredential.UserName;
+                password = passwordCredential.Password;
+                if (refreshTokenCredential != null)
+                {
+                    refreshTokenCredential.RetrievePassword();
+                    refreshToken = refreshTokenCredential.Password;
+                    useToken = true;
+                }
+                else useToken = false;
+                Login();
+            }
         }
 
         private async void BtnReg_Click(object sender, RoutedEventArgs e) =>
             await Launcher.LaunchUriAsync(new
                 Uri(@"https://accounts.pixiv.net/signup?lang=zh&source=pc&view_type=page&ref=wwwtop_accounts_index"));
 
-        private async void BtnLogin_Click(object sender, RoutedEventArgs e)
+        private void BtnLogin_Click(object sender, RoutedEventArgs e)
         {
-            var username = txtUserName.Text;
-            var password = txtPassword.Password;
+            username = txtUserName.Text;
+            password = txtPassword.Password;
             if (username == "") txtUserName.Focus(FocusState.Programmatic);
             else if (password == "") txtPassword.Focus(FocusState.Programmatic);
             else
             {
-                //异步执行登录
-                var logintask = Task.Run(() =>
-                 {
-                     try
-                     {
-                         Data.OverAll.GlobalBaseAPI.csfriendly_login(username, password);
-                         return true;
-                     }
-                     catch
-                     {
-                         return false;
-                     }
-                 });
-                stkTxts.Visibility = Visibility.Collapsed;
-                stkBtns.Visibility = Visibility.Collapsed;
-                btnTrouble.Visibility = Visibility.Collapsed;
-                ringProgress.IsActive = true;
-                grdLoading.Visibility = Visibility.Visible;
-                var loginres = await logintask;
-                if (loginres)
-                {
-                    //登陆成功
-                }
-                else btnTrouble.Visibility = Visibility.Visible;
+                useToken = false;
+                Login();
             }
+        }
+
+        private async void Login()
+        {
+            //异步执行登录
+            var logintask = Task.Run(() =>
+            {
+                try
+                {
+                    if (useToken)
+                        GlobalBaseAPI.csfriendly_auth(refresh_token: refreshToken);
+                    else
+                        GlobalBaseAPI.csfriendly_auth(username, password);
+                    return true;
+                }
+                catch
+                {
+                    if(useToken)
+                    {
+                        useToken = false;
+                        try
+                        {
+                            GlobalBaseAPI.csfriendly_auth(username, password);
+                            return true;
+                        }
+                        catch
+                        {
+                            return false;
+                        }
+                    }
+                    return false;
+                }
+            });
+            stkTxts.Visibility = Visibility.Collapsed;
+            stkBtns.Visibility = Visibility.Collapsed;
+            btnTrouble.Visibility = Visibility.Collapsed;
+            ringProgress.IsActive = true;
+            grdLoading.Visibility = Visibility.Visible;
+            var loginres = await logintask;
+            if (loginres)
+            {
+                //登录成功
+                //储存凭证
+                var vault = new PasswordVault();
+                try
+                {
+                    vault.Remove(GetCredentialFromLocker(passwordResource));
+                    vault.Remove(GetCredentialFromLocker(refreshTokenResource));
+                }
+                catch { }
+                finally
+                {
+                    vault.Add(new PasswordCredential(passwordResource, username, password));
+                    vault.Add(new PasswordCredential(refreshTokenResource, username, Data.OverAll.GlobalBaseAPI.refresh_token));
+                }
+                Frame.Navigate(typeof(MainPage));
+            }
+            else btnTrouble.Visibility = Visibility.Visible;
         }
 
         private async void BtnTrouble_Click(object sender, RoutedEventArgs e)
         {
             await Launcher.LaunchUriAsync(new
-                Uri(@""));
+                Uri(@"https://github.com/tobiichiamane/pixivfs-uwp/blob/master/TroubleShoot.md"));
             stkTxts.Visibility = Visibility.Visible;
             stkBtns.Visibility = Visibility.Visible;
             ringProgress.IsActive = false;
             grdLoading.Visibility = Visibility.Collapsed;
             txtPassword.Focus(FocusState.Programmatic);
             txtPassword.SelectAll();
+        }
+
+        //从Vault中获取身份信息
+        //此版本只储存一个，未来可以储存多到20个
+        private PasswordCredential GetCredentialFromLocker(string resourceName)
+        {
+            PasswordCredential credential = null;
+            var vault = new PasswordVault();
+            try
+            {
+                var credentialList = vault.FindAllByResource(resourceName);
+                if (credentialList.Count > 0) credential = credentialList[0];
+            }
+            catch { }
+            return credential;
         }
     }
 }
