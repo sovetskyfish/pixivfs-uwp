@@ -30,7 +30,7 @@ namespace PixivFSUWP.Controls
         //此属性决定项目间隔
         public static readonly DependencyProperty ItemMarginProperty =
             DependencyProperty.Register("ItemMargin", typeof(double),
-                typeof(WaterfallContentPanel), new PropertyMetadata(0,
+                typeof(WaterfallContentPanel), new PropertyMetadata((double)0,
                     (DepObj, e) =>
                     {
                         (DepObj as WaterfallContentPanel).InvalidateMeasure();
@@ -48,7 +48,7 @@ namespace PixivFSUWP.Controls
         protected override Size MeasureOverride(Size availableSize)
         {
             Size toret = new Size();
-            List<double> heights = new List<double>(Colums);
+            List<double> heights = (new double[Colums]).ToList();
             toret.Width = availableSize.Width;
             double itemwidth = (availableSize.Width - ItemMargin * (Colums - 1)) / Colums;
             foreach (var i in Children)

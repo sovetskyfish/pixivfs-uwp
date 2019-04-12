@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using Windows.ApplicationModel.Core;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -25,6 +26,15 @@ namespace PixivFSUWP
         public MainPage()
         {
             this.InitializeComponent();
+            CoreApplication.GetCurrentView().TitleBar.ExtendViewIntoTitleBar = false;
+            List<ViewModels.WaterfallItemViewModel> testItems = new List<ViewModels.WaterfallItemViewModel>();
+            testItems.Add(ViewModels.WaterfallItemViewModel.FromItem(new Data.WaterfallItem() { ImageUri = "ms-appx:///Assets/LoginBG.jpg", Title = "Test" }));
+            WaterfallListView.ItemsSource = testItems;
+        }
+
+        private void AdaptiveStates_CurrentStateChanged(object sender, VisualStateChangedEventArgs e)
+        {
+
         }
     }
 }
