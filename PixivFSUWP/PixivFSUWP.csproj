@@ -119,6 +119,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\WaterfallContentPanel.cs" />
     <Compile Include="Data\OverAll.cs" />
     <Compile Include="Data\WaterfallItem.cs" />
     <Compile Include="LoginPage.xaml.cs">
