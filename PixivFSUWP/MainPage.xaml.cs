@@ -26,9 +26,23 @@ namespace PixivFSUWP
         public MainPage()
         {
             this.InitializeComponent();
-            CoreApplication.GetCurrentView().TitleBar.ExtendViewIntoTitleBar = false;
             List<ViewModels.WaterfallItemViewModel> testItems = new List<ViewModels.WaterfallItemViewModel>();
-            testItems.Add(ViewModels.WaterfallItemViewModel.FromItem(new Data.WaterfallItem() { ImageUri = "ms-appx:///Assets/LoginBG.jpg", Title = "Test" }));
+            testItems.Add(ViewModels.WaterfallItemViewModel.FromItem(new Data.WaterfallItem() { ImageUri = "http://scp-wiki.wdfiles.com/local--files/scp-002/800px-SCP002.jpg", Title = "Test" }));
+            testItems.Add(ViewModels.WaterfallItemViewModel.FromItem(new Data.WaterfallItem() { ImageUri = "http://scp-wiki.wdfiles.com/local--files/scp-003/SCP-003a.jpg", Title = "Test" }));
+            testItems.Add(ViewModels.WaterfallItemViewModel.FromItem(new Data.WaterfallItem() { ImageUri = "http://scp-wiki.wdfiles.com/local--files/scp-004/SCP004_door.jpg", Title = "Test" }));
+            testItems.Add(ViewModels.WaterfallItemViewModel.FromItem(new Data.WaterfallItem() { ImageUri = "http://scp-wiki.wdfiles.com/local--files/scp-005/SCP-005.jpg", Title = "Test" }));
+            testItems.Add(ViewModels.WaterfallItemViewModel.FromItem(new Data.WaterfallItem() { ImageUri = "http://scp-wiki.wdfiles.com/local--files/scp-002/800px-SCP002.jpg", Title = "Test" }));
+            testItems.Add(ViewModels.WaterfallItemViewModel.FromItem(new Data.WaterfallItem() { ImageUri = "http://scp-wiki.wdfiles.com/local--files/scp-003/SCP-003a.jpg", Title = "Test" }));
+            testItems.Add(ViewModels.WaterfallItemViewModel.FromItem(new Data.WaterfallItem() { ImageUri = "http://scp-wiki.wdfiles.com/local--files/scp-004/SCP004_door.jpg", Title = "Test" }));
+            testItems.Add(ViewModels.WaterfallItemViewModel.FromItem(new Data.WaterfallItem() { ImageUri = "http://scp-wiki.wdfiles.com/local--files/scp-005/SCP-005.jpg", Title = "Test" }));
+            testItems.Add(ViewModels.WaterfallItemViewModel.FromItem(new Data.WaterfallItem() { ImageUri = "http://scp-wiki.wdfiles.com/local--files/scp-002/800px-SCP002.jpg", Title = "Test" }));
+            testItems.Add(ViewModels.WaterfallItemViewModel.FromItem(new Data.WaterfallItem() { ImageUri = "http://scp-wiki.wdfiles.com/local--files/scp-003/SCP-003a.jpg", Title = "Test" }));
+            testItems.Add(ViewModels.WaterfallItemViewModel.FromItem(new Data.WaterfallItem() { ImageUri = "http://scp-wiki.wdfiles.com/local--files/scp-004/SCP004_door.jpg", Title = "Test" }));
+            testItems.Add(ViewModels.WaterfallItemViewModel.FromItem(new Data.WaterfallItem() { ImageUri = "http://scp-wiki.wdfiles.com/local--files/scp-005/SCP-005.jpg", Title = "Test" }));
+            testItems.Add(ViewModels.WaterfallItemViewModel.FromItem(new Data.WaterfallItem() { ImageUri = "http://scp-wiki.wdfiles.com/local--files/scp-002/800px-SCP002.jpg", Title = "Test" }));
+            testItems.Add(ViewModels.WaterfallItemViewModel.FromItem(new Data.WaterfallItem() { ImageUri = "http://scp-wiki.wdfiles.com/local--files/scp-003/SCP-003a.jpg", Title = "Test" }));
+            testItems.Add(ViewModels.WaterfallItemViewModel.FromItem(new Data.WaterfallItem() { ImageUri = "http://scp-wiki.wdfiles.com/local--files/scp-004/SCP004_door.jpg", Title = "Test" }));
+            testItems.Add(ViewModels.WaterfallItemViewModel.FromItem(new Data.WaterfallItem() { ImageUri = "http://scp-wiki.wdfiles.com/local--files/scp-005/SCP-005.jpg", Title = "Test" }));
             WaterfallListView.ItemsSource = testItems;
         }
 

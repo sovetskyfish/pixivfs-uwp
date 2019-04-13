@@ -43,6 +43,22 @@ namespace PixivFSUWP.Controls
             set => SetValue(ItemMarginProperty, value);
         }
 
+        //此属性决定顶端间距
+        public static readonly DependencyProperty TopOffsetProperty =
+            DependencyProperty.Register("TopOffset", typeof(double),
+                typeof(WaterfallContentPanel), new PropertyMetadata((double)0,
+                    (DepObj, e) =>
+                    {
+                        (DepObj as WaterfallContentPanel).InvalidateMeasure();
+                        (DepObj as WaterfallContentPanel).InvalidateArrange();
+                    }));
+
+        public double TopOffset
+        {
+            get => (double)GetValue(TopOffsetProperty);
+            set => SetValue(TopOffsetProperty, value);
+        }
+
         //测量panel需要的空间
         //宽度填满，高度进行计算
         protected override Size MeasureOverride(Size availableSize)
@@ -56,7 +72,7 @@ namespace PixivFSUWP.Controls
                 i.Measure(new Size(itemwidth, double.PositiveInfinity));
                 heights[heights.IndexOf(heights.Min())] += ItemMargin + i.DesiredSize.Height;
             }
-            toret.Height = heights.Max();
+            toret.Height = heights.Max() + TopOffset;
             return toret;
         }
 
@@ -68,11 +84,11 @@ namespace PixivFSUWP.Controls
             for (int i = 0; i < Colums; i++)
             {
                 Xs.Add(i * (DesiredSize.Width + ItemMargin) / Colums);
-                Ys.Add(0);
+                Ys.Add(TopOffset);
             }
             foreach (var i in Children)
             {
-                var minC = Xs.IndexOf(Xs.Min());
+                var minC = Ys.IndexOf(Ys.Min());
                 i.Arrange(new Rect(Xs[minC], Ys[minC], i.DesiredSize.Width, i.DesiredSize.Height));
                 Ys[minC] += i.DesiredSize.Height + ItemMargin;
             }

@@ -19,14 +19,17 @@
     <Page.Resources>
         <DataTemplate x:Key="WaterfallListViewItemTemplate"
                       x:DataType="viewmodels:WaterfallItemViewModel">
-            <Grid Height="Auto" Width="Auto" Margin="-12,0">
+            <Grid Height="Auto" Width="Auto" Margin="-12,0" BorderThickness="1.5">
+                <Grid.BorderBrush>
+                    <RevealBorderBrush Color="Transparent" FallbackColor="LightGray" />
+                </Grid.BorderBrush>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
                     <RowDefinition MaxHeight="20"/>
                 </Grid.RowDefinitions>
                 <Image Grid.RowSpan="2" Stretch="Uniform">
                     <Image.Source>
-                        <BitmapImage  UriSource="{Binding ImageUri}"/>
+                        <BitmapImage UriSource="{Binding ImageUri}"/>
                     </Image.Source>
                 </Image>
                 <Grid Grid.Row="1" Background="#66ffffff">
@@ -62,19 +65,28 @@
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition x:Name="MasterColumn" Width="500" />
+            <ColumnDefinition x:Name="MasterColumn" Width="350" />
             <ColumnDefinition x:Name="DetailColumn" Width="*" />
         </Grid.ColumnDefinitions>
-        <ListView Background="Gray"
+        <ListView
             x:Name="WaterfallListView"
             ItemContainerTransitions="{x:Null}"
             ItemTemplate="{StaticResource WaterfallListViewItemTemplate}"
             IsItemClickEnabled="True">
+            <ListView.Background>
+                <AcrylicBrush BackgroundSource="HostBackdrop" TintColor="White" TintOpacity="0.5" FallbackColor="White"/>
+            </ListView.Background>
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
-                    <controls:WaterfallContentPanel/>
+                    <controls:WaterfallContentPanel TopOffset="80"/>
                 </ItemsPanelTemplate>
             </ListView.ItemsPanel>
         </ListView>
+        <Grid Height="80" VerticalAlignment="Top">
+            <Grid.Background>
+                <AcrylicBrush BackgroundSource="Backdrop" TintColor="White" TintOpacity="0.5" FallbackColor="White"/>
+            </Grid.Background>
+            <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20">为您推荐</TextBlock>
+        </Grid>
     </Grid>
 </Page>
