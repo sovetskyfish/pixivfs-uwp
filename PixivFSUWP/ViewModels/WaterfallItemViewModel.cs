@@ -4,6 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using PixivFSUWP.Data;
+using Windows.UI.Xaml.Media.Imaging;
+using PixivFSCS;
+using PixivFS;
+using System.IO;
 
 namespace PixivFSUWP.ViewModels
 {
@@ -14,6 +18,19 @@ namespace PixivFSUWP.ViewModels
         public string Author { get; set; }
         public string ImageUri { get; set; }
         public int Stars { get; set; }
+        public BitmapImage ImageSource { get; set; }
+
+        public async Task LoadImageAsync()
+        {
+            ImageSource = new BitmapImage();
+            var resStream = new PixivAppAPI(OverAll.GlobalBaseAPI).csfriendly_no_auth_requests_call_stream("GET", 
+                ImageUri, new List<Tuple<string,string>>() { ("Referer", "https://app-api.pixiv.net/").ToTuple() })
+                .ResponseStream;
+            var memStream = new MemoryStream();
+            await resStream.CopyToAsync(memStream);
+            memStream.Position = 0;
+            await ImageSource.SetSourceAsync(memStream.AsRandomAccessStream());
+        }
 
         public string GetStarsString() => Stars.ToString();
 

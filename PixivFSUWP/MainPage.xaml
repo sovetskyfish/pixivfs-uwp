@@ -27,11 +27,7 @@
                     <RowDefinition Height="*"/>
                     <RowDefinition MaxHeight="20"/>
                 </Grid.RowDefinitions>
-                <Image Grid.RowSpan="2" Stretch="Uniform">
-                    <Image.Source>
-                        <BitmapImage UriSource="{Binding ImageUri}"/>
-                    </Image.Source>
-                </Image>
+                <Image Grid.RowSpan="2" Stretch="Uniform" Source="{Binding ImageSource}"/>
                 <Grid Grid.Row="1" Background="#66ffffff">
                     <TextBlock Text="{Binding Title}"/>
                 </Grid>
@@ -49,7 +45,7 @@
             <VisualStateGroup x:Name="AdaptiveStates" CurrentStateChanged="AdaptiveStates_CurrentStateChanged">
                 <VisualState x:Name="DefaultState">
                     <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="1000" />
+                        <AdaptiveTrigger MinWindowWidth="700" />
                     </VisualState.StateTriggers>
                 </VisualState>
                 <VisualState x:Name="NarrowState">
@@ -70,12 +66,16 @@
         </Grid.ColumnDefinitions>
         <ListView
             x:Name="WaterfallListView"
-            ItemContainerTransitions="{x:Null}"
             ItemTemplate="{StaticResource WaterfallListViewItemTemplate}"
             IsItemClickEnabled="True">
             <ListView.Background>
                 <AcrylicBrush BackgroundSource="HostBackdrop" TintColor="White" TintOpacity="0.5" FallbackColor="White"/>
             </ListView.Background>
+            <ItemsControl.ItemContainerTransitions>
+                <TransitionCollection>
+                    <AddDeleteThemeTransition/>
+                </TransitionCollection>
+            </ItemsControl.ItemContainerTransitions>
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
                     <controls:WaterfallContentPanel TopOffset="80"/>
