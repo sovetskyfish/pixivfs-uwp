@@ -9,7 +9,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-    
+
     <Page.Transitions>
         <TransitionCollection>
             <NavigationThemeTransition />
@@ -64,21 +64,22 @@
             <ColumnDefinition x:Name="MasterColumn" Width="350" />
             <ColumnDefinition x:Name="DetailColumn" Width="*" />
         </Grid.ColumnDefinitions>
-        <ListView
-            x:Name="WaterfallListView"
+        <ListView ScrollViewer.VerticalScrollBarVisibility="Hidden"
+            x:Name="WaterfallListView" ItemContainerTransitions="{x:Null}"
             ItemTemplate="{StaticResource WaterfallListViewItemTemplate}"
             IsItemClickEnabled="True">
             <ListView.Background>
                 <AcrylicBrush BackgroundSource="HostBackdrop" TintColor="White" TintOpacity="0.5" FallbackColor="White"/>
             </ListView.Background>
-            <ItemsControl.ItemContainerTransitions>
-                <TransitionCollection>
-                    <AddDeleteThemeTransition/>
-                </TransitionCollection>
-            </ItemsControl.ItemContainerTransitions>
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
-                    <controls:WaterfallContentPanel TopOffset="80"/>
+                    <controls:WaterfallContentPanel TopOffset="80">
+                        <controls:WaterfallContentPanel.ChildrenTransitions>
+                            <TransitionCollection>
+                                <PopupThemeTransition FromVerticalOffset="150"/>
+                            </TransitionCollection>
+                        </controls:WaterfallContentPanel.ChildrenTransitions>
+                    </controls:WaterfallContentPanel>
                 </ItemsPanelTemplate>
             </ListView.ItemsPanel>
         </ListView>
