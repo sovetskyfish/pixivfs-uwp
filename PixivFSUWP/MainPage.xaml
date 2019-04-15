@@ -33,10 +33,19 @@
                 </Grid>
                 <Grid Grid.RowSpan="2">
                     <Grid.Background>
-                        <RevealBackgroundBrush Color="Transparent" FallbackColor="Transparent" />
+                        <RevealBackgroundBrush Color="Transparent" FallbackColor="Transparent"/>
                     </Grid.Background>
                 </Grid>
             </Grid>
+        </DataTemplate>
+        <DataTemplate x:Key="DetailContentTemplate" x:DataType="viewmodels:WaterfallItemViewModel">
+            <StackPanel>
+                <TextBlock
+                    Margin="0,8"
+                    Style="{ThemeResource TitleTextBlockStyle}"
+                    HorizontalAlignment="Left"
+                    Text="{x:Bind Title}"/>
+            </StackPanel>
         </DataTemplate>
     </Page.Resources>
 
@@ -89,5 +98,18 @@
             </Grid.Background>
             <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20">为您推荐</TextBlock>
         </Grid>
+        <ContentPresenter
+            x:Name="DetailContentPresenter"
+            Grid.Column="1"
+            Grid.RowSpan="2"
+            BorderThickness="1,0,0,0"
+            Padding="24,0"
+            BorderBrush="{ThemeResource SystemControlForegroundBaseLowBrush}"
+            Content="{x:Bind WaterfallListView.SelectedItem, Mode=OneWay}"
+            ContentTemplate="{StaticResource DetailContentTemplate}">
+            <ContentPresenter.ContentTransitions>
+                <TransitionCollection />
+            </ContentPresenter.ContentTransitions>
+        </ContentPresenter>
     </Grid>
 </Page>
