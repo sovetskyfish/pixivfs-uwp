@@ -39,7 +39,7 @@
             </Grid>
         </DataTemplate>
         <DataTemplate x:Key="DetailContentTemplate" x:DataType="viewmodels:WaterfallItemViewModel">
-            <ScrollViewer>
+            <ScrollViewer VerticalScrollBarVisibility="Hidden">
                 <StackPanel>
                     <TextBlock
                     Margin="0,8"
