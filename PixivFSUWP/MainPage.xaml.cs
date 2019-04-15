@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using Windows.ApplicationModel.Core;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI;
+using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -34,6 +36,9 @@ namespace PixivFSUWP
         {
             this.InitializeComponent();
             WaterfallListView.ItemsSource = testItems;
+            var view = ApplicationView.GetForCurrentView();
+            view.TitleBar.ButtonForegroundColor = Colors.Black;
+            view.TitleBar.ButtonInactiveForegroundColor = Colors.Gray;
             LoadImages();
         }
 
@@ -47,20 +52,17 @@ namespace PixivFSUWP
             }
         }
 
-        private void AdaptiveStates_CurrentStateChanged(object sender, VisualStateChangedEventArgs e)
+        private void WaterfallListView_ItemClick(object sender, ItemClickEventArgs e)
         {
 
         }
 
-        private async void WaterfallListView_ItemClick(object sender, ItemClickEventArgs e)
+        private void WaterfallContent_Loaded(object sender, RoutedEventArgs e)
         {
-            try
-            {
-                if (lastLoaded != null) lastLoaded.LargeImageSource = null;
-                lastLoaded = (ViewModels.WaterfallItemViewModel)e.ClickedItem;
-                await lastLoaded.LoadLargeImageAsync();
-            }
-            catch { }
+            if (ActualWidth < 700) (sender as Controls.WaterfallContentPanel).Colums = 3;
+            else if (ActualWidth < 900) (sender as Controls.WaterfallContentPanel).Colums = 4;
+            else if (ActualWidth < 1100) (sender as Controls.WaterfallContentPanel).Colums = 5;
+            else (sender as Controls.WaterfallContentPanel).Colums = 6;
         }
     }
 }

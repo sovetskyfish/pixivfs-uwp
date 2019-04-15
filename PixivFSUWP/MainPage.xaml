@@ -38,46 +38,47 @@
                 </Grid>
             </Grid>
         </DataTemplate>
-        <DataTemplate x:Key="DetailContentTemplate" x:DataType="viewmodels:WaterfallItemViewModel">
-            <ScrollViewer VerticalScrollBarVisibility="Hidden">
-                <StackPanel>
-                    <TextBlock
-                    Margin="0,8"
-                    Style="{ThemeResource TitleTextBlockStyle}"
-                    HorizontalAlignment="Left"
-                    Text="{x:Bind Title}"/>
-                    <Image Source="{Binding LargeImageSource}"/>
-                </StackPanel>
-            </ScrollViewer>
-        </DataTemplate>
     </Page.Resources>
 
     <Grid x:Name="LayoutRoot">
         <VisualStateManager.VisualStateGroups>
-            <VisualStateGroup x:Name="AdaptiveStates" CurrentStateChanged="AdaptiveStates_CurrentStateChanged">
-                <VisualState x:Name="DefaultState">
+            <VisualStateGroup x:Name="AdaptiveStates">
+                <VisualState x:Name="C6">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="1100" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="WaterfallContent.Colums" Value="6"/>
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="C5">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="900" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="WaterfallContent.Colums" Value="5"/>
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="C4">
                     <VisualState.StateTriggers>
                         <AdaptiveTrigger MinWindowWidth="700" />
                     </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="WaterfallContent.Colums" Value="4"/>
+                    </VisualState.Setters>
                 </VisualState>
-                <VisualState x:Name="NarrowState">
+                <VisualState x:Name="C3">
                     <VisualState.StateTriggers>
                         <AdaptiveTrigger MinWindowWidth="0" />
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
-                        <Setter Target="MasterColumn.Width" Value="*" />
-                        <Setter Target="DetailColumn.Width" Value="0" />
-                        <Setter Target="WaterfallListView.SelectionMode" Value="None" />
+                        <Setter Target="WaterfallContent.Colums" Value="3"/>
                     </VisualState.Setters>
                 </VisualState>
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition x:Name="MasterColumn" Width="350" />
-            <ColumnDefinition x:Name="DetailColumn" Width="*" />
-        </Grid.ColumnDefinitions>
         <ListView ScrollViewer.VerticalScrollBarVisibility="Hidden"
-            x:Name="WaterfallListView" ItemContainerTransitions="{x:Null}"
+            x:Name="WaterfallListView" SelectionMode="None"
             ItemTemplate="{StaticResource WaterfallListViewItemTemplate}"
             IsItemClickEnabled="True" ItemClick="WaterfallListView_ItemClick">
             <ListView.Background>
@@ -85,7 +86,7 @@
             </ListView.Background>
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
-                    <controls:WaterfallContentPanel TopOffset="80">
+                    <controls:WaterfallContentPanel x:Name="WaterfallContent" Loaded="WaterfallContent_Loaded" TopOffset="75" ItemMargin="2">
                         <controls:WaterfallContentPanel.ChildrenTransitions>
                             <TransitionCollection>
                                 <PopupThemeTransition FromVerticalOffset="150"/>
@@ -95,22 +96,12 @@
                 </ItemsPanelTemplate>
             </ListView.ItemsPanel>
         </ListView>
-        <Grid Height="80" VerticalAlignment="Top">
-            <Grid.Background>
-                <AcrylicBrush BackgroundSource="Backdrop" TintColor="White" TintOpacity="0.5" FallbackColor="White"/>
-            </Grid.Background>
-            <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20">为您推荐</TextBlock>
-        </Grid>
-        <ContentPresenter
-            x:Name="DetailContentPresenter"
-            Grid.Column="1"
-            BorderThickness="1,0,0,0"
-            BorderBrush="{ThemeResource SystemControlForegroundBaseLowBrush}"
-            Content="{x:Bind WaterfallListView.SelectedItem, Mode=OneWay}"
-            ContentTemplate="{StaticResource DetailContentTemplate}">
-            <ContentPresenter.ContentTransitions>
-                <TransitionCollection/>
-            </ContentPresenter.ContentTransitions>
-        </ContentPresenter>
+        <NavigationView PaneDisplayMode="Top">
+            <NavigationView.MenuItems>
+                <NavigationViewItem Content="推荐"/>
+                <NavigationViewItem Content="收藏"/>
+                <NavigationViewItem Content="关注"/>
+            </NavigationView.MenuItems>
+        </NavigationView>
     </Grid>
 </Page>
