@@ -17,19 +17,33 @@ namespace PixivFSUWP.ViewModels
         public string Title { get; set; }
         public string Author { get; set; }
         public string ImageUri { get; set; }
+        public string LargeImageUri { get; set; }
         public int Stars { get; set; }
         public BitmapImage ImageSource { get; set; }
+        public BitmapImage LargeImageSource { get; set; }
 
         public async Task LoadImageAsync()
         {
             ImageSource = new BitmapImage();
-            var resStream = new PixivAppAPI(OverAll.GlobalBaseAPI).csfriendly_no_auth_requests_call_stream("GET", 
-                ImageUri, new List<Tuple<string,string>>() { ("Referer", "https://app-api.pixiv.net/").ToTuple() })
+            var resStream = new PixivAppAPI(OverAll.GlobalBaseAPI).csfriendly_no_auth_requests_call_stream("GET",
+                ImageUri, new List<Tuple<string, string>>() { ("Referer", "https://app-api.pixiv.net/").ToTuple() })
                 .ResponseStream;
             var memStream = new MemoryStream();
             await resStream.CopyToAsync(memStream);
             memStream.Position = 0;
             await ImageSource.SetSourceAsync(memStream.AsRandomAccessStream());
+        }
+
+        public async Task LoadLargeImageAsync()
+        {
+            LargeImageSource = new BitmapImage();
+            var resStream = new PixivAppAPI(OverAll.GlobalBaseAPI).csfriendly_no_auth_requests_call_stream("GET",
+                LargeImageUri, new List<Tuple<string, string>>() { ("Referer", "https://app-api.pixiv.net/").ToTuple() })
+                .ResponseStream;
+            var memStream = new MemoryStream();
+            await resStream.CopyToAsync(memStream);
+            memStream.Position = 0;
+            await LargeImageSource.SetSourceAsync(memStream.AsRandomAccessStream());
         }
 
         public string GetStarsString() => Stars.ToString();
@@ -41,6 +55,7 @@ namespace PixivFSUWP.ViewModels
                 Title = Item.Title,
                 Author = Item.Author,
                 ImageUri = Item.ImageUri,
+                LargeImageUri = Item.LargeImageUri,
                 Stars = Item.Stars
             };
     }

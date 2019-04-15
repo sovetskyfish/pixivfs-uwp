@@ -39,13 +39,16 @@
             </Grid>
         </DataTemplate>
         <DataTemplate x:Key="DetailContentTemplate" x:DataType="viewmodels:WaterfallItemViewModel">
-            <StackPanel>
-                <TextBlock
+            <ScrollViewer>
+                <StackPanel>
+                    <TextBlock
                     Margin="0,8"
                     Style="{ThemeResource TitleTextBlockStyle}"
                     HorizontalAlignment="Left"
                     Text="{x:Bind Title}"/>
-            </StackPanel>
+                    <Image Source="{Binding LargeImageSource}"/>
+                </StackPanel>
+            </ScrollViewer>
         </DataTemplate>
     </Page.Resources>
 
@@ -76,7 +79,7 @@
         <ListView ScrollViewer.VerticalScrollBarVisibility="Hidden"
             x:Name="WaterfallListView" ItemContainerTransitions="{x:Null}"
             ItemTemplate="{StaticResource WaterfallListViewItemTemplate}"
-            IsItemClickEnabled="True">
+            IsItemClickEnabled="True" ItemClick="WaterfallListView_ItemClick">
             <ListView.Background>
                 <AcrylicBrush BackgroundSource="HostBackdrop" TintColor="White" TintOpacity="0.5" FallbackColor="White"/>
             </ListView.Background>
@@ -101,14 +104,12 @@
         <ContentPresenter
             x:Name="DetailContentPresenter"
             Grid.Column="1"
-            Grid.RowSpan="2"
             BorderThickness="1,0,0,0"
-            Padding="24,0"
             BorderBrush="{ThemeResource SystemControlForegroundBaseLowBrush}"
             Content="{x:Bind WaterfallListView.SelectedItem, Mode=OneWay}"
             ContentTemplate="{StaticResource DetailContentTemplate}">
             <ContentPresenter.ContentTransitions>
-                <TransitionCollection />
+                <TransitionCollection/>
             </ContentPresenter.ContentTransitions>
         </ContentPresenter>
     </Grid>

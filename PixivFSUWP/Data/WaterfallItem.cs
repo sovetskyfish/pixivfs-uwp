@@ -12,6 +12,7 @@ namespace PixivFSUWP.Data
         public string Title { get; set; }
         public string Author { get; set; }
         public string ImageUri { get; set; }
+        public string LargeImageUri { get; set; }
         public int Stars { get; set; }
     }
 }
