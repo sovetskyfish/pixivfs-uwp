@@ -16,6 +16,8 @@ namespace PixivFSUWP.Data
         public int Stars { get; set; }
         public int Pages { get; set; }
         public bool IsBookmarked { get; set; }
+        public int Width { get; set; }
+        public int Height { get; set; }
         public static WaterfallItem FromJsonValue(JsonValue Source)
         {
             var toret = new WaterfallItem();
@@ -26,6 +28,8 @@ namespace PixivFSUWP.Data
             toret.Stars = Source.Item("total_bookmarks").AsInteger();
             toret.Pages = Source.Item("page_count").AsInteger();
             toret.IsBookmarked = Source.Item("is_bookmarked").AsBoolean();
+            toret.Width = Source.Item("width").AsInteger();
+            toret.Height = Source.Item("height").AsInteger();
             return toret;
         }
     }

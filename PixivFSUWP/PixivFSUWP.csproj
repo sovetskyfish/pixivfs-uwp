@@ -127,6 +127,8 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\WaterfallContentPanel.cs" />
+    <Compile Include="Controls\WaterfallListView.cs" />
+    <Compile Include="Data\RecommendIllustsCollection.cs" />
     <Compile Include="Data\OverAll.cs" />
     <Compile Include="Data\WaterfallItem.cs" />
     <Compile Include="LoginPage.xaml.cs">

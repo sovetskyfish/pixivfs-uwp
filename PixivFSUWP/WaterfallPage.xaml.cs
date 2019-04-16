@@ -35,36 +35,19 @@ namespace PixivFSUWP
 
         ListContent listContent;
 
-        ObservableCollection<ViewModels.WaterfallItemViewModel> listItems = new ObservableCollection<ViewModels.WaterfallItemViewModel>();
-
         public WaterfallPage()
         {
             this.InitializeComponent();
-            WaterfallListView.ItemsSource = listItems;
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
             if (e.Parameter is ListContent) listContent = (ListContent)e.Parameter;
-            _ = LoadImages();
-        }
-
-        public async Task LoadImages()
-        {
             switch (listContent)
             {
                 case ListContent.Recommend:
-                    var recommendres = await Task.Run(() => new PixivFS
-                        .PixivAppAPI(Data.OverAll.GlobalBaseAPI)
-                        .csfriendly_illust_recommended());
-                    foreach (var recillust in recommendres.Item("illusts").AsArray())
-                    {
-                        Data.WaterfallItem recommendi = Data.WaterfallItem.FromJsonValue(recillust);
-                        var recommendmodel = ViewModels.WaterfallItemViewModel.FromItem(recommendi);
-                        await recommendmodel.LoadImageAsync();
-                        listItems.Add(recommendmodel);
-                    }
+                    WaterfallListView.ItemsSource = new Data.RecommendIllustsCollection();
                     break;
             }
         }

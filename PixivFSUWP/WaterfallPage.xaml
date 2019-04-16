@@ -79,8 +79,8 @@
                 </VisualState>
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
-        <ListView ScrollViewer.VerticalScrollBarVisibility="Hidden"
-            x:Name="WaterfallListView" SelectionMode="None"
+        <controls:WaterfallListView ScrollViewer.VerticalScrollBarVisibility="Hidden"
+            x:Name="WaterfallListView" SelectionMode="None" ItemContainerTransitions="{x:Null}"
             ItemTemplate="{StaticResource WaterfallListViewItemTemplate}"
             IsItemClickEnabled="True" ItemClick="WaterfallListView_ItemClick">
             <ListView.Background>
@@ -97,6 +97,6 @@
                     </controls:WaterfallContentPanel>
                 </ItemsPanelTemplate>
             </ListView.ItemsPanel>
-        </ListView>
+        </controls:WaterfallListView>
     </Grid>
 </Page>

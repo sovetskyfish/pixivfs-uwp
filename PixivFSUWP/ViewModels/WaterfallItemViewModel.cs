@@ -21,6 +21,8 @@ namespace PixivFSUWP.ViewModels
         public int Pages { get; set; }
         public bool IsBookmarked { get; set; }
         public BitmapImage ImageSource { get; set; }
+        public int Width { get; set; }
+        public int Height { get; set; }
 
         public async Task LoadImageAsync()
         {
@@ -52,7 +54,9 @@ namespace PixivFSUWP.ViewModels
                 ImageUri = Item.ImageUri,
                 IsBookmarked = Item.IsBookmarked,
                 Stars = Item.Stars,
-                Pages = Item.Pages
+                Pages = Item.Pages,
+                Width = Item.Width,
+                Height = Item.Height
             };
     }
 }
