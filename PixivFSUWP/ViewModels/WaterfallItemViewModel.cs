@@ -19,6 +19,7 @@ namespace PixivFSUWP.ViewModels
         public string ImageUri { get; set; }
         public string LargeImageUri { get; set; }
         public int Stars { get; set; }
+        public int Pages { get; set; }
         public BitmapImage ImageSource { get; set; }
 
         public async Task LoadImageAsync()
@@ -42,8 +43,8 @@ namespace PixivFSUWP.ViewModels
                 Title = Item.Title,
                 Author = Item.Author,
                 ImageUri = Item.ImageUri,
-                LargeImageUri = Item.LargeImageUri,
-                Stars = Item.Stars
+                Stars = Item.Stars,
+                Pages = Item.Pages
             };
     }
 }
