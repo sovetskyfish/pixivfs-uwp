@@ -18,11 +18,21 @@
                 </Grid.BorderBrush>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
-                    <RowDefinition MaxHeight="20"/>
+                    <RowDefinition MaxHeight="50"/>
                 </Grid.RowDefinitions>
                 <Image Grid.RowSpan="2" Stretch="Uniform" Source="{Binding ImageSource}"/>
-                <Grid Grid.Row="1" Background="#66ffffff">
-                    <TextBlock Text="{Binding Title}"/>
+                <Grid Grid.Row="1" Background="#88ffffff">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock TextTrimming="WordEllipsis" Padding="4" Text="{Binding Title}" Grid.ColumnSpan="2" FontWeight="Bold" VerticalAlignment="Center"/>
+                    <TextBlock TextTrimming="WordEllipsis" Padding="4" Text="{Binding Author}" Grid.Row="1" VerticalAlignment="Center"/>
+                    <TextBlock Padding="4" Text="{Binding StarsString}" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Right"/>
                 </Grid>
                 <Grid Grid.RowSpan="2">
                     <Grid.Background>

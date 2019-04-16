@@ -17,9 +17,9 @@ namespace PixivFSUWP.ViewModels
         public string Title { get; set; }
         public string Author { get; set; }
         public string ImageUri { get; set; }
-        public string LargeImageUri { get; set; }
         public int Stars { get; set; }
         public int Pages { get; set; }
+        public bool IsBookmarked { get; set; }
         public BitmapImage ImageSource { get; set; }
 
         public async Task LoadImageAsync()
@@ -34,7 +34,14 @@ namespace PixivFSUWP.ViewModels
             await ImageSource.SetSourceAsync(memStream.AsRandomAccessStream());
         }
 
-        public string GetStarsString() => Stars.ToString();
+        public string StarsString
+        {
+            get
+            {
+                if (IsBookmarked) return "★√" + Stars.ToString();
+                return "★" + Stars.ToString();
+            }
+        }
 
         public static WaterfallItemViewModel FromItem(WaterfallItem Item)
             => new WaterfallItemViewModel()
@@ -43,6 +50,7 @@ namespace PixivFSUWP.ViewModels
                 Title = Item.Title,
                 Author = Item.Author,
                 ImageUri = Item.ImageUri,
+                IsBookmarked = Item.IsBookmarked,
                 Stars = Item.Stars,
                 Pages = Item.Pages
             };
