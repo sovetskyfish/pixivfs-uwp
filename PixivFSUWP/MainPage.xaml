@@ -3,8 +3,6 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:PixivFSUWP"
-    xmlns:viewmodels="using:PixivFSUWP.ViewModels"
-    xmlns:controls="using:PixivFSUWP.Controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
@@ -15,92 +13,21 @@
             <NavigationThemeTransition />
         </TransitionCollection>
     </Page.Transitions>
-
-    <Page.Resources>
-        <DataTemplate x:Key="WaterfallListViewItemTemplate"
-                      x:DataType="viewmodels:WaterfallItemViewModel">
-            <Grid Height="Auto" Width="Auto" Margin="-12,0" BorderThickness="1.5">
-                <Grid.BorderBrush>
-                    <RevealBorderBrush Color="Transparent" FallbackColor="LightGray" />
-                </Grid.BorderBrush>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition MaxHeight="20"/>
-                </Grid.RowDefinitions>
-                <Image Grid.RowSpan="2" Stretch="Uniform" Source="{Binding ImageSource}"/>
-                <Grid Grid.Row="1" Background="#66ffffff">
-                    <TextBlock Text="{Binding Title}"/>
-                </Grid>
-                <Grid Grid.RowSpan="2">
-                    <Grid.Background>
-                        <RevealBackgroundBrush Color="Transparent" FallbackColor="Transparent"/>
-                    </Grid.Background>
-                </Grid>
-            </Grid>
-        </DataTemplate>
-    </Page.Resources>
-
     <Grid x:Name="LayoutRoot">
-        <VisualStateManager.VisualStateGroups>
-            <VisualStateGroup x:Name="AdaptiveStates">
-                <VisualState x:Name="C6">
-                    <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="1100" />
-                    </VisualState.StateTriggers>
-                    <VisualState.Setters>
-                        <Setter Target="WaterfallContent.Colums" Value="6"/>
-                    </VisualState.Setters>
-                </VisualState>
-                <VisualState x:Name="C5">
-                    <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="900" />
-                    </VisualState.StateTriggers>
-                    <VisualState.Setters>
-                        <Setter Target="WaterfallContent.Colums" Value="5"/>
-                    </VisualState.Setters>
-                </VisualState>
-                <VisualState x:Name="C4">
-                    <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="700" />
-                    </VisualState.StateTriggers>
-                    <VisualState.Setters>
-                        <Setter Target="WaterfallContent.Colums" Value="4"/>
-                    </VisualState.Setters>
-                </VisualState>
-                <VisualState x:Name="C3">
-                    <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="0" />
-                    </VisualState.StateTriggers>
-                    <VisualState.Setters>
-                        <Setter Target="WaterfallContent.Colums" Value="3"/>
-                    </VisualState.Setters>
-                </VisualState>
-            </VisualStateGroup>
-        </VisualStateManager.VisualStateGroups>
-        <ListView ScrollViewer.VerticalScrollBarVisibility="Hidden"
-            x:Name="WaterfallListView" SelectionMode="None"
-            ItemTemplate="{StaticResource WaterfallListViewItemTemplate}"
-            IsItemClickEnabled="True" ItemClick="WaterfallListView_ItemClick">
-            <ListView.Background>
-                <AcrylicBrush BackgroundSource="HostBackdrop" TintColor="White" TintOpacity="0.5" FallbackColor="White"/>
-            </ListView.Background>
-            <ListView.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <controls:WaterfallContentPanel x:Name="WaterfallContent" Loaded="WaterfallContent_Loaded" TopOffset="75" ItemMargin="2">
-                        <controls:WaterfallContentPanel.ChildrenTransitions>
-                            <TransitionCollection>
-                                <PopupThemeTransition FromVerticalOffset="150"/>
-                            </TransitionCollection>
-                        </controls:WaterfallContentPanel.ChildrenTransitions>
-                    </controls:WaterfallContentPanel>
-                </ItemsPanelTemplate>
-            </ListView.ItemsPanel>
-        </ListView>
-        <NavigationView PaneDisplayMode="Top">
+        <Frame x:Name="ContentFrame"/>
+        <NavigationView PaneDisplayMode="Top" x:Name="NavControl" SelectionChanged="NavControl_SelectionChanged">
+            <NavigationView.PaneHeader>
+                <Image Source="Assets/PixivHeader.png"/>
+            </NavigationView.PaneHeader>
+            <NavigationView.PaneFooter>
+                <TextBlock Text="用户名" Margin="5" VerticalAlignment="Center" FontWeight="Bold"/>
+            </NavigationView.PaneFooter>
             <NavigationView.MenuItems>
                 <NavigationViewItem Content="推荐"/>
                 <NavigationViewItem Content="收藏"/>
                 <NavigationViewItem Content="关注"/>
+                <NavigationViewItemSeparator x:Name="NavSeparator" Visibility="Collapsed"/>
+                <NavigationViewItem Content="PlaceHolder" x:Name="NavPlaceholder" Visibility="Collapsed" IsEnabled="False"/>
             </NavigationView.MenuItems>
         </NavigationView>
     </Grid>

@@ -28,41 +28,53 @@ namespace PixivFSUWP
     /// </summary>
     public sealed partial class MainPage : Page
     {
-        ViewModels.WaterfallItemViewModel lastLoaded = null;
-        string[] testuris = { "https://i.pximg.net/c/540x540_70/img-master/img/2019/03/19/00/00/07/73755434_p0_master1200.jpg", "https://i.pximg.net/c/540x540_70/img-master/img/2019/02/07/00/00/05/73042381_p0_master1200.jpg", "https://i.pximg.net/c/540x540_70/img-master/img/2019/01/03/00/00/01/72461417_p0_master1200.jpg", "https://i.pximg.net/c/540x540_70/img-master/img/2018/12/11/00/00/07/72059628_p0_master1200.jpg", "https://i.pximg.net/c/540x540_70/img-master/img/2018/10/28/00/00/15/71377287_p0_master1200.jpg", "https://i.pximg.net/c/540x540_70/img-master/img/2018/09/12/00/00/05/70653098_p0_master1200.jpg", "https://i.pximg.net/c/540x540_70/img-master/img/2018/09/11/00/00/09/70639418_p0_master1200.jpg", "https://i.pximg.net/c/540x540_70/img-master/img/2018/09/10/00/00/04/70624207_p0_master1200.jpg", "https://i.pximg.net/c/540x540_70/img-master/img/2018/08/02/00/00/06/69972773_p0_master1200.jpg", "https://i.pximg.net/c/540x540_70/img-master/img/2018/07/26/00/00/08/69859628_p0_master1200.jpg", "https://i.pximg.net/c/540x540_70/img-master/img/2018/07/04/00/00/05/69526240_p0_master1200.jpg", "https://i.pximg.net/c/540x540_70/img-master/img/2018/07/03/00/00/08/69512461_p0_master1200.jpg", "https://i.pximg.net/c/540x540_70/img-master/img/2018/06/11/00/00/01/69174779_p0_master1200.jpg", "https://i.pximg.net/c/540x540_70/img-master/img/2018/05/12/00/00/16/68698297_p0_master1200.jpg", "https://i.pximg.net/c/540x540_70/img-master/img/2018/05/11/00/00/07/68684734_p0_master1200.jpg", "https://i.pximg.net/c/540x540_70/img-master/img/2018/05/10/00/00/11/68670770_p0_master1200.jpg", "https://i.pximg.net/c/540x540_70/img-master/img/2018/05/09/00/00/07/68656810_p0_master1200.jpg", "https://i.pximg.net/c/540x540_70/img-master/img/2018/05/08/00/00/10/68641893_p0_master1200.jpg", "https://i.pximg.net/c/540x540_70/img-master/img/2018/04/09/00/00/25/68145953_p0_master1200.jpg", "https://i.pximg.net/c/540x540_70/img-master/img/2018/03/07/00/00/13/67609464_p0_master1200.jpg", "https://i.pximg.net/c/540x540_70/img-master/img/2018/02/10/00/20/51/67190100_p0_master1200.jpg", "https://i.pximg.net/c/540x540_70/img-master/img/2018/01/08/00/45/23/66698609_p0_master1200.jpg", "https://i.pximg.net/c/540x540_70/img-master/img/2017/12/15/00/03/19/66292640_p0_master1200.jpg", "https://i.pximg.net/c/540x540_70/img-master/img/2017/12/08/00/22/01/66201209_p0_master1200.jpg", "https://i.pximg.net/c/540x540_70/img-master/img/2017/11/17/00/43/47/65922934_p0_master1200.jpg", "https://i.pximg.net/c/540x540_70/img-master/img/2017/11/09/00/31/49/65809956_p0_master1200.jpg", "https://i.pximg.net/c/540x540_70/img-master/img/2017/11/05/00/25/26/65752703_p0_master1200.jpg", "https://i.pximg.net/c/540x540_70/img-master/img/2017/11/02/00/32/03/65707174_p0_master1200.jpg", "https://i.pximg.net/c/540x540_70/img-master/img/2017/10/27/00/15/47/65608790_p0_master1200.jpg", "https://i.pximg.net/c/540x540_70/img-master/img/2017/10/24/00/10/08/65569960_p0_master1200.jpg" };
-        string[] testuris_l = { "https://i.pximg.net/img-original/img/2019/03/19/00/00/07/73755434_p0.jpg", "https://i.pximg.net/img-original/img/2019/02/07/00/00/05/73042381_p0.jpg", "https://i.pximg.net/img-original/img/2019/01/03/00/00/01/72461417_p0.jpg", "https://i.pximg.net/img-original/img/2018/12/11/00/00/07/72059628_p0.jpg", "https://i.pximg.net/img-original/img/2018/10/28/00/00/15/71377287_p0.jpg", "https://i.pximg.net/img-original/img/2018/09/12/00/00/05/70653098_p0.jpg", "https://i.pximg.net/img-original/img/2018/09/11/00/00/09/70639418_p0.jpg", "https://i.pximg.net/img-original/img/2018/09/10/00/00/04/70624207_p0.jpg", "https://i.pximg.net/img-original/img/2018/08/02/00/00/06/69972773_p0.jpg", "https://i.pximg.net/img-original/img/2018/07/26/00/00/08/69859628_p0.jpg", "https://i.pximg.net/img-original/img/2018/07/04/00/00/05/69526240_p0.jpg", "https://i.pximg.net/img-original/img/2018/07/03/00/00/08/69512461_p0.jpg", "https://i.pximg.net/img-original/img/2018/06/11/00/00/01/69174779_p0.jpg", "https://i.pximg.net/img-original/img/2018/05/12/00/00/16/68698297_p0.jpg", "https://i.pximg.net/img-original/img/2018/05/11/00/00/07/68684734_p0.jpg", "https://i.pximg.net/img-original/img/2018/05/10/00/00/11/68670770_p0.jpg", "https://i.pximg.net/img-original/img/2018/05/09/00/00/07/68656810_p0.jpg", "https://i.pximg.net/img-original/img/2018/05/08/00/00/10/68641893_p0.jpg", "https://i.pximg.net/img-original/img/2018/04/09/00/00/25/68145953_p0.jpg", "https://i.pximg.net/img-original/img/2018/03/07/00/00/13/67609464_p0.jpg", "https://i.pximg.net/img-original/img/2018/02/10/00/20/51/67190100_p0.jpg", "https://i.pximg.net/img-original/img/2018/01/08/00/45/23/66698609_p0.jpg", "https://i.pximg.net/img-original/img/2017/12/15/00/03/19/66292640_p0.jpg", "https://i.pximg.net/img-original/img/2017/12/08/00/22/01/66201209_p0.jpg", "https://i.pximg.net/img-original/img/2017/11/17/00/43/47/65922934_p0.jpg", "https://i.pximg.net/img-original/img/2017/11/09/00/31/49/65809956_p0.jpg", "https://i.pximg.net/img-original/img/2017/11/05/00/25/26/65752703_p0.jpg", "https://i.pximg.net/img-original/img/2017/11/02/00/32/03/65707174_p0.jpg", "https://i.pximg.net/img-original/img/2017/10/27/00/15/47/65608790_p0.jpg", "https://i.pximg.net/img-original/img/2017/10/24/00/10/08/65569960_p0.jpg" };
-        ObservableCollection<ViewModels.WaterfallItemViewModel> testItems = new ObservableCollection<ViewModels.WaterfallItemViewModel>();
         public MainPage()
         {
             this.InitializeComponent();
-            WaterfallListView.ItemsSource = testItems;
+            NavControl.SelectedItem = NavControl.MenuItems[0];
             var view = ApplicationView.GetForCurrentView();
             view.TitleBar.ButtonForegroundColor = Colors.Black;
             view.TitleBar.ButtonInactiveForegroundColor = Colors.Gray;
-            LoadImages();
+            view.Title = "Pixiv UWP";
+            ContentFrame.Navigate(typeof(WaterfallPage));
         }
 
-        public async void LoadImages()
+        private async void NavControl_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
         {
-            for (int i=0;i<testuris.Length;i++)
+            switch(sender.MenuItems.IndexOf(args.SelectedItem))
             {
-                var item = ViewModels.WaterfallItemViewModel.FromItem(new Data.WaterfallItem() { Title = "test", ImageUri = testuris[i], LargeImageUri = testuris_l[i] });
-                await item.LoadImageAsync();
-                testItems.Add(item);
+                case 0:
+                    NavPlaceholder.IsEnabled = false;
+                    await Task.Delay(TimeSpan.FromMilliseconds(350));
+                    NavSeparator.Visibility = Visibility.Collapsed;
+                    NavPlaceholder.Visibility = Visibility.Collapsed;
+                    break;
+                case 1:
+                    NavPlaceholder.IsEnabled = false;
+                    await Task.Delay(TimeSpan.FromMilliseconds(350));
+                    NavSeparator.Visibility = Visibility.Collapsed;
+                    NavPlaceholder.Visibility = Visibility.Collapsed;
+                    break;
+                case 2:
+                    NavPlaceholder.IsEnabled = false;
+                    await Task.Delay(TimeSpan.FromMilliseconds(350));
+                    NavSeparator.Visibility = Visibility.Collapsed;
+                    NavPlaceholder.Visibility = Visibility.Collapsed;
+                    break;
             }
         }
 
-        private void WaterfallListView_ItemClick(object sender, ItemClickEventArgs e)
-        {
+        private void NavSelect(int index)
+            => NavControl.SelectedItem = NavControl.MenuItems[index];
 
-        }
-
-        private void WaterfallContent_Loaded(object sender, RoutedEventArgs e)
+        public async void SelectNavPlaceholder(string title)
         {
-            if (ActualWidth < 700) (sender as Controls.WaterfallContentPanel).Colums = 3;
-            else if (ActualWidth < 900) (sender as Controls.WaterfallContentPanel).Colums = 4;
-            else if (ActualWidth < 1100) (sender as Controls.WaterfallContentPanel).Colums = 5;
-            else (sender as Controls.WaterfallContentPanel).Colums = 6;
+            NavPlaceholder.IsEnabled = true;
+            NavPlaceholder.Content = title;
+            NavSeparator.Visibility = Visibility.Visible;
+            NavPlaceholder.Visibility = Visibility.Visible;
+            await Task.Delay(TimeSpan.FromMilliseconds(10));
+            NavSelect(4);
         }
     }
 }
