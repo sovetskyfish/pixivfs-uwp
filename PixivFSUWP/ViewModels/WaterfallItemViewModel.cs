@@ -27,9 +27,10 @@ namespace PixivFSUWP.ViewModels
         public async Task LoadImageAsync()
         {
             ImageSource = new BitmapImage();
-            var resStream = new PixivAppAPI(OverAll.GlobalBaseAPI).csfriendly_no_auth_requests_call_stream("GET",
+            Stream resStream = null;
+            await Task.Run(() => resStream = new PixivAppAPI(OverAll.GlobalBaseAPI).csfriendly_no_auth_requests_call_stream("GET",
                 ImageUri, new List<Tuple<string, string>>() { ("Referer", "https://app-api.pixiv.net/").ToTuple() })
-                .ResponseStream;
+                .ResponseStream);
             var memStream = new MemoryStream();
             await resStream.CopyToAsync(memStream);
             memStream.Position = 0;
