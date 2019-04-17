@@ -62,7 +62,9 @@ namespace PixivFSUWP
 
         private void WaterfallListView_ItemClick(object sender, ItemClickEventArgs e)
         {
-            (((Parent as Frame)?.Parent as Grid)?.Parent as MainPage)?.SelectNavPlaceholder("详情");
+            Frame.Navigate(typeof(IllustDetailPage),
+                (e.ClickedItem as ViewModels
+                .WaterfallItemViewModel).ItemId);
         }
     }
 }
