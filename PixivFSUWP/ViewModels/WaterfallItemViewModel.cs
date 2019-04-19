@@ -26,14 +26,7 @@ namespace PixivFSUWP.ViewModels
 
         public async Task LoadImageAsync()
         {
-            ImageSource = new BitmapImage();
-            var resStream = await Task.Run(() => new PixivAppAPI(OverAll.GlobalBaseAPI).csfriendly_no_auth_requests_call_stream("GET",
-                  ImageUri, new List<Tuple<string, string>>() { ("Referer", "https://app-api.pixiv.net/").ToTuple() })
-                  .ResponseStream);
-            var memStream = new MemoryStream();
-            await resStream.CopyToAsync(memStream);
-            memStream.Position = 0;
-            await ImageSource.SetSourceAsync(memStream.AsRandomAccessStream());
+            ImageSource = await Data.OverAll.LoadImageAsync(ImageUri);
         }
 
         public string StarsString
