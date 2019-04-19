@@ -28,6 +28,7 @@ namespace PixivFSUWP
     public sealed partial class IllustDetailPage : Page
     {
         int illustID;
+        Data.IllustDetail illust;
 
         public IllustDetailPage()
         {
@@ -47,7 +48,8 @@ namespace PixivFSUWP
             var res = await Task.Run(() =>
                 new PixivAppAPI(Data.OverAll.GlobalBaseAPI)
                 .csfriendly_illust_detail(illustID.ToString()));
-            txtTitle.Text = res.Item("illust").Item("title").AsString();
+            illust = Data.IllustDetail.FromJsonValue(res);
+            txtTitle.Text = illust.Title;
         }
     }
 }
