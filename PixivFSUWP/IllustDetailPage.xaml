@@ -3,13 +3,35 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:PixivFSUWP"
+    xmlns:viewmodels="using:PixivFSUWP.ViewModels"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
     <ScrollViewer>
-        <Grid Margin="0,75,0,0">
-            <TextBlock x:Name="txtTitle"/>
-        </Grid>
+        <ScrollViewer.Background>
+            <AcrylicBrush BackgroundSource="HostBackdrop" TintColor="White" TintOpacity="0.5" FallbackColor="White"/>
+        </ScrollViewer.Background>
+        <StackPanel Margin="0,75,0,0">
+            <TextBlock x:Name="txtTitle" FontSize="24" FontWeight="Bold" Margin="15"/>
+            <ListView ScrollViewer.VerticalScrollBarVisibility="Disabled" 
+                      ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                      ScrollViewer.HorizontalScrollMode="Enabled" 
+                      ScrollViewer.VerticalScrollMode="Disabled"
+                      Margin="15" x:Name="ImageList">
+                <ListView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Orientation="Horizontal"/>
+                    </ItemsPanelTemplate>
+                </ListView.ItemsPanel>
+                <ListView.ItemTemplate>
+                    <DataTemplate x:DataType="viewmodels:ImageItemViewModel">
+                        <Grid>
+                            <Image Source="{Binding ImageSource}"/>
+                        </Grid>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackPanel>
     </ScrollViewer>
 </Page>
