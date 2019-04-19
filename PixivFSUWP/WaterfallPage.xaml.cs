@@ -47,7 +47,7 @@ namespace PixivFSUWP
             switch (listContent)
             {
                 case ListContent.Recommend:
-                    WaterfallListView.ItemsSource = new Data.RecommendIllustsCollection();
+                    WaterfallListView.ItemsSource = Data.OverAll.RecommendList;
                     break;
             }
         }

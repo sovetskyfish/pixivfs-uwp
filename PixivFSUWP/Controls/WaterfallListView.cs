@@ -34,7 +34,10 @@ namespace PixivFSUWP.Controls
                 {
                     await (ItemsSource as ISupportIncrementalLoading)?.LoadMoreItemsAsync(0);
                 }
-                catch { }
+                catch(InvalidOperationException)
+                {
+                    return;
+                }
         }
 
         private async void ScrollViewer_ViewChanged(object sender, ScrollViewerViewChangedEventArgs e)
