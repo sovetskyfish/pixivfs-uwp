@@ -3,6 +3,7 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:PixivFSUWP"
+    xmlns:controls="using:PixivFSUWP.Controls"
     xmlns:viewmodels="using:PixivFSUWP.ViewModels"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -15,27 +16,49 @@
         <StackPanel Margin="0,75,0,0">
             <StackPanel Orientation="Horizontal" Margin="15,15,15,0">
                 <TextBlock x:Name="txtTitle" FontSize="24" FontWeight="Bold"/>
-                <TextBlock x:Name="txtLoadingStatus" Margin="15,0,0,3" VerticalAlignment="Bottom"/>
+                <FontIcon x:Name="iconView" Margin="15,0,0,2" FontFamily="{StaticResource SymbolThemeFontFamily}" FontSize="10" Glyph="&#xE890;" VerticalAlignment="Bottom"/>
+                <TextBlock x:Name="txtViewStatus" Margin="3,0,0,0" FontSize="12" VerticalAlignment="Bottom"/>
+                <FontIcon x:Name="iconStar" Margin="15,0,0,3" FontFamily="{StaticResource SymbolThemeFontFamily}" FontSize="10" Glyph="&#xE734;" VerticalAlignment="Bottom"/>
+                <TextBlock x:Name="txtBookmarkStatus" Margin="3,0,0,0" FontSize="12" VerticalAlignment="Bottom"/>
             </StackPanel>
+            <TextBlock x:Name="txtLoadingStatus" Margin="15,15,0,0" FontSize="12" VerticalAlignment="Bottom"/>
             <ListView ScrollViewer.VerticalScrollBarVisibility="Disabled" 
-                      ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                      ScrollViewer.HorizontalScrollBarVisibility="Hidden"
                       ScrollViewer.HorizontalScrollMode="Enabled" 
                       ScrollViewer.VerticalScrollMode="Disabled"
-                      SelectionMode="None"
-                      Margin="15,15,0,0" x:Name="ImageList">
+                      SelectionMode="None" MaxHeight="1"
+                      Margin="0,10,0,0" x:Name="ImageList">
                 <ListView.ItemsPanel>
                     <ItemsPanelTemplate>
-                        <StackPanel Orientation="Horizontal"/>
+                        <controls:ImageSelectorPanel LeftOffset="15" RightOffset="15" ItemMargin="15"/>
                     </ItemsPanelTemplate>
                 </ListView.ItemsPanel>
                 <ListView.ItemTemplate>
                     <DataTemplate x:DataType="viewmodels:ImageItemViewModel">
-                        <Grid Margin="-12,0" Padding="0,0,15,0">
+                        <Grid Margin="-12,0">
                             <Image Source="{Binding ImageSource}"/>
                         </Grid>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
+            <Grid Margin="15,15,15,0" Height="50" x:Name="gridAuthor">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="50"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Ellipse Grid.RowSpan="2" Width="50" Height="50">
+                    <Ellipse.Fill>
+                        <ImageBrush x:Name="imgAuthor"/>
+                    </Ellipse.Fill>
+                </Ellipse>
+                <TextBlock x:Name="txtAuthor" Margin="10,0" Grid.Column="1" FontSize="16" FontWeight="Bold" VerticalAlignment="Bottom"/>
+                <TextBlock x:Name="txtAuthorAccount" Margin="10,0" Grid.Row="1" Grid.Column="1" FontSize="14" Foreground="Gray" VerticalAlignment="Top"/>
+            </Grid>
+            <TextBlock x:Name="txtCaption" Margin="15,15,15,0" Height="Auto" TextWrapping="WrapWholeWords"/>
         </StackPanel>
     </ScrollViewer>
 </Page>

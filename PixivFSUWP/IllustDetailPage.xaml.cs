@@ -41,35 +41,44 @@ namespace PixivFSUWP
             ((Frame.Parent as Grid)?.Parent as MainPage)?.SelectNavPlaceholder("详情");
             illustID = (int)e.Parameter;
             base.OnNavigatedTo(e);
-            ImageList.MaxHeight = Frame.ActualHeight - 150;
-            txtTitle.Text = "加载中";
             _ = loadContent();
         }
 
         private async Task loadContent()
         {
+            txtTitle.Text = "加载中";
+            iconView.Visibility = Visibility.Collapsed;
+            iconStar.Visibility = Visibility.Collapsed;
             var res = await Task.Run(() =>
                 new PixivAppAPI(Data.OverAll.GlobalBaseAPI)
                 .csfriendly_illust_detail(illustID.ToString()));
             ImageList.ItemsSource = new ObservableCollection<ViewModels.ImageItemViewModel>();
             illust = Data.IllustDetail.FromJsonValue(res);
+            imgAuthor.ImageSource = await Data.OverAll.LoadImageAsync(illust.AuthorAvatarUrl);
             txtTitle.Text = illust.Title;
+            iconView.Visibility = Visibility.Visible;
+            iconStar.Visibility = Visibility.Visible;
+            txtViewStatus.Text = illust.TotalView.ToString();
+            txtBookmarkStatus.Text = illust.TotalBookmarks.ToString();
+            txtAuthor.Text = illust.Author;
+            txtAuthorAccount.Text = string.Format("@{0}", illust.AuthorAccount);
+            txtCaption.Text = illust.Caption.Replace("<br/>", "\n");
             int counter = 0;
             foreach (var i in illust.OriginalUrls)
             {
-                txtLoadingStatus.Text = string.Format("正在加载第{0}张，共{1}张", ++counter, illust.OriginalUrls.Count);
+                txtLoadingStatus.Text = string.Format("正在加载第 {0} 张，共 {1} 张", ++counter, illust.OriginalUrls.Count);
                 (ImageList.ItemsSource as ObservableCollection<ViewModels.ImageItemViewModel>)
                     .Add(new ViewModels.ImageItemViewModel()
                     {
                         ImageSource = await Data.OverAll.LoadImageAsync(i)
                     });
             }
-            txtLoadingStatus.Text = string.Format("共{0}张作品", illust.OriginalUrls.Count);
+            txtLoadingStatus.Text = string.Format("共 {0} 张作品，点击或触摸查看大图", illust.OriginalUrls.Count);
         }
 
         private void Page_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-            ImageList.MaxHeight = Frame.ActualHeight - 150;
+            ImageList.MaxHeight = Frame.ActualHeight - 245;
         }
     }
 }

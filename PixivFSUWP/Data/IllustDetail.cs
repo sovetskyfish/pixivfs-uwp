@@ -15,6 +15,7 @@ namespace PixivFSUWP.Data
         public string Caption { get; set; }
         public int AuthorID { get; set; }
         public string Author { get; set; }
+        public string AuthorAccount { get; set; }
         public string AuthorAvatarUrl { get; set; }
         public List<string> Tags { get; set; }
         public List<string> Tools { get; set; }
@@ -37,6 +38,7 @@ namespace PixivFSUWP.Data
             toret.Caption = Source.Item("illust").Item("caption").AsString();
             toret.AuthorID = Source.Item("illust").Item("user").Item("id").AsInteger();
             toret.Author = Source.Item("illust").Item("user").Item("name").AsString();
+            toret.AuthorAccount = Source.Item("illust").Item("user").Item("account").AsString();
             toret.AuthorAvatarUrl = Source.Item("illust").Item("user").Item("profile_image_urls").Item("medium").AsString();
             var tags = Source.Item("illust").Item("tags").AsArray();
             toret.Tags = new List<string>();
