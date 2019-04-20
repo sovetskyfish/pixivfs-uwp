@@ -6,6 +6,8 @@ using System.Text;
 using System.Threading.Tasks;
 using PixivFS;
 using PixivFSCS;
+using Windows.Graphics.Imaging;
+using Windows.Storage.Streams;
 using Windows.UI.Xaml.Media.Imaging;
 
 namespace PixivFSUWP.Data
@@ -28,7 +30,7 @@ namespace PixivFSUWP.Data
         public static async Task<BitmapImage> LoadImageAsync(string Uri)
         {
             var toret = new BitmapImage();
-            var resStream = await Task.Run(() => new PixivAppAPI(OverAll.GlobalBaseAPI).csfriendly_no_auth_requests_call_stream("GET",
+            var resStream = await Task.Run(() => new PixivAppAPI(GlobalBaseAPI).csfriendly_no_auth_requests_call_stream("GET",
                   Uri, new List<Tuple<string, string>>() { ("Referer", "https://app-api.pixiv.net/").ToTuple() })
                   .ResponseStream);
             var memStream = new MemoryStream();

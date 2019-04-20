@@ -48,6 +48,18 @@ namespace PixivFSUWP
             {
                 case ListContent.Recommend:
                     WaterfallListView.ItemsSource = Data.OverAll.RecommendList;
+                    Data.OverAll.RecommendList.ResumeLoading();
+                    break;
+            }
+        }
+
+        protected override void OnNavigatingFrom(NavigatingCancelEventArgs e)
+        {
+            base.OnNavigatingFrom(e);
+            switch (listContent)
+            {
+                case ListContent.Recommend:
+                    Data.OverAll.RecommendList.PauseLoading();
                     break;
             }
         }

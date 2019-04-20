@@ -19,6 +19,7 @@ namespace PixivFSUWP.Data
         string nexturl = "begin";
         bool _busy = false;
         bool _emergencyStop = false;
+        EventWaitHandle pause = new ManualResetEvent(true);
 
         public bool HasMoreItems
         {
@@ -36,6 +37,16 @@ namespace PixivFSUWP.Data
         public void StopLoading()
         {
             if (_busy) _emergencyStop = true;
+        }
+
+        public void PauseLoading()
+        {
+            pause.Reset();
+        }
+
+        public void ResumeLoading()
+        {
+            pause.Set();
         }
 
         protected async Task<LoadMoreItemsResult> LoadMoreItemsAsync(CancellationToken c, uint count)
@@ -67,11 +78,12 @@ namespace PixivFSUWP.Data
                 nexturl = recommendres.Item("next_url").AsString();
                 foreach (var recillust in recommendres.Item("illusts").AsArray())
                 {
-                    if(_emergencyStop)
+                    if (_emergencyStop)
                     {
                         _emergencyStop = false;
                         return toret;
                     }
+                    await Task.Run(() => pause.WaitOne());
                     Data.WaterfallItem recommendi = Data.WaterfallItem.FromJsonValue(recillust);
                     var recommendmodel = ViewModels.WaterfallItemViewModel.FromItem(recommendi);
                     await recommendmodel.LoadImageAsync();

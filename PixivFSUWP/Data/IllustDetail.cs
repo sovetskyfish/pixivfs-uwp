@@ -54,7 +54,7 @@ namespace PixivFSUWP.Data
             {
                 var pages = Source.Item("illust").Item("meta_pages").AsArray();
                 foreach (var page in pages)
-                    toret.OriginalUrls.Add(page.Item("original_image_url").AsString());
+                    toret.OriginalUrls.Add(page.Item("image_urls").Item("original").AsString());
             }
             toret.Width = Source.Item("illust").Item("width").AsInteger();
             toret.Height = Source.Item("illust").Item("height").AsInteger();

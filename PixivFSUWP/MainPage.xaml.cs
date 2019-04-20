@@ -44,7 +44,7 @@ namespace PixivFSUWP
             switch (sender.MenuItems.IndexOf(args.SelectedItem))
             {
                 case 0:
-                    Data.OverAll.RefreshRecommendList();
+                    //Data.OverAll.RefreshRecommendList();
                     ContentFrame.Navigate(typeof(WaterfallPage), WaterfallPage.ListContent.Recommend);
                     NavPlaceholder.IsEnabled = false;
                     await Task.Delay(TimeSpan.FromMilliseconds(350));

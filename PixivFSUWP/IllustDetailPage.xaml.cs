@@ -3,6 +3,7 @@ using PixivFS;
 using PixivFSCS;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -40,6 +41,8 @@ namespace PixivFSUWP
             ((Frame.Parent as Grid)?.Parent as MainPage)?.SelectNavPlaceholder("详情");
             illustID = (int)e.Parameter;
             base.OnNavigatedTo(e);
+            ImageList.MaxHeight = Frame.ActualHeight - 150;
+            txtTitle.Text = "加载中";
             _ = loadContent();
         }
 
@@ -48,8 +51,25 @@ namespace PixivFSUWP
             var res = await Task.Run(() =>
                 new PixivAppAPI(Data.OverAll.GlobalBaseAPI)
                 .csfriendly_illust_detail(illustID.ToString()));
+            ImageList.ItemsSource = new ObservableCollection<ViewModels.ImageItemViewModel>();
             illust = Data.IllustDetail.FromJsonValue(res);
             txtTitle.Text = illust.Title;
+            int counter = 0;
+            foreach (var i in illust.OriginalUrls)
+            {
+                txtLoadingStatus.Text = string.Format("正在加载第{0}张，共{1}张", ++counter, illust.OriginalUrls.Count);
+                (ImageList.ItemsSource as ObservableCollection<ViewModels.ImageItemViewModel>)
+                    .Add(new ViewModels.ImageItemViewModel()
+                    {
+                        ImageSource = await Data.OverAll.LoadImageAsync(i)
+                    });
+            }
+            txtLoadingStatus.Text = string.Format("共{0}张作品", illust.OriginalUrls.Count);
+        }
+
+        private void Page_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            ImageList.MaxHeight = Frame.ActualHeight - 150;
         }
     }
 }

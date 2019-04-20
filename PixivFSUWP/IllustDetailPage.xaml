@@ -6,19 +6,23 @@
     xmlns:viewmodels="using:PixivFSUWP.ViewModels"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d"
+    mc:Ignorable="d" SizeChanged="Page_SizeChanged"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-    <ScrollViewer>
+    <ScrollViewer VerticalScrollBarVisibility="Hidden">
         <ScrollViewer.Background>
             <AcrylicBrush BackgroundSource="HostBackdrop" TintColor="White" TintOpacity="0.5" FallbackColor="White"/>
         </ScrollViewer.Background>
         <StackPanel Margin="0,75,0,0">
-            <TextBlock x:Name="txtTitle" FontSize="24" FontWeight="Bold" Margin="15"/>
+            <StackPanel Orientation="Horizontal" Margin="15,15,15,0">
+                <TextBlock x:Name="txtTitle" FontSize="24" FontWeight="Bold"/>
+                <TextBlock x:Name="txtLoadingStatus" Margin="15,0,0,3" VerticalAlignment="Bottom"/>
+            </StackPanel>
             <ListView ScrollViewer.VerticalScrollBarVisibility="Disabled" 
                       ScrollViewer.HorizontalScrollBarVisibility="Auto"
                       ScrollViewer.HorizontalScrollMode="Enabled" 
                       ScrollViewer.VerticalScrollMode="Disabled"
-                      Margin="15" x:Name="ImageList">
+                      SelectionMode="None"
+                      Margin="15,15,0,0" x:Name="ImageList">
                 <ListView.ItemsPanel>
                     <ItemsPanelTemplate>
                         <StackPanel Orientation="Horizontal"/>
@@ -26,7 +30,7 @@
                 </ListView.ItemsPanel>
                 <ListView.ItemTemplate>
                     <DataTemplate x:DataType="viewmodels:ImageItemViewModel">
-                        <Grid>
+                        <Grid Margin="-12,0" Padding="0,0,15,0">
                             <Image Source="{Binding ImageSource}"/>
                         </Grid>
                     </DataTemplate>
