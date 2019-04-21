@@ -26,8 +26,9 @@
                       ScrollViewer.HorizontalScrollBarVisibility="Hidden"
                       ScrollViewer.HorizontalScrollMode="Enabled" 
                       ScrollViewer.VerticalScrollMode="Disabled"
-                      SelectionMode="None" MaxHeight="1"
-                      Margin="0,10,0,0" x:Name="ImageList">
+                      SelectionMode="None" MaxHeight="1" IsItemClickEnabled="True"
+                      Margin="0,10,0,0" x:Name="ImageList"
+                      ItemClick="ImageList_ItemClick">
                 <ListView.ItemsPanel>
                     <ItemsPanelTemplate>
                         <controls:ImageSelectorPanel LeftOffset="15" RightOffset="15" ItemMargin="15"/>
@@ -35,8 +36,16 @@
                 </ListView.ItemsPanel>
                 <ListView.ItemTemplate>
                     <DataTemplate x:DataType="viewmodels:ImageItemViewModel">
-                        <Grid Margin="-12,0">
+                        <Grid Margin="-12,0" BorderThickness="1.5">
+                            <Grid.BorderBrush>
+                                <RevealBorderBrush Color="Transparent" FallbackColor="LightGray" />
+                            </Grid.BorderBrush>
                             <Image Source="{Binding ImageSource}"/>
+                            <Grid>
+                                <Grid.Background>
+                                    <RevealBackgroundBrush Color="Transparent" FallbackColor="Transparent"/>
+                                </Grid.Background>
+                            </Grid>
                         </Grid>
                     </DataTemplate>
                 </ListView.ItemTemplate>

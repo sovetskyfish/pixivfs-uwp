@@ -127,9 +127,13 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="BigImage.xaml.cs">
+      <DependentUpon>BigImage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\ImageSelectorPanel.cs" />
     <Compile Include="Controls\WaterfallContentPanel.cs" />
     <Compile Include="Controls\WaterfallListView.cs" />
+    <Compile Include="Data\BigImageDetail.cs" />
     <Compile Include="Data\IllustDetail.cs" />
     <Compile Include="Data\RecommendIllustsCollection.cs" />
     <Compile Include="Data\OverAll.cs" />
@@ -174,6 +178,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="BigImage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="IllustDetailPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

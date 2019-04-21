@@ -31,6 +31,8 @@ namespace PixivFSUWP
         int illustID;
         Data.IllustDetail illust;
 
+        Task<WriteableBitmap> loadingTask = null;
+
         public IllustDetailPage()
         {
             this.InitializeComponent();
@@ -62,15 +64,16 @@ namespace PixivFSUWP
             txtBookmarkStatus.Text = illust.TotalBookmarks.ToString();
             txtAuthor.Text = illust.Author;
             txtAuthorAccount.Text = string.Format("@{0}", illust.AuthorAccount);
-            txtCaption.Text = illust.Caption.Replace("<br/>", "\n");
+            txtCaption.Text = illust.Caption.Replace("<br />", "\n");
             int counter = 0;
             foreach (var i in illust.OriginalUrls)
             {
                 txtLoadingStatus.Text = string.Format("正在加载第 {0} 张，共 {1} 张", ++counter, illust.OriginalUrls.Count);
+                loadingTask = Data.OverAll.LoadImageAsync(i, 1, 1);
                 (ImageList.ItemsSource as ObservableCollection<ViewModels.ImageItemViewModel>)
                     .Add(new ViewModels.ImageItemViewModel()
                     {
-                        ImageSource = await Data.OverAll.LoadImageAsync(i)
+                        ImageSource = await Data.OverAll.LoadImageAsync(i, 1, 1)
                     });
             }
             txtLoadingStatus.Text = string.Format("共 {0} 张作品，点击或触摸查看大图", illust.OriginalUrls.Count);
@@ -79,6 +82,20 @@ namespace PixivFSUWP
         private void Page_SizeChanged(object sender, SizeChangedEventArgs e)
         {
             ImageList.MaxHeight = Frame.ActualHeight - 245;
+        }
+
+        private async void ImageList_ItemClick(object sender, ItemClickEventArgs e)
+        {
+
+            var Item = e.ClickedItem as ViewModels.ImageItemViewModel;
+            await Data.OverAll.ShowNewWindow(typeof(BigImage), new Data.BigImageDetail()
+            {
+                Title = illust.Title,
+                Width = Item.ImageSource.PixelWidth,
+                Height = Item.ImageSource.PixelHeight,
+                Author = illust.Author,
+                Image = await Data.OverAll.ImageToBytes(Item.ImageSource)
+            });
         }
     }
 }

@@ -1,0 +1,25 @@
+﻿<Page
+    x:Class="PixivFSUWP.BigImage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:PixivFSUWP"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d" Loaded="Page_Loaded"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid x:Name="layoutRoot">
+        <ScrollViewer ZoomMode="Enabled" 
+                      HorizontalContentAlignment="Center"
+                      VerticalContentAlignment="Center"
+                      HorizontalScrollBarVisibility="Auto"
+                      VerticalScrollBarVisibility="Auto"
+                      HorizontalScrollMode="Enabled" 
+                      VerticalScrollMode="Enabled">
+            <Grid>
+                <Image x:Name="mainImg"/>
+                <InkCanvas x:Name="mainCanvas"/>
+            </Grid>
+        </ScrollViewer>
+    </Grid>
+</Page>

@@ -35,7 +35,7 @@ namespace PixivFSUWP
             var view = ApplicationView.GetForCurrentView();
             view.TitleBar.ButtonForegroundColor = Colors.Black;
             view.TitleBar.ButtonInactiveForegroundColor = Colors.Gray;
-            view.Title = "Pixiv UWP";
+            view.Title = "";
         }
 
         private async void NavControl_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)

@@ -9,6 +9,6 @@ namespace PixivFSUWP.ViewModels
 {
     public class ImageItemViewModel
     {
-        public BitmapImage ImageSource { get; set; }
+        public WriteableBitmap ImageSource { get; set; }
     }
 }
