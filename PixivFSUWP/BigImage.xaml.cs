@@ -1,12 +1,19 @@
-﻿using System;
+﻿using Microsoft.Graphics.Canvas;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
 using Windows.ApplicationModel.Core;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Graphics.Imaging;
+using Windows.Storage;
+using Windows.Storage.Pickers;
+using Windows.Storage.Provider;
 using Windows.UI;
+using Windows.UI.Popups;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -14,6 +21,7 @@ using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
 
 // https://go.microsoft.com/fwlink/?LinkId=234238 上介绍了“空白页”项模板
@@ -30,6 +38,8 @@ namespace PixivFSUWP
         public BigImage()
         {
             this.InitializeComponent();
+            mainCanvas.InkPresenter.InputDeviceTypes = Windows.UI.Core.CoreInputDeviceTypes.Mouse
+                | Windows.UI.Core.CoreInputDeviceTypes.Pen;
         }
 
         protected override async void OnNavigatedTo(NavigationEventArgs e)
@@ -97,6 +107,7 @@ namespace PixivFSUWP
             mainCanvas.Visibility = Visibility.Visible;
             inkToolbar.Visibility = Visibility.Visible;
             paper.Visibility = Visibility.Visible;
+            btnSaveImage.Label = "保存墨迹";
             lockView();
         }
 
@@ -106,7 +117,123 @@ namespace PixivFSUWP
             inkToolbar.Visibility = Visibility.Collapsed;
             paper.Visibility = Visibility.Collapsed;
             mainCanvas.InkPresenter.StrokeContainer.Clear();
+            btnSaveImage.Label = "保存图片";
             unlockView();
+        }
+
+        private async void BtnSaveImage_Click(object sender, RoutedEventArgs e)
+        {
+            if (_locked)
+                await saveStrokes();
+            else
+                await saveImage();
+        }
+
+        private async Task saveImage()
+        {
+            FileSavePicker picker = new FileSavePicker();
+            picker.SuggestedStartLocation = PickerLocationId.PicturesLibrary;
+            picker.FileTypeChoices.Add("图片文件", new List<string>() { ".png" });
+            picker.SuggestedFileName = parameter.Title;
+            var file = await picker.PickSaveFileAsync();
+            if (file != null)
+            {
+                CachedFileManager.DeferUpdates(file);
+                using (var stream = await file.OpenAsync(FileAccessMode.ReadWrite))
+                {
+                    var encoder = await BitmapEncoder.CreateAsync(BitmapEncoder.PngEncoderId, stream);
+                    var image = mainImg.Source as WriteableBitmap;
+                    var imageStream = image.PixelBuffer.AsStream();
+                    byte[] raw = new byte[imageStream.Length];
+                    await imageStream.ReadAsync(raw, 0, raw.Length);
+                    encoder.SetPixelData(BitmapPixelFormat.Bgra8, BitmapAlphaMode.Ignore,
+                        (uint)image.PixelWidth, (uint)image.PixelHeight, 96, 96, raw);
+                    await encoder.FlushAsync();
+                }
+                var updateStatus = await CachedFileManager.CompleteUpdatesAsync(file);
+                if (updateStatus != FileUpdateStatus.Complete)
+                {
+                    var messageDialog = new MessageDialog("图片保存失败");
+                    messageDialog.Commands.Add(new UICommand("重试", async (a) => { await saveImage(); }));
+                    messageDialog.Commands.Add(new UICommand("放弃"));
+                    messageDialog.DefaultCommandIndex = 0;
+                    messageDialog.CancelCommandIndex = 1;
+                    await messageDialog.ShowAsync();
+                }
+                else
+                {
+                    var messageDialog = new MessageDialog("图片已保存");
+                    messageDialog.Commands.Add(new UICommand("好的"));
+                    messageDialog.DefaultCommandIndex = 0;
+                    await messageDialog.ShowAsync();
+                }
+            }
+        }
+
+        private async Task saveStrokes()
+        {
+            var strokes = mainCanvas.InkPresenter.StrokeContainer.GetStrokes();
+            if (strokes.Count > 0)
+            {
+                FileSavePicker picker = new FileSavePicker();
+                picker.SuggestedStartLocation = PickerLocationId.PicturesLibrary;
+                picker.FileTypeChoices.Add("图片文件", new List<string>() { ".png" });
+                picker.FileTypeChoices.Add("墨迹原始信息", new List<string>() { ".gif" });
+                picker.SuggestedFileName = "我的临摹";
+                var file = await picker.PickSaveFileAsync();
+                if (file != null)
+                {
+                    CachedFileManager.DeferUpdates(file);
+                    using (var stream = await file.OpenAsync(FileAccessMode.ReadWrite))
+                    {
+                        if (file.FileType == ".png")
+                        {
+                            var width = (int)mainCanvas.ActualWidth;
+                            var height = (int)mainCanvas.ActualHeight;
+                            var device = CanvasDevice.GetSharedDevice();
+                            var renderTarget = new CanvasRenderTarget(device, width, height, 96);
+                            using (var ds = renderTarget.CreateDrawingSession())
+                            {
+                                ds.Clear(Colors.White);
+                                ds.DrawInk(strokes);
+                            }
+                            await renderTarget.SaveAsync(stream, CanvasBitmapFileFormat.Png);
+                        }
+                        else
+                        {
+                            using (var outputStream = stream.GetOutputStreamAt(0))
+                            {
+                                await mainCanvas.InkPresenter.StrokeContainer.SaveAsync(outputStream);
+                                await outputStream.FlushAsync();
+                            }
+                        }
+                    }
+                    var updateStatus = await CachedFileManager.CompleteUpdatesAsync(file);
+                    if (updateStatus != FileUpdateStatus.Complete)
+                    {
+                        var messageDialog = new MessageDialog("墨迹保存失败");
+                        messageDialog.Commands.Add(new UICommand("重试", async (a) => { await saveStrokes(); }));
+                        messageDialog.Commands.Add(new UICommand("放弃"));
+                        messageDialog.DefaultCommandIndex = 0;
+                        messageDialog.CancelCommandIndex = 1;
+                        await messageDialog.ShowAsync();
+                    }
+                    else
+                    {
+                        var messageDialog = new MessageDialog("墨迹已保存");
+                        messageDialog.Commands.Add(new UICommand("好的"));
+                        messageDialog.DefaultCommandIndex = 0;
+                        await messageDialog.ShowAsync();
+                    }
+                }
+            }
+            else
+            {
+                var messageDialog = new MessageDialog("没有墨迹可以保存");
+                messageDialog.Commands.Add(new UICommand("好的"));
+                messageDialog.DefaultCommandIndex = 0;
+                await messageDialog.ShowAsync();
+            }
         }
     }
 }

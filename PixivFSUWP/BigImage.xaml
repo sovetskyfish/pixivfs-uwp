@@ -26,10 +26,10 @@
                     <InkToolbarBallpointPenButton/>
                     <InkToolbarPencilButton/>
                     <InkToolbarEraserButton/>
-                    <InkToolbarRulerButton/>
+                    <InkToolbarStencilButton/>
                 </InkToolbar>
             </CommandBar.Content>
-            <AppBarButton Icon="Save" Label="保存"/>
+            <AppBarButton x:Name="btnSaveImage" Icon="Save" Label="保存图片" Click="BtnSaveImage_Click"/>
             <AppBarToggleButton x:Name="btnDraw" Icon="Edit" Label="临摹" Unchecked="BtnDraw_Unchecked" Checked="BtnDraw_Checked"/>
         </CommandBar>
         <ScrollViewer ZoomMode="Enabled" x:Name="scrollRoot" 
