@@ -7,8 +7,10 @@
     xmlns:controls="using:PixivFSUWP.Controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    mc:Ignorable="d">
+    <Page.Background>
+        <AcrylicBrush BackgroundSource="HostBackdrop" TintColor="White" TintOpacity="0.5" FallbackColor="White"/>
+    </Page.Background>
     <Page.Resources>
         <DataTemplate x:Key="WaterfallListViewItemTemplate"
                       x:DataType="viewmodels:WaterfallItemViewModel">
@@ -83,9 +85,6 @@
             x:Name="WaterfallListView" SelectionMode="None" ItemContainerTransitions="{x:Null}"
             ItemTemplate="{StaticResource WaterfallListViewItemTemplate}"
             IsItemClickEnabled="True" ItemClick="WaterfallListView_ItemClick">
-            <ListView.Background>
-                <AcrylicBrush BackgroundSource="HostBackdrop" TintColor="White" TintOpacity="0.5" FallbackColor="White"/>
-            </ListView.Background>
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
                     <controls:WaterfallContentPanel x:Name="WaterfallContent" Loaded="WaterfallContent_Loaded" TopOffset="75" ItemMargin="2">
