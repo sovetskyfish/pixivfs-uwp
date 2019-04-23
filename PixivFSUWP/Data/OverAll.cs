@@ -36,6 +36,13 @@ namespace PixivFSUWP.Data
             RecommendList = new RecommendIllustsCollection();
         }
 
+        public static void RefreshBookmarkList()
+        {
+            BookmarkList.StopLoading();
+            BookmarkList.Clear();
+            BookmarkList = new BookmarkIllustsCollection();
+        }
+
         static async Task<MemoryStream> downloadImage(string Uri)
         {
             var resStream = await Task.Run(() => new PixivAppAPI(GlobalBaseAPI).csfriendly_no_auth_requests_call_stream("GET",
