@@ -55,25 +55,25 @@ namespace PixivFSUWP.Data
 
         protected async Task<LoadMoreItemsResult> LoadMoreItemsAsync(CancellationToken c, uint count)
         {
-            if (!HasMoreItems) return new LoadMoreItemsResult() { Count = 0 };
             try
             {
+                if (!HasMoreItems) return new LoadMoreItemsResult() { Count = 0 };
                 LoadMoreItemsResult toret = new LoadMoreItemsResult() { Count = 0 };
-                JsonValue recommendres = null;
+                JsonValue followingres = null;
                 if (nexturl == "begin")
-                    recommendres = await Task.Run(() => new PixivFS
+                    followingres = await Task.Run(() => new PixivFS
                         .PixivAppAPI(OverAll.GlobalBaseAPI)
                         .csfriendly_illust_follow());
                 else
                 {
                     Uri next = new Uri(nexturl);
                     string getparam(string param) => HttpUtility.ParseQueryString(next.Query).Get(param);
-                    recommendres = await Task.Run(() => new PixivFS
+                    followingres = await Task.Run(() => new PixivFS
                         .PixivAppAPI(OverAll.GlobalBaseAPI)
                         .csfriendly_illust_follow(getparam("restrict"), getparam("offset")));
                 }
-                nexturl = recommendres.Item("next_url").AsString();
-                foreach (var recillust in recommendres.Item("illusts").AsArray())
+                nexturl = followingres.Item("next_url").AsString();
+                foreach (var recillust in followingres.Item("illusts").AsArray())
                 {
                     if (_emergencyStop)
                     {

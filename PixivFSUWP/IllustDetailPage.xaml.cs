@@ -65,7 +65,8 @@ namespace PixivFSUWP
             txtAuthor.Text = illust.Author;
             txtAuthorAccount.Text = string.Format("@{0}", illust.AuthorAccount);
             txtCaption.Text = (illust.Caption == "") ? "暂无简介" : illust.Caption.Replace("<br />", "\n");
-            txtCommentTitle.Text = string.Format("评论 - 共{0}条", illust.TotalComments);
+            txtCommentTitle.Text = "评论";
+            listComments.ItemsSource = new Data.CommentsCollection(illustID.ToString());
             int counter = 0;
             foreach (var i in illust.OriginalUrls)
             {
@@ -97,6 +98,18 @@ namespace PixivFSUWP
                 Author = illust.Author,
                 Image = await Data.OverAll.ImageToBytes(Item.ImageSource)
             });
+        }
+
+        private async void ScrollViewer_ViewChanged(object sender, ScrollViewerViewChangedEventArgs e)
+        {
+            if ((sender as ScrollViewer).VerticalOffset >= (sender as ScrollViewer).ScrollableHeight - 500)
+            {
+                try
+                {
+                    await (listComments.ItemsSource as ISupportIncrementalLoading)?.LoadMoreItemsAsync(0);
+                }
+                catch { }
+            }
         }
     }
 }

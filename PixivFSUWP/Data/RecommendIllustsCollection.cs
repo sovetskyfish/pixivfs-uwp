@@ -55,9 +55,9 @@ namespace PixivFSUWP.Data
 
         protected async Task<LoadMoreItemsResult> LoadMoreItemsAsync(CancellationToken c, uint count)
         {
-            if (!HasMoreItems) return new LoadMoreItemsResult() { Count = 0 };
             try
             {
+                if (!HasMoreItems) return new LoadMoreItemsResult() { Count = 0 };
                 LoadMoreItemsResult toret = new LoadMoreItemsResult() { Count = 0 };
                 JsonValue recommendres = null;
                 if (nexturl == "begin")

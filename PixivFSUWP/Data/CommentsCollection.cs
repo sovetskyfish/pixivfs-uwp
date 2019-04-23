@@ -1,4 +1,5 @@
-﻿using PixivFSCS;
+﻿using FSharp.Data;
+using PixivFSCS;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -7,27 +8,21 @@ using System.Runtime.InteropServices.WindowsRuntime;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Web;
 using Windows.Foundation;
 using Windows.UI.Xaml.Data;
-using FSharp.Data;
-using System.Web;
 
 namespace PixivFSUWP.Data
 {
-    public class BookmarkIllustsCollection : ObservableCollection<ViewModels.WaterfallItemViewModel>, ISupportIncrementalLoading
+    public class CommentsCollection : ObservableCollection<ViewModels.CommentViewModel>, ISupportIncrementalLoading
     {
-        readonly string userID;
         string nexturl = "begin";
         bool _busy = false;
         bool _emergencyStop = false;
         EventWaitHandle pause = new ManualResetEvent(true);
+        readonly string illustid;
 
-        public BookmarkIllustsCollection(string UserID)
-        {
-            userID = UserID;
-        }
-
-        public BookmarkIllustsCollection() : this(OverAll.GlobalBaseAPI.user_id) { }
+        public CommentsCollection(string IllustID) => illustid = IllustID;
 
         public bool HasMoreItems
         {
@@ -67,22 +62,21 @@ namespace PixivFSUWP.Data
             {
                 if (!HasMoreItems) return new LoadMoreItemsResult() { Count = 0 };
                 LoadMoreItemsResult toret = new LoadMoreItemsResult() { Count = 0 };
-                JsonValue bookmarkres = null;
+                JsonValue commentres = null;
                 if (nexturl == "begin")
-                    bookmarkres = await Task.Run(() => new PixivFS
+                    commentres = await Task.Run(() => new PixivFS
                         .PixivAppAPI(OverAll.GlobalBaseAPI)
-                        .csfriendly_user_bookmarks_illust(userID));
+                        .csfriendly_illust_comments(illustid, include_total_comments: true));
                 else
                 {
                     Uri next = new Uri(nexturl);
                     string getparam(string param) => HttpUtility.ParseQueryString(next.Query).Get(param);
-                    bookmarkres = await Task.Run(() => new PixivFS
+                    commentres = await Task.Run(() => new PixivFS
                         .PixivAppAPI(OverAll.GlobalBaseAPI)
-                        .csfriendly_user_bookmarks_illust(userID, getparam("restrict"),
-                        getparam("filter"), getparam("max_bookmark_id")));
+                        .csfriendly_illust_comments(illustid, getparam("offset"), bool.Parse(getparam("include_total_comments"))));
                 }
-                nexturl = bookmarkres.Item("next_url").AsString();
-                foreach (var recillust in bookmarkres.Item("illusts").AsArray())
+                nexturl = commentres.Item("next_url").AsString();
+                foreach (var recillust in commentres.Item("comments").AsArray())
                 {
                     if (_emergencyStop)
                     {
@@ -90,9 +84,9 @@ namespace PixivFSUWP.Data
                         return toret;
                     }
                     await Task.Run(() => pause.WaitOne());
-                    Data.WaterfallItem recommendi = Data.WaterfallItem.FromJsonValue(recillust);
-                    var recommendmodel = ViewModels.WaterfallItemViewModel.FromItem(recommendi);
-                    await recommendmodel.LoadImageAsync();
+                    Data.IllustCommentItem recommendi = Data.IllustCommentItem.FromJsonValue(recillust);
+                    var recommendmodel = ViewModels.CommentViewModel.FromItem(recommendi);
+                    //await recommendmodel.LoadAvatarAsync();
                     Add(recommendmodel);
                     toret.Count++;
                 }
@@ -105,4 +99,3 @@ namespace PixivFSUWP.Data
         }
     }
 }
-
