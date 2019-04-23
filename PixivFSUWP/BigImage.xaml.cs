@@ -48,9 +48,9 @@ namespace PixivFSUWP
             CoreApplication.GetCurrentView().TitleBar.ExtendViewIntoTitleBar = true;
             var view = ApplicationView.GetForCurrentView();
             view.TitleBar.ButtonBackgroundColor = Colors.Transparent;
-            view.TitleBar.ButtonForegroundColor = Colors.White;
             view.TitleBar.ButtonForegroundColor = Colors.Black;
             view.TitleBar.ButtonInactiveForegroundColor = Colors.Gray;
+            view.TitleBar.ButtonInactiveBackgroundColor = Colors.Transparent;
             view.Title = string.Format("{0} by {1} - {2}x{3}",
                 parameter.Title, parameter.Author,
                 parameter.Width, parameter.Height);

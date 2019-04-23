@@ -135,6 +135,7 @@
     <Compile Include="Controls\WaterfallListView.cs" />
     <Compile Include="Data\BigImageDetail.cs" />
     <Compile Include="Data\BookmarkIllustsCollection.cs" />
+    <Compile Include="Data\FollowingIllustsCollection.cs" />
     <Compile Include="Data\IllustDetail.cs" />
     <Compile Include="Data\RecommendIllustsCollection.cs" />
     <Compile Include="Data\OverAll.cs" />

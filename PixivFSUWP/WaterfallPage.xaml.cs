@@ -54,6 +54,10 @@ namespace PixivFSUWP
                     WaterfallListView.ItemsSource = Data.OverAll.BookmarkList;
                     Data.OverAll.BookmarkList.ResumeLoading();
                     break;
+                case ListContent.Following:
+                    WaterfallListView.ItemsSource = Data.OverAll.FollowingList;
+                    Data.OverAll.FollowingList.ResumeLoading();
+                    break;
             }
         }
 
@@ -67,6 +71,9 @@ namespace PixivFSUWP
                     break;
                 case ListContent.Bookmark:
                     Data.OverAll.BookmarkList.PauseLoading();
+                    break;
+                case ListContent.Following:
+                    Data.OverAll.FollowingList.PauseLoading();
                     break;
             }
         }

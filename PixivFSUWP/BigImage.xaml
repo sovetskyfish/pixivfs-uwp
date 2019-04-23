@@ -6,17 +6,23 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d" SizeChanged="Page_SizeChanged">
-
     <Page.Background>
         <AcrylicBrush BackgroundSource="HostBackdrop" TintColor="White" TintOpacity="0.5" FallbackColor="White"/>
     </Page.Background>
-
     <Grid x:Name="layoutRoot">
         <Grid.RowDefinitions>
             <RowDefinition Height="32"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
+        <Rectangle Grid.RowSpan="2">
+            <Rectangle.Fill>
+                <AcrylicBrush BackgroundSource="Backdrop" 
+                              TintColor="#F3F3F3" 
+                              TintOpacity="0.5" 
+                              FallbackColor="#F3F3F3"/>
+            </Rectangle.Fill>
+        </Rectangle>
         <TextBlock x:Name="txtTitle" Margin="10,0,0,0" FontSize="12" VerticalAlignment="Center" HorizontalAlignment="Left"/>
         <CommandBar Grid.Row="1" DefaultLabelPosition="Right" Background="Transparent">
             <CommandBar.Content>

@@ -59,6 +59,8 @@ namespace PixivFSUWP
                     NavPlaceholder.Visibility = Visibility.Collapsed;
                     break;
                 case 2:
+                    OverAll.RefreshFollowingList();
+                    ContentFrame.Navigate(typeof(WaterfallPage), WaterfallPage.ListContent.Following);
                     NavPlaceholder.IsEnabled = false;
                     await Task.Delay(TimeSpan.FromMilliseconds(350));
                     NavSeparator.Visibility = Visibility.Collapsed;
