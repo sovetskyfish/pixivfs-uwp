@@ -5,20 +5,45 @@
     xmlns:local="using:PixivFSUWP"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d" Loaded="Page_Loaded"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    mc:Ignorable="d" SizeChanged="Page_SizeChanged">
+
+    <Page.Background>
+        <AcrylicBrush BackgroundSource="HostBackdrop" TintColor="White" TintOpacity="0.5" FallbackColor="White"/>
+    </Page.Background>
 
     <Grid x:Name="layoutRoot">
-        <ScrollViewer ZoomMode="Enabled" 
+        <Grid.RowDefinitions>
+            <RowDefinition Height="32"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <TextBlock x:Name="txtTitle" Margin="10,0,0,0" FontSize="12" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+        <CommandBar Grid.Row="1" DefaultLabelPosition="Right" Background="Transparent">
+            <CommandBar.Content>
+                <InkToolbar x:Name="inkToolbar" Visibility="Collapsed"
+                            VerticalAlignment="Center" InitialControls="None"
+                            TargetInkCanvas="{x:Bind mainCanvas}">
+                    <InkToolbarBallpointPenButton/>
+                    <InkToolbarPencilButton/>
+                    <InkToolbarEraserButton/>
+                    <InkToolbarRulerButton/>
+                </InkToolbar>
+            </CommandBar.Content>
+            <AppBarButton Icon="Save" Label="保存"/>
+            <AppBarToggleButton x:Name="btnDraw" Icon="Edit" Label="临摹" Unchecked="BtnDraw_Unchecked" Checked="BtnDraw_Checked"/>
+        </CommandBar>
+        <ScrollViewer ZoomMode="Enabled" x:Name="scrollRoot" 
+                      MinZoomFactor="1" Grid.Row="2"
                       HorizontalContentAlignment="Center"
                       VerticalContentAlignment="Center"
                       HorizontalScrollBarVisibility="Auto"
                       VerticalScrollBarVisibility="Auto"
                       HorizontalScrollMode="Enabled" 
                       VerticalScrollMode="Enabled">
-            <Grid>
+            <Grid x:Name="gridImg">
+                <Grid x:Name="paper" Background="White" Visibility="Collapsed"/>
                 <Image x:Name="mainImg"/>
-                <InkCanvas x:Name="mainCanvas"/>
+                <InkCanvas x:Name="mainCanvas" Visibility="Collapsed"/>
             </Grid>
         </ScrollViewer>
     </Grid>
