@@ -65,6 +65,9 @@ namespace PixivFSUWP
                 case ListContent.Recommend:
                     Data.OverAll.RecommendList.PauseLoading();
                     break;
+                case ListContent.Bookmark:
+                    Data.OverAll.BookmarkList.PauseLoading();
+                    break;
             }
         }
 
