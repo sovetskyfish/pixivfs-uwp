@@ -27,6 +27,7 @@ namespace PixivFSUWP.Data
         public const string refreshTokenResource = "PixivFSUWPRefreshToken";
 
         public static RecommendIllustsCollection RecommendList { get; private set; } = new RecommendIllustsCollection();
+        public static BookmarkIllustsCollection BookmarkList { get; set; }
 
         public static void RefreshRecommendList()
         {

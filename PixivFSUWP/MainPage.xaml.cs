@@ -43,7 +43,6 @@ namespace PixivFSUWP
             switch (sender.MenuItems.IndexOf(args.SelectedItem))
             {
                 case 0:
-                    //Data.OverAll.RefreshRecommendList();
                     ContentFrame.Navigate(typeof(WaterfallPage), WaterfallPage.ListContent.Recommend);
                     NavPlaceholder.IsEnabled = false;
                     await Task.Delay(TimeSpan.FromMilliseconds(350));
@@ -51,6 +50,7 @@ namespace PixivFSUWP
                     NavPlaceholder.Visibility = Visibility.Collapsed;
                     break;
                 case 1:
+                    ContentFrame.Navigate(typeof(WaterfallPage), WaterfallPage.ListContent.Bookmark);
                     NavPlaceholder.IsEnabled = false;
                     await Task.Delay(TimeSpan.FromMilliseconds(350));
                     NavSeparator.Visibility = Visibility.Collapsed;

@@ -50,6 +50,10 @@ namespace PixivFSUWP
                     WaterfallListView.ItemsSource = Data.OverAll.RecommendList;
                     Data.OverAll.RecommendList.ResumeLoading();
                     break;
+                case ListContent.Bookmark:
+                    WaterfallListView.ItemsSource = Data.OverAll.BookmarkList;
+                    Data.OverAll.BookmarkList.ResumeLoading();
+                    break;
             }
         }
 

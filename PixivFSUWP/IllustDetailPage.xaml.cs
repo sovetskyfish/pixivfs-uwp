@@ -64,7 +64,8 @@ namespace PixivFSUWP
             txtBookmarkStatus.Text = illust.TotalBookmarks.ToString();
             txtAuthor.Text = illust.Author;
             txtAuthorAccount.Text = string.Format("@{0}", illust.AuthorAccount);
-            txtCaption.Text = illust.Caption.Replace("<br />", "\n");
+            txtCaption.Text = (illust.Caption == "") ? "暂无简介" : illust.Caption.Replace("<br />", "\n");
+            txtCommentTitle.Text = string.Format("评论 - 共{0}条", illust.TotalComments);
             int counter = 0;
             foreach (var i in illust.OriginalUrls)
             {

@@ -68,6 +68,7 @@
                 <TextBlock x:Name="txtAuthorAccount" Margin="10,0" Grid.Row="1" Grid.Column="1" FontSize="14" Foreground="Gray" VerticalAlignment="Top"/>
             </Grid>
             <TextBlock x:Name="txtCaption" Margin="15,15,15,0" Height="Auto" TextWrapping="WrapWholeWords"/>
+            <TextBlock x:Name="txtCommentTitle" Margin="15,15,15,0" Height="Auto" FontSize="20" FontWeight="Bold"/>
         </StackPanel>
     </ScrollViewer>
 </Page>

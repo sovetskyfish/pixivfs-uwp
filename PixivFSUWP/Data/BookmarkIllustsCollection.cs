@@ -14,12 +14,20 @@ using System.Web;
 
 namespace PixivFSUWP.Data
 {
-    public class RecommendIllustsCollection : ObservableCollection<ViewModels.WaterfallItemViewModel>, ISupportIncrementalLoading
+    public class BookmarkIllustsCollection : ObservableCollection<ViewModels.WaterfallItemViewModel>, ISupportIncrementalLoading
     {
+        readonly string userID;
         string nexturl = "begin";
         bool _busy = false;
         bool _emergencyStop = false;
         EventWaitHandle pause = new ManualResetEvent(true);
+
+        public BookmarkIllustsCollection(string UserID)
+        {
+            userID = UserID;
+        }
+
+        public BookmarkIllustsCollection() : this(OverAll.GlobalBaseAPI.user_id) { }
 
         public bool HasMoreItems
         {
@@ -63,22 +71,15 @@ namespace PixivFSUWP.Data
                 if (nexturl == "begin")
                     recommendres = await Task.Run(() => new PixivFS
                         .PixivAppAPI(OverAll.GlobalBaseAPI)
-                        .csfriendly_illust_recommended());
+                        .csfriendly_user_bookmarks_illust(userID));
                 else
                 {
                     Uri next = new Uri(nexturl);
                     string getparam(string param) => HttpUtility.ParseQueryString(next.Query).Get(param);
                     recommendres = await Task.Run(() => new PixivFS
                         .PixivAppAPI(OverAll.GlobalBaseAPI)
-                        .csfriendly_illust_recommended(content_type:
-                            getparam("content_type"),
-                            include_ranking_label: bool.Parse(getparam("include_ranking_label")),
-                            filter: getparam("filter"),
-                            min_bookmark_id_for_recent_illust: getparam("min_bookmark_id_for_recent_illust"),
-                            max_bookmark_id_for_recommend: getparam("max_bookmark_id_for_recommend"),
-                            offset: getparam("offset"),
-                            include_ranking_illusts: bool.Parse(getparam("include_ranking_illusts")),
-                            include_privacy_policy: getparam("include_privacy_policy")));
+                        .csfriendly_user_bookmarks_illust(userID, getparam("restrict"),
+                        getparam("filter"), getparam("max_bookmark_id")));
                 }
                 nexturl = recommendres.Item("next_url").AsString();
                 foreach (var recillust in recommendres.Item("illusts").AsArray())
