@@ -9,6 +9,7 @@ using PixivFS;
 using PixivFSCS;
 using Windows.ApplicationModel.Core;
 using Windows.Graphics.Imaging;
+using Windows.Security.Credentials;
 using Windows.Storage;
 using Windows.Storage.Streams;
 using Windows.UI.Core;
@@ -115,6 +116,21 @@ namespace PixivFSUWP.Data
                 newViewId = ApplicationView.GetForCurrentView().Id;
             });
             await ApplicationViewSwitcher.TryShowAsStandaloneAsync(newViewId);
+        }
+
+        //从Vault中获取身份信息
+        //此版本只储存一个，未来可以储存多到20个
+        public static PasswordCredential GetCredentialFromLocker(string resourceName)
+        {
+            PasswordCredential credential = null;
+            var vault = new PasswordVault();
+            try
+            {
+                var credentialList = vault.FindAllByResource(resourceName);
+                if (credentialList.Count > 0) credential = credentialList[0];
+            }
+            catch { }
+            return credential;
         }
     }
 }

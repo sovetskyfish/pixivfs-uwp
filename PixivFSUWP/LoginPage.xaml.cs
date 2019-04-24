@@ -154,20 +154,5 @@ namespace PixivFSUWP
             txtPassword.Focus(FocusState.Programmatic);
             txtPassword.SelectAll();
         }
-
-        //从Vault中获取身份信息
-        //此版本只储存一个，未来可以储存多到20个
-        private PasswordCredential GetCredentialFromLocker(string resourceName)
-        {
-            PasswordCredential credential = null;
-            var vault = new PasswordVault();
-            try
-            {
-                var credentialList = vault.FindAllByResource(resourceName);
-                if (credentialList.Count > 0) credential = credentialList[0];
-            }
-            catch { }
-            return credential;
-        }
     }
 }
