@@ -22,6 +22,7 @@ using System.Threading.Tasks;
 using System.Diagnostics;
 using Windows.Security.Credentials;
 using static PixivFSUWP.Data.OverAll;
+using FSharp.Data;
 
 // https://go.microsoft.com/fwlink/?LinkId=234238 上介绍了“空白页”项模板
 
@@ -86,30 +87,31 @@ namespace PixivFSUWP
             //异步执行登录
             var logintask = Task.Run(() =>
             {
+                JsonValue res = null;
                 try
                 {
                     if (useToken)
-                        GlobalBaseAPI.csfriendly_auth(refresh_token: refreshToken);
+                        res = GlobalBaseAPI.csfriendly_auth(refresh_token: refreshToken);
                     else
-                        GlobalBaseAPI.csfriendly_auth(username, password);
-                    return true;
+                        res = GlobalBaseAPI.csfriendly_auth(username, password);
+                    return (true, res);
                 }
                 catch
                 {
-                    if(useToken)
+                    if (useToken)
                     {
                         useToken = false;
                         try
                         {
-                            GlobalBaseAPI.csfriendly_auth(username, password);
-                            return true;
+                            res = GlobalBaseAPI.csfriendly_auth(username, password);
+                            return (true, res);
                         }
                         catch
                         {
-                            return false;
+                            return (false, res);
                         }
                     }
-                    return false;
+                    return (false, res);
                 }
             });
             stkTxts.Visibility = Visibility.Collapsed;
@@ -117,7 +119,7 @@ namespace PixivFSUWP
             btnTrouble.Visibility = Visibility.Collapsed;
             ringProgress.IsActive = true;
             grdLoading.Visibility = Visibility.Visible;
-            var loginres = await logintask;
+            (var loginres, var jsonres) = await logintask;
             if (loginres)
             {
                 //登录成功
