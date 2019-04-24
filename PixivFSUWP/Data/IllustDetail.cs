@@ -32,39 +32,39 @@ namespace PixivFSUWP.Data
         public static IllustDetail FromJsonValue(JsonValue Source)
         {
             IllustDetail toret = new IllustDetail();
-            toret.IllustID = Source.Item("illust").Item("id").AsInteger();
-            toret.Title = Source.Item("illust").Item("title").AsString();
-            toret.Type = Source.Item("illust").Item("type").AsString();
-            toret.Caption = Source.Item("illust").Item("caption").AsString();
-            toret.AuthorID = Source.Item("illust").Item("user").Item("id").AsInteger();
-            toret.Author = Source.Item("illust").Item("user").Item("name").AsString();
-            toret.AuthorAccount = Source.Item("illust").Item("user").Item("account").AsString();
-            toret.AuthorAvatarUrl = Source.Item("illust").Item("user").Item("profile_image_urls").Item("medium").AsString();
-            var tags = Source.Item("illust").Item("tags").AsArray();
+            toret.IllustID = Source.TryGetProperty("illust").Value.TryGetProperty("id").Value.AsInteger();
+            toret.Title = Source.TryGetProperty("illust").Value.TryGetProperty("title").Value.AsString();
+            toret.Type = Source.TryGetProperty("illust").Value.TryGetProperty("type").Value.AsString();
+            toret.Caption = Source.TryGetProperty("illust").Value.TryGetProperty("caption").Value.AsString();
+            toret.AuthorID = Source.TryGetProperty("illust").Value.TryGetProperty("user").Value.TryGetProperty("id").Value.AsInteger();
+            toret.Author = Source.TryGetProperty("illust").Value.TryGetProperty("user").Value.TryGetProperty("name").Value.AsString();
+            toret.AuthorAccount = Source.TryGetProperty("illust").Value.TryGetProperty("user").Value.TryGetProperty("account").Value.AsString();
+            toret.AuthorAvatarUrl = Source.TryGetProperty("illust").Value.TryGetProperty("user").Value.TryGetProperty("profile_image_urls").Value.TryGetProperty("medium").Value.AsString();
+            var tags = Source.TryGetProperty("illust").Value.TryGetProperty("tags").Value.AsArray();
             toret.Tags = new List<string>();
             foreach (var tag in tags)
-                toret.Tags.Add(tag.Item("name").AsString());
-            var tools = Source.Item("illust").Item("tools").AsArray();
+                toret.Tags.Add(tag.TryGetProperty("name").Value.AsString());
+            var tools = Source.TryGetProperty("illust").Value.TryGetProperty("tools").Value.AsArray();
             toret.Tools = new List<string>();
             foreach (var tool in tools)
                 toret.Tools.Add(tool.AsString());
-            toret.CreateDate = Source.Item("illust").Item("create_date").AsString();
-            var pgCount = Source.Item("illust").Item("page_count").AsInteger();
+            toret.CreateDate = Source.TryGetProperty("illust").Value.TryGetProperty("create_date").Value.AsString();
+            var pgCount = Source.TryGetProperty("illust").Value.TryGetProperty("page_count").Value.AsInteger();
             toret.OriginalUrls = new List<string>();
-            if (pgCount == 1) toret.OriginalUrls.Add(Source.Item("illust").Item("meta_single_page").Item("original_image_url").AsString());
+            if (pgCount == 1) toret.OriginalUrls.Add(Source.TryGetProperty("illust").Value.TryGetProperty("meta_single_page").Value.TryGetProperty("original_image_url").Value.AsString());
             else
             {
-                var pages = Source.Item("illust").Item("meta_pages").AsArray();
+                var pages = Source.TryGetProperty("illust").Value.TryGetProperty("meta_pages").Value.AsArray();
                 foreach (var page in pages)
-                    toret.OriginalUrls.Add(page.Item("image_urls").Item("original").AsString());
+                    toret.OriginalUrls.Add(page.TryGetProperty("image_urls").Value.TryGetProperty("original").Value.AsString());
             }
-            toret.Width = Source.Item("illust").Item("width").AsInteger();
-            toret.Height = Source.Item("illust").Item("height").AsInteger();
-            toret.SanityLevel = Source.Item("illust").Item("sanity_level").AsInteger();
-            toret.TotalView = Source.Item("illust").Item("total_view").AsInteger();
-            toret.TotalBookmarks = Source.Item("illust").Item("total_bookmarks").AsInteger();
-            toret.IsBookmarked = Source.Item("illust").Item("is_bookmarked").AsBoolean();
-            toret.TotalComments = Source.Item("illust").Item("total_comments").AsInteger();
+            toret.Width = Source.TryGetProperty("illust").Value.TryGetProperty("width").Value.AsInteger();
+            toret.Height = Source.TryGetProperty("illust").Value.TryGetProperty("height").Value.AsInteger();
+            toret.SanityLevel = Source.TryGetProperty("illust").Value.TryGetProperty("sanity_level").Value.AsInteger();
+            toret.TotalView = Source.TryGetProperty("illust").Value.TryGetProperty("total_view").Value.AsInteger();
+            toret.TotalBookmarks = Source.TryGetProperty("illust").Value.TryGetProperty("total_bookmarks").Value.AsInteger();
+            toret.IsBookmarked = Source.TryGetProperty("illust").Value.TryGetProperty("is_bookmarked").Value.AsBoolean();
+            toret.TotalComments = Source.TryGetProperty("illust").Value.TryGetProperty("total_comments").Value.AsInteger();
             return toret;
         }
     }

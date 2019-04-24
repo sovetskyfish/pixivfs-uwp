@@ -81,8 +81,8 @@ namespace PixivFSUWP.Data
                         .csfriendly_user_bookmarks_illust(userID, getparam("restrict"),
                         getparam("filter"), getparam("max_bookmark_id")));
                 }
-                nexturl = bookmarkres.Item("next_url").AsString();
-                foreach (var recillust in bookmarkres.Item("illusts").AsArray())
+                nexturl = bookmarkres.TryGetProperty("next_url").Value.AsString();
+                foreach (var recillust in bookmarkres.TryGetProperty("illusts").Value.AsArray())
                 {
                     if (_emergencyStop)
                     {

@@ -80,12 +80,14 @@
                                 <Grid.RowDefinitions>
                                     <RowDefinition/>
                                     <RowDefinition/>
+                                    <RowDefinition/>
                                 </Grid.RowDefinitions>
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Text="{Binding UserName}" FontWeight="Bold"/>
                                     <TextBlock Text="{Binding UserAccount}" Foreground="Gray"/>
                                 </StackPanel>
-                                <TextBlock Grid.Row="1" Text="{Binding Comment}"/>
+                                <TextBlock Grid.Row="1" Text="{Binding Comment}" TextWrapping="WrapWholeWords"/>
+                                <TextBlock Grid.Row="2" Margin="0,3,0,0" Text="{Binding DateTime}" FontSize="12" Foreground="Gray"/>
                             </Grid>
                         </Border>
                     </DataTemplate>

@@ -75,8 +75,8 @@ namespace PixivFSUWP.Data
                         .PixivAppAPI(OverAll.GlobalBaseAPI)
                         .csfriendly_illust_comments(illustid, getparam("offset"), bool.Parse(getparam("include_total_comments"))));
                 }
-                nexturl = commentres.Item("next_url").AsString();
-                foreach (var recillust in commentres.Item("comments").AsArray())
+                nexturl = commentres.TryGetProperty("next_url").Value.AsString();
+                foreach (var recillust in commentres.TryGetProperty("comments").Value.AsArray())
                 {
                     if (_emergencyStop)
                     {

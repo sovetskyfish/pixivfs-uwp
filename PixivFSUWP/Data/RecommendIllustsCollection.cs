@@ -80,8 +80,8 @@ namespace PixivFSUWP.Data
                             include_ranking_illusts: bool.Parse(getparam("include_ranking_illusts")),
                             include_privacy_policy: getparam("include_privacy_policy")));
                 }
-                nexturl = recommendres.Item("next_url").AsString();
-                foreach (var recillust in recommendres.Item("illusts").AsArray())
+                nexturl = recommendres.TryGetProperty("next_url").Value.AsString();
+                foreach (var recillust in recommendres.TryGetProperty("illusts").Value.AsArray())
                 {
                     if (_emergencyStop)
                     {

@@ -21,15 +21,15 @@ namespace PixivFSUWP.Data
         public static WaterfallItem FromJsonValue(JsonValue Source)
         {
             var toret = new WaterfallItem();
-            toret.Id = Source.Item("id").AsInteger();
-            toret.Title = Source.Item("title").AsString();
-            toret.Author = Source.Item("user").Item("name").AsString();
-            toret.ImageUri = Source.Item("image_urls").Item("medium").AsString();
-            toret.Stars = Source.Item("total_bookmarks").AsInteger();
-            toret.Pages = Source.Item("page_count").AsInteger();
-            toret.IsBookmarked = Source.Item("is_bookmarked").AsBoolean();
-            toret.Width = Source.Item("width").AsInteger();
-            toret.Height = Source.Item("height").AsInteger();
+            toret.Id = Source.TryGetProperty("id").Value.AsInteger();
+            toret.Title = Source.TryGetProperty("title").Value.AsString();
+            toret.Author = Source.TryGetProperty("user").Value.TryGetProperty("name").Value.AsString();
+            toret.ImageUri = Source.TryGetProperty("image_urls").Value.TryGetProperty("medium").Value.AsString();
+            toret.Stars = Source.TryGetProperty("total_bookmarks").Value.AsInteger();
+            toret.Pages = Source.TryGetProperty("page_count").Value.AsInteger();
+            toret.IsBookmarked = Source.TryGetProperty("is_bookmarked").Value.AsBoolean();
+            toret.Width = Source.TryGetProperty("width").Value.AsInteger();
+            toret.Height = Source.TryGetProperty("height").Value.AsInteger();
             return toret;
         }
     }

@@ -18,11 +18,11 @@ namespace PixivFSUWP.Data
         public static IllustCommentItem FromJsonValue(JsonValue Source)
         {
             IllustCommentItem toret = new IllustCommentItem();
-            toret.Comment = Source.Item("comment").AsString();
-            toret.DateTime = Source.Item("date").AsString();
-            toret.UserName = Source.Item("user").Item("name").AsString();
-            toret.UserAccount = Source.Item("user").Item("account").AsString();
-            toret.AvatarUrl = Source.Item("user").Item("profile_image_urls").Item("medium").AsString();
+            toret.Comment = Source.TryGetProperty("comment").Value.AsString();
+            toret.DateTime = Source.TryGetProperty("date").Value.AsString();
+            toret.UserName = Source.TryGetProperty("user").Value.TryGetProperty("name").Value.AsString();
+            toret.UserAccount = Source.TryGetProperty("user").Value.TryGetProperty("account").Value.AsString();
+            toret.AvatarUrl = Source.TryGetProperty("user").Value.TryGetProperty("profile_image_urls").Value.TryGetProperty("medium").Value.AsString();
             return toret;
         }
     }
