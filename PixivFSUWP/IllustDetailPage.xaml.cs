@@ -59,6 +59,10 @@ namespace PixivFSUWP
             illust = Data.IllustDetail.FromJsonValue(res);
             imgAuthor.ImageSource = await Data.OverAll.LoadImageAsync(illust.AuthorAvatarUrl);
             txtTitle.Text = illust.Title;
+            btnBookmark.IsChecked = illust.IsBookmarked;
+            btnFollow.IsChecked = illust.IsUserFollowed;
+            txtBtnBookmark.Text = illust.IsBookmarked ? "已收藏" : "未收藏";
+            txtBtnFollow.Text = illust.IsUserFollowed ? "已关注" : "未关注";
             iconView.Visibility = Visibility.Visible;
             iconStar.Visibility = Visibility.Visible;
             stkAuthor.Visibility = Visibility.Visible;

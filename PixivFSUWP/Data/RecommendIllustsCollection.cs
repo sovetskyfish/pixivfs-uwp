@@ -86,7 +86,7 @@ namespace PixivFSUWP.Data
                     if (_emergencyStop)
                     {
                         _emergencyStop = false;
-                        return toret;
+                        throw new Exception();
                     }
                     await Task.Run(() => pause.WaitOne());
                     Data.WaterfallItem recommendi = Data.WaterfallItem.FromJsonValue(recillust);

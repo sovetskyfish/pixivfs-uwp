@@ -14,14 +14,14 @@ namespace PixivFSUWP.ViewModels
         public string UserAccount { get; set; }
         private string _dateTime { get; set; }
         public string AvatarUrl { get; set; }
-        public BitmapImage Avatar { get; set; }
+        //public BitmapImage Avatar { get; set; }
         public string DateTime
         {
             get => DateTimeOffset.Parse(_dateTime).LocalDateTime.ToString();
         }
 
-        public async Task LoadAvatarAsync()
-            => Avatar = await Data.OverAll.LoadImageAsync(AvatarUrl);
+        //public async Task LoadAvatarAsync()
+        //    => Avatar = await Data.OverAll.LoadImageAsync(AvatarUrl);
 
         public static CommentViewModel FromItem(Data.IllustCommentItem Item)
         {

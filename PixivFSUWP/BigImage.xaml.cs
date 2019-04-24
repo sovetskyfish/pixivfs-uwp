@@ -56,6 +56,7 @@ namespace PixivFSUWP
                 parameter.Width, parameter.Height);
             txtTitle.Text = view.Title;
             mainImg.Source = await Data.OverAll.BytesToImage(parameter.Image, parameter.Width, parameter.Height);
+            parameter.Image = null;
             base.OnNavigatedTo(e);
         }
 

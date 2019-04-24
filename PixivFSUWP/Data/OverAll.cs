@@ -34,21 +34,18 @@ namespace PixivFSUWP.Data
         public static void RefreshRecommendList()
         {
             RecommendList.StopLoading();
-            RecommendList.Clear();
             RecommendList = new RecommendIllustsCollection();
         }
 
         public static void RefreshBookmarkList()
         {
             BookmarkList.StopLoading();
-            BookmarkList.Clear();
             BookmarkList = new BookmarkIllustsCollection();
         }
 
         public static void RefreshFollowingList()
         {
             FollowingList.StopLoading();
-            FollowingList.Clear();
             FollowingList = new FollowingIllustsCollection();
         }
 
