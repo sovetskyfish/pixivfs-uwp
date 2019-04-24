@@ -12,7 +12,38 @@
             <AcrylicBrush BackgroundSource="HostBackdrop" TintColor="White" TintOpacity="0.5" FallbackColor="White"/>
         </ScrollViewer.Background>
         <StackPanel Margin="0,75,0,0">
-            <Button x:Name="btnLogout" Click="BtnLogout_Click">注销登录</Button>
+            <TextBlock Margin="15,15,15,0" FontSize="18" FontWeight="Bold">当前登录的账户</TextBlock>
+            <Grid Margin="15,15,15,0" Width="Auto" HorizontalAlignment="Left">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Ellipse x:Name="avatar" Grid.RowSpan="3" Width="70" Height="70" Margin="0,0,10,0">
+                    <Ellipse.Fill>
+                        <ImageBrush x:Name="imgAvatar"/>
+                    </Ellipse.Fill>
+                </Ellipse>
+                <TextBlock Margin="0,2" HorizontalTextAlignment="Left" Grid.Column="1">Pixiv ID：</TextBlock>
+                <TextBlock Margin="0,2" HorizontalTextAlignment="Left" Grid.Row="1" Grid.Column="1">用户标识：</TextBlock>
+                <TextBlock Margin="0,2" HorizontalTextAlignment="Left" Grid.Row="2" Grid.Column="1">邮箱：</TextBlock>
+                <TextBlock Margin="0,2" HorizontalTextAlignment="Left" Grid.Column="2" x:Name="txtID"/>
+                <StackPanel Margin="0,2" Grid.Row="1" Grid.Column="2" Orientation="Horizontal">
+                    <TextBlock HorizontalTextAlignment="Left" x:Name="txtName"/>
+                    <TextBlock HorizontalTextAlignment="Left" x:Name="txtAccount" Foreground="Gray"/>
+                </StackPanel>
+                <TextBlock Margin="0,2" Grid.Row="2" Grid.Column="2" HorizontalTextAlignment="Left" x:Name="txtEmail"/>
+                <StackPanel Grid.Row="3" Grid.ColumnSpan="3">
+                    <Button Margin="0,4,0,0" x:Name="btnLogout" Click="BtnLogout_Click" HorizontalAlignment="Stretch">注销登录</Button>
+                    <TextBlock FontSize="12" Foreground="Gray">*这将在您的所有设备上退出登录</TextBlock>
+                </StackPanel>
+            </Grid>
         </StackPanel>
     </ScrollViewer>
 </Page>

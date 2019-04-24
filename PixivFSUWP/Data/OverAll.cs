@@ -26,7 +26,7 @@ namespace PixivFSUWP.Data
         public static PixivBaseAPI GlobalBaseAPI = new PixivBaseAPI();
         public const string passwordResource = "PixivFSUWPPassword";
         public const string refreshTokenResource = "PixivFSUWPRefreshToken";
-
+        public static CurrentUser currentUser = null;
         public static RecommendIllustsCollection RecommendList { get; private set; } = new RecommendIllustsCollection();
         public static BookmarkIllustsCollection BookmarkList { get; set; }
         public static FollowingIllustsCollection FollowingList { get; private set; } = new FollowingIllustsCollection();

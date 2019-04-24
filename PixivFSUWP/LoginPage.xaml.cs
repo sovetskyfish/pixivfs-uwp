@@ -138,6 +138,8 @@ namespace PixivFSUWP
                 }
                 //登陆完毕后加载默认的收藏集合
                 BookmarkList = new Data.BookmarkIllustsCollection();
+                //保存当前的身份信息
+                currentUser = Data.CurrentUser.FromJsonValue(jsonres.TryGetProperty("response").Value.TryGetProperty("user").Value);
                 Frame.Navigate(typeof(MainPage));
             }
             else btnTrouble.Visibility = Visibility.Visible;

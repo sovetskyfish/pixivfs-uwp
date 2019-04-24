@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.Security.Credentials;
@@ -27,6 +28,17 @@ namespace PixivFSUWP
         public SettingsPage()
         {
             this.InitializeComponent();
+            _ = loadContentsAsync();
+        }
+
+        async Task loadContentsAsync()
+        {
+            var imgTask = LoadImageAsync(currentUser.Avatar170);
+            txtID.Text = currentUser.ID.ToString();
+            txtName.Text = currentUser.Username;
+            txtAccount.Text = "@" + currentUser.UserAccount;
+            txtEmail.Text = currentUser.Email;
+            imgAvatar.ImageSource = await imgTask;
         }
 
         private void BtnLogout_Click(object sender, RoutedEventArgs e)
