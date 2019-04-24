@@ -20,7 +20,7 @@
                 <Image Source="Assets/PixivHeader.png"/>
             </NavigationView.PaneHeader>
             <NavigationView.PaneFooter>
-                <TextBlock Text="用户名" Margin="5" VerticalAlignment="Center" FontWeight="Bold"/>
+                <TextBlock x:Name="txtUsername" Text="用户名" Margin="5" VerticalAlignment="Center" FontWeight="Bold"/>
             </NavigationView.PaneFooter>
             <NavigationView.MenuItems>
                 <NavigationViewItem Content="推荐"/>

@@ -36,6 +36,7 @@ namespace PixivFSUWP
             view.TitleBar.ButtonForegroundColor = Colors.Black;
             view.TitleBar.ButtonInactiveForegroundColor = Colors.Gray;
             view.Title = "";
+            txtUsername.Text = OverAll.currentUser.Username;
         }
 
         private async void NavControl_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
