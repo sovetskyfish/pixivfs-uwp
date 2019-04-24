@@ -41,40 +41,32 @@ namespace PixivFSUWP
 
         private async void NavControl_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
         {
-            if (args.IsSettingsSelected)
+            switch (sender.MenuItems.IndexOf(args.SelectedItem))
             {
-                SelectNavPlaceholder("设置");
-                ContentFrame.Navigate(typeof(SettingsPage));
-            }
-            else
-            {
-                switch (sender.MenuItems.IndexOf(args.SelectedItem))
-                {
-                    case 0:
-                        OverAll.RefreshRecommendList();
-                        ContentFrame.Navigate(typeof(WaterfallPage), WaterfallPage.ListContent.Recommend);
-                        NavPlaceholder.IsEnabled = false;
-                        await Task.Delay(TimeSpan.FromMilliseconds(350));
-                        NavSeparator.Visibility = Visibility.Collapsed;
-                        NavPlaceholder.Visibility = Visibility.Collapsed;
-                        break;
-                    case 1:
-                        OverAll.RefreshBookmarkList();
-                        ContentFrame.Navigate(typeof(WaterfallPage), WaterfallPage.ListContent.Bookmark);
-                        NavPlaceholder.IsEnabled = false;
-                        await Task.Delay(TimeSpan.FromMilliseconds(350));
-                        NavSeparator.Visibility = Visibility.Collapsed;
-                        NavPlaceholder.Visibility = Visibility.Collapsed;
-                        break;
-                    case 2:
-                        OverAll.RefreshFollowingList();
-                        ContentFrame.Navigate(typeof(WaterfallPage), WaterfallPage.ListContent.Following);
-                        NavPlaceholder.IsEnabled = false;
-                        await Task.Delay(TimeSpan.FromMilliseconds(350));
-                        NavSeparator.Visibility = Visibility.Collapsed;
-                        NavPlaceholder.Visibility = Visibility.Collapsed;
-                        break;
-                }
+                case 0:
+                    OverAll.RefreshRecommendList();
+                    ContentFrame.Navigate(typeof(WaterfallPage), WaterfallPage.ListContent.Recommend);
+                    NavPlaceholder.IsEnabled = false;
+                    await Task.Delay(TimeSpan.FromMilliseconds(350));
+                    NavSeparator.Visibility = Visibility.Collapsed;
+                    NavPlaceholder.Visibility = Visibility.Collapsed;
+                    break;
+                case 1:
+                    OverAll.RefreshBookmarkList();
+                    ContentFrame.Navigate(typeof(WaterfallPage), WaterfallPage.ListContent.Bookmark);
+                    NavPlaceholder.IsEnabled = false;
+                    await Task.Delay(TimeSpan.FromMilliseconds(350));
+                    NavSeparator.Visibility = Visibility.Collapsed;
+                    NavPlaceholder.Visibility = Visibility.Collapsed;
+                    break;
+                case 2:
+                    OverAll.RefreshFollowingList();
+                    ContentFrame.Navigate(typeof(WaterfallPage), WaterfallPage.ListContent.Following);
+                    NavPlaceholder.IsEnabled = false;
+                    await Task.Delay(TimeSpan.FromMilliseconds(350));
+                    NavSeparator.Visibility = Visibility.Collapsed;
+                    NavPlaceholder.Visibility = Visibility.Collapsed;
+                    break;
             }
         }
 
@@ -89,6 +81,12 @@ namespace PixivFSUWP
             NavPlaceholder.Visibility = Visibility.Visible;
             await Task.Delay(TimeSpan.FromMilliseconds(10));
             NavSelect(4);
+        }
+
+        private void BtnSetting_Click(object sender, RoutedEventArgs e)
+        {
+            SelectNavPlaceholder("设置");
+            ContentFrame.Navigate(typeof(SettingsPage));
         }
     }
 }

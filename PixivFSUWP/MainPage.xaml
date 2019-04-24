@@ -15,12 +15,24 @@
     </Page.Transitions>
     <Grid x:Name="LayoutRoot">
         <Frame x:Name="ContentFrame"/>
-        <NavigationView PaneDisplayMode="Top" x:Name="NavControl" SelectionChanged="NavControl_SelectionChanged">
+        <NavigationView PaneDisplayMode="Top" x:Name="NavControl" 
+                        SelectionChanged="NavControl_SelectionChanged"
+                        IsSettingsVisible="False">
             <NavigationView.PaneHeader>
                 <Image Source="Assets/PixivHeader.png"/>
             </NavigationView.PaneHeader>
             <NavigationView.PaneFooter>
-                <TextBlock x:Name="txtUsername" Text="用户名" Margin="5" VerticalAlignment="Center" FontWeight="Bold"/>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock x:Name="txtUsername" Text="用户名" Margin="5" VerticalAlignment="Center" FontWeight="Bold"/>
+                    <AppBarButton Width="48" x:Name="btnSearch">
+                        <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}" 
+                                  FontSize="16" Glyph="&#xE721;"/>
+                    </AppBarButton>
+                    <AppBarButton Width="48" x:Name="btnSetting" Click="BtnSetting_Click">
+                        <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}" 
+                                  FontSize="16" Glyph="&#xE713;"/>
+                    </AppBarButton>
+                </StackPanel>
             </NavigationView.PaneFooter>
             <NavigationView.MenuItems>
                 <NavigationViewItem Content="推荐"/>

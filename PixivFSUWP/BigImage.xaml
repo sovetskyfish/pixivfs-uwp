@@ -15,14 +15,7 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Rectangle Grid.RowSpan="2">
-            <Rectangle.Fill>
-                <AcrylicBrush BackgroundSource="Backdrop" 
-                              TintColor="#F3F3F3" 
-                              TintOpacity="0.5" 
-                              FallbackColor="#F3F3F3"/>
-            </Rectangle.Fill>
-        </Rectangle>
+        <Rectangle Grid.RowSpan="2" Fill="{StaticResource NavigationViewTopPaneBackground}"/>
         <TextBlock x:Name="txtTitle" Margin="10,0,0,0" FontSize="12" VerticalAlignment="Center" HorizontalAlignment="Left"/>
         <CommandBar Grid.Row="1" DefaultLabelPosition="Right" Background="Transparent">
             <CommandBar.Content>

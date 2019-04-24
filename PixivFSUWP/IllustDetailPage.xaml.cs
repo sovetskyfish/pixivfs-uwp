@@ -51,6 +51,7 @@ namespace PixivFSUWP
             txtTitle.Text = "加载中";
             iconView.Visibility = Visibility.Collapsed;
             iconStar.Visibility = Visibility.Collapsed;
+            stkAuthor.Visibility = Visibility.Collapsed;
             var res = await Task.Run(() =>
                 new PixivAppAPI(Data.OverAll.GlobalBaseAPI)
                 .csfriendly_illust_detail(illustID.ToString()));
@@ -60,6 +61,7 @@ namespace PixivFSUWP
             txtTitle.Text = illust.Title;
             iconView.Visibility = Visibility.Visible;
             iconStar.Visibility = Visibility.Visible;
+            stkAuthor.Visibility = Visibility.Visible;
             txtViewStatus.Text = illust.TotalView.ToString();
             txtBookmarkStatus.Text = illust.TotalBookmarks.ToString();
             txtAuthor.Text = illust.Author;
@@ -83,7 +85,7 @@ namespace PixivFSUWP
 
         private void Page_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-            ImageList.MaxHeight = Frame.ActualHeight - 245;
+            ImageList.MaxHeight = Frame.ActualHeight - 265;
         }
 
         private async void ImageList_ItemClick(object sender, ItemClickEventArgs e)

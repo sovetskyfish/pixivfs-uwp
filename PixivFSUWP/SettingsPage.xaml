@@ -40,7 +40,7 @@
                 </StackPanel>
                 <TextBlock Margin="0,2" Grid.Row="2" Grid.Column="2" HorizontalTextAlignment="Left" x:Name="txtEmail"/>
                 <StackPanel Grid.Row="3" Grid.ColumnSpan="3">
-                    <Button Margin="0,4,0,0" x:Name="btnLogout" Click="BtnLogout_Click" HorizontalAlignment="Stretch">注销登录</Button>
+                    <Button Style="{StaticResource ButtonRevealStyle}" BorderThickness="1.5" Margin="0,5,0,0" x:Name="btnLogout" Click="BtnLogout_Click" HorizontalAlignment="Stretch">注销登录</Button>
                     <TextBlock FontSize="12" Foreground="Gray">*这将在您的所有Windows设备上退出登录</TextBlock>
                 </StackPanel>
             </Grid>

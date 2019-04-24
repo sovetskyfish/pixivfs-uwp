@@ -17,6 +17,7 @@ namespace PixivFSUWP.Data
         public string Author { get; set; }
         public string AuthorAccount { get; set; }
         public string AuthorAvatarUrl { get; set; }
+        public bool IsUserFollowed { get; set; }
         public List<string> Tags { get; set; }
         public List<string> Tools { get; set; }
         public string CreateDate { get; set; }
@@ -40,6 +41,7 @@ namespace PixivFSUWP.Data
             toret.Author = Source.TryGetProperty("illust").Value.TryGetProperty("user").Value.TryGetProperty("name").Value.AsString();
             toret.AuthorAccount = Source.TryGetProperty("illust").Value.TryGetProperty("user").Value.TryGetProperty("account").Value.AsString();
             toret.AuthorAvatarUrl = Source.TryGetProperty("illust").Value.TryGetProperty("user").Value.TryGetProperty("profile_image_urls").Value.TryGetProperty("medium").Value.AsString();
+            toret.IsUserFollowed = Source.TryGetProperty("illust").Value.TryGetProperty("user").Value.TryGetProperty("is_followed").Value.AsBoolean();
             var tags = Source.TryGetProperty("illust").Value.TryGetProperty("tags").Value.AsArray();
             toret.Tags = new List<string>();
             foreach (var tag in tags)
