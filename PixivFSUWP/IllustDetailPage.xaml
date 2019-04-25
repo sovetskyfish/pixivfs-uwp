@@ -72,7 +72,7 @@
                 </Button>
                 <Button x:Name="btnShare" Style="{StaticResource ButtonRevealStyle}" 
                               Margin="5,0,0,0" Background="#99F3F3F3" BorderThickness="1.5" Height="70" 
-                              Width="70">
+                              Width="70" Click="BtnShare_Click">
                     <StackPanel Margin="5">
                         <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}"
                                   FontSize="20" Glyph="&#xE72D;"/>

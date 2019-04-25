@@ -8,6 +8,7 @@ using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading.Tasks;
+using Windows.ApplicationModel.DataTransfer;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -36,6 +37,18 @@ namespace PixivFSUWP
         public IllustDetailPage()
         {
             this.InitializeComponent();
+            DataTransferManager dataTransferManager = DataTransferManager.GetForCurrentView();
+            dataTransferManager.DataRequested += DataTransferManager_DataRequested;
+        }
+
+        private void DataTransferManager_DataRequested(DataTransferManager sender, DataRequestedEventArgs args)
+        {
+            var request = args.Request;
+            request.Data.SetText(string.Format("Pixiv作品\n{0} by {1}\n" +
+                "网页链接：https://www.pixiv.net/member_illust.php?mode=medium&illust_id=" + "{2}\n" +
+                "PixivFSUWP：pixiv:illust:{2}", illust.Title, illust.Author, illustID));
+            request.Data.Properties.Title = String.Format("分享：{0} by {1}", illust.Title, illust.Author);
+            request.Data.Properties.Description = "该图片页面的链接将被分享";
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -230,6 +243,11 @@ namespace PixivFSUWP
                 }
                 btnSender.IsEnabled = true;
             }
+        }
+
+        private void BtnShare_Click(object sender, RoutedEventArgs e)
+        {
+            DataTransferManager.ShowShareUI();
         }
     }
 }
