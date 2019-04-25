@@ -144,6 +144,7 @@ namespace PixivFSUWP
                 {
                     btnSender.IsChecked = true;
                     txtBtnBookmark.Text = "已收藏";
+                    txtBookmarkStatus.Text = illust.IsBookmarked ? illust.TotalBookmarks.ToString() : (illust.TotalBookmarks + 1).ToString();
                 }
                 btnSender.IsEnabled = true;
             }
@@ -169,6 +170,7 @@ namespace PixivFSUWP
                 {
                     btnSender.IsChecked = false;
                     txtBtnBookmark.Text = "未收藏";
+                    txtBookmarkStatus.Text = illust.IsBookmarked ? (illust.TotalBookmarks - 1).ToString() : illust.TotalBookmarks.ToString();
                 }
                 btnSender.IsEnabled = true;
             }
