@@ -32,9 +32,9 @@ namespace PixivFSUWP
             this.Suspending += OnSuspending;
         }
 
-        //由Uri启动时
         protected override void OnActivated(IActivatedEventArgs args)
         {
+            //由Uri启动时
             if (args.Kind == ActivationKind.Protocol)
             {
                 ProtocolActivatedEventArgs eventArgs = args as ProtocolActivatedEventArgs;
@@ -57,6 +57,10 @@ namespace PixivFSUWP
                 if (rootFrame.Content == null)
                 {
                     rootFrame.Navigate(typeof(LoginPage));
+                }
+                else if (rootFrame.Content is MainPage)
+                {
+                    (rootFrame.Content as MainPage).HandleUri();
                 }
                 Window.Current.Activate();
             }

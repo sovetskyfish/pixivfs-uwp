@@ -93,6 +93,11 @@ namespace PixivFSUWP
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
+            HandleUri();
+        }
+
+        public void HandleUri()
+        {
             if (OverAll.AppUri != null)
             {
                 //从Uri启动
