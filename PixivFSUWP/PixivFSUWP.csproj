@@ -217,10 +217,10 @@
       <Version>6.2.8</Version>
     </PackageReference>
     <PackageReference Include="PixivFS">
-      <Version>0.1.4</Version>
+      <Version>0.1.5</Version>
     </PackageReference>
     <PackageReference Include="PixivFSCS">
-      <Version>0.1.2</Version>
+      <Version>0.1.5</Version>
     </PackageReference>
     <PackageReference Include="Win2D.uwp">
       <Version>1.23.0</Version>
