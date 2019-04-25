@@ -10,6 +10,7 @@ using Windows.ApplicationModel.Core;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI;
+using Windows.UI.Popups;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -41,6 +42,7 @@ namespace PixivFSUWP
 
         private async void NavControl_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
         {
+            if (OverAll.AppUri != null) return;
             switch (sender.MenuItems.IndexOf(args.SelectedItem))
             {
                 case 0:
@@ -87,6 +89,41 @@ namespace PixivFSUWP
         {
             SelectNavPlaceholder("设置");
             ContentFrame.Navigate(typeof(SettingsPage));
+        }
+
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            if (OverAll.AppUri != null)
+            {
+                //从Uri启动
+                var strUri = OverAll.AppUri.ToString();
+                var splited = strUri.Split(':');
+                if (splited.Length != 3) OverAll.AppUri = null;
+                else
+                {
+                    switch (splited[1])
+                    {
+                        case "illust":
+                            try
+                            {
+                                var id = Convert.ToInt32(splited[2]);
+                                ContentFrame.Navigate(typeof(IllustDetailPage), id);
+                                //已经处理完了
+                                OverAll.AppUri = null;
+                            }
+                            catch
+                            {
+                                //不符合要求
+                                goto default;
+                            }
+                            break;
+                        default:
+                            //不符合要求的Uri
+                            OverAll.AppUri = null;
+                            break;
+                    }
+                }
+            }
         }
     }
 }

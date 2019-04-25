@@ -32,6 +32,36 @@ namespace PixivFSUWP
             this.Suspending += OnSuspending;
         }
 
+        //由Uri启动时
+        protected override void OnActivated(IActivatedEventArgs args)
+        {
+            if (args.Kind == ActivationKind.Protocol)
+            {
+                ProtocolActivatedEventArgs eventArgs = args as ProtocolActivatedEventArgs;
+
+                //储存Uri
+                Data.OverAll.AppUri = eventArgs.Uri;
+
+                //按照正常流程启动应用
+                Frame rootFrame = Window.Current.Content as Frame;
+                if (rootFrame == null)
+                {
+                    rootFrame = new Frame();
+                    rootFrame.NavigationFailed += OnNavigationFailed;
+                    if (eventArgs.PreviousExecutionState == ApplicationExecutionState.Terminated)
+                    {
+                        //TODO: 从之前挂起的应用程序加载状态
+                    }
+                    Window.Current.Content = rootFrame;
+                }
+                if (rootFrame.Content == null)
+                {
+                    rootFrame.Navigate(typeof(LoginPage));
+                }
+                Window.Current.Activate();
+            }
+        }
+
         /// <summary>
         /// 在应用程序由最终用户正常启动时进行调用。
         /// 将在启动应用程序以打开特定文件等情况下使用。

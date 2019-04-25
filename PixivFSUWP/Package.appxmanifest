@@ -42,7 +42,7 @@
       </uap:VisualElements>
       <Extensions>
         <uap:Extension Category="windows.protocol">
-          <uap:Protocol Name="pixiv">
+          <uap:Protocol Name="pixiv" DesiredView="default">
             <uap:Logo>Assets/StoreLogo.png</uap:Logo>
             <uap:DisplayName>Pixiv UWP Uri</uap:DisplayName>
           </uap:Protocol>
