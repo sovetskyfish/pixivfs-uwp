@@ -40,6 +40,14 @@
         <uap:DefaultTile Wide310x150Logo="Assets\Wide310x150Logo.png"/>
         <uap:SplashScreen Image="Assets\SplashScreen.png"  BackgroundColor="white"/>
       </uap:VisualElements>
+      <Extensions>
+        <uap:Extension Category="windows.protocol">
+          <uap:Protocol Name="pixiv">
+            <uap:Logo>Assets/StoreLogo.png</uap:Logo>
+            <uap:DisplayName>Pixiv UWP Uri</uap:DisplayName>
+          </uap:Protocol>
+        </uap:Extension>
+      </Extensions>
     </Application>
   </Applications>
 
