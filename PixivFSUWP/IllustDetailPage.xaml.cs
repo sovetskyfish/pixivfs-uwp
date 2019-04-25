@@ -175,5 +175,61 @@ namespace PixivFSUWP
                 btnSender.IsEnabled = true;
             }
         }
+
+        private async void BtnFollow_Click(object sender, RoutedEventArgs e)
+        {
+            var btnSender = sender as ToggleButton;
+            btnSender.IsEnabled = false;
+            if (btnSender.IsChecked == true)
+            {
+                btnSender.IsChecked = false;
+                //进行关注
+                txtBtnFollow.Text = "请求中";
+                var res = await Task.Run(() =>
+                {
+                    try
+                    {
+                        new PixivAppAPI(Data.OverAll.GlobalBaseAPI)
+                            .csfriendly_user_follow_add(illust.AuthorID.ToString());
+                        return true;
+                    }
+                    catch
+                    {
+                        return false;
+                    }
+                });
+                if (res)
+                {
+                    btnSender.IsChecked = true;
+                    txtBtnFollow.Text = "已关注";
+                }
+                btnSender.IsEnabled = true;
+            }
+            else
+            {
+                btnSender.IsChecked = true;
+                //取消关注
+                txtBtnFollow.Text = "请求中";
+                var res = await Task.Run(() =>
+                {
+                    try
+                    {
+                        new PixivAppAPI(Data.OverAll.GlobalBaseAPI)
+                            .csfriendly_user_follow_delete(illust.AuthorID.ToString());
+                        return true;
+                    }
+                    catch
+                    {
+                        return false;
+                    }
+                });
+                if (res)
+                {
+                    btnSender.IsChecked = false;
+                    txtBtnFollow.Text = "未关注";
+                }
+                btnSender.IsEnabled = true;
+            }
+        }
     }
 }
