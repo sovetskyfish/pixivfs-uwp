@@ -45,9 +45,9 @@ namespace PixivFSUWP
         {
             var request = args.Request;
             request.Data.SetText(string.Format("Pixiv作品\n{0} by {1}\n" +
-                "网页链接：https://www.pixiv.net/member_illust.php?mode=medium&illust_id=" + "{2}\n" +
+                "网页链接：https://www.pixiv.net/member_illust.php?mode=medium&illust_id={2}\n" +
                 "PixivFSUWP：pixiv:illust:{2}", illust.Title, illust.Author, illustID));
-            request.Data.Properties.Title = String.Format("分享：{0} by {1}", illust.Title, illust.Author);
+            request.Data.Properties.Title = string.Format("分享：{0}", illust.Title);
             request.Data.Properties.Description = "该图片页面的链接将被分享";
         }
 
@@ -248,6 +248,26 @@ namespace PixivFSUWP
         private void BtnShare_Click(object sender, RoutedEventArgs e)
         {
             DataTransferManager.ShowShareUI();
+        }
+
+        void copyToClipboard(string content)
+        {
+            DataPackage dataPackage = new DataPackage();
+            dataPackage.RequestedOperation = DataPackageOperation.Copy;
+            dataPackage.SetText(content);
+            Clipboard.SetContent(dataPackage);
+        }
+
+        private void BtnLink_Click(object sender, RoutedEventArgs e)
+        {
+            copyToClipboard(string.Format("https://www.pixiv.net/member_illust.php?mode=medium&illust_id={0}", illustID));
+            btnShareFlyout.Hide();
+        }
+
+        private void BtnAppLink_Click(object sender, RoutedEventArgs e)
+        {
+            copyToClipboard(string.Format("pixiv:illust:{0}", illustID));
+            btnShareFlyout.Hide();
         }
     }
 }

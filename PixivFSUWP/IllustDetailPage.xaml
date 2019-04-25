@@ -70,14 +70,21 @@
                         <TextBlock x:Name="txtAuthorAccount" Margin="10,0" Grid.Row="1" Grid.Column="1" FontSize="14" Foreground="Gray" VerticalAlignment="Top"/>
                     </Grid>
                 </Button>
-                <Button x:Name="btnShare" Style="{StaticResource ButtonRevealStyle}" 
+                <Button Style="{StaticResource ButtonRevealStyle}" 
                               Margin="5,0,0,0" Background="#99F3F3F3" BorderThickness="1.5" Height="70" 
-                              Width="70" Click="BtnShare_Click">
+                              Width="70">
                     <StackPanel Margin="5">
                         <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}"
                                   FontSize="20" Glyph="&#xE72D;"/>
                         <TextBlock Margin="0,5,0,0">分享</TextBlock>
                     </StackPanel>
+                    <Button.Flyout>
+                        <CommandBarFlyout x:Name="btnShareFlyout">
+                            <AppBarButton x:Name="btnShare" Icon="Share" Click="BtnShare_Click" ToolTipService.ToolTip="Windows分享"/>
+                            <AppBarButton x:Name="btnLink" Icon="Link" Click="BtnLink_Click" ToolTipService.ToolTip="复制网页链接"/>
+                            <AppBarButton x:Name="btnAppLink" Icon="PreviewLink" Click="BtnAppLink_Click" ToolTipService.ToolTip="复制应用链接"/>
+                        </CommandBarFlyout>
+                    </Button.Flyout>
                 </Button>
                 <ToggleButton x:Name="btnBookmark" Style="{StaticResource ToggleButtonRevealStyle}" 
                               Margin="5,0,0,0" Background="#99F3F3F3" BorderThickness="1.5" Height="70" 
