@@ -117,5 +117,61 @@ namespace PixivFSUWP
                 catch { }
             }
         }
+
+        private async void BtnBookmark_Click(object sender, RoutedEventArgs e)
+        {
+            var btnSender = sender as ToggleButton;
+            btnSender.IsEnabled = false;
+            if (btnSender.IsChecked == true)
+            {
+                btnSender.IsChecked = false;
+                //进行关注
+                txtBtnBookmark.Text = "请求中";
+                var res = await Task.Run(() =>
+                {
+                    try
+                    {
+                        new PixivAppAPI(Data.OverAll.GlobalBaseAPI)
+                            .csfriendly_illust_bookmark_add(illustID.ToString());
+                        return true;
+                    }
+                    catch
+                    {
+                        return false;
+                    }
+                });
+                if (res)
+                {
+                    btnSender.IsChecked = true;
+                    txtBtnBookmark.Text = "已收藏";
+                }
+                btnSender.IsEnabled = true;
+            }
+            else
+            {
+                btnSender.IsChecked = true;
+                //取消关注
+                txtBtnBookmark.Text = "请求中";
+                var res = await Task.Run(() =>
+                {
+                    try
+                    {
+                        new PixivAppAPI(Data.OverAll.GlobalBaseAPI)
+                            .csfriendly_illust_bookmark_delete(illustID.ToString());
+                        return true;
+                    }
+                    catch
+                    {
+                        return false;
+                    }
+                });
+                if (res)
+                {
+                    btnSender.IsChecked = false;
+                    txtBtnBookmark.Text = "未收藏";
+                }
+                btnSender.IsEnabled = true;
+            }
+        }
     }
 }
