@@ -7,6 +7,7 @@ using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.DataTransfer;
 using Windows.Foundation;
@@ -83,7 +84,7 @@ namespace PixivFSUWP
             txtBookmarkStatus.Text = illust.TotalBookmarks.ToString();
             txtAuthor.Text = illust.Author;
             txtAuthorAccount.Text = string.Format("@{0}", illust.AuthorAccount);
-            txtCaption.Text = (illust.Caption == "") ? "暂无简介" : illust.Caption.Replace("<br />", "\n");
+            txtCaption.Text = (illust.Caption == "") ? "暂无简介" : Regex.Replace(illust.Caption.Replace("<br />", "\n"), "<[^>]+>", "");
             txtCommentTitle.Text = "评论";
             listComments.ItemsSource = new Data.CommentsCollection(illustID.ToString());
             int counter = 0;
