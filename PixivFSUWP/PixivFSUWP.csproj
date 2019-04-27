@@ -142,6 +142,7 @@
     <Compile Include="Data\IllustDetail.cs" />
     <Compile Include="Data\RecommendIllustsCollection.cs" />
     <Compile Include="Data\OverAll.cs" />
+    <Compile Include="Data\UserDetail.cs" />
     <Compile Include="Data\WaterfallItem.cs" />
     <Compile Include="IllustDetailPage.xaml.cs">
       <DependentUpon>IllustDetailPage.xaml</DependentUpon>
