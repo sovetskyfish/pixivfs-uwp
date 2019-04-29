@@ -157,6 +157,9 @@
     <Compile Include="SettingsPage.xaml.cs">
       <DependentUpon>SettingsPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserDetailPage.xaml.cs">
+      <DependentUpon>UserDetailPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ViewModels\CommentViewModel.cs" />
     <Compile Include="ViewModels\ImageItemViewModel.cs" />
     <Compile Include="ViewModels\WaterfallItemViewModel.cs" />
@@ -205,6 +208,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="SettingsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserDetailPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

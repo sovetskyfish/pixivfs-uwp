@@ -5,10 +5,7 @@
     xmlns:local="using:PixivFSUWP"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d" SizeChanged="Page_SizeChanged">
-    <Page.Background>
-        <AcrylicBrush BackgroundSource="HostBackdrop" TintColor="White" TintOpacity="0.5" FallbackColor="White"/>
-    </Page.Background>
+    mc:Ignorable="d" SizeChanged="Page_SizeChanged" Background="{StaticResource PageBackGround}">
     <Grid x:Name="layoutRoot">
         <Grid.RowDefinitions>
             <RowDefinition Height="32"/>

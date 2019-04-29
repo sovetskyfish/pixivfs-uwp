@@ -7,10 +7,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-    <ScrollViewer>
-        <ScrollViewer.Background>
-            <AcrylicBrush BackgroundSource="HostBackdrop" TintColor="White" TintOpacity="0.5" FallbackColor="White"/>
-        </ScrollViewer.Background>
+    <ScrollViewer Background="{StaticResource PageBackGround}">
         <StackPanel Margin="0,75,0,0">
             <TextBlock Margin="15,15,15,0" FontSize="18" FontWeight="Bold">当前登录的账户</TextBlock>
             <Grid Margin="15,15,15,0" Width="Auto" HorizontalAlignment="Left">

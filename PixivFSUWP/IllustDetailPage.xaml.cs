@@ -270,5 +270,10 @@ namespace PixivFSUWP
             copyToClipboard(string.Format("pixiv:illust:{0}", illustID));
             btnShareFlyout.Hide();
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(UserDetailPage), illust.AuthorID);
+        }
     }
 }

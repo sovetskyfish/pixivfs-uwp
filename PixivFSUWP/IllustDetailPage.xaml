@@ -9,10 +9,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d" SizeChanged="Page_SizeChanged"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-    <ScrollViewer VerticalScrollBarVisibility="Hidden" ViewChanged="ScrollViewer_ViewChanged">
-        <ScrollViewer.Background>
-            <AcrylicBrush BackgroundSource="HostBackdrop" TintColor="White" TintOpacity="0.5" FallbackColor="White"/>
-        </ScrollViewer.Background>
+    <ScrollViewer Background="{StaticResource PageBackGround}" VerticalScrollBarVisibility="Hidden" ViewChanged="ScrollViewer_ViewChanged">
         <StackPanel Margin="0,75,0,0">
             <StackPanel Orientation="Horizontal" Margin="15,15,15,0">
                 <TextBlock x:Name="txtTitle" FontSize="24" FontWeight="Bold"/>
@@ -51,7 +48,9 @@
                 </ListView.ItemTemplate>
             </ListView>
             <StackPanel x:Name="stkAuthor" Margin="15,15,15,0" Height="70" Orientation="Horizontal">
-                <Button Style="{StaticResource ButtonRevealStyle}" BorderThickness="1.5" Background="#99F3F3F3" VerticalAlignment="Stretch">
+                <Button Style="{StaticResource ButtonRevealStyle}" 
+                        BorderThickness="1.5" Background="#99F3F3F3" 
+                        VerticalAlignment="Stretch" Click="Button_Click">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="50"/>
