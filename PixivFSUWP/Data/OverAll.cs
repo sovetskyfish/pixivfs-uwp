@@ -13,6 +13,8 @@ using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media.Imaging;
+using AdaptiveCards;
+using Windows.UI.Shell;
 
 namespace PixivFSUWP.Data
 {
@@ -45,7 +47,7 @@ namespace PixivFSUWP.Data
             FollowingList = new FollowingIllustsCollection();
         }
 
-        static async Task<MemoryStream> downloadImage(string Uri)
+        public static async Task<MemoryStream> DownloadImage(string Uri)
         {
             var resStream = await Task.Run(() => new PixivAppAPI(GlobalBaseAPI).csfriendly_no_auth_requests_call_stream("GET",
                   Uri, new List<Tuple<string, string>>() { ("Referer", "https://app-api.pixiv.net/").ToTuple() })
@@ -58,13 +60,13 @@ namespace PixivFSUWP.Data
 
         public static async Task<string> GetDataUri(string Uri)
         {
-            return string.Format("data:image/png;base64,{0}", Convert.ToBase64String((await downloadImage(Uri)).ToArray()));
+            return string.Format("data:image/png;base64,{0}", Convert.ToBase64String((await DownloadImage(Uri)).ToArray()));
         }
 
         public static async Task<BitmapImage> LoadImageAsync(string Uri)
         {
             var toret = new BitmapImage();
-            var memStream = await downloadImage(Uri);
+            var memStream = await DownloadImage(Uri);
             await toret.SetSourceAsync(memStream.AsRandomAccessStream());
             memStream.Dispose();
             return toret;
@@ -73,7 +75,7 @@ namespace PixivFSUWP.Data
         public static async Task<WriteableBitmap> LoadImageAsync(string Uri, int Width, int Height)
         {
             var toret = new WriteableBitmap(Width, Height);
-            var memStream = await downloadImage(Uri);
+            var memStream = await DownloadImage(Uri);
             await toret.SetSourceAsync(memStream.AsRandomAccessStream());
             memStream.Dispose();
             return toret;
@@ -134,14 +136,13 @@ namespace PixivFSUWP.Data
         static UserActivitySession _currentActivity;
 
         //时间线支持
-        public static async Task GenerateActivityAsync(string DisplayText, string Description, Uri ActivationUri, string ActivityID)
+        public static async Task GenerateActivityAsync(string DisplayText, AdaptiveCard Card, Uri ActivationUri, string ActivityID)
         {
             UserActivityChannel channel = UserActivityChannel.GetDefault();
             UserActivity userActivity = await channel.GetOrCreateUserActivityAsync(ActivityID);
             userActivity.VisualElements.DisplayText = DisplayText;
-            userActivity.VisualElements.Description = Description;
+            userActivity.VisualElements.Content = AdaptiveCardBuilder.CreateAdaptiveCardFromJson(Card.ToJson());
             userActivity.ActivationUri = ActivationUri;
-            userActivity.IsRoamable = true;
             await userActivity.SaveAsync();
             _currentActivity?.Dispose();
             _currentActivity = userActivity.CreateSession();

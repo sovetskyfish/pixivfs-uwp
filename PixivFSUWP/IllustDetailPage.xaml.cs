@@ -12,6 +12,9 @@ using System.Threading.Tasks;
 using Windows.ApplicationModel.DataTransfer;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Graphics.Imaging;
+using Windows.Storage;
+using Windows.Storage.Provider;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -20,6 +23,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
+using AdaptiveCards;
 
 // https://go.microsoft.com/fwlink/?LinkId=234238 上介绍了“空白页”项模板
 
@@ -87,9 +91,24 @@ namespace PixivFSUWP
             txtCaption.Text = (illust.Caption == "") ? "暂无简介" : Regex.Replace(illust.Caption.Replace("<br />", "\n"), "<[^>]+>", "");
             txtCommentTitle.Text = "评论";
             listComments.ItemsSource = new Data.CommentsCollection(illustID.ToString());
-            var dataUri = await Data.OverAll.GetDataUri(illust.MediumUrl);
-            await Data.OverAll.GenerateActivityAsync(illust.Title, string.Format("by {0}", illust.Author),
-                new Uri(string.Format("pixiv://illust?id={0}", illustID)), illustID.ToString());
+            AdaptiveCard card = new AdaptiveCard("1.1");
+            card.Body.Add(new AdaptiveTextBlock()
+            {
+                Text = illust.Title,
+                Weight = AdaptiveTextWeight.Bolder,
+                Size = AdaptiveTextSize.Large,
+                Wrap = true,
+                MaxLines = 3
+            });
+            card.Body.Add(new AdaptiveTextBlock()
+            {
+                Text = string.Format("by {0}", illust.Author),
+                Size = AdaptiveTextSize.Default,
+                Wrap = true,
+                MaxLines = 3
+            });
+            card.Body.Add(new AdaptiveImage(new Uri(await Data.OverAll.GetDataUri(illust.MediumUrl))));
+            await Data.OverAll.GenerateActivityAsync(illustID.ToString(), card, new Uri(string.Format("pixiv://illust?id={0}", illustID)), illustID.ToString());
             int counter = 0;
             foreach (var i in illust.OriginalUrls)
             {
