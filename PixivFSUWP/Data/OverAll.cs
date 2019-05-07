@@ -56,6 +56,11 @@ namespace PixivFSUWP.Data
             return memStream;
         }
 
+        public static async Task<string> GetDataUri(string Uri)
+        {
+            return string.Format("data:image/png;base64,{0}", Convert.ToBase64String((await downloadImage(Uri)).ToArray()));
+        }
+
         public static async Task<BitmapImage> LoadImageAsync(string Uri)
         {
             var toret = new BitmapImage();
