@@ -113,32 +113,28 @@ namespace PixivFSUWP
             if (OverAll.AppUri != null)
             {
                 //从Uri启动
-                var strUri = OverAll.AppUri.ToString();
-                var splited = strUri.Split(':');
-                if (splited.Length != 3) OverAll.AppUri = null;
-                else
+                var host = OverAll.AppUri.Host;
+                switch (host)
                 {
-                    switch (splited[1])
-                    {
-                        case "illust":
-                            try
-                            {
-                                var id = Convert.ToInt32(splited[2]);
-                                ContentFrame.Navigate(typeof(IllustDetailPage), id);
-                                //已经处理完了
-                                OverAll.AppUri = null;
-                            }
-                            catch
-                            {
-                                //不符合要求
-                                goto default;
-                            }
-                            break;
-                        default:
-                            //不符合要求的Uri
+                    case "illust":
+                        try
+                        {
+                            var query = OverAll.AppUri.Query;
+                            var id = Convert.ToInt32(query.Split('=')[1]);
+                            ContentFrame.Navigate(typeof(IllustDetailPage), id);
+                            //已经处理完了
                             OverAll.AppUri = null;
-                            break;
-                    }
+                        }
+                        catch
+                        {
+                            //不符合要求
+                            goto default;
+                        }
+                        break;
+                    default:
+                        //不符合要求的Uri
+                        OverAll.AppUri = null;
+                        break;
                 }
             }
         }

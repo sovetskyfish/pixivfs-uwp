@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using PixivFS;
 using PixivFSCS;
 using Windows.ApplicationModel.Core;
+using Windows.ApplicationModel.UserActivities;
 using Windows.Security.Credentials;
 using Windows.UI.Core;
 using Windows.UI.ViewManagement;
@@ -123,6 +124,22 @@ namespace PixivFSUWP.Data
             }
             catch { }
             return credential;
+        }
+
+        static UserActivitySession _currentActivity;
+
+        //时间线支持
+        public static async Task GenerateActivityAsync(string DisplayText, string Description, Uri ActivationUri, string ActivityID)
+        {
+            UserActivityChannel channel = UserActivityChannel.GetDefault();
+            UserActivity userActivity = await channel.GetOrCreateUserActivityAsync(ActivityID);
+            userActivity.VisualElements.DisplayText = DisplayText;
+            userActivity.VisualElements.Description = Description;
+            userActivity.ActivationUri = ActivationUri;
+            userActivity.IsRoamable = true;
+            await userActivity.SaveAsync();
+            _currentActivity?.Dispose();
+            _currentActivity = userActivity.CreateSession();
         }
     }
 }

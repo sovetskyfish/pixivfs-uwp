@@ -87,6 +87,8 @@ namespace PixivFSUWP
             txtCaption.Text = (illust.Caption == "") ? "暂无简介" : Regex.Replace(illust.Caption.Replace("<br />", "\n"), "<[^>]+>", "");
             txtCommentTitle.Text = "评论";
             listComments.ItemsSource = new Data.CommentsCollection(illustID.ToString());
+            await Data.OverAll.GenerateActivityAsync(illust.Title, string.Format("by {0}", illust.Author),
+                new Uri(string.Format("pixiv://illust?id={0}", illustID)), illustID.ToString());
             int counter = 0;
             foreach (var i in illust.OriginalUrls)
             {
@@ -267,7 +269,7 @@ namespace PixivFSUWP
 
         private void BtnAppLink_Click(object sender, RoutedEventArgs e)
         {
-            copyToClipboard(string.Format("pixiv:illust:{0}", illustID));
+            copyToClipboard(string.Format("pixiv://illust?id={0}", illustID));
             btnShareFlyout.Hide();
         }
 
