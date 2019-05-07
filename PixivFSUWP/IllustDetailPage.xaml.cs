@@ -47,7 +47,7 @@ namespace PixivFSUWP
             var request = args.Request;
             request.Data.SetText(string.Format("Pixiv作品\n{0} by {1}\n" +
                 "网页链接：https://www.pixiv.net/member_illust.php?mode=medium&illust_id={2}\n" +
-                "PixivFSUWP：pixiv:illust:{2}", illust.Title, illust.Author, illustID));
+                "PixivFSUWP：pixiv://illust?id={2}", illust.Title, illust.Author, illustID));
             request.Data.Properties.Title = string.Format("分享：{0}", illust.Title);
             request.Data.Properties.Description = "该图片页面的链接将被分享";
         }
