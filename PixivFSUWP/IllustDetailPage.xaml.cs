@@ -91,6 +91,7 @@ namespace PixivFSUWP
             txtCaption.Text = (illust.Caption == "") ? "暂无简介" : Regex.Replace(illust.Caption.Replace("<br />", "\n"), "<[^>]+>", "");
             txtCommentTitle.Text = "评论";
             listComments.ItemsSource = new Data.CommentsCollection(illustID.ToString());
+            txtLoadingStatus.Text = "正在创建时间线";
             AdaptiveCard card = new AdaptiveCard("1.1");
             card.Body.Add(new AdaptiveTextBlock()
             {
@@ -107,8 +108,8 @@ namespace PixivFSUWP
                 Wrap = true,
                 MaxLines = 3
             });
-            card.Body.Add(new AdaptiveImage(new Uri(await Data.OverAll.GetDataUri(illust.MediumUrl))));
-            await Data.OverAll.GenerateActivityAsync(illustID.ToString(), card, new Uri(string.Format("pixiv://illust?id={0}", illustID)), illustID.ToString());
+            card.BackgroundImage = new AdaptiveBackgroundImage(new Uri(await Data.OverAll.GetDataUri(illust.MediumUrl)));
+            await Data.OverAll.GenerateActivityAsync(illust.Title, card, new Uri(string.Format("pixiv://illust?id={0}", illustID)), illustID.ToString());
             int counter = 0;
             foreach (var i in illust.OriginalUrls)
             {
