@@ -24,6 +24,7 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
 using AdaptiveCards;
+using Microsoft.Toolkit.Uwp.Helpers;
 
 // https://go.microsoft.com/fwlink/?LinkId=234238 上介绍了“空白页”项模板
 
@@ -108,7 +109,8 @@ namespace PixivFSUWP
                 Wrap = true,
                 MaxLines = 3
             });
-            card.BackgroundImage = new AdaptiveBackgroundImage(new Uri(await Data.OverAll.GetDataUri(illust.MediumUrl)));
+            var build = SystemInformation.OperatingSystemVersion.Build;
+            if (build >= 18362) card.BackgroundImage = new AdaptiveBackgroundImage(new Uri(await Data.OverAll.GetDataUri(illust.MediumUrl)));
             await Data.OverAll.GenerateActivityAsync(illust.Title, card, new Uri(string.Format("pixiv://illust?id={0}", illustID)), illustID.ToString());
             int counter = 0;
             foreach (var i in illust.OriginalUrls)
