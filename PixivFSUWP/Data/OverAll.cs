@@ -133,6 +133,8 @@ namespace PixivFSUWP.Data
             return credential;
         }
 
+        static UserActivitySession _currentActivity;
+
         //时间线支持
         public static async Task GenerateActivityAsync(string DisplayText, AdaptiveCard Card, Uri ActivationUri, string ActivityID)
         {
@@ -142,6 +144,8 @@ namespace PixivFSUWP.Data
             userActivity.VisualElements.Content = AdaptiveCardBuilder.CreateAdaptiveCardFromJson(Card.ToJson());
             userActivity.ActivationUri = ActivationUri;
             await userActivity.SaveAsync();
+            _currentActivity?.Dispose();
+            _currentActivity = userActivity.CreateSession();
         }
     }
 }
