@@ -52,7 +52,7 @@ namespace PixivFSUWP.Data
             foreach (var tool in tools)
                 toret.Tools.Add(tool.AsString());
             toret.CreateDate = Source.TryGetProperty("illust").Value.TryGetProperty("create_date").Value.AsString();
-            toret.MediumUrl = Source.TryGetProperty("illust").Value.TryGetProperty("image_urls").Value.TryGetProperty("medium").Value.AsString();
+            toret.MediumUrl = Source.TryGetProperty("illust").Value.TryGetProperty("image_urls").Value.TryGetProperty("square_medium").Value.AsString();
             var pgCount = Source.TryGetProperty("illust").Value.TryGetProperty("page_count").Value.AsInteger();
             toret.OriginalUrls = new List<string>();
             if (pgCount == 1) toret.OriginalUrls.Add(Source.TryGetProperty("illust").Value.TryGetProperty("meta_single_page").Value.TryGetProperty("original_image_url").Value.AsString());

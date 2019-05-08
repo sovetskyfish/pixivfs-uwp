@@ -110,7 +110,11 @@ namespace PixivFSUWP
                 MaxLines = 3
             });
             var build = SystemInformation.OperatingSystemVersion.Build;
-            if (build >= 18362) card.BackgroundImage = new AdaptiveBackgroundImage(new Uri(await Data.OverAll.GetDataUri(illust.MediumUrl)));
+            if (build >= 18362)
+            {
+                var data = await Data.OverAll.GetDataUri(illust.MediumUrl);
+                card.BackgroundImage = new AdaptiveBackgroundImage(new Uri(data));
+            }
             await Data.OverAll.GenerateActivityAsync(illust.Title, card, new Uri(string.Format("pixiv://illust?id={0}", illustID)), illustID.ToString());
             int counter = 0;
             foreach (var i in illust.OriginalUrls)
