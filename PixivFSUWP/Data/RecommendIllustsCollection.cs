@@ -1,4 +1,4 @@
-﻿using PixivFSCS;
+﻿using PixivCS;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -9,8 +9,8 @@ using System.Threading;
 using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.UI.Xaml.Data;
-using FSharp.Data;
 using System.Web;
+using Windows.Data.Json;
 
 namespace PixivFSUWP.Data
 {
@@ -59,29 +59,29 @@ namespace PixivFSUWP.Data
             {
                 if (!HasMoreItems) return new LoadMoreItemsResult() { Count = 0 };
                 LoadMoreItemsResult toret = new LoadMoreItemsResult() { Count = 0 };
-                JsonValue recommendres = null;
+                JsonObject recommendres = null;
                 if (nexturl == "begin")
-                    recommendres = await Task.Run(() => new PixivFS
+                    recommendres = await Task.Run(() => new PixivCS
                         .PixivAppAPI(OverAll.GlobalBaseAPI)
-                        .csfriendly_illust_recommended());
+                        .IllustRecommended());
                 else
                 {
                     Uri next = new Uri(nexturl);
                     string getparam(string param) => HttpUtility.ParseQueryString(next.Query).Get(param);
-                    recommendres = await Task.Run(() => new PixivFS
+                    recommendres = await Task.Run(() => new PixivCS
                         .PixivAppAPI(OverAll.GlobalBaseAPI)
-                        .csfriendly_illust_recommended(content_type:
+                        .IllustRecommended(ContentType:
                             getparam("content_type"),
-                            include_ranking_label: bool.Parse(getparam("include_ranking_label")),
-                            filter: getparam("filter"),
-                            min_bookmark_id_for_recent_illust: getparam("min_bookmark_id_for_recent_illust"),
-                            max_bookmark_id_for_recommend: getparam("max_bookmark_id_for_recommend"),
-                            offset: getparam("offset"),
-                            include_ranking_illusts: bool.Parse(getparam("include_ranking_illusts")),
-                            include_privacy_policy: getparam("include_privacy_policy")));
+                            IncludeRankingLabel: bool.Parse(getparam("include_ranking_label")),
+                            Filter: getparam("filter"),
+                            MinBookmarkIDForRecentIllust: getparam("min_bookmark_id_for_recent_illust"),
+                            MaxBookmarkIDForRecommended: getparam("max_bookmark_id_for_recommend"),
+                            Offset: getparam("offset"),
+                            IncludeRankingIllusts: bool.Parse(getparam("include_ranking_illusts")),
+                            IncludePrivacyPolicy: getparam("include_privacy_policy")));
                 }
-                nexturl = recommendres.TryGetProperty("next_url").Value.AsString();
-                foreach (var recillust in recommendres.TryGetProperty("illusts").Value.AsArray())
+                nexturl = recommendres["next_url"].GetString();
+                foreach (JsonObject recillust in recommendres["illusts"].GetArray())
                 {
                     if (_emergencyStop)
                     {
