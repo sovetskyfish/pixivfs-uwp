@@ -1,6 +1,4 @@
-﻿using FSharp.Data;
-using PixivFS;
-using PixivFSCS;
+﻿using PixivCS;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -71,9 +69,8 @@ namespace PixivFSUWP
             iconView.Visibility = Visibility.Collapsed;
             iconStar.Visibility = Visibility.Collapsed;
             stkAuthor.Visibility = Visibility.Collapsed;
-            var res = await Task.Run(() =>
-                new PixivAppAPI(Data.OverAll.GlobalBaseAPI)
-                .csfriendly_illust_detail(illustID.ToString()));
+            var res = await new PixivAppAPI(Data.OverAll.GlobalBaseAPI)
+                .IllustDetail(illustID.ToString());
             ImageList.ItemsSource = new ObservableCollection<ViewModels.ImageItemViewModel>();
             illust = Data.IllustDetail.FromJsonValue(res);
             imgAuthor.ImageSource = await Data.OverAll.LoadImageAsync(illust.AuthorAvatarUrl);

@@ -1,9 +1,9 @@
-﻿using FSharp.Data;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.Data.Json;
 
 namespace PixivFSUWP.Data
 {
@@ -31,44 +31,44 @@ namespace PixivFSUWP.Data
         public int TotalComments { get; set; }
         public bool IsBookmarked { get; set; }
 
-        public static IllustDetail FromJsonValue(JsonValue Source)
+        public static IllustDetail FromJsonValue(JsonObject Source)
         {
             IllustDetail toret = new IllustDetail();
-            toret.IllustID = Source.TryGetProperty("illust").Value.TryGetProperty("id").Value.AsInteger();
-            toret.Title = Source.TryGetProperty("illust").Value.TryGetProperty("title").Value.AsString();
-            toret.Type = Source.TryGetProperty("illust").Value.TryGetProperty("type").Value.AsString();
-            toret.Caption = Source.TryGetProperty("illust").Value.TryGetProperty("caption").Value.AsString();
-            toret.AuthorID = Source.TryGetProperty("illust").Value.TryGetProperty("user").Value.TryGetProperty("id").Value.AsInteger();
-            toret.Author = Source.TryGetProperty("illust").Value.TryGetProperty("user").Value.TryGetProperty("name").Value.AsString();
-            toret.AuthorAccount = Source.TryGetProperty("illust").Value.TryGetProperty("user").Value.TryGetProperty("account").Value.AsString();
-            toret.AuthorAvatarUrl = Source.TryGetProperty("illust").Value.TryGetProperty("user").Value.TryGetProperty("profile_image_urls").Value.TryGetProperty("medium").Value.AsString();
-            toret.IsUserFollowed = Source.TryGetProperty("illust").Value.TryGetProperty("user").Value.TryGetProperty("is_followed").Value.AsBoolean();
-            var tags = Source.TryGetProperty("illust").Value.TryGetProperty("tags").Value.AsArray();
+            toret.IllustID = Convert.ToInt32(Source["illust"].GetObject()["id"].GetString());
+            toret.Title = Source["illust"].GetObject()["title"].GetString();
+            toret.Type = Source["illust"].GetObject()["type"].GetString();
+            toret.Caption = Source["illust"].GetObject()["caption"].GetString();
+            toret.AuthorID = Convert.ToInt32(Source["illust"].GetObject()["user"].GetObject()["id"].GetString());
+            toret.Author = Source["illust"].GetObject()["user"].GetObject()["name"].GetString();
+            toret.AuthorAccount = Source["illust"].GetObject()["user"].GetObject()["account"].GetString();
+            toret.AuthorAvatarUrl = Source["illust"].GetObject()["user"].GetObject()["profile_image_urls"].GetObject()["medium"].GetString();
+            toret.IsUserFollowed = Source["illust"].GetObject()["user"].GetObject()["is_followed"].GetBoolean();
+            var tags = Source["illust"].GetObject()["tags"].GetArray();
             toret.Tags = new List<string>();
-            foreach (var tag in tags)
-                toret.Tags.Add(tag.TryGetProperty("name").Value.AsString());
-            var tools = Source.TryGetProperty("illust").Value.TryGetProperty("tools").Value.AsArray();
+            foreach (JsonObject tag in tags)
+                toret.Tags.Add(tag["name"].GetString());
+            var tools = Source["illust"].GetObject()["tools"].GetArray();
             toret.Tools = new List<string>();
-            foreach (var tool in tools)
-                toret.Tools.Add(tool.AsString());
-            toret.CreateDate = Source.TryGetProperty("illust").Value.TryGetProperty("create_date").Value.AsString();
-            toret.MediumUrl = Source.TryGetProperty("illust").Value.TryGetProperty("image_urls").Value.TryGetProperty("square_medium").Value.AsString();
-            var pgCount = Source.TryGetProperty("illust").Value.TryGetProperty("page_count").Value.AsInteger();
+            foreach (JsonObject tool in tools)
+                toret.Tools.Add(tool.GetString());
+            toret.CreateDate = Source["illust"].GetObject()["create_date"].GetString();
+            toret.MediumUrl = Source["illust"].GetObject()["image_urls"].GetObject()["square_medium"].GetString();
+            var pgCount = Convert.ToInt32(Source["illust"].GetObject()["page_count"].GetString());
             toret.OriginalUrls = new List<string>();
-            if (pgCount == 1) toret.OriginalUrls.Add(Source.TryGetProperty("illust").Value.TryGetProperty("meta_single_page").Value.TryGetProperty("original_image_url").Value.AsString());
+            if (pgCount == 1) toret.OriginalUrls.Add(Source["illust"].GetObject()["meta_single_page"].GetObject()["original_image_url"].GetString());
             else
             {
-                var pages = Source.TryGetProperty("illust").Value.TryGetProperty("meta_pages").Value.AsArray();
-                foreach (var page in pages)
-                    toret.OriginalUrls.Add(page.TryGetProperty("image_urls").Value.TryGetProperty("original").Value.AsString());
+                var pages = Source["illust"].GetObject()["meta_pages"].GetArray();
+                foreach (JsonObject page in pages)
+                    toret.OriginalUrls.Add(page["image_urls"].GetObject()["original"].GetString());
             }
-            toret.Width = Source.TryGetProperty("illust").Value.TryGetProperty("width").Value.AsInteger();
-            toret.Height = Source.TryGetProperty("illust").Value.TryGetProperty("height").Value.AsInteger();
-            toret.SanityLevel = Source.TryGetProperty("illust").Value.TryGetProperty("sanity_level").Value.AsInteger();
-            toret.TotalView = Source.TryGetProperty("illust").Value.TryGetProperty("total_view").Value.AsInteger();
-            toret.TotalBookmarks = Source.TryGetProperty("illust").Value.TryGetProperty("total_bookmarks").Value.AsInteger();
-            toret.IsBookmarked = Source.TryGetProperty("illust").Value.TryGetProperty("is_bookmarked").Value.AsBoolean();
-            toret.TotalComments = Source.TryGetProperty("illust").Value.TryGetProperty("total_comments").Value.AsInteger();
+            toret.Width = Convert.ToInt32(Source["illust"].GetObject()["width"].GetString());
+            toret.Height = Convert.ToInt32(Source["illust"].GetObject()["height"].GetString());
+            toret.SanityLevel = Convert.ToInt32(Source["illust"].GetObject()["sanity_level"].GetString());
+            toret.TotalView = Convert.ToInt32(Source["illust"].GetObject()["total_view"].GetString());
+            toret.TotalBookmarks = Convert.ToInt32(Source["illust"].GetObject()["total_bookmarks"].GetString());
+            toret.IsBookmarked = Source["illust"].GetObject()["is_bookmarked"].GetBoolean();
+            toret.TotalComments = Convert.ToInt32(Source["illust"].GetObject()["total_comments"].GetString());
             return toret;
         }
     }
