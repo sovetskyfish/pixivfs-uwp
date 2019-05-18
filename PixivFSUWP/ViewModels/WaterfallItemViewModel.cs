@@ -5,8 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 using PixivFSUWP.Data;
 using Windows.UI.Xaml.Media.Imaging;
-using PixivFSCS;
-using PixivFS;
 using System.IO;
 
 namespace PixivFSUWP.ViewModels
