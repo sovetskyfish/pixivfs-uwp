@@ -63,16 +63,16 @@ namespace PixivFSUWP.Data
                 LoadMoreItemsResult toret = new LoadMoreItemsResult() { Count = 0 };
                 JsonObject commentres = null;
                 if (nexturl == "begin")
-                    commentres = await Task.Run(() => new PixivCS
+                    commentres = await new PixivCS
                         .PixivAppAPI(OverAll.GlobalBaseAPI)
-                        .IllustComments(illustid, IncludeTotalComments: true));
+                        .IllustComments(illustid, IncludeTotalComments: true);
                 else
                 {
                     Uri next = new Uri(nexturl);
                     string getparam(string param) => HttpUtility.ParseQueryString(next.Query).Get(param);
-                    commentres = await Task.Run(() => new PixivCS
+                    commentres = await new PixivCS
                         .PixivAppAPI(OverAll.GlobalBaseAPI)
-                        .IllustComments(illustid, getparam("offset"), bool.Parse(getparam("include_total_comments"))));
+                        .IllustComments(illustid, getparam("offset"), bool.Parse(getparam("include_total_comments")));
                 }
                 nexturl = commentres["next_url"].GetString();
                 foreach (JsonObject recillust in commentres["comments"].GetArray())

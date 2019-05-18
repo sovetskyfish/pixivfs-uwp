@@ -61,14 +61,14 @@ namespace PixivFSUWP.Data
                 LoadMoreItemsResult toret = new LoadMoreItemsResult() { Count = 0 };
                 JsonObject recommendres = null;
                 if (nexturl == "begin")
-                    recommendres = await Task.Run(() => new PixivCS
+                    recommendres = await new PixivCS
                         .PixivAppAPI(OverAll.GlobalBaseAPI)
-                        .IllustRecommended());
+                        .IllustRecommended();
                 else
                 {
                     Uri next = new Uri(nexturl);
                     string getparam(string param) => HttpUtility.ParseQueryString(next.Query).Get(param);
-                    recommendres = await Task.Run(() => new PixivCS
+                    recommendres = await new PixivCS
                         .PixivAppAPI(OverAll.GlobalBaseAPI)
                         .IllustRecommended(ContentType:
                             getparam("content_type"),
@@ -78,7 +78,7 @@ namespace PixivFSUWP.Data
                             MaxBookmarkIDForRecommended: getparam("max_bookmark_id_for_recommend"),
                             Offset: getparam("offset"),
                             IncludeRankingIllusts: bool.Parse(getparam("include_ranking_illusts")),
-                            IncludePrivacyPolicy: getparam("include_privacy_policy")));
+                            IncludePrivacyPolicy: getparam("include_privacy_policy"));
                 }
                 nexturl = recommendres["next_url"].GetString();
                 foreach (JsonObject recillust in recommendres["illusts"].GetArray())
