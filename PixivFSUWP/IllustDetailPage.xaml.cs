@@ -167,19 +167,17 @@ namespace PixivFSUWP
                 btnSender.IsChecked = false;
                 //进行关注
                 txtBtnBookmark.Text = "请求中";
-                var res = await Task.Run(() =>
+                bool res;
+                try
                 {
-                    try
-                    {
-                        new PixivAppAPI(Data.OverAll.GlobalBaseAPI)
-                            .csfriendly_illust_bookmark_add(illustID.ToString());
-                        return true;
-                    }
-                    catch
-                    {
-                        return false;
-                    }
-                });
+                    await new PixivAppAPI(Data.OverAll.GlobalBaseAPI)
+                        .IllustBookmarkAdd(illustID.ToString());
+                    res = true;
+                }
+                catch
+                {
+                    res = false;
+                }
                 if (res)
                 {
                     btnSender.IsChecked = true;
@@ -193,19 +191,17 @@ namespace PixivFSUWP
                 btnSender.IsChecked = true;
                 //取消关注
                 txtBtnBookmark.Text = "请求中";
-                var res = await Task.Run(() =>
+                bool res;
+                try
                 {
-                    try
-                    {
-                        new PixivAppAPI(Data.OverAll.GlobalBaseAPI)
-                            .csfriendly_illust_bookmark_delete(illustID.ToString());
-                        return true;
-                    }
-                    catch
-                    {
-                        return false;
-                    }
-                });
+                    await new PixivAppAPI(Data.OverAll.GlobalBaseAPI)
+                        .IllustBookmarkDelete(illustID.ToString());
+                    res = true;
+                }
+                catch
+                {
+                    res = false;
+                }
                 if (res)
                 {
                     btnSender.IsChecked = false;
@@ -225,19 +221,17 @@ namespace PixivFSUWP
                 btnSender.IsChecked = false;
                 //进行关注
                 txtBtnFollow.Text = "请求中";
-                var res = await Task.Run(() =>
+                bool res;
+                try
                 {
-                    try
-                    {
-                        new PixivAppAPI(Data.OverAll.GlobalBaseAPI)
-                            .csfriendly_user_follow_add(illust.AuthorID.ToString());
-                        return true;
-                    }
-                    catch
-                    {
-                        return false;
-                    }
-                });
+                    await new PixivAppAPI(Data.OverAll.GlobalBaseAPI)
+                        .UserFollowAdd(illust.AuthorID.ToString());
+                    res = true;
+                }
+                catch
+                {
+                    res = false;
+                }
                 if (res)
                 {
                     btnSender.IsChecked = true;
@@ -250,19 +244,17 @@ namespace PixivFSUWP
                 btnSender.IsChecked = true;
                 //取消关注
                 txtBtnFollow.Text = "请求中";
-                var res = await Task.Run(() =>
+                bool res;
+                try
                 {
-                    try
-                    {
-                        new PixivAppAPI(Data.OverAll.GlobalBaseAPI)
-                            .csfriendly_user_follow_delete(illust.AuthorID.ToString());
-                        return true;
-                    }
-                    catch
-                    {
-                        return false;
-                    }
-                });
+                    await new PixivAppAPI(Data.OverAll.GlobalBaseAPI)
+                        .UserFollowDelete(illust.AuthorID.ToString());
+                    res = true;
+                }
+                catch
+                {
+                    res = false;
+                }
                 if (res)
                 {
                     btnSender.IsChecked = false;
