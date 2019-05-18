@@ -1,5 +1,4 @@
-﻿using PixivFSCS;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -9,8 +8,8 @@ using System.Threading;
 using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.UI.Xaml.Data;
-using FSharp.Data;
 using System.Web;
+using Windows.Data.Json;
 
 namespace PixivFSUWP.Data
 {
@@ -27,7 +26,7 @@ namespace PixivFSUWP.Data
             userID = UserID;
         }
 
-        public BookmarkIllustsCollection() : this(OverAll.GlobalBaseAPI.user_id) { }
+        public BookmarkIllustsCollection() : this(OverAll.GlobalBaseAPI.UserID) { }
 
         public bool HasMoreItems
         {
@@ -67,22 +66,22 @@ namespace PixivFSUWP.Data
             {
                 if (!HasMoreItems) return new LoadMoreItemsResult() { Count = 0 };
                 LoadMoreItemsResult toret = new LoadMoreItemsResult() { Count = 0 };
-                JsonValue bookmarkres = null;
+                JsonObject bookmarkres = null;
                 if (nexturl == "begin")
-                    bookmarkres = await Task.Run(() => new PixivFS
+                    bookmarkres = await new PixivCS
                         .PixivAppAPI(OverAll.GlobalBaseAPI)
-                        .csfriendly_user_bookmarks_illust(userID));
+                        .UserBookmarksIllust(userID);
                 else
                 {
                     Uri next = new Uri(nexturl);
                     string getparam(string param) => HttpUtility.ParseQueryString(next.Query).Get(param);
-                    bookmarkres = await Task.Run(() => new PixivFS
+                    bookmarkres = await new PixivCS
                         .PixivAppAPI(OverAll.GlobalBaseAPI)
-                        .csfriendly_user_bookmarks_illust(userID, getparam("restrict"),
-                        getparam("filter"), getparam("max_bookmark_id")));
+                        .UserBookmarksIllust(userID, getparam("restrict"),
+                        getparam("filter"), getparam("max_bookmark_id"));
                 }
-                nexturl = bookmarkres.TryGetProperty("next_url").Value.AsString();
-                foreach (var recillust in bookmarkres.TryGetProperty("illusts").Value.AsArray())
+                nexturl = bookmarkres["next_url"].GetString();
+                foreach (JsonObject recillust in bookmarkres["illusts"].GetArray())
                 {
                     if (_emergencyStop)
                     {
