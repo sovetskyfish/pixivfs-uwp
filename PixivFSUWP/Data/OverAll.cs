@@ -152,7 +152,7 @@ namespace PixivFSUWP.Data
         public static string TryGetString(this IJsonValue source)
         {
             if (source.ValueType == JsonValueType.Null)
-                return null;
+                return "";
             return source.GetString();
         }
     }
