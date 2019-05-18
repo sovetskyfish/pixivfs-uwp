@@ -45,11 +45,11 @@ namespace PixivFSUWP.Data
             toret.IsUserFollowed = Source["illust"].GetObject()["user"].GetObject()["is_followed"].GetBoolean();
             var tags = Source["illust"].GetObject()["tags"].GetArray();
             toret.Tags = new List<string>();
-            foreach (JsonObject tag in tags)
-                toret.Tags.Add(tag["name"].GetString());
+            foreach (var tag in tags)
+                toret.Tags.Add(((JsonObject)tag)["name"].GetString());
             var tools = Source["illust"].GetObject()["tools"].GetArray();
             toret.Tools = new List<string>();
-            foreach (JsonObject tool in tools)
+            foreach (var tool in tools)
                 toret.Tools.Add(tool.GetString());
             toret.CreateDate = Source["illust"].GetObject()["create_date"].GetString();
             toret.MediumUrl = Source["illust"].GetObject()["image_urls"].GetObject()["square_medium"].GetString();
@@ -59,8 +59,8 @@ namespace PixivFSUWP.Data
             else
             {
                 var pages = Source["illust"].GetObject()["meta_pages"].GetArray();
-                foreach (JsonObject page in pages)
-                    toret.OriginalUrls.Add(page["image_urls"].GetObject()["original"].GetString());
+                foreach (var page in pages)
+                    toret.OriginalUrls.Add(((JsonObject)page)["image_urls"].GetObject()["original"].GetString());
             }
             toret.Width = Convert.ToInt32(Source["illust"].GetObject()["width"].GetString());
             toret.Height = Convert.ToInt32(Source["illust"].GetObject()["height"].GetString());

@@ -75,7 +75,7 @@ namespace PixivFSUWP.Data
                         .IllustComments(illustid, getparam("offset"), bool.Parse(getparam("include_total_comments")));
                 }
                 nexturl = commentres["next_url"].GetString();
-                foreach (JsonObject recillust in commentres["comments"].GetArray())
+                foreach (var recillust in commentres["comments"].GetArray())
                 {
                     if (_emergencyStop)
                     {
@@ -83,7 +83,7 @@ namespace PixivFSUWP.Data
                         throw new Exception();
                     }
                     await Task.Run(() => pause.WaitOne());
-                    Data.IllustCommentItem recommendi = Data.IllustCommentItem.FromJsonValue(recillust);
+                    Data.IllustCommentItem recommendi = Data.IllustCommentItem.FromJsonValue(recillust as JsonObject);
                     var recommendmodel = ViewModels.CommentViewModel.FromItem(recommendi);
                     //await recommendmodel.LoadAvatarAsync();
                     Add(recommendmodel);

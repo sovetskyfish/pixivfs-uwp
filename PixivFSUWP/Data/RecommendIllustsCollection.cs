@@ -81,7 +81,8 @@ namespace PixivFSUWP.Data
                             IncludePrivacyPolicy: getparam("include_privacy_policy"));
                 }
                 nexturl = recommendres["next_url"].GetString();
-                foreach (JsonObject recillust in recommendres["illusts"].GetArray())
+                var test = recommendres["illusts"].GetArray();
+                foreach (var recillust in recommendres["illusts"].GetArray())
                 {
                     if (_emergencyStop)
                     {
@@ -89,7 +90,7 @@ namespace PixivFSUWP.Data
                         throw new Exception();
                     }
                     await Task.Run(() => pause.WaitOne());
-                    Data.WaterfallItem recommendi = Data.WaterfallItem.FromJsonValue(recillust);
+                    Data.WaterfallItem recommendi = Data.WaterfallItem.FromJsonValue(recillust as JsonObject);
                     var recommendmodel = ViewModels.WaterfallItemViewModel.FromItem(recommendi);
                     await recommendmodel.LoadImageAsync();
                     Add(recommendmodel);
