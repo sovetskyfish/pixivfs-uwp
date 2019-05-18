@@ -12,9 +12,8 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-using PixivFSCS;
-using PixivFS;
 using System.Threading.Tasks;
+using PixivCS;
 
 // https://go.microsoft.com/fwlink/?LinkId=234238 上介绍了“空白页”项模板
 
@@ -42,11 +41,8 @@ namespace PixivFSUWP
 
         async Task loadContents()
         {
-            var res = await Task.Run(
-                    () =>
-                    new PixivAppAPI(Data.OverAll.GlobalBaseAPI)
-                    .csfriendly_user_detail(userid.ToString())
-            );
+            var res = await new PixivAppAPI(Data.OverAll.GlobalBaseAPI)
+                    .UserDetail(userid.ToString());
             detail = Data.UserDetail.FromJsomValue(res);
             string _getText(string input) => (input == "") ? "保密" : input;
             txtUsername.Text = detail.Name;

@@ -1,5 +1,4 @@
 ﻿using System;
-using FSharp.Data;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
@@ -15,7 +14,6 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-using PixivFSCS;
 
 // https://go.microsoft.com/fwlink/?LinkId=234238 上介绍了“空白页”项模板
 
