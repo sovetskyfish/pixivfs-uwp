@@ -21,15 +21,16 @@ namespace PixivFSUWP.Data
         public static WaterfallItem FromJsonValue(JsonObject Source)
         {
             var toret = new WaterfallItem();
-            toret.Id = Convert.ToInt32(Source["id"].GetString());
+            var test = Source["id"];
+            toret.Id = (int)Source["id"].GetNumber();
             toret.Title = Source["title"].GetString();
             toret.Author = Source["user"].GetObject()["name"].GetString();
             toret.ImageUri = Source["image_urls"].GetObject()["medium"].GetString();
-            toret.Stars = Convert.ToInt32(Source["total_bookmarks"].GetString());
-            toret.Pages = Convert.ToInt32(Source["page_count"].GetString());
+            toret.Stars = (int)Source["total_bookmarks"].GetNumber();
+            toret.Pages = (int)Source["page_count"].GetNumber();
             toret.IsBookmarked = Source["is_bookmarked"].GetBoolean();
-            toret.Width = Convert.ToInt32(Source["width"].GetString());
-            toret.Height = Convert.ToInt32(Source["height"].GetString());
+            toret.Width = (int)Source["width"].GetNumber();
+            toret.Height = (int)Source["height"].GetNumber();
             return toret;
         }
     }

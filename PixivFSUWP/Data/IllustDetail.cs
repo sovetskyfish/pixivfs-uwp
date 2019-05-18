@@ -34,11 +34,11 @@ namespace PixivFSUWP.Data
         public static IllustDetail FromJsonValue(JsonObject Source)
         {
             IllustDetail toret = new IllustDetail();
-            toret.IllustID = Convert.ToInt32(Source["illust"].GetObject()["id"].GetString());
+            toret.IllustID = (int)Source["illust"].GetObject()["id"].GetNumber();
             toret.Title = Source["illust"].GetObject()["title"].GetString();
             toret.Type = Source["illust"].GetObject()["type"].GetString();
             toret.Caption = Source["illust"].GetObject()["caption"].GetString();
-            toret.AuthorID = Convert.ToInt32(Source["illust"].GetObject()["user"].GetObject()["id"].GetString());
+            toret.AuthorID = (int)Source["illust"].GetObject()["user"].GetObject()["id"].GetNumber();
             toret.Author = Source["illust"].GetObject()["user"].GetObject()["name"].GetString();
             toret.AuthorAccount = Source["illust"].GetObject()["user"].GetObject()["account"].GetString();
             toret.AuthorAvatarUrl = Source["illust"].GetObject()["user"].GetObject()["profile_image_urls"].GetObject()["medium"].GetString();
@@ -53,7 +53,7 @@ namespace PixivFSUWP.Data
                 toret.Tools.Add(tool.GetString());
             toret.CreateDate = Source["illust"].GetObject()["create_date"].GetString();
             toret.MediumUrl = Source["illust"].GetObject()["image_urls"].GetObject()["square_medium"].GetString();
-            var pgCount = Convert.ToInt32(Source["illust"].GetObject()["page_count"].GetString());
+            var pgCount = (int)Source["illust"].GetObject()["page_count"].GetNumber();
             toret.OriginalUrls = new List<string>();
             if (pgCount == 1) toret.OriginalUrls.Add(Source["illust"].GetObject()["meta_single_page"].GetObject()["original_image_url"].GetString());
             else
@@ -62,13 +62,13 @@ namespace PixivFSUWP.Data
                 foreach (var page in pages)
                     toret.OriginalUrls.Add(page.GetObject()["image_urls"].GetObject()["original"].GetString());
             }
-            toret.Width = Convert.ToInt32(Source["illust"].GetObject()["width"].GetString());
-            toret.Height = Convert.ToInt32(Source["illust"].GetObject()["height"].GetString());
-            toret.SanityLevel = Convert.ToInt32(Source["illust"].GetObject()["sanity_level"].GetString());
-            toret.TotalView = Convert.ToInt32(Source["illust"].GetObject()["total_view"].GetString());
-            toret.TotalBookmarks = Convert.ToInt32(Source["illust"].GetObject()["total_bookmarks"].GetString());
+            toret.Width = (int)Source["illust"].GetObject()["width"].GetNumber();
+            toret.Height = (int)Source["illust"].GetObject()["height"].GetNumber();
+            toret.SanityLevel = (int)Source["illust"].GetObject()["sanity_level"].GetNumber();
+            toret.TotalView = (int)Source["illust"].GetObject()["total_view"].GetNumber();
+            toret.TotalBookmarks = (int)Source["illust"].GetObject()["total_bookmarks"].GetNumber();
             toret.IsBookmarked = Source["illust"].GetObject()["is_bookmarked"].GetBoolean();
-            toret.TotalComments = Convert.ToInt32(Source["illust"].GetObject()["total_comments"].GetString());
+            toret.TotalComments = (int)Source["illust"].GetObject()["total_comments"].GetNumber();
             return toret;
         }
     }

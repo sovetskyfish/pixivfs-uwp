@@ -23,7 +23,7 @@ namespace PixivFSUWP.Data
         public static CurrentUser FromJsonValue(JsonObject Source)
         {
             CurrentUser toret = new CurrentUser();
-            toret.ID = Convert.ToInt32(Source["id"].GetString());
+            toret.ID = (int)Source["id"].GetNumber();
             toret.Username = Source["name"].GetString();
             toret.UserAccount = Source["account"].GetString();
             toret.Email = Source["mail_address"].GetString();
