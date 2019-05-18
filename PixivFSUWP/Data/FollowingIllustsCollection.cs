@@ -1,5 +1,4 @@
-﻿using PixivFSCS;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -9,8 +8,8 @@ using System.Threading;
 using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.UI.Xaml.Data;
-using FSharp.Data;
 using System.Web;
+using Windows.Data.Json;
 
 namespace PixivFSUWP.Data
 {
@@ -59,21 +58,21 @@ namespace PixivFSUWP.Data
             {
                 if (!HasMoreItems) return new LoadMoreItemsResult() { Count = 0 };
                 LoadMoreItemsResult toret = new LoadMoreItemsResult() { Count = 0 };
-                JsonValue followingres = null;
+                JsonObject followingres = null;
                 if (nexturl == "begin")
-                    followingres = await Task.Run(() => new PixivFS
+                    followingres = await new PixivCS
                         .PixivAppAPI(OverAll.GlobalBaseAPI)
-                        .csfriendly_illust_follow());
+                        .IllustFollow();
                 else
                 {
                     Uri next = new Uri(nexturl);
                     string getparam(string param) => HttpUtility.ParseQueryString(next.Query).Get(param);
-                    followingres = await Task.Run(() => new PixivFS
+                    followingres = await new PixivCS
                         .PixivAppAPI(OverAll.GlobalBaseAPI)
-                        .csfriendly_illust_follow(getparam("restrict"), getparam("offset")));
+                        .IllustFollow(getparam("restrict"), getparam("offset"));
                 }
-                nexturl = followingres.TryGetProperty("next_url").Value.AsString();
-                foreach (var recillust in followingres.TryGetProperty("illusts").Value.AsArray())
+                nexturl = followingres["next_url"].GetString();
+                foreach (JsonObject recillust in followingres["illusts"].GetArray())
                 {
                     if (_emergencyStop)
                     {
