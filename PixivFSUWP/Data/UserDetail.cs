@@ -1,9 +1,9 @@
-﻿using FSharp.Data;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.Data.Json;
 
 namespace PixivFSUWP.Data
 {
@@ -59,62 +59,62 @@ namespace PixivFSUWP.Data
         public string WorkspaceComment { get; set; }
         public string WorkspaceImageUrl { get; set; }
 
-        public static UserDetail FromJsomValue(JsonValue Source)
+        public static UserDetail FromJsomValue(JsonObject Source)
         {
             UserDetail toret = new UserDetail();
-            var user = Source.TryGetProperty("user").Value;
-            toret.ID = user.TryGetProperty("id").Value.AsInteger();
-            toret.Name = user.TryGetProperty("name").Value.AsString();
-            toret.Account = user.TryGetProperty("account").Value.AsString();
-            toret.AvatarUrl = user.TryGetProperty("profile_image_urls").Value.TryGetProperty("medium").Value.AsString();
-            toret.Comment = user.TryGetProperty("comment").Value.AsString();
-            toret.IsFollowed = user.TryGetProperty("is_followed").Value.AsBoolean();
-            var profile = Source.TryGetProperty("profile").Value;
-            toret.WebPage = profile.TryGetProperty("webpage").Value.AsString();
-            toret.Gender = profile.TryGetProperty("gender").Value.AsString();
-            toret.Birth = profile.TryGetProperty("birth").Value.AsString();
-            toret.BirthDay = profile.TryGetProperty("birth_day").Value.AsString();
-            toret.BirthYear = profile.TryGetProperty("birth_year").Value.AsInteger();
-            toret.Region = profile.TryGetProperty("region").Value.AsString();
-            toret.AddressID = profile.TryGetProperty("address_id").Value.AsInteger();
-            toret.CountryCode = profile.TryGetProperty("country_code").Value.AsString();
-            toret.Job = profile.TryGetProperty("job").Value.AsString();
-            toret.JobID = profile.TryGetProperty("job_id").Value.AsInteger();
-            toret.TotalFollowUsers = profile.TryGetProperty("total_follow_users").Value.AsInteger();
-            toret.TotalMyPixivUsers = profile.TryGetProperty("total_mypixiv_users").Value.AsInteger();
-            toret.TotalIllusts = profile.TryGetProperty("total_illusts").Value.AsInteger();
-            toret.TotalManga = profile.TryGetProperty("total_manga").Value.AsInteger();
-            toret.TotalNovels = profile.TryGetProperty("total_novels").Value.AsInteger();
-            toret.TotalIllustBookmarksPublic = profile.TryGetProperty("total_illust_bookmarks_public").Value.AsInteger();
-            toret.TotalIllustSeries = profile.TryGetProperty("total_illust_series").Value.AsInteger();
-            toret.TotalNovelSeries = profile.TryGetProperty("total_novel_series").Value.AsInteger();
-            toret.BackgroundImage = profile.TryGetProperty("background_image_url").Value.AsString();
-            toret.TwitterAccount = profile.TryGetProperty("twitter_account").Value.AsString();
-            toret.TwitterUrl = profile.TryGetProperty("twitter_url").Value.AsString();
-            toret.PawooUrl = profile.TryGetProperty("pawoo_url").Value.AsString();
-            toret.IsPremium = profile.TryGetProperty("is_premium").Value.AsBoolean();
-            toret.IsUsingCustomProfileImage = profile.TryGetProperty("is_using_custom_profile_image").Value.AsBoolean();
-            var profile_publicity = Source.TryGetProperty("profile_publicity").Value;
-            toret.GenderPublicity = profile_publicity.TryGetProperty("gender").Value.AsString();
-            toret.RegionPublicity = profile_publicity.TryGetProperty("region").Value.AsString();
-            toret.BirthDayPublicity = profile_publicity.TryGetProperty("birth_day").Value.AsString();
-            toret.BirthYearPublicity = profile_publicity.TryGetProperty("birth_year").Value.AsString();
-            toret.JobPublicity = profile_publicity.TryGetProperty("job").Value.AsString();
-            toret.Pawoo = profile_publicity.TryGetProperty("pawoo").Value.AsBoolean();
-            var workspace = Source.TryGetProperty("workspace").Value;
-            toret.PC = workspace.TryGetProperty("pc").Value.AsString();
-            toret.Monitor = workspace.TryGetProperty("monitor").Value.AsString();
-            toret.Tool = workspace.TryGetProperty("tool").Value.AsString();
-            toret.Scanner = workspace.TryGetProperty("scanner").Value.AsString();
-            toret.Tablet = workspace.TryGetProperty("tablet").Value.AsString();
-            toret.Mouse = workspace.TryGetProperty("mouse").Value.AsString();
-            toret.Printer = workspace.TryGetProperty("printer").Value.AsString();
-            toret.Desktop = workspace.TryGetProperty("desktop").Value.AsString();
-            toret.Music = workspace.TryGetProperty("music").Value.AsString();
-            toret.Desk = workspace.TryGetProperty("desk").Value.AsString();
-            toret.Chair = workspace.TryGetProperty("chair").Value.AsString();
-            toret.WorkspaceComment = workspace.TryGetProperty("comment").Value.AsString();
-            toret.WorkspaceImageUrl = workspace.TryGetProperty("workspace_image_url").Value.AsString();
+            var user = Source["user"].GetObject();
+            toret.ID = Convert.ToInt32(user["id"].GetString());
+            toret.Name = user["name"].GetString();
+            toret.Account = user["account"].GetString();
+            toret.AvatarUrl = user["profile_image_urls"].GetObject()["medium"].GetString();
+            toret.Comment = user["comment"].GetString();
+            toret.IsFollowed = user["is_followed"].GetBoolean();
+            var profile = Source["profile"].GetObject();
+            toret.WebPage = profile["webpage"].GetString();
+            toret.Gender = profile["gender"].GetString();
+            toret.Birth = profile["birth"].GetString();
+            toret.BirthDay = profile["birth_day"].GetString();
+            toret.BirthYear = Convert.ToInt32(profile["birth_year"].GetString());
+            toret.Region = profile["region"].GetString();
+            toret.AddressID = Convert.ToInt32(profile["address_id"].GetString());
+            toret.CountryCode = profile["country_code"].GetString();
+            toret.Job = profile["job"].GetString();
+            toret.JobID = Convert.ToInt32(profile["job_id"].GetString());
+            toret.TotalFollowUsers = Convert.ToInt32(profile["total_follow_users"].GetString());
+            toret.TotalMyPixivUsers = Convert.ToInt32(profile["total_mypixiv_users"].GetString());
+            toret.TotalIllusts = Convert.ToInt32(profile["total_illusts"].GetString());
+            toret.TotalManga = Convert.ToInt32(profile["total_manga"].GetString());
+            toret.TotalNovels = Convert.ToInt32(profile["total_novels"].GetString());
+            toret.TotalIllustBookmarksPublic = Convert.ToInt32(profile["total_illust_bookmarks_public"].GetString());
+            toret.TotalIllustSeries = Convert.ToInt32(profile["total_illust_series"].GetString());
+            toret.TotalNovelSeries = Convert.ToInt32(profile["total_novel_series"].GetString());
+            toret.BackgroundImage = profile["background_image_url"].GetString();
+            toret.TwitterAccount = profile["twitter_account"].GetString();
+            toret.TwitterUrl = profile["twitter_url"].GetString();
+            toret.PawooUrl = profile["pawoo_url"].GetString();
+            toret.IsPremium = profile["is_premium"].GetBoolean();
+            toret.IsUsingCustomProfileImage = profile["is_using_custom_profile_image"].GetBoolean();
+            var profile_publicity = Source["profile_publicity"].GetObject();
+            toret.GenderPublicity = profile_publicity["gender"].GetString();
+            toret.RegionPublicity = profile_publicity["region"].GetString();
+            toret.BirthDayPublicity = profile_publicity["birth_day"].GetString();
+            toret.BirthYearPublicity = profile_publicity["birth_year"].GetString();
+            toret.JobPublicity = profile_publicity["job"].GetString();
+            toret.Pawoo = profile_publicity["pawoo"].GetBoolean();
+            var workspace = Source["workspace"].GetObject();
+            toret.PC = workspace["pc"].GetString();
+            toret.Monitor = workspace["monitor"].GetString();
+            toret.Tool = workspace["tool"].GetString();
+            toret.Scanner = workspace["scanner"].GetString();
+            toret.Tablet = workspace["tablet"].GetString();
+            toret.Mouse = workspace["mouse"].GetString();
+            toret.Printer = workspace["printer"].GetString();
+            toret.Desktop = workspace["desktop"].GetString();
+            toret.Music = workspace["music"].GetString();
+            toret.Desk = workspace["desk"].GetString();
+            toret.Chair = workspace["chair"].GetString();
+            toret.WorkspaceComment = workspace["comment"].GetString();
+            toret.WorkspaceImageUrl = workspace["workspace_image_url"].GetString();
             return toret;
         }
     }
