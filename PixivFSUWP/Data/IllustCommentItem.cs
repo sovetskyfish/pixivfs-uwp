@@ -1,9 +1,9 @@
-﻿using FSharp.Data;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.Data.Json;
 
 namespace PixivFSUWP.Data
 {
@@ -15,14 +15,14 @@ namespace PixivFSUWP.Data
         public string UserAccount { get; set; }
         public string AvatarUrl { get; set; }
 
-        public static IllustCommentItem FromJsonValue(JsonValue Source)
+        public static IllustCommentItem FromJsonValue(JsonObject Source)
         {
             IllustCommentItem toret = new IllustCommentItem();
-            toret.Comment = Source.TryGetProperty("comment").Value.AsString();
-            toret.DateTime = Source.TryGetProperty("date").Value.AsString();
-            toret.UserName = Source.TryGetProperty("user").Value.TryGetProperty("name").Value.AsString();
-            toret.UserAccount = Source.TryGetProperty("user").Value.TryGetProperty("account").Value.AsString();
-            toret.AvatarUrl = Source.TryGetProperty("user").Value.TryGetProperty("profile_image_urls").Value.TryGetProperty("medium").Value.AsString();
+            toret.Comment = Source["comment"].GetString();
+            toret.DateTime = Source["date"].GetString();
+            toret.UserName = Source["user"].GetObject()["name"].GetString();
+            toret.UserAccount = Source["user"].GetObject()["account"].GetString();
+            toret.AvatarUrl = Source["user"].GetObject()["profile_image_urls"].GetObject()["medium"].GetString();
             return toret;
         }
     }
