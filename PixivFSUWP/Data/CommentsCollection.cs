@@ -1,6 +1,4 @@
-﻿using FSharp.Data;
-using PixivFSCS;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -9,6 +7,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Web;
+using Windows.Data.Json;
 using Windows.Foundation;
 using Windows.UI.Xaml.Data;
 
@@ -62,21 +61,21 @@ namespace PixivFSUWP.Data
             {
                 if (!HasMoreItems) return new LoadMoreItemsResult() { Count = 0 };
                 LoadMoreItemsResult toret = new LoadMoreItemsResult() { Count = 0 };
-                JsonValue commentres = null;
+                JsonObject commentres = null;
                 if (nexturl == "begin")
-                    commentres = await Task.Run(() => new PixivFS
+                    commentres = await Task.Run(() => new PixivCS
                         .PixivAppAPI(OverAll.GlobalBaseAPI)
-                        .csfriendly_illust_comments(illustid, include_total_comments: true));
+                        .IllustComments(illustid, IncludeTotalComments: true));
                 else
                 {
                     Uri next = new Uri(nexturl);
                     string getparam(string param) => HttpUtility.ParseQueryString(next.Query).Get(param);
-                    commentres = await Task.Run(() => new PixivFS
+                    commentres = await Task.Run(() => new PixivCS
                         .PixivAppAPI(OverAll.GlobalBaseAPI)
-                        .csfriendly_illust_comments(illustid, getparam("offset"), bool.Parse(getparam("include_total_comments"))));
+                        .IllustComments(illustid, getparam("offset"), bool.Parse(getparam("include_total_comments"))));
                 }
-                nexturl = commentres.TryGetProperty("next_url").Value.AsString();
-                foreach (var recillust in commentres.TryGetProperty("comments").Value.AsArray())
+                nexturl = commentres["next_url"].GetString();
+                foreach (JsonObject recillust in commentres["comments"].GetArray())
                 {
                     if (_emergencyStop)
                     {
