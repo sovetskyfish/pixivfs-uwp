@@ -94,7 +94,7 @@ namespace PixivFSUWP
             try
             {
                 if (useToken)
-                    res = await GlobalBaseAPI.Auth(RefreshToken: refreshToken);
+                    res = await GlobalBaseAPI.Auth(refreshToken);
                 else
                     res = await GlobalBaseAPI.Auth(username, password);
                 success = true;
