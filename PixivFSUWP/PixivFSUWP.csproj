@@ -230,10 +230,7 @@
     <PackageReference Include="Microsoft.Toolkit.Uwp">
       <Version>5.1.1</Version>
     </PackageReference>
-    <PackageReference Include="PixivFS">
-      <Version>0.1.5</Version>
-    </PackageReference>
-    <PackageReference Include="PixivFSCS">
+    <PackageReference Include="PixivCS">
       <Version>0.1.5</Version>
     </PackageReference>
     <PackageReference Include="Win2D.uwp">

@@ -16,13 +16,12 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-using PixivFS;
-using PixivFSCS;
 using System.Threading.Tasks;
 using System.Diagnostics;
 using Windows.Security.Credentials;
+using PixivCS;
 using static PixivFSUWP.Data.OverAll;
-using FSharp.Data;
+using Windows.Data.Json;
 
 // https://go.microsoft.com/fwlink/?LinkId=234238 上介绍了“空白页”项模板
 
@@ -84,43 +83,40 @@ namespace PixivFSUWP
 
         private async void Login()
         {
-            //异步执行登录
-            var logintask = Task.Run(() =>
-            {
-                JsonValue res = null;
-                try
-                {
-                    if (useToken)
-                        res = GlobalBaseAPI.csfriendly_auth(refresh_token: refreshToken);
-                    else
-                        res = GlobalBaseAPI.csfriendly_auth(username, password);
-                    return (true, res);
-                }
-                catch
-                {
-                    if (useToken)
-                    {
-                        useToken = false;
-                        try
-                        {
-                            res = GlobalBaseAPI.csfriendly_auth(username, password);
-                            return (true, res);
-                        }
-                        catch
-                        {
-                            return (false, res);
-                        }
-                    }
-                    return (false, res);
-                }
-            });
             stkTxts.Visibility = Visibility.Collapsed;
             stkBtns.Visibility = Visibility.Collapsed;
             btnTrouble.Visibility = Visibility.Collapsed;
             ringProgress.IsActive = true;
             grdLoading.Visibility = Visibility.Visible;
-            (var loginres, var jsonres) = await logintask;
-            if (loginres)
+            bool success;
+            JsonObject res = null;
+            //异步执行登录
+            try
+            {
+                if (useToken)
+                    res = await GlobalBaseAPI.Auth(RefreshToken: refreshToken);
+                else
+                    res = await GlobalBaseAPI.Auth(username, password);
+                success = true;
+            }
+            catch
+            {
+                success = false;
+                if (useToken)
+                {
+                    useToken = false;
+                    try
+                    {
+                        res = await GlobalBaseAPI.Auth(username, password);
+                        success = true;
+                    }
+                    catch
+                    {
+                        success = false;
+                    }
+                }
+            }
+            if (success)
             {
                 //登录成功
                 //储存凭证
@@ -134,12 +130,12 @@ namespace PixivFSUWP
                 finally
                 {
                     vault.Add(new PasswordCredential(passwordResource, username, password));
-                    vault.Add(new PasswordCredential(refreshTokenResource, username, Data.OverAll.GlobalBaseAPI.refresh_token));
+                    vault.Add(new PasswordCredential(refreshTokenResource, username, Data.OverAll.GlobalBaseAPI.RefreshToken));
                 }
                 //登陆完毕后加载默认的收藏集合
                 BookmarkList = new Data.BookmarkIllustsCollection();
                 //保存当前的身份信息
-                currentUser = Data.CurrentUser.FromJsonValue(jsonres.TryGetProperty("response").Value.TryGetProperty("user").Value);
+                currentUser = Data.CurrentUser.FromJsonValue(res["response"].GetObject()["user"].GetObject());
                 Frame.Navigate(typeof(MainPage));
             }
             else btnTrouble.Visibility = Visibility.Visible;

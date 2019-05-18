@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading.Tasks;
-using PixivFS;
-using PixivFSCS;
 using Windows.ApplicationModel.Core;
 using Windows.ApplicationModel.UserActivities;
 using Windows.Security.Credentials;
@@ -15,6 +13,7 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media.Imaging;
 using AdaptiveCards;
 using Windows.UI.Shell;
+using PixivCS;
 
 namespace PixivFSUWP.Data
 {
@@ -49,9 +48,9 @@ namespace PixivFSUWP.Data
 
         public static async Task<MemoryStream> DownloadImage(string Uri)
         {
-            var resStream = await Task.Run(() => new PixivAppAPI(GlobalBaseAPI).csfriendly_no_auth_requests_call_stream("GET",
-                  Uri, new List<Tuple<string, string>>() { ("Referer", "https://app-api.pixiv.net/").ToTuple() })
-                  .ResponseStream);
+            var resStream = await (await new PixivAppAPI(GlobalBaseAPI).RequestCall("GET",
+                  Uri, new Dictionary<string, string>() { { "Referer", "https://app-api.pixiv.net/" } })).
+                  Content.ReadAsStreamAsync();
             var memStream = new MemoryStream();
             await resStream.CopyToAsync(memStream);
             memStream.Position = 0;

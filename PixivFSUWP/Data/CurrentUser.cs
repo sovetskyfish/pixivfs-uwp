@@ -1,9 +1,10 @@
-﻿using FSharp.Data;
+﻿
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.Data.Json;
 
 namespace PixivFSUWP.Data
 {
@@ -19,18 +20,18 @@ namespace PixivFSUWP.Data
         public string Avatar50 { get; set; }
         public string Avatar170 { get; set; }
 
-        public static CurrentUser FromJsonValue(JsonValue Source)
+        public static CurrentUser FromJsonValue(JsonObject Source)
         {
             CurrentUser toret = new CurrentUser();
-            toret.ID = Source.TryGetProperty("id").Value.AsInteger();
-            toret.Username = Source.TryGetProperty("name").Value.AsString();
-            toret.UserAccount = Source.TryGetProperty("account").Value.AsString();
-            toret.Email = Source.TryGetProperty("mail_address").Value.AsString();
-            toret.IsMailAuthorized= Source.TryGetProperty("is_mail_authorized").Value.AsBoolean();
-            toret.IsPremium = Source.TryGetProperty("is_premium").Value.AsBoolean();
-            toret.Avatar16 = Source.TryGetProperty("profile_image_urls").Value.TryGetProperty("px_16x16").Value.AsString();
-            toret.Avatar50 = Source.TryGetProperty("profile_image_urls").Value.TryGetProperty("px_50x50").Value.AsString();
-            toret.Avatar170 = Source.TryGetProperty("profile_image_urls").Value.TryGetProperty("px_170x170").Value.AsString();
+            toret.ID = Convert.ToInt32(Source["id"].GetString());
+            toret.Username = Source["name"].GetString();
+            toret.UserAccount = Source["account"].GetString();
+            toret.Email = Source["mail_address"].GetString();
+            toret.IsMailAuthorized = Source["is_mail_authorized"].GetBoolean();
+            toret.IsPremium = Source["is_premium"].GetBoolean();
+            toret.Avatar16 = Source["profile_image_urls"].GetObject()["px_16x16"].GetString();
+            toret.Avatar50 = Source["profile_image_urls"].GetObject()["px_50x50"].GetString();
+            toret.Avatar170 = Source["profile_image_urls"].GetObject()["px_170x170"].GetString();
             return toret;
         }
     }
