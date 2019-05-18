@@ -71,7 +71,7 @@ namespace PixivFSUWP.Data
                         .PixivAppAPI(OverAll.GlobalBaseAPI)
                         .IllustFollow(getparam("restrict"), getparam("offset"));
                 }
-                nexturl = followingres["next_url"].GetString();
+                nexturl = followingres["next_url"].TryGetString();
                 foreach (var recillust in followingres["illusts"].GetArray())
                 {
                     if (_emergencyStop)

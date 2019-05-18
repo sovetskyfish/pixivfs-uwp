@@ -23,15 +23,15 @@ namespace PixivFSUWP.Data
         public static CurrentUser FromJsonValue(JsonObject Source)
         {
             CurrentUser toret = new CurrentUser();
-            toret.ID = Convert.ToInt32(Source["id"].GetString());
-            toret.Username = Source["name"].GetString();
-            toret.UserAccount = Source["account"].GetString();
-            toret.Email = Source["mail_address"].GetString();
+            toret.ID = Convert.ToInt32(Source["id"].TryGetString());
+            toret.Username = Source["name"].TryGetString();
+            toret.UserAccount = Source["account"].TryGetString();
+            toret.Email = Source["mail_address"].TryGetString();
             toret.IsMailAuthorized = Source["is_mail_authorized"].GetBoolean();
             toret.IsPremium = Source["is_premium"].GetBoolean();
-            toret.Avatar16 = Source["profile_image_urls"].GetObject()["px_16x16"].GetString();
-            toret.Avatar50 = Source["profile_image_urls"].GetObject()["px_50x50"].GetString();
-            toret.Avatar170 = Source["profile_image_urls"].GetObject()["px_170x170"].GetString();
+            toret.Avatar16 = Source["profile_image_urls"].GetObject()["px_16x16"].TryGetString();
+            toret.Avatar50 = Source["profile_image_urls"].GetObject()["px_50x50"].TryGetString();
+            toret.Avatar170 = Source["profile_image_urls"].GetObject()["px_170x170"].TryGetString();
             return toret;
         }
     }

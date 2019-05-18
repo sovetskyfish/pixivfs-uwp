@@ -14,6 +14,7 @@ using Windows.UI.Xaml.Media.Imaging;
 using AdaptiveCards;
 using Windows.UI.Shell;
 using PixivCS;
+using Windows.Data.Json;
 
 namespace PixivFSUWP.Data
 {
@@ -145,6 +146,14 @@ namespace PixivFSUWP.Data
             await userActivity.SaveAsync();
             _currentActivity?.Dispose();
             _currentActivity = userActivity.CreateSession();
+        }
+
+        //扩展方法，用于检测值为null的情况
+        public static string TryGetString(this IJsonValue source)
+        {
+            if (source.ValueType == JsonValueType.Null)
+                return null;
+            return source.GetString();
         }
     }
 }

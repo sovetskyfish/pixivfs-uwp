@@ -23,9 +23,9 @@ namespace PixivFSUWP.Data
             var toret = new WaterfallItem();
             var test = Source["id"];
             toret.Id = (int)Source["id"].GetNumber();
-            toret.Title = Source["title"].GetString();
-            toret.Author = Source["user"].GetObject()["name"].GetString();
-            toret.ImageUri = Source["image_urls"].GetObject()["medium"].GetString();
+            toret.Title = Source["title"].TryGetString();
+            toret.Author = Source["user"].GetObject()["name"].TryGetString();
+            toret.ImageUri = Source["image_urls"].GetObject()["medium"].TryGetString();
             toret.Stars = (int)Source["total_bookmarks"].GetNumber();
             toret.Pages = (int)Source["page_count"].GetNumber();
             toret.IsBookmarked = Source["is_bookmarked"].GetBoolean();

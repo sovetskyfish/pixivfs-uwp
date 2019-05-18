@@ -80,7 +80,7 @@ namespace PixivFSUWP.Data
                         .UserBookmarksIllust(userID, getparam("restrict"),
                         getparam("filter"), getparam("max_bookmark_id"));
                 }
-                nexturl = bookmarkres["next_url"].GetString();
+                nexturl = bookmarkres["next_url"].TryGetString();
                 foreach (var recillust in bookmarkres["illusts"].GetArray())
                 {
                     if (_emergencyStop)
