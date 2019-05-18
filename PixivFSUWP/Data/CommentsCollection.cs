@@ -83,7 +83,7 @@ namespace PixivFSUWP.Data
                         throw new Exception();
                     }
                     await Task.Run(() => pause.WaitOne());
-                    Data.IllustCommentItem recommendi = Data.IllustCommentItem.FromJsonValue(recillust as JsonObject);
+                    Data.IllustCommentItem recommendi = Data.IllustCommentItem.FromJsonValue(recillust.GetObject());
                     var recommendmodel = ViewModels.CommentViewModel.FromItem(recommendi);
                     //await recommendmodel.LoadAvatarAsync();
                     Add(recommendmodel);

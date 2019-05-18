@@ -46,7 +46,7 @@ namespace PixivFSUWP.Data
             var tags = Source["illust"].GetObject()["tags"].GetArray();
             toret.Tags = new List<string>();
             foreach (var tag in tags)
-                toret.Tags.Add(((JsonObject)tag)["name"].GetString());
+                toret.Tags.Add(tag.GetObject()["name"].GetString());
             var tools = Source["illust"].GetObject()["tools"].GetArray();
             toret.Tools = new List<string>();
             foreach (var tool in tools)
@@ -60,7 +60,7 @@ namespace PixivFSUWP.Data
             {
                 var pages = Source["illust"].GetObject()["meta_pages"].GetArray();
                 foreach (var page in pages)
-                    toret.OriginalUrls.Add(((JsonObject)page)["image_urls"].GetObject()["original"].GetString());
+                    toret.OriginalUrls.Add(page.GetObject()["image_urls"].GetObject()["original"].GetString());
             }
             toret.Width = Convert.ToInt32(Source["illust"].GetObject()["width"].GetString());
             toret.Height = Convert.ToInt32(Source["illust"].GetObject()["height"].GetString());
