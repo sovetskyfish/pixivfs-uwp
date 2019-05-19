@@ -39,7 +39,6 @@
                 <NavigationViewItem Content="收藏"/>
                 <NavigationViewItem Content="关注"/>
                 <NavigationViewItem Content="排行"/>
-                <NavigationViewItem Content="最新"/>
                 <NavigationViewItemSeparator x:Name="NavSeparator" Visibility="Collapsed"/>
                 <NavigationViewItem Content="PlaceHolder" x:Name="NavPlaceholder" Visibility="Collapsed" IsEnabled="False"/>
             </NavigationView.MenuItems>

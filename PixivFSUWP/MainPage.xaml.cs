@@ -77,12 +77,6 @@ namespace PixivFSUWP
                     NavSeparator.Visibility = Visibility.Collapsed;
                     NavPlaceholder.Visibility = Visibility.Collapsed;
                     break;
-                case 4:
-                    NavPlaceholder.IsEnabled = false;
-                    await Task.Delay(TimeSpan.FromMilliseconds(350));
-                    NavSeparator.Visibility = Visibility.Collapsed;
-                    NavPlaceholder.Visibility = Visibility.Collapsed;
-                    break;
             }
         }
 
@@ -96,7 +90,7 @@ namespace PixivFSUWP
             NavSeparator.Visibility = Visibility.Visible;
             NavPlaceholder.Visibility = Visibility.Visible;
             await Task.Delay(TimeSpan.FromMilliseconds(10));
-            NavSelect(6);
+            NavSelect(5);
         }
 
         private void BtnSetting_Click(object sender, RoutedEventArgs e)
