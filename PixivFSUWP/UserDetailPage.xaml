@@ -8,7 +8,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-    <ScrollViewer Background="{StaticResource PageBackGround}">
+    <ScrollViewer Background="{StaticResource PageBackGround}" x:Name="scrollViewer">
         <StackPanel Orientation="Vertical">
             <Grid Margin="0,75,0,0" HorizontalAlignment="Stretch" Height="250">
                 <StackPanel VerticalAlignment="Center" 
@@ -104,10 +104,11 @@
                     <TextBlock x:Name="txtChair" VerticalAlignment="Center" Grid.Row="7" Grid.Column="2" TextTrimming="CharacterEllipsis"/>
                 </Grid>
             </Grid>
-            <ListView x:Name="illustsList" ItemTemplate="{StaticResource WaterfallListViewItemTemplate}" IsItemClickEnabled="True">
+            <ListView x:Name="illustsList" ItemTemplate="{StaticResource WaterfallListViewItemTemplate}" IsItemClickEnabled="True"
+                      IncrementalLoadingTrigger="None">
                 <ListView.ItemsPanel>
                     <ItemsPanelTemplate>
-                        <controls:WaterfallContentPanel x:Name="WaterfallContent" TopOffset="75" ItemMargin="2">
+                        <controls:WaterfallContentPanel x:Name="WaterfallContent" ItemMargin="2">
                             <controls:WaterfallContentPanel.ChildrenTransitions>
                                 <TransitionCollection>
                                     <PopupThemeTransition FromVerticalOffset="150"/>

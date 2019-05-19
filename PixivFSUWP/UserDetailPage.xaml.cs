@@ -14,6 +14,7 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using System.Threading.Tasks;
 using PixivCS;
+using PixivFSUWP.Data;
 
 // https://go.microsoft.com/fwlink/?LinkId=234238 上介绍了“空白页”项模板
 
@@ -24,6 +25,7 @@ namespace PixivFSUWP
     /// </summary>
     public sealed partial class UserDetailPage : Page
     {
+        UserIllustsCollection itemsSource;
         int userid = 0;
         Data.UserDetail detail;
         public UserDetailPage()
@@ -35,6 +37,8 @@ namespace PixivFSUWP
         {
             ((Frame.Parent as Grid)?.Parent as MainPage)?.SelectNavPlaceholder("用户");
             userid = (int)e.Parameter;
+            itemsSource = new UserIllustsCollection(userid.ToString());
+            illustsList.ItemsSource = itemsSource;
             base.OnNavigatedTo(e);
             _ = loadContents();
         }
@@ -66,6 +70,20 @@ namespace PixivFSUWP
             txtDesk.Text = _getHW(detail.Desk);
             txtChair.Text = _getHW(detail.Chair);
             imgAvatar.ImageSource = await Data.OverAll.LoadImageAsync(detail.AvatarUrl);
+            _ = loadPage();
+        }
+
+        async Task loadPage()
+        {
+            while (scrollViewer.ScrollableHeight == 0)
+                try
+                {
+                    await (itemsSource as ISupportIncrementalLoading)?.LoadMoreItemsAsync(0);
+                }
+                catch (InvalidOperationException)
+                {
+                    return;
+                }
         }
     }
 }
