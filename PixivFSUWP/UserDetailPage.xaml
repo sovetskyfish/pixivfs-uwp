@@ -167,7 +167,7 @@
                     </Grid>
                 </Grid>
                 <ListView x:Name="illustsList" ItemTemplate="{StaticResource WaterfallListViewItemTemplate}" IsItemClickEnabled="True"
-                      IncrementalLoadingTrigger="None" Margin="4 10">
+                      IncrementalLoadingTrigger="None" Margin="4 10" ItemClick="IllustsList_ItemClick">
                     <ListView.ItemsPanel>
                         <ItemsPanelTemplate>
                             <controls:WaterfallContentPanel x:Name="WaterfallContent" ItemMargin="2" Loaded="WaterfallContent_Loaded">

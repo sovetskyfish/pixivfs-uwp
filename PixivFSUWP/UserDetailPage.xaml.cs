@@ -112,5 +112,12 @@ namespace PixivFSUWP
             else if (ActualWidth < 1100) (sender as Controls.WaterfallContentPanel).Colums = 5;
             else (sender as Controls.WaterfallContentPanel).Colums = 6;
         }
+
+        private void IllustsList_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            Frame.Navigate(typeof(IllustDetailPage),
+                (e.ClickedItem as ViewModels
+                .WaterfallItemViewModel).ItemId);
+        }
     }
 }
