@@ -8,7 +8,7 @@
 
   <Identity
     Name="18416PixeezPlusProject.PixivUWP"
-    Publisher="CN=1A1912C0-F77F-4F6F-B8BA-0DF953939E75"
+    Publisher="CN=Tobii"
     Version="2.0.1.0" />
 
   <mp:PhoneIdentity PhoneProductId="9ea9f621-9c9e-4517-b58c-32a517ee9a57" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
