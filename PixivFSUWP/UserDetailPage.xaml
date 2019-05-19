@@ -8,152 +8,179 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-    <ScrollViewer Background="{StaticResource PageBackGround}" x:Name="scrollViewer" ViewChanged="ScrollViewer_ViewChanged">
-        <StackPanel Orientation="Vertical">
-            <Grid Margin="0,75,0,0" HorizontalAlignment="Stretch" Height="250">
-                <StackPanel VerticalAlignment="Center" 
+    <Grid>
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:Name="AdaptiveStates">
+                <VisualState x:Name="C6">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="1100" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="WaterfallContent.Colums" Value="6"/>
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="C5">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="900" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="WaterfallContent.Colums" Value="5"/>
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="C4">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="700" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="WaterfallContent.Colums" Value="4"/>
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="C3">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="0" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="WaterfallContent.Colums" Value="3"/>
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+        <ScrollViewer Background="{StaticResource PageBackGround}" x:Name="scrollViewer" ViewChanged="ScrollViewer_ViewChanged">
+            <StackPanel Orientation="Vertical">
+                <Grid Margin="0,75,0,0" HorizontalAlignment="Stretch" Height="220">
+                    <StackPanel VerticalAlignment="Center" 
                         HorizontalAlignment="Stretch" 
                         Orientation="Vertical">
-                    <Grid>
-                        <Ellipse Fill="White" Width="105" Height="105"
+                        <Grid>
+                            <Ellipse Fill="White" Width="105" Height="105"
                              HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                        <Ellipse Width="100" Height="100" 
+                            <Ellipse Width="100" Height="100" 
                              HorizontalAlignment="Center" VerticalAlignment="Center">
-                            <Ellipse.Fill>
-                                <ImageBrush x:Name="imgAvatar" Stretch="UniformToFill"/>
-                            </Ellipse.Fill>
-                        </Ellipse>
+                                <Ellipse.Fill>
+                                    <ImageBrush x:Name="imgAvatar" Stretch="UniformToFill"/>
+                                </Ellipse.Fill>
+                            </Ellipse>
+                        </Grid>
+                        <TextBlock Margin="5" x:Name="txtUsername" FontSize="20" FontWeight="Bold" 
+                           HorizontalAlignment="Center"/>
+                        <TextBlock x:Name="txtAccount" FontSize="14" Foreground="Gray"
+                           HorizontalAlignment="Center"/>
+                    </StackPanel>
+                </Grid>
+                <Grid HorizontalAlignment="Stretch" Margin="10 0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="20"/>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="20"/>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="20"/>
+                        <ColumnDefinition Width="1*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid Width="Auto" Grid.Column="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="15"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <TextBlock Margin="2" VerticalAlignment="Center" Grid.Row="0" FontWeight="Bold">个人主页</TextBlock>
+                        <TextBlock x:Name="txtWebPage" VerticalAlignment="Center" Grid.Row="0" Grid.Column="2" TextTrimming="CharacterEllipsis"/>
+                        <TextBlock Margin="2" VerticalAlignment="Center" Grid.Row="1" FontWeight="Bold">性别</TextBlock>
+                        <TextBlock x:Name="txtGender" VerticalAlignment="Center" Grid.Row="1" Grid.Column="2" TextTrimming="CharacterEllipsis"/>
+                        <TextBlock Margin="2" VerticalAlignment="Center" Grid.Row="2" FontWeight="Bold">生日</TextBlock>
+                        <TextBlock x:Name="txtBirthday" VerticalAlignment="Center" Grid.Row="2" Grid.Column="2" TextTrimming="CharacterEllipsis"/>
+                        <TextBlock Margin="2" VerticalAlignment="Center" Grid.Row="3" FontWeight="Bold">居住地</TextBlock>
+                        <TextBlock x:Name="txtRegion" VerticalAlignment="Center" Grid.Row="3" Grid.Column="2" TextTrimming="CharacterEllipsis"/>
                     </Grid>
-                    <TextBlock Margin="5" x:Name="txtUsername" FontSize="20" FontWeight="Bold" 
-                           HorizontalAlignment="Center"/>
-                    <TextBlock x:Name="txtAccount" FontSize="14" Foreground="Gray"
-                           HorizontalAlignment="Center"/>
-                </StackPanel>
-            </Grid>
-            <TextBlock HorizontalAlignment="Center" FontSize="18" FontWeight="Bold" Margin="0 10">基本信息</TextBlock>
-            <Grid HorizontalAlignment="Center" Width="500">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="1*"/>
-                    <ColumnDefinition Width="20"/>
-                    <ColumnDefinition Width="1*"/>
-                </Grid.ColumnDefinitions>
-                <Grid Width="Auto" Grid.Column="0">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="15"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                    </Grid.RowDefinitions>
-                    <TextBlock Margin="2" VerticalAlignment="Center" Grid.Row="0" FontWeight="Bold">个人主页</TextBlock>
-                    <TextBlock x:Name="txtWebPage" VerticalAlignment="Center" Grid.Row="0" Grid.Column="2" TextTrimming="CharacterEllipsis"/>
-                    <TextBlock Margin="2" VerticalAlignment="Center" Grid.Row="1" FontWeight="Bold">性别</TextBlock>
-                    <TextBlock x:Name="txtGender" VerticalAlignment="Center" Grid.Row="1" Grid.Column="2" TextTrimming="CharacterEllipsis"/>
-                    <TextBlock Margin="2" VerticalAlignment="Center" Grid.Row="2" FontWeight="Bold">生日</TextBlock>
-                    <TextBlock x:Name="txtBirthday" VerticalAlignment="Center" Grid.Row="2" Grid.Column="2" TextTrimming="CharacterEllipsis"/>
-                    <TextBlock Margin="2" VerticalAlignment="Center" Grid.Row="3" FontWeight="Bold">居住地</TextBlock>
-                    <TextBlock x:Name="txtRegion" VerticalAlignment="Center" Grid.Row="3" Grid.Column="2" TextTrimming="CharacterEllipsis"/>
-                    <TextBlock Margin="2" VerticalAlignment="Center" Grid.Row="4" FontWeight="Bold">当前工作</TextBlock>
-                    <TextBlock x:Name="txtJob" VerticalAlignment="Center" Grid.Row="4" Grid.Column="2" TextTrimming="CharacterEllipsis"/>
-                    <TextBlock Margin="2" VerticalAlignment="Center" Grid.Row="5" FontWeight="Bold">计算机</TextBlock>
-                    <TextBlock x:Name="txtPC" VerticalAlignment="Center" Grid.Row="5" Grid.Column="2" TextTrimming="CharacterEllipsis"/>
-                    <TextBlock Margin="2" VerticalAlignment="Center" Grid.Row="6" FontWeight="Bold">显示器</TextBlock>
-                    <TextBlock x:Name="txtMonitor" VerticalAlignment="Center" Grid.Row="6" Grid.Column="2" TextTrimming="CharacterEllipsis"/>
-                    <TextBlock Margin="2" VerticalAlignment="Center" Grid.Row="7" FontWeight="Bold">绘图工具</TextBlock>
-                    <TextBlock x:Name="txtTool" VerticalAlignment="Center" Grid.Row="7" Grid.Column="2" TextTrimming="CharacterEllipsis"/>
+                    <Grid Width="Auto" Grid.Column="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="15"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <TextBlock Margin="2" VerticalAlignment="Center" Grid.Row="0" FontWeight="Bold">当前工作</TextBlock>
+                        <TextBlock x:Name="txtJob" VerticalAlignment="Center" Grid.Row="0" Grid.Column="2" TextTrimming="CharacterEllipsis"/>
+                        <TextBlock Margin="2" VerticalAlignment="Center" Grid.Row="1" FontWeight="Bold">计算机</TextBlock>
+                        <TextBlock x:Name="txtPC" VerticalAlignment="Center" Grid.Row="1" Grid.Column="2" TextTrimming="CharacterEllipsis"/>
+                        <TextBlock Margin="2" VerticalAlignment="Center" Grid.Row="2" FontWeight="Bold">显示器</TextBlock>
+                        <TextBlock x:Name="txtMonitor" VerticalAlignment="Center" Grid.Row="2" Grid.Column="2" TextTrimming="CharacterEllipsis"/>
+                        <TextBlock Margin="2" VerticalAlignment="Center" Grid.Row="3" FontWeight="Bold">绘图工具</TextBlock>
+                        <TextBlock x:Name="txtTool" VerticalAlignment="Center" Grid.Row="3" Grid.Column="2" TextTrimming="CharacterEllipsis"/>
+                    </Grid>
+                    <Grid Width="Auto" Grid.Column="4">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="15"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <TextBlock Margin="2" VerticalAlignment="Center" Grid.Row="0" FontWeight="Bold">扫描仪</TextBlock>
+                        <TextBlock x:Name="txtScanner" VerticalAlignment="Center" Grid.Row="0" Grid.Column="2" TextTrimming="CharacterEllipsis"/>
+                        <TextBlock Margin="2" VerticalAlignment="Center" Grid.Row="1" FontWeight="Bold">数位板</TextBlock>
+                        <TextBlock x:Name="txtTablet" VerticalAlignment="Center" Grid.Row="1" Grid.Column="2" TextTrimming="CharacterEllipsis"/>
+                        <TextBlock Margin="2" VerticalAlignment="Center" Grid.Row="2" FontWeight="Bold">鼠标</TextBlock>
+                        <TextBlock x:Name="txtMouse" VerticalAlignment="Center" Grid.Row="2" Grid.Column="2" TextTrimming="CharacterEllipsis"/>
+                        <TextBlock Margin="2" VerticalAlignment="Center" Grid.Row="3" FontWeight="Bold">打印机</TextBlock>
+                        <TextBlock x:Name="txtPrinter" VerticalAlignment="Center" Grid.Row="3" Grid.Column="2" TextTrimming="CharacterEllipsis"/>
+                    </Grid>
+                    <Grid Width="Auto" Grid.Column="6">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="15"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <TextBlock Margin="2" VerticalAlignment="Center" Grid.Row="0" FontWeight="Bold">桌面</TextBlock>
+                        <TextBlock x:Name="txtDesktop" VerticalAlignment="Center" Grid.Row="0" Grid.Column="2" TextTrimming="CharacterEllipsis"/>
+                        <TextBlock Margin="2" VerticalAlignment="Center" Grid.Row="1" FontWeight="Bold">音乐</TextBlock>
+                        <TextBlock x:Name="txtMusic" VerticalAlignment="Center" Grid.Row="1" Grid.Column="2" TextTrimming="CharacterEllipsis"/>
+                        <TextBlock Margin="2" VerticalAlignment="Center" Grid.Row="2" FontWeight="Bold">桌子</TextBlock>
+                        <TextBlock x:Name="txtDesk" VerticalAlignment="Center" Grid.Row="2" Grid.Column="2" TextTrimming="CharacterEllipsis"/>
+                        <TextBlock Margin="2" VerticalAlignment="Center" Grid.Row="3" FontWeight="Bold">椅子</TextBlock>
+                        <TextBlock x:Name="txtChair" VerticalAlignment="Center" Grid.Row="3" Grid.Column="2" TextTrimming="CharacterEllipsis"/>
+                    </Grid>
                 </Grid>
-                <Grid Width="Auto" Grid.Column="2">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="15"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                    </Grid.RowDefinitions>
-                    <TextBlock Margin="2" VerticalAlignment="Center" Grid.Row="0" FontWeight="Bold">扫描仪</TextBlock>
-                    <TextBlock x:Name="txtScanner" VerticalAlignment="Center" Grid.Row="0" Grid.Column="2" TextTrimming="CharacterEllipsis"/>
-                    <TextBlock Margin="2" VerticalAlignment="Center" Grid.Row="1" FontWeight="Bold">数位板</TextBlock>
-                    <TextBlock x:Name="txtTablet" VerticalAlignment="Center" Grid.Row="1" Grid.Column="2" TextTrimming="CharacterEllipsis"/>
-                    <TextBlock Margin="2" VerticalAlignment="Center" Grid.Row="2" FontWeight="Bold">鼠标</TextBlock>
-                    <TextBlock x:Name="txtMouse" VerticalAlignment="Center" Grid.Row="2" Grid.Column="2" TextTrimming="CharacterEllipsis"/>
-                    <TextBlock Margin="2" VerticalAlignment="Center" Grid.Row="3" FontWeight="Bold">打印机</TextBlock>
-                    <TextBlock x:Name="txtPrinter" VerticalAlignment="Center" Grid.Row="3" Grid.Column="2" TextTrimming="CharacterEllipsis"/>
-                    <TextBlock Margin="2" VerticalAlignment="Center" Grid.Row="4" FontWeight="Bold">桌面</TextBlock>
-                    <TextBlock x:Name="txtDesktop" VerticalAlignment="Center" Grid.Row="4" Grid.Column="2" TextTrimming="CharacterEllipsis"/>
-                    <TextBlock Margin="2" VerticalAlignment="Center" Grid.Row="5" FontWeight="Bold">音乐</TextBlock>
-                    <TextBlock x:Name="txtMusic" VerticalAlignment="Center" Grid.Row="5" Grid.Column="2" TextTrimming="CharacterEllipsis"/>
-                    <TextBlock Margin="2" VerticalAlignment="Center" Grid.Row="6" FontWeight="Bold">桌子</TextBlock>
-                    <TextBlock x:Name="txtDesk" VerticalAlignment="Center" Grid.Row="6" Grid.Column="2" TextTrimming="CharacterEllipsis"/>
-                    <TextBlock Margin="2" VerticalAlignment="Center" Grid.Row="7" FontWeight="Bold">椅子</TextBlock>
-                    <TextBlock x:Name="txtChair" VerticalAlignment="Center" Grid.Row="7" Grid.Column="2" TextTrimming="CharacterEllipsis"/>
-                </Grid>
-            </Grid>
-            <ListView x:Name="illustsList" ItemTemplate="{StaticResource WaterfallListViewItemTemplate}" IsItemClickEnabled="True"
-                      IncrementalLoadingTrigger="None">
-                <VisualStateManager.VisualStateGroups>
-                    <VisualStateGroup x:Name="AdaptiveStates">
-                        <VisualState x:Name="C6">
-                            <VisualState.StateTriggers>
-                                <AdaptiveTrigger MinWindowWidth="1100" />
-                            </VisualState.StateTriggers>
-                            <VisualState.Setters>
-                                <Setter Target="WaterfallContent.Colums" Value="6"/>
-                            </VisualState.Setters>
-                        </VisualState>
-                        <VisualState x:Name="C5">
-                            <VisualState.StateTriggers>
-                                <AdaptiveTrigger MinWindowWidth="900" />
-                            </VisualState.StateTriggers>
-                            <VisualState.Setters>
-                                <Setter Target="WaterfallContent.Colums" Value="5"/>
-                            </VisualState.Setters>
-                        </VisualState>
-                        <VisualState x:Name="C4">
-                            <VisualState.StateTriggers>
-                                <AdaptiveTrigger MinWindowWidth="700" />
-                            </VisualState.StateTriggers>
-                            <VisualState.Setters>
-                                <Setter Target="WaterfallContent.Colums" Value="4"/>
-                            </VisualState.Setters>
-                        </VisualState>
-                        <VisualState x:Name="C3">
-                            <VisualState.StateTriggers>
-                                <AdaptiveTrigger MinWindowWidth="0" />
-                            </VisualState.StateTriggers>
-                            <VisualState.Setters>
-                                <Setter Target="WaterfallContent.Colums" Value="3"/>
-                            </VisualState.Setters>
-                        </VisualState>
-                    </VisualStateGroup>
-                </VisualStateManager.VisualStateGroups>
-                <ListView.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <controls:WaterfallContentPanel x:Name="WaterfallContent" ItemMargin="2" Loaded="WaterfallContent_Loaded">
-                            <controls:WaterfallContentPanel.ChildrenTransitions>
-                                <TransitionCollection>
-                                    <PopupThemeTransition FromVerticalOffset="150"/>
-                                </TransitionCollection>
-                            </controls:WaterfallContentPanel.ChildrenTransitions>
-                        </controls:WaterfallContentPanel>
-                    </ItemsPanelTemplate>
-                </ListView.ItemsPanel>
-            </ListView>
-        </StackPanel>
-    </ScrollViewer>
+                <ListView x:Name="illustsList" ItemTemplate="{StaticResource WaterfallListViewItemTemplate}" IsItemClickEnabled="True"
+                      IncrementalLoadingTrigger="None" Margin="4 10">
+                    <ListView.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <controls:WaterfallContentPanel x:Name="WaterfallContent" ItemMargin="2" Loaded="WaterfallContent_Loaded">
+                                <controls:WaterfallContentPanel.ChildrenTransitions>
+                                    <TransitionCollection>
+                                        <PopupThemeTransition FromVerticalOffset="150"/>
+                                    </TransitionCollection>
+                                </controls:WaterfallContentPanel.ChildrenTransitions>
+                            </controls:WaterfallContentPanel>
+                        </ItemsPanelTemplate>
+                    </ListView.ItemsPanel>
+                </ListView>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
 </Page>

@@ -45,7 +45,7 @@
                 </VisualState>
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
-        <controls:WaterfallListView ScrollViewer.VerticalScrollBarVisibility="Hidden"
+        <controls:WaterfallListView ScrollViewer.VerticalScrollBarVisibility="Hidden" Margin="4 0"
             x:Name="WaterfallListView" SelectionMode="None" ItemContainerTransitions="{x:Null}"
             ItemTemplate="{StaticResource WaterfallListViewItemTemplate}"
             IsItemClickEnabled="True" ItemClick="WaterfallListView_ItemClick">
