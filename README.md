@@ -1,5 +1,7 @@
 # PixivFSUWP
 
+[![编译状态](https://dev.azure.com/tobiichiamane/pixivfs-uwp/_apis/build/status/tobiichiamane.pixivfs-uwp?branchName=master)](https://dev.azure.com/tobiichiamane/pixivfs-uwp/_build?definitionId=1)
+
 填坑中。。。
 
 基本上可以用了，没有完整Debug也没有细节化一些东西，目前处于很粗糙的状态。如果感兴趣可以自行编译，需要至少17763的SDK。
