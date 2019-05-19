@@ -8,7 +8,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-    <ScrollViewer Background="{StaticResource PageBackGround}" x:Name="scrollViewer">
+    <ScrollViewer Background="{StaticResource PageBackGround}" x:Name="scrollViewer" ViewChanged="ScrollViewer_ViewChanged">
         <StackPanel Orientation="Vertical">
             <Grid Margin="0,75,0,0" HorizontalAlignment="Stretch" Height="250">
                 <StackPanel VerticalAlignment="Center" 

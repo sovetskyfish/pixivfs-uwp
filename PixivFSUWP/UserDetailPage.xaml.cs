@@ -85,5 +85,17 @@ namespace PixivFSUWP
                     return;
                 }
         }
+
+        private async void ScrollViewer_ViewChanged(object sender, ScrollViewerViewChangedEventArgs e)
+        {
+            if (scrollViewer.VerticalOffset >= scrollViewer.ScrollableHeight - 500)
+            {
+                try
+                {
+                    await (itemsSource as ISupportIncrementalLoading)?.LoadMoreItemsAsync(0);
+                }
+                catch { }
+            }
+        }
     }
 }
