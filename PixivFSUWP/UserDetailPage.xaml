@@ -104,6 +104,19 @@
                     <TextBlock x:Name="txtChair" VerticalAlignment="Center" Grid.Row="7" Grid.Column="2" TextTrimming="CharacterEllipsis"/>
                 </Grid>
             </Grid>
+            <ListView x:Name="illustsList" ItemTemplate="{StaticResource WaterfallListViewItemTemplate}" IsItemClickEnabled="True">
+                <ListView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <controls:WaterfallContentPanel x:Name="WaterfallContent" TopOffset="75" ItemMargin="2">
+                            <controls:WaterfallContentPanel.ChildrenTransitions>
+                                <TransitionCollection>
+                                    <PopupThemeTransition FromVerticalOffset="150"/>
+                                </TransitionCollection>
+                            </controls:WaterfallContentPanel.ChildrenTransitions>
+                        </controls:WaterfallContentPanel>
+                    </ItemsPanelTemplate>
+                </ListView.ItemsPanel>
+            </ListView>
         </StackPanel>
     </ScrollViewer>
 </Page>
