@@ -45,7 +45,7 @@
                 </VisualState>
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
-        <ScrollViewer Background="{StaticResource PageBackGround}" x:Name="scrollViewer" ViewChanged="ScrollViewer_ViewChanged">
+        <ScrollViewer Background="{StaticResource PageBackGround}" x:Name="scrollViewer" ViewChanged="ScrollViewer_ViewChanged" VerticalScrollBarVisibility="Hidden">
             <StackPanel Orientation="Vertical">
                 <Grid Margin="0,75,0,0" HorizontalAlignment="Stretch" Height="220">
                     <StackPanel VerticalAlignment="Center" 
