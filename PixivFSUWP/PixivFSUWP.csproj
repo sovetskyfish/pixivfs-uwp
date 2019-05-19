@@ -22,7 +22,7 @@
     <AppxAutoIncrementPackageRevision>True</AppxAutoIncrementPackageRevision>
     <AppxSymbolPackageEnabled>False</AppxSymbolPackageEnabled>
     <AppxBundle>Always</AppxBundle>
-    <AppxBundlePlatforms>x86|x64</AppxBundlePlatforms>
+    <AppxBundlePlatforms>x86|x64|arm</AppxBundlePlatforms>
     <AppInstallerUpdateFrequency>1</AppInstallerUpdateFrequency>
     <AppInstallerCheckForUpdateFrequency>OnApplicationRun</AppInstallerCheckForUpdateFrequency>
     <PackageCertificateThumbprint>5EA7BA3F91F1872E2971A4058978398EECEA0D03</PackageCertificateThumbprint>
