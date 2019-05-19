@@ -43,6 +43,13 @@ namespace PixivFSUWP
             _ = loadContents();
         }
 
+        protected override void OnNavigatedFrom(NavigationEventArgs e)
+        {
+            itemsSource?.StopLoading();
+            itemsSource = null;
+            base.OnNavigatedFrom(e);
+        }
+
         async Task loadContents()
         {
             var res = await new PixivAppAPI(Data.OverAll.GlobalBaseAPI)
@@ -96,6 +103,14 @@ namespace PixivFSUWP
                 }
                 catch { }
             }
+        }
+
+        private void WaterfallContent_Loaded(object sender, RoutedEventArgs e)
+        {
+            if (ActualWidth < 700) (sender as Controls.WaterfallContentPanel).Colums = 3;
+            else if (ActualWidth < 900) (sender as Controls.WaterfallContentPanel).Colums = 4;
+            else if (ActualWidth < 1100) (sender as Controls.WaterfallContentPanel).Colums = 5;
+            else (sender as Controls.WaterfallContentPanel).Colums = 6;
         }
     }
 }

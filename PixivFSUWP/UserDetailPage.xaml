@@ -106,9 +106,45 @@
             </Grid>
             <ListView x:Name="illustsList" ItemTemplate="{StaticResource WaterfallListViewItemTemplate}" IsItemClickEnabled="True"
                       IncrementalLoadingTrigger="None">
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup x:Name="AdaptiveStates">
+                        <VisualState x:Name="C6">
+                            <VisualState.StateTriggers>
+                                <AdaptiveTrigger MinWindowWidth="1100" />
+                            </VisualState.StateTriggers>
+                            <VisualState.Setters>
+                                <Setter Target="WaterfallContent.Colums" Value="6"/>
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState x:Name="C5">
+                            <VisualState.StateTriggers>
+                                <AdaptiveTrigger MinWindowWidth="900" />
+                            </VisualState.StateTriggers>
+                            <VisualState.Setters>
+                                <Setter Target="WaterfallContent.Colums" Value="5"/>
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState x:Name="C4">
+                            <VisualState.StateTriggers>
+                                <AdaptiveTrigger MinWindowWidth="700" />
+                            </VisualState.StateTriggers>
+                            <VisualState.Setters>
+                                <Setter Target="WaterfallContent.Colums" Value="4"/>
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState x:Name="C3">
+                            <VisualState.StateTriggers>
+                                <AdaptiveTrigger MinWindowWidth="0" />
+                            </VisualState.StateTriggers>
+                            <VisualState.Setters>
+                                <Setter Target="WaterfallContent.Colums" Value="3"/>
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
                 <ListView.ItemsPanel>
                     <ItemsPanelTemplate>
-                        <controls:WaterfallContentPanel x:Name="WaterfallContent" ItemMargin="2">
+                        <controls:WaterfallContentPanel x:Name="WaterfallContent" ItemMargin="2" Loaded="WaterfallContent_Loaded">
                             <controls:WaterfallContentPanel.ChildrenTransitions>
                                 <TransitionCollection>
                                     <PopupThemeTransition FromVerticalOffset="150"/>
