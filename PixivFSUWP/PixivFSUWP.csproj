@@ -140,6 +140,7 @@
     <Compile Include="Data\FollowingIllustsCollection.cs" />
     <Compile Include="Data\IllustCommentItem.cs" />
     <Compile Include="Data\IllustDetail.cs" />
+    <Compile Include="Data\RankingIllustsCollection.cs" />
     <Compile Include="Data\RecommendIllustsCollection.cs" />
     <Compile Include="Data\OverAll.cs" />
     <Compile Include="Data\UserDetail.cs" />

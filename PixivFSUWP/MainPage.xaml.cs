@@ -70,6 +70,8 @@ namespace PixivFSUWP
                     NavPlaceholder.Visibility = Visibility.Collapsed;
                     break;
                 case 3:
+                    OverAll.RefreshRankingList();
+                    ContentFrame.Navigate(typeof(WaterfallPage), WaterfallPage.ListContent.Ranking);
                     NavPlaceholder.IsEnabled = false;
                     await Task.Delay(TimeSpan.FromMilliseconds(350));
                     NavSeparator.Visibility = Visibility.Collapsed;

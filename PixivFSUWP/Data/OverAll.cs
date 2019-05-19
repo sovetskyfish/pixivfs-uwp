@@ -25,26 +25,33 @@ namespace PixivFSUWP.Data
         public const string passwordResource = "PixivFSUWPPassword";
         public const string refreshTokenResource = "PixivFSUWPRefreshToken";
         public static CurrentUser currentUser = null;
-        public static RecommendIllustsCollection RecommendList { get; private set; } = new RecommendIllustsCollection();
-        public static BookmarkIllustsCollection BookmarkList { get; set; }
-        public static FollowingIllustsCollection FollowingList { get; private set; } = new FollowingIllustsCollection();
+        public static RecommendIllustsCollection RecommendList { get; private set; }
+        public static BookmarkIllustsCollection BookmarkList { get; private set; }
+        public static FollowingIllustsCollection FollowingList { get; private set; }
+        public static RankingIllustsCollection RankingList { get; private set; }
 
         public static void RefreshRecommendList()
         {
-            RecommendList.StopLoading();
+            RecommendList?.StopLoading();
             RecommendList = new RecommendIllustsCollection();
         }
 
         public static void RefreshBookmarkList()
         {
-            BookmarkList.StopLoading();
+            BookmarkList?.StopLoading();
             BookmarkList = new BookmarkIllustsCollection();
         }
 
         public static void RefreshFollowingList()
         {
-            FollowingList.StopLoading();
+            FollowingList?.StopLoading();
             FollowingList = new FollowingIllustsCollection();
+        }
+
+        public static void RefreshRankingList()
+        {
+            RankingList?.StopLoading();
+            RankingList = new RankingIllustsCollection();
         }
 
         public static async Task<MemoryStream> DownloadImage(string Uri)

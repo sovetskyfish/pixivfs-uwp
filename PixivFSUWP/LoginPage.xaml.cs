@@ -132,8 +132,6 @@ namespace PixivFSUWP
                     vault.Add(new PasswordCredential(passwordResource, username, password));
                     vault.Add(new PasswordCredential(refreshTokenResource, username, Data.OverAll.GlobalBaseAPI.RefreshToken));
                 }
-                //登陆完毕后加载默认的收藏集合
-                BookmarkList = new Data.BookmarkIllustsCollection();
                 //保存当前的身份信息
                 currentUser = Data.CurrentUser.FromJsonValue(res["response"].GetObject()["user"].GetObject());
                 Frame.Navigate(typeof(MainPage));

@@ -28,7 +28,8 @@ namespace PixivFSUWP
         {
             Recommend,
             Bookmark,
-            Following
+            Following,
+            Ranking
         }
 
         ListContent listContent;
@@ -56,6 +57,10 @@ namespace PixivFSUWP
                     WaterfallListView.ItemsSource = Data.OverAll.FollowingList;
                     Data.OverAll.FollowingList.ResumeLoading();
                     break;
+                case ListContent.Ranking:
+                    WaterfallListView.ItemsSource = Data.OverAll.RankingList;
+                    Data.OverAll.RankingList.ResumeLoading();
+                    break;
             }
         }
 
@@ -72,6 +77,9 @@ namespace PixivFSUWP
                     break;
                 case ListContent.Following:
                     Data.OverAll.FollowingList.PauseLoading();
+                    break;
+                case ListContent.Ranking:
+                    Data.OverAll.RankingList.PauseLoading();
                     break;
             }
         }
