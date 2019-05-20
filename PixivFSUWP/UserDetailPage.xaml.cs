@@ -119,5 +119,12 @@ namespace PixivFSUWP
                 (e.ClickedItem as ViewModels
                 .WaterfallItemViewModel).ItemId);
         }
+
+        private async void BtnWorks_Click(object sender, RoutedEventArgs e)
+        {
+            storyFade.Begin();
+            await Task.Delay(TimeSpan.FromMilliseconds(200));
+            grdDetail.Visibility = Visibility.Collapsed;
+        }
     }
 }

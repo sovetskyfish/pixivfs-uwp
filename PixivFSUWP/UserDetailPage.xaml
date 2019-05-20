@@ -8,6 +8,24 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Page.Resources>
+        <Storyboard x:Name="storyFade">
+            <DoubleAnimation Storyboard.TargetName="detailBackground"
+                             Storyboard.TargetProperty="TintOpacity"
+                             From="0.4" To="0.0" Duration="0:0:0.2"/>
+            <DoubleAnimation Storyboard.TargetName="grdDetail"
+                             Storyboard.TargetProperty="Opacity"
+                             From="1.0" To="0.0" Duration="0:0:0.2"/>
+        </Storyboard>
+        <Storyboard x:Name="storyShow">
+            <DoubleAnimation Storyboard.TargetName="detailBackground"
+                             Storyboard.TargetProperty="TintOpacity"
+                             From="0.0" To="0.4" Duration="0:0:0.2"/>
+            <DoubleAnimation Storyboard.TargetName="grdDetail"
+                             Storyboard.TargetProperty="Opacity"
+                             From="0.0" To="1.0" Duration="0:0:0.2"/>
+        </Storyboard>
+    </Page.Resources>
     <Grid Background="{StaticResource PageBackGround}">
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup x:Name="AdaptiveStates">
@@ -61,9 +79,9 @@
                 </ListView.ItemsPanel>
             </ListView>
         </ScrollViewer>
-        <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+        <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" x:Name="grdDetail">
             <Grid.Background>
-                <AcrylicBrush BackgroundSource="Backdrop" TintOpacity="0.2" TintColor="White" FallbackColor="White"/>
+                <AcrylicBrush x:Name="detailBackground" BackgroundSource="Backdrop" TintOpacity="0.2" TintColor="White" FallbackColor="White"/>
             </Grid.Background>
             <Grid.RowDefinitions>
                 <RowDefinition Height="75"/>
@@ -180,7 +198,7 @@
                             </CommandBarFlyout>
                         </Button.Flyout>
                     </Button>
-                    <Button Style="{StaticResource ButtonRevealStyle}" x:Name="btnWorks"
+                    <Button Style="{StaticResource ButtonRevealStyle}" x:Name="btnWorks" Click="BtnWorks_Click"
                               Margin="5,0,0,0" Background="#99F3F3F3" BorderThickness="1.5" Height="70" 
                               Width="70">
                         <StackPanel Margin="5">
