@@ -79,7 +79,7 @@
                 </ListView.ItemsPanel>
             </ListView>
         </ScrollViewer>
-        <Grid HorizontalAlignment="Right" VerticalAlignment="Top" x:Name="grdUserButton"
+        <Grid HorizontalAlignment="Right" VerticalAlignment="Bottom" x:Name="grdUserButton"
               Margin="20" Height="70" Visibility="Collapsed">
             <Grid.Background>
                 <AcrylicBrush BackgroundSource="Backdrop" TintOpacity="0.2" TintColor="White" FallbackColor="White"/>

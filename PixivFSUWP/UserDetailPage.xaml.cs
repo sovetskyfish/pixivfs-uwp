@@ -125,15 +125,18 @@ namespace PixivFSUWP
 
         private async void BtnWorks_Click(object sender, RoutedEventArgs e)
         {
+            grdUserButton.Visibility = Visibility.Visible;
             storyFade.Begin();
             await Task.Delay(TimeSpan.FromMilliseconds(200));
             grdDetail.Visibility = Visibility.Collapsed;
-            grdUserButton.Visibility = Visibility.Visible;
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private async void Button_Click(object sender, RoutedEventArgs e)
         {
-
+            grdDetail.Visibility = Visibility.Visible;
+            storyShow.Begin();
+            await Task.Delay(TimeSpan.FromMilliseconds(200));
+            grdUserButton.Visibility = Visibility.Collapsed;
         }
     }
 }
