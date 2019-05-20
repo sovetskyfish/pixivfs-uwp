@@ -127,6 +127,21 @@ namespace PixivFSUWP
                             goto default;
                         }
                         break;
+                    case "user":
+                        try
+                        {
+                            var query = OverAll.AppUri.Query;
+                            var id = Convert.ToInt32(query.Split('=')[1]);
+                            ContentFrame.Navigate(typeof(UserDetailPage), id);
+                            //已经处理完了
+                            OverAll.AppUri = null;
+                        }
+                        catch
+                        {
+                            //不符合要求
+                            goto default;
+                        }
+                        break;
                     default:
                         //不符合要求的Uri
                         OverAll.AppUri = null;
