@@ -78,6 +78,8 @@ namespace PixivFSUWP
             txtMusic.Text = _getHW(detail.Music);
             txtDesk.Text = _getHW(detail.Desk);
             txtChair.Text = _getHW(detail.Chair);
+            txtBtnFollow.Text = detail.IsFollowed ? "已关注" : "未关注";
+            btnFollow.IsChecked = detail.IsFollowed;
             imgAvatar.ImageSource = await Data.OverAll.LoadImageAsync(detail.AvatarUrl);
             imgAuthor.ImageSource = imgAvatar.ImageSource;
             _ = loadPage();
@@ -137,6 +139,58 @@ namespace PixivFSUWP
             storyShow.Begin();
             await Task.Delay(TimeSpan.FromMilliseconds(200));
             grdUserButton.Visibility = Visibility.Collapsed;
+        }
+
+        private async void BtnFollow_Click(object sender, RoutedEventArgs e)
+        {
+            var btnSender = sender as ToggleButton;
+            btnSender.IsEnabled = false;
+            if (btnSender.IsChecked == true)
+            {
+                btnSender.IsChecked = false;
+                //进行关注
+                txtBtnFollow.Text = "请求中";
+                bool res;
+                try
+                {
+                    await new PixivAppAPI(Data.OverAll.GlobalBaseAPI)
+                        .UserFollowAdd(detail.ID.ToString());
+                    res = true;
+                }
+                catch
+                {
+                    res = false;
+                }
+                if (res)
+                {
+                    btnSender.IsChecked = true;
+                    txtBtnFollow.Text = "已关注";
+                }
+                btnSender.IsEnabled = true;
+            }
+            else
+            {
+                btnSender.IsChecked = true;
+                //取消关注
+                txtBtnFollow.Text = "请求中";
+                bool res;
+                try
+                {
+                    await new PixivAppAPI(Data.OverAll.GlobalBaseAPI)
+                        .UserFollowDelete(detail.ID.ToString());
+                    res = true;
+                }
+                catch
+                {
+                    res = false;
+                }
+                if (res)
+                {
+                    btnSender.IsChecked = false;
+                    txtBtnFollow.Text = "未关注";
+                }
+                btnSender.IsEnabled = true;
+            }
         }
     }
 }
