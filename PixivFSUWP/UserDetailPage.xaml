@@ -225,9 +225,9 @@
                         </StackPanel>
                         <Button.Flyout>
                             <CommandBarFlyout x:Name="btnShareFlyout">
-                                <AppBarButton x:Name="btnShare" Icon="Share" ToolTipService.ToolTip="Windows分享"/>
-                                <AppBarButton x:Name="btnLink" Icon="Link" ToolTipService.ToolTip="复制网页链接"/>
-                                <AppBarButton x:Name="btnAppLink" Icon="PreviewLink" ToolTipService.ToolTip="复制应用链接"/>
+                                <AppBarButton x:Name="btnShare" Icon="Share" ToolTipService.ToolTip="Windows分享" Click="BtnShare_Click"/>
+                                <AppBarButton x:Name="btnLink" Icon="Link" ToolTipService.ToolTip="复制网页链接" Click="BtnLink_Click"/>
+                                <AppBarButton x:Name="btnAppLink" Icon="PreviewLink" ToolTipService.ToolTip="复制应用链接" Click="BtnAppLink_Click"/>
                             </CommandBarFlyout>
                         </Button.Flyout>
                     </Button>

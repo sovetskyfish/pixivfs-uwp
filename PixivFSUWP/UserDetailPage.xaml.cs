@@ -15,6 +15,7 @@ using Windows.UI.Xaml.Navigation;
 using System.Threading.Tasks;
 using PixivCS;
 using PixivFSUWP.Data;
+using Windows.ApplicationModel.DataTransfer;
 
 // https://go.microsoft.com/fwlink/?LinkId=234238 上介绍了“空白页”项模板
 
@@ -31,6 +32,18 @@ namespace PixivFSUWP
         public UserDetailPage()
         {
             this.InitializeComponent();
+            DataTransferManager dataTransferManager = DataTransferManager.GetForCurrentView();
+            dataTransferManager.DataRequested += DataTransferManager_DataRequested;
+        }
+
+        private void DataTransferManager_DataRequested(DataTransferManager sender, DataRequestedEventArgs args)
+        {
+            var request = args.Request;
+            request.Data.SetText(string.Format("Pixiv用户\n{0}\n" +
+                "网页链接：https://www.pixiv.net/member.php?id={1}\n" +
+                "PixivFSUWP：pixiv://user?id={1}", detail.Name, detail.ID));
+            request.Data.Properties.Title = string.Format("画师：{0}", detail.Name);
+            request.Data.Properties.Description = "该用户页面的链接将被分享";
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -191,6 +204,31 @@ namespace PixivFSUWP
                 }
                 btnSender.IsEnabled = true;
             }
+        }
+
+        private void BtnShare_Click(object sender, RoutedEventArgs e)
+        {
+            DataTransferManager.ShowShareUI();
+        }
+
+        void copyToClipboard(string content)
+        {
+            DataPackage dataPackage = new DataPackage();
+            dataPackage.RequestedOperation = DataPackageOperation.Copy;
+            dataPackage.SetText(content);
+            Clipboard.SetContent(dataPackage);
+        }
+
+        private void BtnLink_Click(object sender, RoutedEventArgs e)
+        {
+            copyToClipboard(string.Format("https://www.pixiv.net/member.php?id={0}", detail.ID));
+            btnShareFlyout.Hide();
+        }
+
+        private void BtnAppLink_Click(object sender, RoutedEventArgs e)
+        {
+            copyToClipboard(string.Format("pixiv://user?id={0}", detail.ID));
+            btnShareFlyout.Hide();
         }
     }
 }
