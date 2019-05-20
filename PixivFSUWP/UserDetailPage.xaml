@@ -16,6 +16,9 @@
             <DoubleAnimation Storyboard.TargetName="grdDetail"
                              Storyboard.TargetProperty="Opacity"
                              From="1.0" To="0.0" Duration="0:0:0.2"/>
+            <DoubleAnimation Storyboard.TargetName="grdUserButton"
+                             Storyboard.TargetProperty="Opacity"
+                             From="0.0" To="1.0" Duration="0:0:0.2"/>
         </Storyboard>
         <Storyboard x:Name="storyShow">
             <DoubleAnimation Storyboard.TargetName="detailBackground"
@@ -24,6 +27,9 @@
             <DoubleAnimation Storyboard.TargetName="grdDetail"
                              Storyboard.TargetProperty="Opacity"
                              From="0.0" To="1.0" Duration="0:0:0.2"/>
+            <DoubleAnimation Storyboard.TargetName="grdUserButton"
+                             Storyboard.TargetProperty="Opacity"
+                             From="1.0" To="0.0" Duration="0:0:0.2"/>
         </Storyboard>
     </Page.Resources>
     <Grid Background="{StaticResource PageBackGround}">
