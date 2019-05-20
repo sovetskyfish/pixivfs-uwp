@@ -57,7 +57,9 @@ namespace PixivFSUWP
             detail = Data.UserDetail.FromJsomValue(res);
             string _getText(string input) => (input == "") ? "保密" : input;
             txtUsername.Text = detail.Name;
+            txtAuthor.Text = detail.Name;
             txtAccount.Text = "@" + detail.Account;
+            txtAuthorAccount.Text = txtAccount.Text;
             txtWebPage.Text = (detail.WebPage == "") ? "无/保密" : detail.WebPage;
             if (detail.Gender == "") txtGender.Text = "保密";
             else txtGender.Text = (detail.Gender == "male") ? "男" : "女";
@@ -77,6 +79,7 @@ namespace PixivFSUWP
             txtDesk.Text = _getHW(detail.Desk);
             txtChair.Text = _getHW(detail.Chair);
             imgAvatar.ImageSource = await Data.OverAll.LoadImageAsync(detail.AvatarUrl);
+            imgAuthor.ImageSource = imgAvatar.ImageSource;
             _ = loadPage();
         }
 
@@ -125,6 +128,12 @@ namespace PixivFSUWP
             storyFade.Begin();
             await Task.Delay(TimeSpan.FromMilliseconds(200));
             grdDetail.Visibility = Visibility.Collapsed;
+            grdUserButton.Visibility = Visibility.Visible;
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

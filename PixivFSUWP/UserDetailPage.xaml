@@ -79,6 +79,33 @@
                 </ListView.ItemsPanel>
             </ListView>
         </ScrollViewer>
+        <Grid HorizontalAlignment="Right" VerticalAlignment="Top" x:Name="grdUserButton"
+              Margin="20" Height="70" Visibility="Collapsed">
+            <Grid.Background>
+                <AcrylicBrush BackgroundSource="Backdrop" TintOpacity="0.2" TintColor="White" FallbackColor="White"/>
+            </Grid.Background>
+            <Button Style="{StaticResource ButtonRevealStyle}" HorizontalAlignment="Center"
+                        BorderThickness="1.5" Background="#99F3F3F3" 
+                        VerticalAlignment="Stretch" Click="Button_Click">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="50"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Ellipse Grid.RowSpan="2" Width="50" Height="50">
+                        <Ellipse.Fill>
+                            <ImageBrush x:Name="imgAuthor"/>
+                        </Ellipse.Fill>
+                    </Ellipse>
+                    <TextBlock x:Name="txtAuthor" Margin="10,0" Grid.Column="1" FontSize="16" FontWeight="Bold" VerticalAlignment="Bottom"/>
+                    <TextBlock x:Name="txtAuthorAccount" Margin="10,0" Grid.Row="1" Grid.Column="1" FontSize="14" Foreground="Gray" VerticalAlignment="Top"/>
+                </Grid>
+            </Button>
+        </Grid>
         <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" x:Name="grdDetail">
             <Grid.Background>
                 <AcrylicBrush x:Name="detailBackground" BackgroundSource="Backdrop" TintOpacity="0.2" TintColor="White" FallbackColor="White"/>
