@@ -43,6 +43,10 @@ namespace PixivFSUWP.Data
                 _emergencyStop = true;
                 ResumeLoading();
             }
+            else
+            {
+                Clear();
+            }
         }
 
         public void PauseLoading()
