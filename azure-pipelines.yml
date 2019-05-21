@@ -41,3 +41,9 @@ steps:
   inputs:
     artifactName: 'Package'
     PathtoPublish: '$(build.artifactstagingdirectory)'
+
+- task: GitHubRelease@0
+  displayName: 'Release Artifact to Github'
+  inputs:
+    gitHubConnection: 'tobiichiamane'
+    isPreRelease: true
