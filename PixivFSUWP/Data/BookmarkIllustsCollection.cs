@@ -83,12 +83,14 @@ namespace PixivFSUWP.Data
                 nexturl = bookmarkres["next_url"].TryGetString();
                 foreach (var recillust in bookmarkres["illusts"].GetArray())
                 {
+                    await Task.Run(() => pause.WaitOne());
                     if (_emergencyStop)
                     {
                         _emergencyStop = false;
+                        nexturl = "";
+                        Clear();
                         throw new Exception();
                     }
-                    await Task.Run(() => pause.WaitOne());
                     Data.WaterfallItem recommendi = Data.WaterfallItem.FromJsonValue(recillust.GetObject());
                     var recommendmodel = ViewModels.WaterfallItemViewModel.FromItem(recommendi);
                     await recommendmodel.LoadImageAsync();

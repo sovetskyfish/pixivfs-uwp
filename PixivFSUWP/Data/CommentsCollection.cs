@@ -77,12 +77,14 @@ namespace PixivFSUWP.Data
                 nexturl = commentres["next_url"].TryGetString();
                 foreach (var recillust in commentres["comments"].GetArray())
                 {
+                    await Task.Run(() => pause.WaitOne());
                     if (_emergencyStop)
                     {
                         _emergencyStop = false;
+                        nexturl = "";
+                        Clear();
                         throw new Exception();
                     }
-                    await Task.Run(() => pause.WaitOne());
                     Data.IllustCommentItem recommendi = Data.IllustCommentItem.FromJsonValue(recillust.GetObject());
                     var recommendmodel = ViewModels.CommentViewModel.FromItem(recommendi);
                     //await recommendmodel.LoadAvatarAsync();
