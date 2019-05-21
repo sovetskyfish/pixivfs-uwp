@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading.Tasks;
+using Windows.ApplicationModel;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.Security.Credentials;
@@ -33,6 +34,14 @@ namespace PixivFSUWP
 
         async Task loadContentsAsync()
         {
+            txtVersion.Text = string.Format("版本：{0} version-{1}.{2}.{3} {4}",
+                Package.Current.DisplayName,
+                Package.Current.Id.Version.Major,
+                Package.Current.Id.Version.Minor,
+                Package.Current.Id.Version.Build,
+                Package.Current.Id.Architecture);
+            txtPkgName.Text = string.Format("包名：{0}", Package.Current.Id.Name);
+            txtInsDate.Text = string.Format("时间：{0}", Package.Current.InstalledDate.ToLocalTime().DateTime);
             var imgTask = LoadImageAsync(currentUser.Avatar170);
             txtID.Text = currentUser.ID.ToString();
             txtName.Text = currentUser.Username;

@@ -9,7 +9,7 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
     <ScrollViewer Background="{StaticResource PageBackGround}">
         <StackPanel Margin="0,75,0,0">
-            <TextBlock Margin="15,15,15,0" FontSize="18" FontWeight="Bold">当前登录的账户</TextBlock>
+            <TextBlock Margin="15,20,15,0" FontSize="18" FontWeight="Bold">当前登录的账户</TextBlock>
             <Grid Margin="15,15,15,0" Width="Auto" HorizontalAlignment="Left">
                 <Grid.RowDefinitions>
                     <RowDefinition/>
@@ -41,6 +41,10 @@
                     <TextBlock FontSize="12" Foreground="Gray">*这将在您的所有Windows设备上退出登录</TextBlock>
                 </StackPanel>
             </Grid>
+            <TextBlock Margin="15,20,15,0" FontSize="18" FontWeight="Bold">软件包版本信息</TextBlock>
+            <TextBlock Margin="15,10,15,2" x:Name="txtVersion"/>
+            <TextBlock Margin="15,2,15,0" x:Name="txtPkgName"/>
+            <TextBlock Margin="15,2,15,0" x:Name="txtInsDate"/>
         </StackPanel>
     </ScrollViewer>
 </Page>
