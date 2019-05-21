@@ -39,8 +39,6 @@ namespace PixivFSUWP
         bool _emergencyStop = false;
         bool _busy = false;
 
-        Task<WriteableBitmap> loadingTask = null;
-
         public IllustDetailPage()
         {
             this.InitializeComponent();
@@ -72,6 +70,7 @@ namespace PixivFSUWP
             if(!_busy)
             {
                 (ImageList.ItemsSource as ObservableCollection<ViewModels.ImageItemViewModel>)?.Clear();
+                GC.Collect();
             }
             base.OnNavigatedFrom(e);
         }
@@ -134,11 +133,9 @@ namespace PixivFSUWP
                 {
                     if (_emergencyStop)
                     {
-                        (ImageList.ItemsSource as ObservableCollection<ViewModels.ImageItemViewModel>)?.Clear();
                         return;
                     }
                     txtLoadingStatus.Text = string.Format("正在加载第 {0} 张，共 {1} 张", ++counter, illust.OriginalUrls.Count);
-                    loadingTask = Data.OverAll.LoadImageAsync(i, 1, 1);
                     (ImageList.ItemsSource as ObservableCollection<ViewModels.ImageItemViewModel>)
                         .Add(new ViewModels.ImageItemViewModel()
                         {
@@ -153,6 +150,7 @@ namespace PixivFSUWP
                 if (_emergencyStop)
                 {
                     (ImageList.ItemsSource as ObservableCollection<ViewModels.ImageItemViewModel>)?.Clear();
+                    GC.Collect();
                 }
             }
         }

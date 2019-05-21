@@ -49,6 +49,7 @@ namespace PixivFSUWP.Data
             else
             {
                 Clear();
+                GC.Collect();
             }
         }
 
@@ -106,6 +107,7 @@ namespace PixivFSUWP.Data
                 {
                     nexturl = "";
                     Clear();
+                    GC.Collect();
                 }
             }
         }
