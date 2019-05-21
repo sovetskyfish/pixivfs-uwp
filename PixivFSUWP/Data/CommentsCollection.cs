@@ -67,17 +67,24 @@ namespace PixivFSUWP.Data
                 if (!HasMoreItems) return new LoadMoreItemsResult() { Count = 0 };
                 LoadMoreItemsResult toret = new LoadMoreItemsResult() { Count = 0 };
                 JsonObject commentres = null;
-                if (nexturl == "begin")
-                    commentres = await new PixivCS
-                        .PixivAppAPI(OverAll.GlobalBaseAPI)
-                        .IllustComments(illustid, IncludeTotalComments: true);
-                else
+                try
                 {
-                    Uri next = new Uri(nexturl);
-                    string getparam(string param) => HttpUtility.ParseQueryString(next.Query).Get(param);
-                    commentres = await new PixivCS
-                        .PixivAppAPI(OverAll.GlobalBaseAPI)
-                        .IllustComments(illustid, getparam("offset"), bool.Parse(getparam("include_total_comments")));
+                    if (nexturl == "begin")
+                        commentres = await new PixivCS
+                            .PixivAppAPI(OverAll.GlobalBaseAPI)
+                            .IllustComments(illustid, IncludeTotalComments: true);
+                    else
+                    {
+                        Uri next = new Uri(nexturl);
+                        string getparam(string param) => HttpUtility.ParseQueryString(next.Query).Get(param);
+                        commentres = await new PixivCS
+                            .PixivAppAPI(OverAll.GlobalBaseAPI)
+                            .IllustComments(illustid, getparam("offset"), bool.Parse(getparam("include_total_comments")));
+                    }
+                }
+                catch
+                {
+                    return toret;
                 }
                 nexturl = commentres["next_url"].TryGetString();
                 foreach (var recillust in commentres["comments"].GetArray())
@@ -87,7 +94,7 @@ namespace PixivFSUWP.Data
                     {
                         nexturl = "";
                         Clear();
-                        throw new Exception();
+                        return new LoadMoreItemsResult() { Count = 0 };
                     }
                     Data.IllustCommentItem recommendi = Data.IllustCommentItem.FromJsonValue(recillust.GetObject());
                     var recommendmodel = ViewModels.CommentViewModel.FromItem(recommendi);

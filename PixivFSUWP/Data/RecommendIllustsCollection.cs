@@ -65,25 +65,32 @@ namespace PixivFSUWP.Data
                 if (!HasMoreItems) return new LoadMoreItemsResult() { Count = 0 };
                 LoadMoreItemsResult toret = new LoadMoreItemsResult() { Count = 0 };
                 JsonObject recommendres = null;
-                if (nexturl == "begin")
-                    recommendres = await new PixivCS
-                        .PixivAppAPI(OverAll.GlobalBaseAPI)
-                        .IllustRecommended();
-                else
+                try
                 {
-                    Uri next = new Uri(nexturl);
-                    string getparam(string param) => HttpUtility.ParseQueryString(next.Query).Get(param);
-                    recommendres = await new PixivCS
-                        .PixivAppAPI(OverAll.GlobalBaseAPI)
-                        .IllustRecommended(ContentType:
-                            getparam("content_type"),
-                            IncludeRankingLabel: bool.Parse(getparam("include_ranking_label")),
-                            Filter: getparam("filter"),
-                            MinBookmarkIDForRecentIllust: getparam("min_bookmark_id_for_recent_illust"),
-                            MaxBookmarkIDForRecommended: getparam("max_bookmark_id_for_recommend"),
-                            Offset: getparam("offset"),
-                            IncludeRankingIllusts: bool.Parse(getparam("include_ranking_illusts")),
-                            IncludePrivacyPolicy: getparam("include_privacy_policy"));
+                    if (nexturl == "begin")
+                        recommendres = await new PixivCS
+                            .PixivAppAPI(OverAll.GlobalBaseAPI)
+                            .IllustRecommended();
+                    else
+                    {
+                        Uri next = new Uri(nexturl);
+                        string getparam(string param) => HttpUtility.ParseQueryString(next.Query).Get(param);
+                        recommendres = await new PixivCS
+                            .PixivAppAPI(OverAll.GlobalBaseAPI)
+                            .IllustRecommended(ContentType:
+                                getparam("content_type"),
+                                IncludeRankingLabel: bool.Parse(getparam("include_ranking_label")),
+                                Filter: getparam("filter"),
+                                MinBookmarkIDForRecentIllust: getparam("min_bookmark_id_for_recent_illust"),
+                                MaxBookmarkIDForRecommended: getparam("max_bookmark_id_for_recommend"),
+                                Offset: getparam("offset"),
+                                IncludeRankingIllusts: bool.Parse(getparam("include_ranking_illusts")),
+                                IncludePrivacyPolicy: getparam("include_privacy_policy"));
+                    }
+                }
+                catch
+                {
+                    return toret;
                 }
                 nexturl = recommendres["next_url"].TryGetString();
                 foreach (var recillust in recommendres["illusts"].GetArray())
@@ -93,7 +100,7 @@ namespace PixivFSUWP.Data
                     {
                         nexturl = "";
                         Clear();
-                        throw new Exception();
+                        return new LoadMoreItemsResult() { Count = 0 };
                     }
                     Data.WaterfallItem recommendi = Data.WaterfallItem.FromJsonValue(recillust.GetObject());
                     var recommendmodel = ViewModels.WaterfallItemViewModel.FromItem(recommendi);

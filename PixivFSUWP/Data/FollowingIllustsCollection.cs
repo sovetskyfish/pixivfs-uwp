@@ -64,17 +64,24 @@ namespace PixivFSUWP.Data
                 if (!HasMoreItems) return new LoadMoreItemsResult() { Count = 0 };
                 LoadMoreItemsResult toret = new LoadMoreItemsResult() { Count = 0 };
                 JsonObject followingres = null;
-                if (nexturl == "begin")
-                    followingres = await new PixivCS
-                        .PixivAppAPI(OverAll.GlobalBaseAPI)
-                        .IllustFollow();
-                else
+                try
                 {
-                    Uri next = new Uri(nexturl);
-                    string getparam(string param) => HttpUtility.ParseQueryString(next.Query).Get(param);
-                    followingres = await new PixivCS
-                        .PixivAppAPI(OverAll.GlobalBaseAPI)
-                        .IllustFollow(getparam("restrict"), getparam("offset"));
+                    if (nexturl == "begin")
+                        followingres = await new PixivCS
+                            .PixivAppAPI(OverAll.GlobalBaseAPI)
+                            .IllustFollow();
+                    else
+                    {
+                        Uri next = new Uri(nexturl);
+                        string getparam(string param) => HttpUtility.ParseQueryString(next.Query).Get(param);
+                        followingres = await new PixivCS
+                            .PixivAppAPI(OverAll.GlobalBaseAPI)
+                            .IllustFollow(getparam("restrict"), getparam("offset"));
+                    }
+                }
+                catch
+                {
+                    return toret;
                 }
                 nexturl = followingres["next_url"].TryGetString();
                 foreach (var recillust in followingres["illusts"].GetArray())
@@ -84,7 +91,7 @@ namespace PixivFSUWP.Data
                     {
                         nexturl = "";
                         Clear();
-                        throw new Exception();
+                        return new LoadMoreItemsResult() { Count = 0 };
                     }
                     Data.WaterfallItem recommendi = Data.WaterfallItem.FromJsonValue(recillust.GetObject());
                     var recommendmodel = ViewModels.WaterfallItemViewModel.FromItem(recommendi);

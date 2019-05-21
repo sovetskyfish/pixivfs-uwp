@@ -32,9 +32,10 @@ namespace PixivFSUWP.Controls
             while (scrollViewer.ScrollableHeight == 0)
                 try
                 {
-                    await (ItemsSource as ISupportIncrementalLoading)?.LoadMoreItemsAsync(0);
+                    var res = await (ItemsSource as ISupportIncrementalLoading)?.LoadMoreItemsAsync(0);
+                    if (res.Count == 0) return;
                 }
-                catch(InvalidOperationException)
+                catch (InvalidOperationException)
                 {
                     return;
                 }
