@@ -70,6 +70,15 @@
                         <TextBlock x:Name="txtAuthorAccount" Margin="10,0" Grid.Row="1" Grid.Column="1" FontSize="14" Foreground="Gray" VerticalAlignment="Top"/>
                     </Grid>
                 </Button>
+                <Button Style="{StaticResource ButtonRevealStyle}" x:Name="btnPlay" Click="BtnPlay_Click"
+                              Margin="5,0,0,0" Background="#99F3F3F3" BorderThickness="1.5" Height="70" 
+                              Width="70" Visibility="Collapsed">
+                    <StackPanel Margin="5">
+                        <FontIcon x:Name="iconPlay" FontFamily="{StaticResource SymbolThemeFontFamily}"
+                                  FontSize="20" Glyph="&#xE769;"/>
+                        <TextBlock x:Name="txtPlay" Margin="0,5,0,0">暂停</TextBlock>
+                    </StackPanel>
+                </Button>
                 <Button Style="{StaticResource ButtonRevealStyle}" 
                               Margin="5,0,0,0" Background="#99F3F3F3" BorderThickness="1.5" Height="70" 
                               Width="70">

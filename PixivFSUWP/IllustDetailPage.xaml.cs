@@ -40,6 +40,7 @@ namespace PixivFSUWP
 
         bool _emergencyStop = false;
         bool _busy = false;
+        bool _playing = true;
 
         public IllustDetailPage()
         {
@@ -134,6 +135,8 @@ namespace PixivFSUWP
                 {
                     ugoiraPlayer.Visibility = Visibility.Visible;
                     ImageList.Visibility = Visibility.Collapsed;
+                    btnPlay.IsEnabled = false;
+                    btnPlay.Visibility = Visibility.Visible;
                     txtLoadingStatus.Text = "正在加载动态剪影";
                     if (_emergencyStop)
                     {
@@ -142,6 +145,7 @@ namespace PixivFSUWP
                     ugoira = await Data.UgoiraHelper.GetUgoiraAsync(illust.IllustID.ToString());
                     _ = playUgoira();
                     txtLoadingStatus.Text = "正在播放动态剪影";
+                    btnPlay.IsEnabled = true;
                 }
                 else
                 {
@@ -357,6 +361,21 @@ namespace PixivFSUWP
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             Frame.Navigate(typeof(UserDetailPage), illust.AuthorID);
+        }
+
+        private void BtnPlay_Click(object sender, RoutedEventArgs e)
+        {
+            if (_playing)
+            {
+                txtPlay.Text = "继续";
+                iconPlay.Glyph = "";
+            }
+            else
+            {
+                txtPlay.Text = "暂停";
+                iconPlay.Glyph = "";
+            }
+            _playing = !_playing;
         }
     }
 }
