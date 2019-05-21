@@ -56,3 +56,5 @@ steps:
   inputs:
     gitHubConnection: 'releasetogithub'
     isPreRelease: true
+    assets: '$(build.artifactstagingdirectory)/Package.zip'
+    assetUploadMode: 'delete'
