@@ -23,6 +23,7 @@ using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
 using AdaptiveCards;
 using Microsoft.Toolkit.Uwp.Helpers;
+using System.Threading;
 
 // https://go.microsoft.com/fwlink/?LinkId=234238 上介绍了“空白页”项模板
 
@@ -38,6 +39,7 @@ namespace PixivFSUWP
 
         Data.Ugoira ugoira;
 
+        EventWaitHandle pause = new ManualResetEvent(true);
         bool _emergencyStop = false;
         bool _busy = false;
         bool _playing = true;
@@ -188,6 +190,7 @@ namespace PixivFSUWP
                 }
                 foreach (var i in ugoira?.Frames)
                 {
+                    await Task.Run(() => pause.WaitOne());
                     ugoiraPlayer.Source = i.Image;
                     await Task.Delay(i.Delay);
                 }
@@ -367,11 +370,13 @@ namespace PixivFSUWP
         {
             if (_playing)
             {
+                pause.Reset();
                 txtPlay.Text = "继续";
                 iconPlay.Glyph = "";
             }
             else
             {
+                pause.Set();
                 txtPlay.Text = "暂停";
                 iconPlay.Glyph = "";
             }
