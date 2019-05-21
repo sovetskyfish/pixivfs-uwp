@@ -87,7 +87,6 @@ namespace PixivFSUWP.Data
                     await Task.Run(() => pause.WaitOne());
                     if (_emergencyStop)
                     {
-                        _emergencyStop = false;
                         nexturl = "";
                         Clear();
                         throw new Exception();
@@ -103,6 +102,11 @@ namespace PixivFSUWP.Data
             finally
             {
                 _busy = false;
+                if (_emergencyStop)
+                {
+                    nexturl = "";
+                    Clear();
+                }
             }
         }
     }
