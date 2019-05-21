@@ -35,9 +35,9 @@ namespace PixivFSUWP.Data
 
         public void StopLoading()
         {
+            _emergencyStop = true;
             if (_busy)
             {
-                _emergencyStop = true;
                 ResumeLoading();
             }
             else
@@ -73,7 +73,7 @@ namespace PixivFSUWP.Data
                     string getparam(string param) => HttpUtility.ParseQueryString(next.Query).Get(param);
                     rankingres = await new PixivCS
                         .PixivAppAPI(OverAll.GlobalBaseAPI)
-                        .IllustRanking(Mode:getparam("mode"),Filter:getparam("filter"),Offset:getparam("offset"));
+                        .IllustRanking(Mode: getparam("mode"), Filter: getparam("filter"), Offset: getparam("offset"));
                 }
                 nexturl = rankingres["next_url"].TryGetString();
                 foreach (var recillust in rankingres["illusts"].GetArray())

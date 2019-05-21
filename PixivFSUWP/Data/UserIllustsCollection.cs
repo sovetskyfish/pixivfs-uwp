@@ -41,9 +41,9 @@ namespace PixivFSUWP.Data
 
         public void StopLoading()
         {
+            _emergencyStop = true;
             if (_busy)
             {
-                _emergencyStop = true;
                 ResumeLoading();
             }
             else
