@@ -36,6 +36,9 @@ namespace PixivFSUWP
         int illustID;
         Data.IllustDetail illust;
 
+        bool _emergencyStop = false;
+        bool _busy = false;
+
         Task<WriteableBitmap> loadingTask = null;
 
         public IllustDetailPage()
@@ -63,68 +66,95 @@ namespace PixivFSUWP
             _ = loadContent();
         }
 
+        protected override void OnNavigatedFrom(NavigationEventArgs e)
+        {
+            _emergencyStop = true;
+            if(!_busy)
+            {
+                (ImageList.ItemsSource as ObservableCollection<ViewModels.ImageItemViewModel>)?.Clear();
+            }
+            base.OnNavigatedFrom(e);
+        }
+
         private async Task loadContent()
         {
-            txtTitle.Text = "加载中";
-            iconView.Visibility = Visibility.Collapsed;
-            iconStar.Visibility = Visibility.Collapsed;
-            stkAuthor.Visibility = Visibility.Collapsed;
-            var res = await new PixivAppAPI(Data.OverAll.GlobalBaseAPI)
-                .IllustDetail(illustID.ToString());
-            ImageList.ItemsSource = new ObservableCollection<ViewModels.ImageItemViewModel>();
-            illust = Data.IllustDetail.FromJsonValue(res);
-            imgAuthor.ImageSource = await Data.OverAll.LoadImageAsync(illust.AuthorAvatarUrl);
-            txtTitle.Text = illust.Title;
-            btnBookmark.IsChecked = illust.IsBookmarked;
-            btnFollow.IsChecked = illust.IsUserFollowed;
-            txtBtnBookmark.Text = illust.IsBookmarked ? "已收藏" : "未收藏";
-            txtBtnFollow.Text = illust.IsUserFollowed ? "已关注" : "未关注";
-            iconView.Visibility = Visibility.Visible;
-            iconStar.Visibility = Visibility.Visible;
-            stkAuthor.Visibility = Visibility.Visible;
-            txtViewStatus.Text = illust.TotalView.ToString();
-            txtBookmarkStatus.Text = illust.TotalBookmarks.ToString();
-            txtAuthor.Text = illust.Author;
-            txtAuthorAccount.Text = string.Format("@{0}", illust.AuthorAccount);
-            txtCaption.Text = (illust.Caption == "") ? "暂无简介" : Regex.Replace(illust.Caption.Replace("<br />", "\n"), "<[^>]+>", "");
-            txtCommentTitle.Text = "评论";
-            listComments.ItemsSource = new Data.CommentsCollection(illustID.ToString());
-            txtLoadingStatus.Text = "正在创建时间线";
-            AdaptiveCard card = new AdaptiveCard("1.1");
-            card.Body.Add(new AdaptiveTextBlock()
+            try
             {
-                Text = illust.Title,
-                Weight = AdaptiveTextWeight.Bolder,
-                Size = AdaptiveTextSize.Large,
-                Wrap = true,
-                MaxLines = 3
-            });
-            card.Body.Add(new AdaptiveTextBlock()
-            {
-                Text = string.Format("by {0}", illust.Author),
-                Size = AdaptiveTextSize.Default,
-                Wrap = true,
-                MaxLines = 3
-            });
-            var build = SystemInformation.OperatingSystemVersion.Build;
-            if (build >= 18362)
-            {
-                var data = await Data.OverAll.GetDataUri(illust.MediumUrl);
-                card.BackgroundImage = new AdaptiveBackgroundImage(new Uri(data));
-            }
-            await Data.OverAll.GenerateActivityAsync(illust.Title, card, new Uri(string.Format("pixiv://illust?id={0}", illustID)), illustID.ToString());
-            int counter = 0;
-            foreach (var i in illust.OriginalUrls)
-            {
-                txtLoadingStatus.Text = string.Format("正在加载第 {0} 张，共 {1} 张", ++counter, illust.OriginalUrls.Count);
-                loadingTask = Data.OverAll.LoadImageAsync(i, 1, 1);
-                (ImageList.ItemsSource as ObservableCollection<ViewModels.ImageItemViewModel>)
-                    .Add(new ViewModels.ImageItemViewModel()
+                _busy = true;
+                txtTitle.Text = "加载中";
+                iconView.Visibility = Visibility.Collapsed;
+                iconStar.Visibility = Visibility.Collapsed;
+                stkAuthor.Visibility = Visibility.Collapsed;
+                var res = await new PixivAppAPI(Data.OverAll.GlobalBaseAPI)
+                    .IllustDetail(illustID.ToString());
+                ImageList.ItemsSource = new ObservableCollection<ViewModels.ImageItemViewModel>();
+                illust = Data.IllustDetail.FromJsonValue(res);
+                imgAuthor.ImageSource = await Data.OverAll.LoadImageAsync(illust.AuthorAvatarUrl);
+                txtTitle.Text = illust.Title;
+                btnBookmark.IsChecked = illust.IsBookmarked;
+                btnFollow.IsChecked = illust.IsUserFollowed;
+                txtBtnBookmark.Text = illust.IsBookmarked ? "已收藏" : "未收藏";
+                txtBtnFollow.Text = illust.IsUserFollowed ? "已关注" : "未关注";
+                iconView.Visibility = Visibility.Visible;
+                iconStar.Visibility = Visibility.Visible;
+                stkAuthor.Visibility = Visibility.Visible;
+                txtViewStatus.Text = illust.TotalView.ToString();
+                txtBookmarkStatus.Text = illust.TotalBookmarks.ToString();
+                txtAuthor.Text = illust.Author;
+                txtAuthorAccount.Text = string.Format("@{0}", illust.AuthorAccount);
+                txtCaption.Text = (illust.Caption == "") ? "暂无简介" : Regex.Replace(illust.Caption.Replace("<br />", "\n"), "<[^>]+>", "");
+                txtCommentTitle.Text = "评论";
+                listComments.ItemsSource = new Data.CommentsCollection(illustID.ToString());
+                txtLoadingStatus.Text = "正在创建时间线";
+                AdaptiveCard card = new AdaptiveCard("1.1");
+                card.Body.Add(new AdaptiveTextBlock()
+                {
+                    Text = illust.Title,
+                    Weight = AdaptiveTextWeight.Bolder,
+                    Size = AdaptiveTextSize.Large,
+                    Wrap = true,
+                    MaxLines = 3
+                });
+                card.Body.Add(new AdaptiveTextBlock()
+                {
+                    Text = string.Format("by {0}", illust.Author),
+                    Size = AdaptiveTextSize.Default,
+                    Wrap = true,
+                    MaxLines = 3
+                });
+                var build = SystemInformation.OperatingSystemVersion.Build;
+                if (build >= 18362)
+                {
+                    var data = await Data.OverAll.GetDataUri(illust.MediumUrl);
+                    card.BackgroundImage = new AdaptiveBackgroundImage(new Uri(data));
+                }
+                await Data.OverAll.GenerateActivityAsync(illust.Title, card, new Uri(string.Format("pixiv://illust?id={0}", illustID)), illustID.ToString());
+                int counter = 0;
+                foreach (var i in illust.OriginalUrls)
+                {
+                    if (_emergencyStop)
                     {
-                        ImageSource = await Data.OverAll.LoadImageAsync(i, 1, 1)
-                    });
+                        (ImageList.ItemsSource as ObservableCollection<ViewModels.ImageItemViewModel>)?.Clear();
+                        return;
+                    }
+                    txtLoadingStatus.Text = string.Format("正在加载第 {0} 张，共 {1} 张", ++counter, illust.OriginalUrls.Count);
+                    loadingTask = Data.OverAll.LoadImageAsync(i, 1, 1);
+                    (ImageList.ItemsSource as ObservableCollection<ViewModels.ImageItemViewModel>)
+                        .Add(new ViewModels.ImageItemViewModel()
+                        {
+                            ImageSource = await Data.OverAll.LoadImageAsync(i, 1, 1)
+                        });
+                }
+                txtLoadingStatus.Text = string.Format("共 {0} 张作品，点击或触摸查看大图", illust.OriginalUrls.Count);
             }
-            txtLoadingStatus.Text = string.Format("共 {0} 张作品，点击或触摸查看大图", illust.OriginalUrls.Count);
+            finally
+            {
+                _busy = false;
+                if (_emergencyStop)
+                {
+                    (ImageList.ItemsSource as ObservableCollection<ViewModels.ImageItemViewModel>)?.Clear();
+                }
+            }
         }
 
         private void Page_SizeChanged(object sender, SizeChangedEventArgs e)
