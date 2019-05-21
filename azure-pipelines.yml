@@ -45,5 +45,5 @@ steps:
 - task: GitHubRelease@0
   displayName: 'Release Artifact to Github'
   inputs:
-    gitHubConnection: 'tobiichiamane'
+    gitHubConnection: 'releasetogithub'
     isPreRelease: true
