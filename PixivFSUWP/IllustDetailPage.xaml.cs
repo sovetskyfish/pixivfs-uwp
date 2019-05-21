@@ -36,6 +36,8 @@ namespace PixivFSUWP
         int illustID;
         Data.IllustDetail illust;
 
+        Data.Ugoira ugoira;
+
         bool _emergencyStop = false;
         bool _busy = false;
 
@@ -67,7 +69,7 @@ namespace PixivFSUWP
         protected override void OnNavigatedFrom(NavigationEventArgs e)
         {
             _emergencyStop = true;
-            if(!_busy)
+            if (!_busy)
             {
                 (ImageList.ItemsSource as ObservableCollection<ViewModels.ImageItemViewModel>)?.Clear();
                 GC.Collect();
@@ -128,21 +130,36 @@ namespace PixivFSUWP
                     card.BackgroundImage = new AdaptiveBackgroundImage(new Uri(data));
                 }
                 await Data.OverAll.GenerateActivityAsync(illust.Title, card, new Uri(string.Format("pixiv://illust?id={0}", illustID)), illustID.ToString());
-                int counter = 0;
-                foreach (var i in illust.OriginalUrls)
+                if (illust.Type == "ugoira")
                 {
+                    ugoiraPlayer.Visibility = Visibility.Visible;
+                    ImageList.Visibility = Visibility.Collapsed;
+                    txtLoadingStatus.Text = "正在加载动态剪影";
                     if (_emergencyStop)
                     {
                         return;
                     }
-                    txtLoadingStatus.Text = string.Format("正在加载第 {0} 张，共 {1} 张", ++counter, illust.OriginalUrls.Count);
-                    (ImageList.ItemsSource as ObservableCollection<ViewModels.ImageItemViewModel>)
-                        .Add(new ViewModels.ImageItemViewModel()
-                        {
-                            ImageSource = await Data.OverAll.LoadImageAsync(i, 1, 1)
-                        });
+                    ugoira = await Data.UgoiraHelper.GetUgoiraAsync(illust.IllustID.ToString());
+                    _ = playUgoira();
                 }
-                txtLoadingStatus.Text = string.Format("共 {0} 张作品，点击或触摸查看大图", illust.OriginalUrls.Count);
+                else
+                {
+                    int counter = 0;
+                    foreach (var i in illust.OriginalUrls)
+                    {
+                        if (_emergencyStop)
+                        {
+                            return;
+                        }
+                        txtLoadingStatus.Text = string.Format("正在加载第 {0} 张，共 {1} 张", ++counter, illust.OriginalUrls.Count);
+                        (ImageList.ItemsSource as ObservableCollection<ViewModels.ImageItemViewModel>)
+                            .Add(new ViewModels.ImageItemViewModel()
+                            {
+                                ImageSource = await Data.OverAll.LoadImageAsync(i, 1, 1)
+                            });
+                    }
+                    txtLoadingStatus.Text = string.Format("共 {0} 张作品，点击或触摸查看大图", illust.OriginalUrls.Count);
+                }
             }
             finally
             {
@@ -155,9 +172,27 @@ namespace PixivFSUWP
             }
         }
 
+        async Task playUgoira()
+        {
+            while (true)
+            {
+                if (_emergencyStop)
+                {
+                    ugoira?.Dispose();
+                    return;
+                }
+                foreach (var i in ugoira?.Frames)
+                {
+                    ugoiraPlayer.Source = i.Image;
+                    await Task.Delay(i.Delay);
+                }
+            }
+        }
+
         private void Page_SizeChanged(object sender, SizeChangedEventArgs e)
         {
             ImageList.MaxHeight = Frame.ActualHeight - 265;
+            ugoiraPlayer.MaxHeight = Frame.ActualHeight - 265;
         }
 
         private async void ImageList_ItemClick(object sender, ItemClickEventArgs e)
