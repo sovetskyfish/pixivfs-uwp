@@ -26,6 +26,8 @@ using Microsoft.Toolkit.Uwp.Helpers;
 using System.Threading;
 using Lumia.Imaging;
 using Windows.Storage.Streams;
+using Windows.Storage.Pickers;
+using Windows.UI.Popups;
 
 // https://go.microsoft.com/fwlink/?LinkId=234238 上介绍了“空白页”项模板
 
@@ -38,6 +40,7 @@ namespace PixivFSUWP
     {
         int illustID;
         Data.IllustDetail illust;
+        IBuffer buffer;
 
         Data.Ugoira ugoira;
 
@@ -139,6 +142,10 @@ namespace PixivFSUWP
                     ImageList.Visibility = Visibility.Collapsed;
                     btnPlay.IsEnabled = false;
                     btnPlay.Visibility = Visibility.Visible;
+                    btnSaveGif.IsEnabled = false;
+                    btnSaveGif.Visibility = Visibility.Visible;
+                    txtLoadingStatus.Text = "正在加载预览";
+                    ugoiraPlayer.Source = await Data.OverAll.LoadImageAsync(illust.OriginalUrls[0]);
                     txtLoadingStatus.Text = "正在下载动态剪影";
                     if (_emergencyStop)
                     {
@@ -149,6 +156,7 @@ namespace PixivFSUWP
                     await playUgoira();
                     txtLoadingStatus.Text = "正在播放动态剪影";
                     btnPlay.IsEnabled = true;
+                    btnSaveGif.IsEnabled = true;
                 }
                 else
                 {
@@ -180,11 +188,11 @@ namespace PixivFSUWP
             }
         }
 
+        //当场生成Gif
         async Task playUgoira()
         {
             try
             {
-                IBuffer buffer;
                 using (GifRenderer renderer = new GifRenderer())
                 {
                     renderer.Duration = ugoira.Frames[0].Delay;
@@ -389,6 +397,45 @@ namespace PixivFSUWP
                 iconPlay.Glyph = "";
             }
             _playing = !_playing;
+        }
+
+        private async void BtnSaveGif_Click(object sender, RoutedEventArgs e)
+        {
+            await saveImage();
+        }
+
+        async Task saveImage()
+        {
+            FileSavePicker picker = new FileSavePicker();
+            picker.SuggestedStartLocation = PickerLocationId.PicturesLibrary;
+            picker.FileTypeChoices.Add("Gif文件", new List<string>() { ".gif" });
+            picker.SuggestedFileName = illust.Title;
+            var file = await picker.PickSaveFileAsync();
+            if (file != null)
+            {
+                CachedFileManager.DeferUpdates(file);
+                using (var stream = await file.OpenAsync(FileAccessMode.ReadWrite))
+                {
+                    await stream.WriteAsync(buffer);
+                }
+                var updateStatus = await CachedFileManager.CompleteUpdatesAsync(file);
+                if (updateStatus != FileUpdateStatus.Complete)
+                {
+                    var messageDialog = new MessageDialog("剪影保存失败");
+                    messageDialog.Commands.Add(new UICommand("重试", async (a) => { await saveImage(); }));
+                    messageDialog.Commands.Add(new UICommand("放弃"));
+                    messageDialog.DefaultCommandIndex = 0;
+                    messageDialog.CancelCommandIndex = 1;
+                    await messageDialog.ShowAsync();
+                }
+                else
+                {
+                    var messageDialog = new MessageDialog("剪影已保存");
+                    messageDialog.Commands.Add(new UICommand("好的"));
+                    messageDialog.DefaultCommandIndex = 0;
+                    await messageDialog.ShowAsync();
+                }
+            }
         }
     }
 }
