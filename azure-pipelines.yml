@@ -29,9 +29,17 @@ steps:
     configuration: '$(buildConfiguration)'
     msbuildArgs: '/p:AppxBundlePlatforms="$(buildPlatform)" /p:AppxPackageDir="$(appxPackageDir)" /p:AppxBundle=Always /p:UapAppxPackageBuildMode=Sideload'
 
+
+- task: CopyFiles@2
+  displayName: 'Copy Files to: $(build.artifactstagingdirectory)'
+  inputs:
+    SourceFolder: '$(system.defaultworkingdirectory)'
+    Contents: '**\bin\$(BuildConfiguration)\**'
+    TargetFolder: '$(build.artifactstagingdirectory)'
+
 - task: ArchiveFiles@2
   inputs:
-    rootFolderOrFile: '$(Build.BinariesDirectory)'
+    rootFolderOrFile: '$(build.artifactstagingdirectory)'
     includeRootFolder: true
     archiveType: 'zip'
     archiveFile: '$(build.artifactstagingdirectory)/Package.zip'
@@ -41,7 +49,7 @@ steps:
   displayName: 'Publish Artifact: Package'
   inputs:
     artifactName: 'Package'
-    PathtoPublish: '$(build.artifactstagingdirectory)'
+    PathtoPublish: '$(build.artifactstagingdirectory)/Package.zip'
 
 - task: GitHubRelease@0
   displayName: 'Release Artifact to Github'
