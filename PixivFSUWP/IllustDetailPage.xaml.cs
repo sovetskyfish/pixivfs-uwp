@@ -141,6 +141,7 @@ namespace PixivFSUWP
                     }
                     ugoira = await Data.UgoiraHelper.GetUgoiraAsync(illust.IllustID.ToString());
                     _ = playUgoira();
+                    txtLoadingStatus.Text = "正在播放动态剪影";
                 }
                 else
                 {
@@ -193,6 +194,7 @@ namespace PixivFSUWP
         {
             ImageList.MaxHeight = Frame.ActualHeight - 265;
             ugoiraPlayer.MaxHeight = Frame.ActualHeight - 265;
+            ugoiraPlayer.Height = Frame.ActualHeight - 265;
         }
 
         private async void ImageList_ItemClick(object sender, ItemClickEventArgs e)

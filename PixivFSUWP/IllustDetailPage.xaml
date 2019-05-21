@@ -19,7 +19,7 @@
                 <TextBlock x:Name="txtBookmarkStatus" Margin="3,0,0,0" FontSize="12" VerticalAlignment="Bottom"/>
             </StackPanel>
             <TextBlock x:Name="txtLoadingStatus" Margin="15,15,0,0" FontSize="12" VerticalAlignment="Bottom"/>
-            <Image x:Name="ugoiraPlayer" Margin="0,10,0,0" MaxHeight="1" Visibility="Collapsed"/>
+            <Image x:Name="ugoiraPlayer" HorizontalAlignment="Left" Margin="15,10,0,0" MaxHeight="1" Visibility="Collapsed"/>
             <ListView ScrollViewer.VerticalScrollBarVisibility="Disabled" 
                       ScrollViewer.HorizontalScrollBarVisibility="Hidden"
                       ScrollViewer.HorizontalScrollMode="Enabled" 
