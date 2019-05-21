@@ -230,6 +230,9 @@
     <PackageReference Include="AdaptiveCards">
       <Version>1.2.0-beta1</Version>
     </PackageReference>
+    <PackageReference Include="LumiaImagingSDK.UWP">
+      <Version>3.0.593</Version>
+    </PackageReference>
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
       <Version>6.2.8</Version>
     </PackageReference>

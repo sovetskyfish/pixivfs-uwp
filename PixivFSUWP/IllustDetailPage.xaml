@@ -75,8 +75,8 @@
                               Width="70" Visibility="Collapsed">
                     <StackPanel Margin="5">
                         <FontIcon x:Name="iconPlay" FontFamily="{StaticResource SymbolThemeFontFamily}"
-                                  FontSize="20" Glyph="&#xE769;"/>
-                        <TextBlock x:Name="txtPlay" Margin="0,5,0,0">暂停</TextBlock>
+                                  FontSize="20" Glyph="&#xE71A;"/>
+                        <TextBlock x:Name="txtPlay" Margin="0,5,0,0">停止</TextBlock>
                     </StackPanel>
                 </Button>
                 <Button Style="{StaticResource ButtonRevealStyle}" 

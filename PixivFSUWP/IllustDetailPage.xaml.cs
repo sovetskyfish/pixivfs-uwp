@@ -24,6 +24,8 @@ using Windows.UI.Xaml.Navigation;
 using AdaptiveCards;
 using Microsoft.Toolkit.Uwp.Helpers;
 using System.Threading;
+using Lumia.Imaging;
+using Windows.Storage.Streams;
 
 // https://go.microsoft.com/fwlink/?LinkId=234238 上介绍了“空白页”项模板
 
@@ -39,7 +41,6 @@ namespace PixivFSUWP
 
         Data.Ugoira ugoira;
 
-        EventWaitHandle pause = new ManualResetEvent(true);
         bool _emergencyStop = false;
         bool _busy = false;
         bool _playing = true;
@@ -72,11 +73,10 @@ namespace PixivFSUWP
         protected override void OnNavigatedFrom(NavigationEventArgs e)
         {
             _emergencyStop = true;
+            ugoiraPlayer.Source = null;
             if (!_busy)
-            {
                 (ImageList.ItemsSource as ObservableCollection<ViewModels.ImageItemViewModel>)?.Clear();
-                GC.Collect();
-            }
+            GC.Collect();
             base.OnNavigatedFrom(e);
         }
 
@@ -139,13 +139,14 @@ namespace PixivFSUWP
                     ImageList.Visibility = Visibility.Collapsed;
                     btnPlay.IsEnabled = false;
                     btnPlay.Visibility = Visibility.Visible;
-                    txtLoadingStatus.Text = "正在加载动态剪影";
+                    txtLoadingStatus.Text = "正在下载动态剪影";
                     if (_emergencyStop)
                     {
                         return;
                     }
                     ugoira = await Data.UgoiraHelper.GetUgoiraAsync(illust.IllustID.ToString());
-                    _ = playUgoira();
+                    txtLoadingStatus.Text = "正在生成 Gif";
+                    await playUgoira();
                     txtLoadingStatus.Text = "正在播放动态剪影";
                     btnPlay.IsEnabled = true;
                 }
@@ -181,19 +182,26 @@ namespace PixivFSUWP
 
         async Task playUgoira()
         {
-            while (true)
+            try
             {
-                if (_emergencyStop)
+                IBuffer buffer;
+                using (GifRenderer renderer = new GifRenderer())
                 {
-                    ugoira?.Dispose();
-                    return;
+                    renderer.Duration = ugoira.Frames[0].Delay;
+                    renderer.Size = new Size(ugoira.Frames[0].Image.PixelWidth, ugoira.Frames[0].Image.PixelHeight);
+                    List<IImageProvider> sources = new List<IImageProvider>();
+                    foreach (var i in ugoira.Frames)
+                        sources.Add(new SoftwareBitmapImageSource(i.Image));
+                    renderer.Sources = sources;
+                    buffer = await renderer.RenderAsync();
                 }
-                foreach (var i in ugoira?.Frames)
-                {
-                    await Task.Run(() => pause.WaitOne());
-                    ugoiraPlayer.Source = i.Image;
-                    await Task.Delay(i.Delay);
-                }
+                var gif = new BitmapImage();
+                await gif.SetSourceAsync(buffer.AsStream().AsRandomAccessStream());
+                ugoiraPlayer.Source = gif;
+            }
+            finally
+            {
+                ugoira.Dispose();
             }
         }
 
@@ -370,15 +378,15 @@ namespace PixivFSUWP
         {
             if (_playing)
             {
-                pause.Reset();
-                txtPlay.Text = "继续";
+                (ugoiraPlayer.Source as BitmapImage).Stop();
+                txtPlay.Text = "播放";
                 iconPlay.Glyph = "";
             }
             else
             {
-                pause.Set();
-                txtPlay.Text = "暂停";
-                iconPlay.Glyph = "";
+                (ugoiraPlayer.Source as BitmapImage).Play();
+                txtPlay.Text = "停止";
+                iconPlay.Glyph = "";
             }
             _playing = !_playing;
         }

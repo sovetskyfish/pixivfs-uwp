@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using PixivCS;
+using Windows.Graphics.Imaging;
 using Windows.UI.Xaml.Media.Imaging;
 
 namespace PixivFSUWP.Data
@@ -14,44 +15,49 @@ namespace PixivFSUWP.Data
     {
         public static async Task<Ugoira> GetUgoiraAsync(string IllustID)
         {
-            var res = await new PixivAppAPI(OverAll.GlobalBaseAPI).UgoiraMetadata(IllustID);
-            if (res.Stringify().Contains("error")) return null;
             List<string> framefiles = new List<string>();
             Dictionary<string, int> framedelays = new Dictionary<string, int>();
-            var framesarray = res["ugoira_metadata"].GetObject()["frames"].GetArray();
-            foreach (var i in framesarray)
+            Dictionary<string, SoftwareBitmap> frameimgs = new Dictionary<string, SoftwareBitmap>();
+            try
             {
-                var file = i.GetObject()["file"].GetString();
-                framefiles.Add(file);
-                framedelays.Add(file, (int)i.GetObject()["delay"].GetNumber());
-            }
-            Dictionary<string, BitmapImage> frameimgs = new Dictionary<string, BitmapImage>();
-            var zipurl = res["ugoira_metadata"].GetObject()["zip_urls"].GetObject()["medium"].GetString();
-            using (var zipfile = await OverAll.DownloadImage(zipurl))
-            {
-                using (ZipArchive ziparc = new ZipArchive(zipfile, ZipArchiveMode.Read))
+                var res = await new PixivAppAPI(OverAll.GlobalBaseAPI).UgoiraMetadata(IllustID);
+                if (res.Stringify().Contains("error")) return null;
+                var framesarray = res["ugoira_metadata"].GetObject()["frames"].GetArray();
+                foreach (var i in framesarray)
                 {
-                    foreach (var entry in ziparc.Entries)
+                    var file = i.GetObject()["file"].GetString();
+                    framefiles.Add(file);
+                    framedelays.Add(file, (int)i.GetObject()["delay"].GetNumber());
+                }
+                var zipurl = res["ugoira_metadata"].GetObject()["zip_urls"].GetObject()["medium"].GetString();
+                using (var zipfile = await OverAll.DownloadImage(zipurl))
+                {
+                    using (ZipArchive ziparc = new ZipArchive(zipfile, ZipArchiveMode.Read))
                     {
-                        var file = entry.FullName;
-                        BitmapImage img = new BitmapImage();
-                        using (var memStream = new MemoryStream())
+                        foreach (var entry in ziparc.Entries)
                         {
-                            await entry.Open().CopyToAsync(memStream);
-                            memStream.Position = 0;
-                            await img.SetSourceAsync(memStream.AsRandomAccessStream());
+                            var file = entry.FullName;
+                            using (var memStream = new MemoryStream())
+                            {
+                                await entry.Open().CopyToAsync(memStream);
+                                memStream.Position = 0;
+                                BitmapDecoder decoder = await BitmapDecoder.CreateAsync(memStream.AsRandomAccessStream());
+                                frameimgs.Add(file, await decoder.GetSoftwareBitmapAsync());
+                            }
                         }
-                        frameimgs.Add(file, img);
                     }
                 }
+                Ugoira toret = new Ugoira();
+                foreach (var i in framefiles)
+                    toret.Frames.Add(new Ugoira.Frame() { Image = frameimgs[i], Delay = framedelays[i] });
+                return toret;
             }
-            Ugoira toret = new Ugoira();
-            foreach (var i in framefiles)
-                toret.Frames.Add(new Ugoira.Frame() { Image = frameimgs[i], Delay = framedelays[i] });
-            framefiles.Clear();
-            framedelays.Clear();
-            frameimgs.Clear();
-            return toret;
+            finally
+            {
+                framefiles.Clear();
+                framedelays.Clear();
+                frameimgs.Clear();
+            }
         }
     }
 }
