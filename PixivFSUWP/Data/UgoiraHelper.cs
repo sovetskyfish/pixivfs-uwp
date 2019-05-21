@@ -37,8 +37,8 @@ namespace PixivFSUWP.Data
                         BitmapImage img = new BitmapImage();
                         using (var memStream = new MemoryStream())
                         {
-                            memStream.Position = 0;
                             await entry.Open().CopyToAsync(memStream);
+                            memStream.Position = 0;
                             await img.SetSourceAsync(memStream.AsRandomAccessStream());
                         }
                         frameimgs.Add(file, img);
