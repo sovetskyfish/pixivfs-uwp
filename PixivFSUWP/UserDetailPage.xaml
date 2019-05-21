@@ -299,7 +299,7 @@
                         </Button.Flyout>
                     </Button>
                     <Button Style="{StaticResource ButtonRevealStyle}" x:Name="btnWorks" Click="BtnWorks_Click"
-                              Margin="5,0,0,0" Background="#99F3F3F3" BorderThickness="1.5" Height="70" 
+                              Margin="5,0,0,0" Background="#99F3F3F3" BorderThickness="1.5" Height="70" IsEnabled="False"
                               Width="70">
                         <StackPanel Margin="5">
                             <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}"

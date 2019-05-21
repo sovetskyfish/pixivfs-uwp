@@ -36,6 +36,11 @@ namespace PixivFSUWP
             dataTransferManager.DataRequested += DataTransferManager_DataRequested;
         }
 
+        private void ItemsSource_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        {
+            btnWorks.IsEnabled = true;
+        }
+
         private void DataTransferManager_DataRequested(DataTransferManager sender, DataRequestedEventArgs args)
         {
             var request = args.Request;
@@ -51,6 +56,7 @@ namespace PixivFSUWP
             ((Frame.Parent as Grid)?.Parent as MainPage)?.SelectNavPlaceholder("用户");
             userid = (int)e.Parameter;
             itemsSource = new UserIllustsCollection(userid.ToString());
+            itemsSource.CollectionChanged += ItemsSource_CollectionChanged;
             illustsList.ItemsSource = itemsSource;
             base.OnNavigatedTo(e);
             _ = loadContents();
@@ -103,7 +109,8 @@ namespace PixivFSUWP
             while (scrollViewer.ScrollableHeight == 0)
                 try
                 {
-                    await (itemsSource as ISupportIncrementalLoading)?.LoadMoreItemsAsync(0);
+                    var res = await (itemsSource as ISupportIncrementalLoading)?.LoadMoreItemsAsync(0);
+                    if (res.Count == 0) return;
                 }
                 catch (InvalidOperationException)
                 {
