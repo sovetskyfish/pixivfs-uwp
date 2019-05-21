@@ -73,18 +73,16 @@ namespace PixivFSUWP.Data
         public static async Task<BitmapImage> LoadImageAsync(string Uri)
         {
             var toret = new BitmapImage();
-            var memStream = await DownloadImage(Uri);
-            await toret.SetSourceAsync(memStream.AsRandomAccessStream());
-            memStream.Dispose();
+            using (var memStream = await DownloadImage(Uri))
+                await toret.SetSourceAsync(memStream.AsRandomAccessStream());
             return toret;
         }
 
         public static async Task<WriteableBitmap> LoadImageAsync(string Uri, int Width, int Height)
         {
             var toret = new WriteableBitmap(Width, Height);
-            var memStream = await DownloadImage(Uri);
-            await toret.SetSourceAsync(memStream.AsRandomAccessStream());
-            memStream.Dispose();
+            using (var memStream = await DownloadImage(Uri))
+                await toret.SetSourceAsync(memStream.AsRandomAccessStream());
             return toret;
         }
 

@@ -144,7 +144,7 @@
     <Compile Include="Data\RecommendIllustsCollection.cs" />
     <Compile Include="Data\OverAll.cs" />
     <Compile Include="Data\Ugoira.cs" />
-    <Compile Include="Data\UgoriaHelper.cs" />
+    <Compile Include="Data\UgoiraHelper.cs" />
     <Compile Include="Data\UserDetail.cs" />
     <Compile Include="Data\UserIllustsCollection.cs" />
     <Compile Include="Data\WaterfallItem.cs" />
