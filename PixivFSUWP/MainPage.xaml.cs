@@ -19,6 +19,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using static PixivFSUWP.Data.OverAll;
 
 // https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x804 上介绍了“空白页”项模板
 
@@ -37,7 +38,6 @@ namespace PixivFSUWP
             view.TitleBar.ButtonForegroundColor = Colors.Black;
             view.TitleBar.ButtonInactiveForegroundColor = Colors.Gray;
             view.Title = "";
-            txtUsername.Text = OverAll.currentUser.Username;
         }
 
         private async void NavControl_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
@@ -99,9 +99,13 @@ namespace PixivFSUWP
             ContentFrame.Navigate(typeof(SettingsPage));
         }
 
-        private void Page_Loaded(object sender, RoutedEventArgs e)
+        private async void Page_Loaded(object sender, RoutedEventArgs e)
         {
+            var imgTask = LoadImageAsync(currentUser.Avatar170);
             HandleUri();
+            imgAvatar.ImageSource = await imgTask;
+            avatarRing.IsActive = false;
+            avatarRing.Visibility = Visibility.Collapsed;
         }
 
         public void HandleUri()

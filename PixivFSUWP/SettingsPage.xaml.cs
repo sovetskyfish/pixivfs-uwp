@@ -34,6 +34,7 @@ namespace PixivFSUWP
 
         async Task loadContentsAsync()
         {
+            var imgTask = LoadImageAsync(currentUser.Avatar170);
             txtVersion.Text = string.Format("版本：{0} version-{1}.{2}.{3} {4}",
                 Package.Current.DisplayName,
                 Package.Current.Id.Version.Major,
@@ -42,7 +43,6 @@ namespace PixivFSUWP
                 Package.Current.Id.Architecture);
             txtPkgName.Text = string.Format("包名：{0}", Package.Current.Id.Name);
             txtInsDate.Text = string.Format("时间：{0}", Package.Current.InstalledDate.ToLocalTime().DateTime);
-            var imgTask = LoadImageAsync(currentUser.Avatar170);
             txtID.Text = currentUser.ID.ToString();
             txtName.Text = currentUser.Username;
             txtAccount.Text = "@" + currentUser.UserAccount;

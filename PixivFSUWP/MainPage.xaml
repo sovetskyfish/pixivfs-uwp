@@ -23,7 +23,16 @@
             </NavigationView.PaneHeader>
             <NavigationView.PaneFooter>
                 <StackPanel Orientation="Horizontal">
-                    <TextBlock x:Name="txtUsername" Text="用户名" Margin="5" VerticalAlignment="Center" FontWeight="Bold"/>
+                    <AppBarButton Width="48">
+                        <Grid Margin="-10">
+                            <ProgressRing x:Name="avatarRing" Height="20" Width="20" IsActive="True"/>
+                            <Ellipse VerticalAlignment="Center" Height="24" Width="24">
+                                <Ellipse.Fill>
+                                    <ImageBrush x:Name="imgAvatar"/>
+                                </Ellipse.Fill>
+                            </Ellipse>
+                        </Grid>
+                    </AppBarButton>
                     <AppBarButton Width="48" x:Name="btnSearch">
                         <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}" 
                                   FontSize="16" Glyph="&#xE721;"/>
