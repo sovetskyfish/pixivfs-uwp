@@ -23,7 +23,7 @@
             </NavigationView.PaneHeader>
             <NavigationView.PaneFooter>
                 <StackPanel Orientation="Horizontal">
-                    <AppBarButton Width="48">
+                    <AppBarButton Width="48" x:Name="btnMe" Click="BtnMe_Click">
                         <Grid Margin="-10">
                             <ProgressRing x:Name="avatarRing" Height="20" Width="20" IsActive="True"/>
                             <Ellipse VerticalAlignment="Center" Height="24" Width="24">

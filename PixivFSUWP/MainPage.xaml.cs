@@ -153,5 +153,10 @@ namespace PixivFSUWP
                 }
             }
         }
+
+        private void BtnMe_Click(object sender, RoutedEventArgs e)
+        {
+            ContentFrame.Navigate(typeof(UserDetailPage), currentUser.ID);
+        }
     }
 }
