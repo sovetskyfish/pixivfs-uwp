@@ -42,7 +42,7 @@
                 </StackPanel>
             </Grid>
             <TextBlock Margin="15,20,15,0" FontSize="18" FontWeight="Bold">软件包版本信息</TextBlock>
-            <TextBlock Margin="15,10,15,2" x:Name="txtVersion"/>
+            <TextBlock Margin="15,10,15,0" x:Name="txtVersion"/>
             <TextBlock Margin="15,2,15,0" x:Name="txtPkgName"/>
             <TextBlock Margin="15,2,15,0" x:Name="txtInsDate"/>
         </StackPanel>
