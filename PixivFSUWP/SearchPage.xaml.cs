@@ -26,5 +26,20 @@ namespace PixivFSUWP
         {
             this.InitializeComponent();
         }
+
+        private void WaterfallContent_Loaded(object sender, RoutedEventArgs e)
+        {
+            if (ActualWidth < 700) (sender as Controls.WaterfallContentPanel).Colums = 3;
+            else if (ActualWidth < 900) (sender as Controls.WaterfallContentPanel).Colums = 4;
+            else if (ActualWidth < 1100) (sender as Controls.WaterfallContentPanel).Colums = 5;
+            else (sender as Controls.WaterfallContentPanel).Colums = 6;
+        }
+
+        private void WaterfallListView_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            Frame.Navigate(typeof(IllustDetailPage),
+                (e.ClickedItem as ViewModels
+                .WaterfallItemViewModel).ItemId);
+        }
     }
 }
