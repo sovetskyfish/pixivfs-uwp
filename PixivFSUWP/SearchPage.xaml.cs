@@ -27,6 +27,12 @@ namespace PixivFSUWP
             this.InitializeComponent();
         }
 
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
+            ((Frame.Parent as Grid)?.Parent as MainPage)?.SelectNavPlaceholder("搜索");
+        }
+
         private void WaterfallContent_Loaded(object sender, RoutedEventArgs e)
         {
             if (ActualWidth < 700) (sender as Controls.WaterfallContentPanel).Colums = 3;

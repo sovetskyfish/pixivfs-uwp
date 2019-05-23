@@ -131,6 +131,7 @@
       <DependentUpon>BigImage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\ImageSelectorPanel.cs" />
+    <Compile Include="Controls\TagsPanel.cs" />
     <Compile Include="Controls\WaterfallContentPanel.cs" />
     <Compile Include="Controls\WaterfallListView.cs" />
     <Compile Include="Data\BigImageDetail.cs" />

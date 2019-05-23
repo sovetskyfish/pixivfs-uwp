@@ -45,12 +45,13 @@
                 </VisualState>
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
-        <Grid x:Name="grdSearchPanel">
-
-        </Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="75"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
         <controls:WaterfallListView ScrollViewer.VerticalScrollBarVisibility="Hidden" Margin="4 0"
             x:Name="WaterfallListView" SelectionMode="None" ItemContainerTransitions="{x:Null}"
-            ItemTemplate="{StaticResource WaterfallListViewItemTemplate}"
+            ItemTemplate="{StaticResource WaterfallListViewItemTemplate}" Grid.RowSpan="2"
             IsItemClickEnabled="True" ItemClick="WaterfallListView_ItemClick">
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
@@ -64,5 +65,14 @@
                 </ItemsPanelTemplate>
             </ListView.ItemsPanel>
         </controls:WaterfallListView>
+        <Grid x:Name="grdSearchPanel" Grid.Row="1"
+              VerticalAlignment="Center" HorizontalAlignment="Center">
+            <Grid.Background>
+                <AcrylicBrush x:Name="detailBackground" BackgroundSource="Backdrop" TintOpacity="0.2" TintColor="White" FallbackColor="White"/>
+            </Grid.Background>
+            <StackPanel Orientation="Vertical">
+                <AutoSuggestBox Width="500" PlaceholderText="搜索作品..." QueryIcon="Find"/>
+            </StackPanel>
+        </Grid>
     </Grid>
 </Page>
