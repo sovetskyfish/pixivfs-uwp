@@ -33,7 +33,7 @@
                             </Ellipse>
                         </Grid>
                     </AppBarButton>
-                    <AppBarButton Width="48" x:Name="btnSearch">
+                    <AppBarButton Width="48" x:Name="btnSearch" Click="BtnSearch_Click">
                         <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}" 
                                   FontSize="16" Glyph="&#xE721;"/>
                     </AppBarButton>

@@ -158,5 +158,10 @@ namespace PixivFSUWP
         {
             ContentFrame.Navigate(typeof(UserDetailPage), currentUser.ID);
         }
+
+        private void BtnSearch_Click(object sender, RoutedEventArgs e)
+        {
+            ContentFrame.Navigate(typeof(SearchPage));
+        }
     }
 }
