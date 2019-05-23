@@ -14,11 +14,11 @@ namespace PixivFSUWP.Controls
         //行距
         public static readonly DependencyProperty ItemVerticalMarginProperty =
             DependencyProperty.Register("ItemVerticalMargin", typeof(double),
-        typeof(ImageSelectorPanel), new PropertyMetadata((double)0,
+        typeof(TagsPanel), new PropertyMetadata((double)0,
             (DepObj, e) =>
             {
-                (DepObj as ImageSelectorPanel).InvalidateMeasure();
-                (DepObj as ImageSelectorPanel).InvalidateArrange();
+                (DepObj as TagsPanel).InvalidateMeasure();
+                (DepObj as TagsPanel).InvalidateArrange();
             }));
 
         public double ItemVerticalMargin
@@ -30,11 +30,11 @@ namespace PixivFSUWP.Controls
         //项目水平间隔
         public static readonly DependencyProperty ItemHorizontalMarginProperty =
             DependencyProperty.Register("ItemHorizontalMargin", typeof(double),
-        typeof(ImageSelectorPanel), new PropertyMetadata((double)0,
+        typeof(TagsPanel), new PropertyMetadata((double)0,
             (DepObj, e) =>
             {
-                (DepObj as ImageSelectorPanel).InvalidateMeasure();
-                (DepObj as ImageSelectorPanel).InvalidateArrange();
+                (DepObj as TagsPanel).InvalidateMeasure();
+                (DepObj as TagsPanel).InvalidateArrange();
             }));
 
         public double ItemHorizontalMargin
@@ -46,11 +46,11 @@ namespace PixivFSUWP.Controls
         //行高
         public static readonly DependencyProperty ItemHeightProperty =
             DependencyProperty.Register("ItemHeight", typeof(double),
-        typeof(ImageSelectorPanel), new PropertyMetadata((double)20,
+        typeof(TagsPanel), new PropertyMetadata((double)20,
             (DepObj, e) =>
             {
-                (DepObj as ImageSelectorPanel).InvalidateMeasure();
-                (DepObj as ImageSelectorPanel).InvalidateArrange();
+                (DepObj as TagsPanel).InvalidateMeasure();
+                (DepObj as TagsPanel).InvalidateArrange();
             }));
 
         public double ItemHeight
