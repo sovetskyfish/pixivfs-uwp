@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -13,6 +14,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using PixivCS;
 
 // https://go.microsoft.com/fwlink/?LinkId=234238 上介绍了“空白页”项模板
 
@@ -26,18 +28,33 @@ namespace PixivFSUWP
         public SearchPage()
         {
             this.InitializeComponent();
-            ObservableCollection<ViewModels.TagViewModel> test = new ObservableCollection<ViewModels.TagViewModel>
+            _ = loadContents();
+        }
+
+        async Task<List<ViewModels.TagViewModel>> getTrendingTags()
+        {
+            try
             {
-                new ViewModels.TagViewModel() { Tag = "新宝岛" },
-                new ViewModels.TagViewModel() { Tag = "女人唱歌男人死" },
-                new ViewModels.TagViewModel() { Tag = "希望之花" },
-                new ViewModels.TagViewModel() { Tag = "野兽先辈" },
-                new ViewModels.TagViewModel() { Tag = "王道征途" },
-                new ViewModels.TagViewModel() { Tag = "114514" },
-                new ViewModels.TagViewModel() { Tag = "软手机" },
-                new ViewModels.TagViewModel() { Tag = "这个彬彬就是逊啦" }
-            };
-            panelTags.ItemsSource = test;
+                var res = await new PixivAppAPI(Data.OverAll.GlobalBaseAPI).TrendingTagsIllust();
+                var array = res["trend_tags"].GetArray();
+                List<ViewModels.TagViewModel> toret = new List<ViewModels.TagViewModel>();
+                foreach (var i in array)
+                    toret.Add(new ViewModels.TagViewModel() { Tag = i.GetObject()["tag"].GetString() });
+                return toret;
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+        async Task loadContents()
+        {
+            var tags = await getTrendingTags();
+            panelTags.ItemsSource = tags;
+            progressRing.IsActive = false;
+            progressRing.Visibility = Visibility.Collapsed;
+            stkMain.Visibility = Visibility.Visible;
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -59,6 +76,15 @@ namespace PixivFSUWP
             Frame.Navigate(typeof(IllustDetailPage),
                 (e.ClickedItem as ViewModels
                 .WaterfallItemViewModel).ItemId);
+        }
+
+        public async Task ShowSearch()
+        {
+            grdSearchPanel.Visibility = Visibility.Visible;
+            stkMain.Visibility = Visibility.Collapsed;
+            progressRing.IsActive = true;
+            progressRing.Visibility = Visibility.Visible;
+            await loadContents();
         }
     }
 }
