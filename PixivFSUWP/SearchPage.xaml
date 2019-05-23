@@ -70,8 +70,10 @@
             <Grid.Background>
                 <AcrylicBrush x:Name="detailBackground" BackgroundSource="Backdrop" TintOpacity="0.2" TintColor="White" FallbackColor="White"/>
             </Grid.Background>
-            <StackPanel Orientation="Vertical">
-                <AutoSuggestBox Width="500" PlaceholderText="搜索作品..." QueryIcon="Find"/>
+            <StackPanel Orientation="Vertical" Width="500">
+                <AutoSuggestBox PlaceholderText="搜索作品..."
+                                HorizontalAlignment="Stretch" QueryIcon="Find"/>
+                <TextBlock HorizontalAlignment="Left">趋势标签</TextBlock>
             </StackPanel>
         </Grid>
     </Grid>

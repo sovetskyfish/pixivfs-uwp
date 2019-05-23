@@ -170,6 +170,7 @@
     </Compile>
     <Compile Include="ViewModels\CommentViewModel.cs" />
     <Compile Include="ViewModels\ImageItemViewModel.cs" />
+    <Compile Include="ViewModels\TagViewModel.cs" />
     <Compile Include="ViewModels\WaterfallItemViewModel.cs" />
     <Compile Include="WaterfallPage.xaml.cs">
       <DependentUpon>WaterfallPage.xaml</DependentUpon>

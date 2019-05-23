@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -25,6 +26,14 @@ namespace PixivFSUWP
         public SearchPage()
         {
             this.InitializeComponent();
+            ObservableCollection<ViewModels.TagViewModel> test = new ObservableCollection<ViewModels.TagViewModel>
+            {
+                new ViewModels.TagViewModel() { Tag = "新宝岛" },
+                new ViewModels.TagViewModel() { Tag = "女人唱歌男人死" },
+                new ViewModels.TagViewModel() { Tag = "希望之花" },
+                new ViewModels.TagViewModel() { Tag = "野兽先辈" }
+            };
+            //lstTags.ItemsSource = test;
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
