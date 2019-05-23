@@ -31,9 +31,13 @@ namespace PixivFSUWP
                 new ViewModels.TagViewModel() { Tag = "新宝岛" },
                 new ViewModels.TagViewModel() { Tag = "女人唱歌男人死" },
                 new ViewModels.TagViewModel() { Tag = "希望之花" },
-                new ViewModels.TagViewModel() { Tag = "野兽先辈" }
+                new ViewModels.TagViewModel() { Tag = "野兽先辈" },
+                new ViewModels.TagViewModel() { Tag = "王道征途" },
+                new ViewModels.TagViewModel() { Tag = "114514" },
+                new ViewModels.TagViewModel() { Tag = "软手机" },
+                new ViewModels.TagViewModel() { Tag = "这个彬彬就是逊啦" }
             };
-            //lstTags.ItemsSource = test;
+            panelTags.ItemsSource = test;
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)

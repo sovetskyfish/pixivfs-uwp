@@ -45,13 +45,9 @@
                 </VisualState>
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="75"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
         <controls:WaterfallListView ScrollViewer.VerticalScrollBarVisibility="Hidden" Margin="4 0"
             x:Name="WaterfallListView" SelectionMode="None" ItemContainerTransitions="{x:Null}"
-            ItemTemplate="{StaticResource WaterfallListViewItemTemplate}" Grid.RowSpan="2"
+            ItemTemplate="{StaticResource WaterfallListViewItemTemplate}"
             IsItemClickEnabled="True" ItemClick="WaterfallListView_ItemClick">
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
@@ -65,15 +61,34 @@
                 </ItemsPanelTemplate>
             </ListView.ItemsPanel>
         </controls:WaterfallListView>
-        <Grid x:Name="grdSearchPanel" Grid.Row="1"
-              VerticalAlignment="Center" HorizontalAlignment="Center">
+        <Grid x:Name="grdSearchPanel"
+              VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
             <Grid.Background>
                 <AcrylicBrush x:Name="detailBackground" BackgroundSource="Backdrop" TintOpacity="0.2" TintColor="White" FallbackColor="White"/>
             </Grid.Background>
-            <StackPanel Orientation="Vertical" Width="500">
+            <StackPanel Margin="0 75 0 0" Orientation="Vertical" Width="500" HorizontalAlignment="Center" VerticalAlignment="Center">
                 <AutoSuggestBox PlaceholderText="搜索作品..."
                                 HorizontalAlignment="Stretch" QueryIcon="Find"/>
-                <TextBlock HorizontalAlignment="Left">趋势标签</TextBlock>
+                <TextBlock Margin="0 10 0 0" HorizontalAlignment="Left" FontSize="14" FontWeight="Bold">趋势标签</TextBlock>
+                <ItemsControl x:Name="panelTags" Margin="0 5 0 0">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate x:DataType="viewmodels:TagViewModel">
+                            <Grid Width="Auto" VerticalAlignment="Stretch">
+                                <Button Tag="{Binding Tag}" HorizontalAlignment="Stretch" 
+                                        Style="{StaticResource ButtonRevealStyle}" Height="25">
+                                    <Grid Background="Transparent" Margin="0 -5">
+                                        <TextBlock Text="{Binding Tag}" FontSize="12"/>
+                                    </Grid>
+                                </Button>
+                            </Grid>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <controls:TagsPanel ItemHorizontalMargin="5" ItemHeight="25" ItemVerticalMargin="5"/>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                </ItemsControl>
             </StackPanel>
         </Grid>
     </Grid>
