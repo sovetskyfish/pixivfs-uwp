@@ -37,13 +37,51 @@
                         HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Collapsed">
                 <AutoSuggestBox  x:Name="txtWord" PlaceholderText="搜索作品..." QuerySubmitted="TxtWord_QuerySubmitted"
                                 HorizontalAlignment="Stretch" QueryIcon="Find"/>
-                <TextBlock Margin="0 10 0 0" HorizontalAlignment="Left" FontSize="14" FontWeight="Bold">趋势标签</TextBlock>
+                <TextBlock Margin="0 10 0 0" HorizontalAlignment="Left" FontSize="14" FontWeight="Bold">搜索选项</TextBlock>
+                <Grid Margin="0 5 0 0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="5"/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="5"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <ComboBox x:Name="cbSearchTarget" IsEditable="False" BorderThickness="1"
+                              HorizontalAlignment="Stretch" SelectedIndex="0">
+                        <ComboBox.Items>
+                            <ComboBoxItem Content="部分匹配标签"/>
+                            <ComboBoxItem Content="完全匹配标签"/>
+                            <ComboBoxItem Content="部分匹配标题和简介"/>
+                        </ComboBox.Items>
+                    </ComboBox>
+                    <ComboBox x:Name="cbSort" Grid.Column="2" IsEditable="False" BorderThickness="1"
+                              HorizontalAlignment="Stretch" SelectedIndex="0">
+                        <ComboBox.Items>
+                            <ComboBoxItem Content="按日期降序"/>
+                            <ComboBoxItem Content="按日期升序"/>
+                        </ComboBox.Items>
+                    </ComboBox>
+                    <ComboBox x:Name="cbDuration" Grid.Column="4" IsEditable="False" BorderThickness="1"
+                              HorizontalAlignment="Stretch" SelectedIndex="0">
+                        <ComboBox.Items>
+                            <ComboBoxItem Content="所有时间"/>
+                            <ComboBoxItem Content="过去的一天内"/>
+                            <ComboBoxItem Content="过去的一周内"/>
+                            <ComboBoxItem Content="过去的一月内"/>
+                        </ComboBox.Items>
+                    </ComboBox>
+                </Grid>
+                <StackPanel Margin="0 10 0 0" HorizontalAlignment="Left" Orientation="Horizontal">
+                    <TextBlock FontSize="14" FontWeight="Bold">趋势标签</TextBlock>
+                    <TextBlock Margin="5 0 0 0" FontSize="12" Foreground="Gray" VerticalAlignment="Bottom">*点击趋势标签将改变您的搜索选项</TextBlock>
+                </StackPanel>
                 <ItemsControl x:Name="panelTags" Margin="0 5 0 0">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate x:DataType="viewmodels:TagViewModel">
                             <Grid Width="Auto" VerticalAlignment="Stretch">
-                                <Button Tag="{Binding Tag}" HorizontalAlignment="Stretch" 
-                                        Style="{StaticResource ButtonRevealStyle}" Height="25">
+                                <Button x:Name="btnTag" Tag="{Binding Tag}" HorizontalAlignment="Stretch" 
+                                        Style="{StaticResource ButtonRevealStyle}" Height="25"
+                                        Click="BtnTag_Click">
                                     <Grid Background="Transparent" Margin="0 -5">
                                         <TextBlock Text="{Binding Tag}" FontSize="12"/>
                                     </Grid>

@@ -26,6 +26,11 @@ namespace PixivFSUWP
     /// </summary>
     public sealed partial class SearchPage : Page
     {
+        string lastWord = null;
+        int lastIndex1 = -1;
+        int lastIndex2 = -1;
+        int lastIndex3 = -1;
+
         public SearchPage()
         {
             this.InitializeComponent();
@@ -90,25 +95,46 @@ namespace PixivFSUWP
         private async void TxtWord_QuerySubmitted(AutoSuggestBox sender, AutoSuggestBoxQuerySubmittedEventArgs args)
         {
             if (string.IsNullOrWhiteSpace(txtWord.Text)) return;
-            if (resultFrame.Content != null)
-                (resultFrame.Content as SearchResultPage).ItemsSource.CollectionChanged -= ItemsSource_CollectionChanged;
-            resultFrame.Navigate(typeof(SearchResultPage),
-                new SearchResultPage.SearchParam()
-                {
-                    Word = txtWord.Text.Trim()
-                });
-            (resultFrame.Content as SearchResultPage).ItemsSource.CollectionChanged += ItemsSource_CollectionChanged;
+            if (txtWord.Text.Trim() != lastWord || cbSearchTarget.SelectedIndex != lastIndex1 ||
+                cbSort.SelectedIndex != lastIndex2 || cbDuration.SelectedIndex != lastIndex3)
+            {
+                lastWord = txtWord.Text.Trim();
+                lastIndex1 = cbSearchTarget.SelectedIndex;
+                lastIndex2 = cbSort.SelectedIndex;
+                lastIndex3 = cbDuration.SelectedIndex;
+                if (resultFrame.Content != null)
+                    (resultFrame.Content as SearchResultPage).ItemsSource.CollectionChanged -= ItemsSource_CollectionChanged;
+                resultFrame.Navigate(typeof(SearchResultPage),
+                    new SearchResultPage.SearchParam()
+                    {
+                        Word = txtWord.Text.Trim()
+                    });
+                (resultFrame.Content as SearchResultPage).ItemsSource.CollectionChanged += ItemsSource_CollectionChanged;
+            }
             storyFade.Begin();
             await Task.Delay(200);
             grdSearchPanel.Visibility = Visibility.Collapsed;
-            searchProgressRing.IsActive = true;
-            searchProgressRing.Visibility = Visibility.Visible;
+            if (txtWord.Text.Trim() != lastWord || cbSearchTarget.SelectedIndex != lastIndex1 ||
+                cbSort.SelectedIndex != lastIndex2 || cbDuration.SelectedIndex != lastIndex3)
+            {
+                searchProgressRing.IsActive = true;
+                searchProgressRing.Visibility = Visibility.Visible;
+            }
         }
 
         private void ItemsSource_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
             searchProgressRing.Visibility = Visibility.Collapsed;
             searchProgressRing.IsActive = false;
+        }
+
+        private void BtnTag_Click(object sender, RoutedEventArgs e)
+        {
+            txtWord.Text = (sender as Button).Tag as string;
+            cbSearchTarget.SelectedIndex = 1;
+            cbSort.SelectedIndex = 0;
+            cbDuration.SelectedIndex = 0;
+            TxtWord_QuerySubmitted(null, null);
         }
     }
 }
