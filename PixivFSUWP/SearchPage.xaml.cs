@@ -15,6 +15,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using PixivCS;
+using Windows.UI.Xaml.Media.Imaging;
 
 // https://go.microsoft.com/fwlink/?LinkId=234238 上介绍了“空白页”项模板
 
@@ -29,6 +30,12 @@ namespace PixivFSUWP
         {
             this.InitializeComponent();
             _ = loadContents();
+        }
+
+        protected override void OnNavigatedFrom(NavigationEventArgs e)
+        {
+            base.OnNavigatedFrom(e);
+            (resultFrame.Content as SearchResultPage)?.ItemsSource?.StopLoading();
         }
 
         async Task<List<ViewModels.TagViewModel>> getTrendingTags()
@@ -63,21 +70,6 @@ namespace PixivFSUWP
             ((Frame.Parent as Grid)?.Parent as MainPage)?.SelectNavPlaceholder("搜索");
         }
 
-        private void WaterfallContent_Loaded(object sender, RoutedEventArgs e)
-        {
-            if (ActualWidth < 700) (sender as Controls.WaterfallContentPanel).Colums = 3;
-            else if (ActualWidth < 900) (sender as Controls.WaterfallContentPanel).Colums = 4;
-            else if (ActualWidth < 1100) (sender as Controls.WaterfallContentPanel).Colums = 5;
-            else (sender as Controls.WaterfallContentPanel).Colums = 6;
-        }
-
-        private void WaterfallListView_ItemClick(object sender, ItemClickEventArgs e)
-        {
-            Frame.Navigate(typeof(IllustDetailPage),
-                (e.ClickedItem as ViewModels
-                .WaterfallItemViewModel).ItemId);
-        }
-
         public async Task ShowSearch()
         {
             grdSearchPanel.Visibility = Visibility.Visible;
@@ -85,6 +77,27 @@ namespace PixivFSUWP
             progressRing.IsActive = true;
             progressRing.Visibility = Visibility.Visible;
             await loadContents();
+        }
+
+        private void TxtWord_QuerySubmitted(AutoSuggestBox sender, AutoSuggestBoxQuerySubmittedEventArgs args)
+        {
+            if (resultFrame.Content != null)
+                (resultFrame.Content as SearchResultPage).ItemsSource.CollectionChanged -= ItemsSource_CollectionChanged;
+            resultFrame.Navigate(typeof(SearchResultPage),
+                new SearchResultPage.SearchParam()
+                {
+                    Word = txtWord.Text
+                });
+            (resultFrame.Content as SearchResultPage).ItemsSource.CollectionChanged += ItemsSource_CollectionChanged;
+            grdSearchPanel.Visibility = Visibility.Collapsed;
+            searchProgressRing.IsActive = true;
+            searchProgressRing.Visibility = Visibility.Visible;
+        }
+
+        private void ItemsSource_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        {
+            searchProgressRing.Visibility = Visibility.Collapsed;
+            searchProgressRing.IsActive = false;
         }
     }
 }

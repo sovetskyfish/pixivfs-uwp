@@ -9,58 +9,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d" Background="{StaticResource PageBackGround}">
     <Grid>
-        <VisualStateManager.VisualStateGroups>
-            <VisualStateGroup x:Name="AdaptiveStates">
-                <VisualState x:Name="C6">
-                    <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="1100" />
-                    </VisualState.StateTriggers>
-                    <VisualState.Setters>
-                        <Setter Target="WaterfallContent.Colums" Value="6"/>
-                    </VisualState.Setters>
-                </VisualState>
-                <VisualState x:Name="C5">
-                    <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="900" />
-                    </VisualState.StateTriggers>
-                    <VisualState.Setters>
-                        <Setter Target="WaterfallContent.Colums" Value="5"/>
-                    </VisualState.Setters>
-                </VisualState>
-                <VisualState x:Name="C4">
-                    <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="700" />
-                    </VisualState.StateTriggers>
-                    <VisualState.Setters>
-                        <Setter Target="WaterfallContent.Colums" Value="4"/>
-                    </VisualState.Setters>
-                </VisualState>
-                <VisualState x:Name="C3">
-                    <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="0" />
-                    </VisualState.StateTriggers>
-                    <VisualState.Setters>
-                        <Setter Target="WaterfallContent.Colums" Value="3"/>
-                    </VisualState.Setters>
-                </VisualState>
-            </VisualStateGroup>
-        </VisualStateManager.VisualStateGroups>
-        <controls:WaterfallListView ScrollViewer.VerticalScrollBarVisibility="Hidden" Margin="4 0"
-            x:Name="WaterfallListView" SelectionMode="None" ItemContainerTransitions="{x:Null}"
-            ItemTemplate="{StaticResource WaterfallListViewItemTemplate}"
-            IsItemClickEnabled="True" ItemClick="WaterfallListView_ItemClick">
-            <ListView.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <controls:WaterfallContentPanel x:Name="WaterfallContent" Loaded="WaterfallContent_Loaded" TopOffset="75" ItemMargin="2">
-                        <controls:WaterfallContentPanel.ChildrenTransitions>
-                            <TransitionCollection>
-                                <PopupThemeTransition FromVerticalOffset="150"/>
-                            </TransitionCollection>
-                        </controls:WaterfallContentPanel.ChildrenTransitions>
-                    </controls:WaterfallContentPanel>
-                </ItemsPanelTemplate>
-            </ListView.ItemsPanel>
-        </controls:WaterfallListView>
+        <Frame x:Name="resultFrame"/>
         <Grid x:Name="grdSearchPanel"
               VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
             <Grid.Background>
@@ -68,7 +17,7 @@
             </Grid.Background>
             <StackPanel Margin="0 75 0 0" Orientation="Vertical" Width="500" x:Name="stkMain"
                         HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Collapsed">
-                <AutoSuggestBox PlaceholderText="搜索作品..."
+                <AutoSuggestBox  x:Name="txtWord" PlaceholderText="搜索作品..." QuerySubmitted="TxtWord_QuerySubmitted"
                                 HorizontalAlignment="Stretch" QueryIcon="Find"/>
                 <TextBlock Margin="0 10 0 0" HorizontalAlignment="Left" FontSize="14" FontWeight="Bold">趋势标签</TextBlock>
                 <ItemsControl x:Name="panelTags" Margin="0 5 0 0">
@@ -94,5 +43,8 @@
         </Grid>
         <ProgressRing x:Name="progressRing" Margin="0 75 0 0" VerticalAlignment="Center"
                       HorizontalAlignment="Center" Width="75" Height="75" IsActive="True"/>
+        <ProgressRing x:Name="searchProgressRing" Margin="0 75 0 0" VerticalAlignment="Center"
+                      HorizontalAlignment="Center" Width="75" Height="75" IsActive="False" 
+                      Visibility="Collapsed"/>
     </Grid>
 </Page>

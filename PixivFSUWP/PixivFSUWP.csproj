@@ -144,6 +144,7 @@
     <Compile Include="Data\RankingIllustsCollection.cs" />
     <Compile Include="Data\RecommendIllustsCollection.cs" />
     <Compile Include="Data\OverAll.cs" />
+    <Compile Include="Data\SearchResultIllustsCollection.cs" />
     <Compile Include="Data\Ugoira.cs" />
     <Compile Include="Data\UgoiraHelper.cs" />
     <Compile Include="Data\UserDetail.cs" />
@@ -172,6 +173,9 @@
     <Compile Include="ViewModels\ImageItemViewModel.cs" />
     <Compile Include="ViewModels\TagViewModel.cs" />
     <Compile Include="ViewModels\WaterfallItemViewModel.cs" />
+    <Compile Include="SearchResultPage.xaml.cs">
+      <DependentUpon>SearchResultPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="WaterfallPage.xaml.cs">
       <DependentUpon>WaterfallPage.xaml</DependentUpon>
     </Compile>
@@ -229,6 +233,10 @@
     <Page Include="UserDetailPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SearchResultPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="WaterfallPage.xaml">
       <SubType>Designer</SubType>
