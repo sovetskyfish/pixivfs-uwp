@@ -98,5 +98,17 @@ namespace PixivFSUWP
                 (e.ClickedItem as ViewModels
                 .WaterfallItemViewModel).ItemId);
         }
+
+        private void WaterfallListView_RightTapped(object sender, RightTappedRoutedEventArgs e)
+        {
+            ListView listView = (ListView)sender;
+            quickActions.ShowAt(listView, e.GetPosition(listView));
+        }
+
+        private void WaterfallListView_Holding(object sender, HoldingRoutedEventArgs e)
+        {
+            ListView listView = (ListView)sender;
+            quickActions.ShowAt(listView, e.GetPosition(listView));
+        }
     }
 }

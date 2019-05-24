@@ -46,9 +46,17 @@
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
         <controls:WaterfallListView ScrollViewer.VerticalScrollBarVisibility="Hidden" Margin="4 0"
-            x:Name="WaterfallListView" SelectionMode="None" ItemContainerTransitions="{x:Null}"
-            ItemTemplate="{StaticResource WaterfallListViewItemTemplate}"
+            x:Name="WaterfallListView" SelectionMode="None" ItemContainerTransitions="{x:Null}" Holding="WaterfallListView_Holding"
+            ItemTemplate="{StaticResource WaterfallListViewItemTemplate}" RightTapped="WaterfallListView_RightTapped"
             IsItemClickEnabled="True" ItemClick="WaterfallListView_ItemClick">
+            <ListView.Resources>
+                <MenuFlyout x:Name="quickActions">
+                    <MenuFlyout.Items>
+                        <MenuFlyoutItem Text="快速收藏"/>
+                        <MenuFlyoutItem Text="快速下载"/>
+                    </MenuFlyout.Items>
+                </MenuFlyout>
+            </ListView.Resources>
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
                     <controls:WaterfallContentPanel x:Name="WaterfallContent" Loaded="WaterfallContent_Loaded" TopOffset="75" ItemMargin="2">
