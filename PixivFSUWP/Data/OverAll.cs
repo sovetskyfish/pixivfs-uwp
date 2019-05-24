@@ -56,13 +56,15 @@ namespace PixivFSUWP.Data
 
         public static async Task<MemoryStream> DownloadImage(string Uri)
         {
-            var resStream = await (await new PixivAppAPI(GlobalBaseAPI).RequestCall("GET",
+            using (var resStream = await (await new PixivAppAPI(GlobalBaseAPI).RequestCall("GET",
                   Uri, new Dictionary<string, string>() { { "Referer", "https://app-api.pixiv.net/" } })).
-                  Content.ReadAsStreamAsync();
-            var memStream = new MemoryStream();
-            await resStream.CopyToAsync(memStream);
-            memStream.Position = 0;
-            return memStream;
+                  Content.ReadAsStreamAsync())
+            {
+                var memStream = new MemoryStream();
+                await resStream.CopyToAsync(memStream);
+                memStream.Position = 0;
+                return memStream;
+            }
         }
 
         public static async Task<string> GetDataUri(string Uri)
