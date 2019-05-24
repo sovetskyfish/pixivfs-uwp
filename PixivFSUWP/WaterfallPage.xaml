@@ -52,8 +52,16 @@
             <ListView.Resources>
                 <MenuFlyout x:Name="quickActions">
                     <MenuFlyout.Items>
-                        <MenuFlyoutItem Text="快速收藏"/>
-                        <MenuFlyoutItem Text="快速下载"/>
+                        <MenuFlyoutItem Text="快速收藏">
+                            <MenuFlyoutItem.Icon>
+                                <FontIcon Glyph="&#xE734;"/>
+                            </MenuFlyoutItem.Icon>
+                        </MenuFlyoutItem>
+                        <MenuFlyoutItem Text="快速保存">
+                            <MenuFlyoutItem.Icon>
+                                <FontIcon Glyph="&#xE74E;"/>
+                            </MenuFlyoutItem.Icon>
+                        </MenuFlyoutItem>
                     </MenuFlyout.Items>
                 </MenuFlyout>
             </ListView.Resources>
