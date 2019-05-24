@@ -51,7 +51,7 @@
             IsItemClickEnabled="True" ItemClick="WaterfallListView_ItemClick">
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
-                    <controls:WaterfallContentPanel x:Name="WaterfallContent" Loaded="WaterfallContent_Loaded" TopOffset="75" ItemMargin="2">
+                    <controls:WaterfallContentPanel x:Name="WaterfallContent" Loaded="WaterfallContent_Loaded" TopOffset="76" ItemMargin="2">
                         <controls:WaterfallContentPanel.ChildrenTransitions>
                             <TransitionCollection>
                                 <PopupThemeTransition FromVerticalOffset="150"/>

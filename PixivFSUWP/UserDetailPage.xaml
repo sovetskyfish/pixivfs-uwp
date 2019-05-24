@@ -142,7 +142,7 @@
                       IncrementalLoadingTrigger="None" Margin="4 0" ItemClick="IllustsList_ItemClick">
                 <ListView.ItemsPanel>
                     <ItemsPanelTemplate>
-                        <controls:WaterfallContentPanel x:Name="WaterfallContent" ItemMargin="2" TopOffset="75" Loaded="WaterfallContent_Loaded">
+                        <controls:WaterfallContentPanel x:Name="WaterfallContent" ItemMargin="2" TopOffset="76" Loaded="WaterfallContent_Loaded">
                             <controls:WaterfallContentPanel.ChildrenTransitions>
                                 <TransitionCollection>
                                     <PopupThemeTransition FromVerticalOffset="150"/>
