@@ -58,10 +58,10 @@ namespace PixivFSUWP
         async Task loadContents()
         {
             var tags = await getTrendingTags();
-            panelTags.ItemsSource = tags;
             progressRing.IsActive = false;
             progressRing.Visibility = Visibility.Collapsed;
             stkMain.Visibility = Visibility.Visible;
+            panelTags.ItemsSource = tags;
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -72,23 +72,34 @@ namespace PixivFSUWP
 
         public async Task ShowSearch()
         {
-            grdSearchPanel.Visibility = Visibility.Visible;
-            stkMain.Visibility = Visibility.Collapsed;
+            if (grdSearchPanel.Visibility == Visibility.Collapsed)
+            {
+                grdSearchPanel.Visibility = Visibility.Visible;
+                stkMain.Visibility = Visibility.Collapsed;
+                storyShow.Begin();
+                await Task.Delay(200);
+            }
+            else stkMain.Visibility = Visibility.Collapsed;
             progressRing.IsActive = true;
             progressRing.Visibility = Visibility.Visible;
+            (panelTags.ItemsSource as List<ViewModels.TagViewModel>).Clear();
+            panelTags.ItemsSource = null;
             await loadContents();
         }
 
-        private void TxtWord_QuerySubmitted(AutoSuggestBox sender, AutoSuggestBoxQuerySubmittedEventArgs args)
+        private async void TxtWord_QuerySubmitted(AutoSuggestBox sender, AutoSuggestBoxQuerySubmittedEventArgs args)
         {
+            if (string.IsNullOrWhiteSpace(txtWord.Text)) return;
             if (resultFrame.Content != null)
                 (resultFrame.Content as SearchResultPage).ItemsSource.CollectionChanged -= ItemsSource_CollectionChanged;
             resultFrame.Navigate(typeof(SearchResultPage),
                 new SearchResultPage.SearchParam()
                 {
-                    Word = txtWord.Text
+                    Word = txtWord.Text.Trim()
                 });
             (resultFrame.Content as SearchResultPage).ItemsSource.CollectionChanged += ItemsSource_CollectionChanged;
+            storyFade.Begin();
+            await Task.Delay(200);
             grdSearchPanel.Visibility = Visibility.Collapsed;
             searchProgressRing.IsActive = true;
             searchProgressRing.Visibility = Visibility.Visible;

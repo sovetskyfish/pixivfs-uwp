@@ -8,6 +8,24 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d" Background="{StaticResource PageBackGround}">
+    <Page.Resources>
+        <Storyboard x:Name="storyFade">
+            <DoubleAnimation Storyboard.TargetName="detailBackground"
+                             Storyboard.TargetProperty="TintOpacity"
+                             From="0.4" To="0.0" Duration="0:0:0.2"/>
+            <DoubleAnimation Storyboard.TargetName="grdSearchPanel"
+                             Storyboard.TargetProperty="Opacity"
+                             From="1.0" To="0.0" Duration="0:0:0.2"/>
+        </Storyboard>
+        <Storyboard x:Name="storyShow">
+            <DoubleAnimation Storyboard.TargetName="detailBackground"
+                             Storyboard.TargetProperty="TintOpacity"
+                             From="0.0" To="0.4" Duration="0:0:0.2"/>
+            <DoubleAnimation Storyboard.TargetName="grdSearchPanel"
+                             Storyboard.TargetProperty="Opacity"
+                             From="0.0" To="1.0" Duration="0:0:0.2"/>
+        </Storyboard>
+    </Page.Resources>
     <Grid>
         <Frame x:Name="resultFrame"/>
         <Grid x:Name="grdSearchPanel"
@@ -35,7 +53,13 @@
                     </ItemsControl.ItemTemplate>
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
-                            <controls:TagsPanel ItemHorizontalMargin="5" ItemHeight="25" ItemVerticalMargin="5"/>
+                            <controls:TagsPanel ItemHorizontalMargin="5" ItemHeight="25" ItemVerticalMargin="5">
+                                <controls:TagsPanel.ChildrenTransitions>
+                                    <TransitionCollection>
+                                        <PopupThemeTransition FromVerticalOffset="150"/>
+                                    </TransitionCollection>
+                                </controls:TagsPanel.ChildrenTransitions>
+                            </controls:TagsPanel>
                         </ItemsPanelTemplate>
                     </ItemsControl.ItemsPanel>
                 </ItemsControl>
