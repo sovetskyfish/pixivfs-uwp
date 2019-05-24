@@ -27,6 +27,9 @@ namespace PixivFSUWP
         public struct SearchParam
         {
             public string Word;
+            public string SearchTarget;
+            public string Sort;
+            public string Duration;
         }
 
         SearchParam param;
@@ -42,7 +45,8 @@ namespace PixivFSUWP
         {
             base.OnNavigatedTo(e);
             if (e.Parameter is SearchParam) param = (SearchParam)e.Parameter;
-            ItemsSource = new Data.SearchResultIllustsCollection(param.Word);
+            ItemsSource = new Data.SearchResultIllustsCollection(param.Word, param.SearchTarget, 
+                param.Sort, param.Duration);
             WaterfallListView.ItemsSource = ItemsSource;
         }
 

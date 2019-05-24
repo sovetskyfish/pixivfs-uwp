@@ -98,17 +98,49 @@ namespace PixivFSUWP
             if (txtWord.Text.Trim() != lastWord || cbSearchTarget.SelectedIndex != lastIndex1 ||
                 cbSort.SelectedIndex != lastIndex2 || cbDuration.SelectedIndex != lastIndex3)
             {
-                lastWord = txtWord.Text.Trim();
-                lastIndex1 = cbSearchTarget.SelectedIndex;
-                lastIndex2 = cbSort.SelectedIndex;
-                lastIndex3 = cbDuration.SelectedIndex;
                 if (resultFrame.Content != null)
                     (resultFrame.Content as SearchResultPage).ItemsSource.CollectionChanged -= ItemsSource_CollectionChanged;
-                resultFrame.Navigate(typeof(SearchResultPage),
-                    new SearchResultPage.SearchParam()
-                    {
-                        Word = txtWord.Text.Trim()
-                    });
+                var param = new SearchResultPage.SearchParam()
+                {
+                    Word = txtWord.Text.Trim()
+                };
+                switch (cbSearchTarget.SelectedIndex)
+                {
+                    case 0:
+                        param.SearchTarget = "partial_match_for_tags";
+                        break;
+                    case 1:
+                        param.SearchTarget = "exact_match_for_tags";
+                        break;
+                    case 2:
+                        param.SearchTarget = "title_and_caption";
+                        break;
+                }
+                switch (cbSort.SelectedIndex)
+                {
+                    case 0:
+                        param.Sort = "date_desc";
+                        break;
+                    case 1:
+                        param.Sort = "date_asc";
+                        break;
+                }
+                switch (cbDuration.SelectedIndex)
+                {
+                    case 0:
+                        param.Duration = null;
+                        break;
+                    case 1:
+                        param.Duration = "within_last_day";
+                        break;
+                    case 2:
+                        param.Duration = "within_last_week";
+                        break;
+                    case 3:
+                        param.Duration = "within_last_month";
+                        break;
+                }
+                resultFrame.Navigate(typeof(SearchResultPage), param);
                 (resultFrame.Content as SearchResultPage).ItemsSource.CollectionChanged += ItemsSource_CollectionChanged;
             }
             storyFade.Begin();
@@ -117,6 +149,10 @@ namespace PixivFSUWP
             if (txtWord.Text.Trim() != lastWord || cbSearchTarget.SelectedIndex != lastIndex1 ||
                 cbSort.SelectedIndex != lastIndex2 || cbDuration.SelectedIndex != lastIndex3)
             {
+                lastWord = txtWord.Text.Trim();
+                lastIndex1 = cbSearchTarget.SelectedIndex;
+                lastIndex2 = cbSort.SelectedIndex;
+                lastIndex3 = cbDuration.SelectedIndex;
                 searchProgressRing.IsActive = true;
                 searchProgressRing.Visibility = Visibility.Visible;
             }
