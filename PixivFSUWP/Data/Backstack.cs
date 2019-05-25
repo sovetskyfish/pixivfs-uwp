@@ -22,17 +22,18 @@ namespace PixivFSUWP.Data
             base.Push((Page, Parameter));
         }
 
-        public bool Back(Frame Frame)
+        public object Back(Frame Frame)
         {
             if (!CanBack) throw new InvalidOperationException();
             (var page, var param) = base.Pop();
-            return Frame.Navigate(page, param);
+            Frame.Navigate(page, param);
+            return param;
         }
     }
 
     public static class FrameBackstackExtended
     {
-        public static bool Back(this Frame source)
+        public static object Back(this Frame source)
         {
             (source.Content as IGoBackFlag).SetBackFlag(true);
             return Backstack.Default.Back(source);

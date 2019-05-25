@@ -40,44 +40,48 @@ namespace PixivFSUWP
             view.Title = "";
         }
 
+        bool _programmablechange = false;
+
         private async void NavControl_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
         {
             if (OverAll.AppUri != null) return;
+            if (_programmablechange)
+            {
+                _programmablechange = false;
+                await HideNacPlaceHolder();
+                return;
+            }
             switch (sender.MenuItems.IndexOf(args.SelectedItem))
             {
                 case 0:
                     OverAll.RefreshRecommendList();
                     ContentFrame.Navigate(typeof(WaterfallPage), WaterfallPage.ListContent.Recommend);
-                    NavPlaceholder.IsEnabled = false;
-                    await Task.Delay(TimeSpan.FromMilliseconds(350));
-                    NavSeparator.Visibility = Visibility.Collapsed;
-                    NavPlaceholder.Visibility = Visibility.Collapsed;
+                    await HideNacPlaceHolder();
                     break;
                 case 1:
                     OverAll.RefreshBookmarkList();
                     ContentFrame.Navigate(typeof(WaterfallPage), WaterfallPage.ListContent.Bookmark);
-                    NavPlaceholder.IsEnabled = false;
-                    await Task.Delay(TimeSpan.FromMilliseconds(350));
-                    NavSeparator.Visibility = Visibility.Collapsed;
-                    NavPlaceholder.Visibility = Visibility.Collapsed;
+                    await HideNacPlaceHolder();
                     break;
                 case 2:
                     OverAll.RefreshFollowingList();
                     ContentFrame.Navigate(typeof(WaterfallPage), WaterfallPage.ListContent.Following);
-                    NavPlaceholder.IsEnabled = false;
-                    await Task.Delay(TimeSpan.FromMilliseconds(350));
-                    NavSeparator.Visibility = Visibility.Collapsed;
-                    NavPlaceholder.Visibility = Visibility.Collapsed;
+                    await HideNacPlaceHolder();
                     break;
                 case 3:
                     OverAll.RefreshRankingList();
                     ContentFrame.Navigate(typeof(WaterfallPage), WaterfallPage.ListContent.Ranking);
-                    NavPlaceholder.IsEnabled = false;
-                    await Task.Delay(TimeSpan.FromMilliseconds(350));
-                    NavSeparator.Visibility = Visibility.Collapsed;
-                    NavPlaceholder.Visibility = Visibility.Collapsed;
+                    await HideNacPlaceHolder();
                     break;
             }
+        }
+
+        private async Task HideNacPlaceHolder()
+        {
+            NavPlaceholder.IsEnabled = false;
+            await Task.Delay(TimeSpan.FromMilliseconds(350));
+            NavSeparator.Visibility = Visibility.Collapsed;
+            NavPlaceholder.Visibility = Visibility.Collapsed;
         }
 
         private void NavSelect(int index)
@@ -202,7 +206,26 @@ namespace PixivFSUWP
         {
             if (Backstack.Default.CanBack)
             {
-                ContentFrame.Back();
+                var param = ContentFrame.Back();
+                if (param is WaterfallPage.ListContent)
+                {
+                    _programmablechange = true;
+                    switch ((WaterfallPage.ListContent)param)
+                    {
+                        case WaterfallPage.ListContent.Recommend:
+                            NavSelect(0);
+                            break;
+                        case WaterfallPage.ListContent.Bookmark:
+                            NavSelect(1);
+                            break;
+                        case WaterfallPage.ListContent.Following:
+                            NavSelect(2);
+                            break;
+                        case WaterfallPage.ListContent.Ranking:
+                            NavSelect(3);
+                            break;
+                    }
+                }
                 UpdateNavButtonState();
             }
         }
