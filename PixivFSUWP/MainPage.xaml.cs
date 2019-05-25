@@ -99,7 +99,6 @@ namespace PixivFSUWP
 
         private void BtnSetting_Click(object sender, RoutedEventArgs e)
         {
-            SelectNavPlaceholder("设置");
             ContentFrame.Navigate(typeof(SettingsPage));
         }
 

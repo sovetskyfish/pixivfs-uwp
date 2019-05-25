@@ -40,6 +40,12 @@ namespace PixivFSUWP
             _backflag = value;
         }
 
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
+            ((Frame.Parent as Grid)?.Parent as MainPage)?.SelectNavPlaceholder("设置");
+        }
+
         protected override void OnNavigatedFrom(NavigationEventArgs e)
         {
             base.OnNavigatedFrom(e);
