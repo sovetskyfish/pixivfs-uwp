@@ -34,7 +34,6 @@ namespace PixivFSUWP.ViewModels
         {
             get
             {
-                if (IsBookmarked) return "★√" + Stars.ToString();
                 return "★" + Stars.ToString();
             }
         }

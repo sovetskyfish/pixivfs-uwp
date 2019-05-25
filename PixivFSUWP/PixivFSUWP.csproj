@@ -134,6 +134,8 @@
     <Compile Include="Controls\TagsPanel.cs" />
     <Compile Include="Controls\WaterfallContentPanel.cs" />
     <Compile Include="Controls\WaterfallListView.cs" />
+    <Compile Include="Converters\BookmarkHeartVisibilityConverter.cs" />
+    <Compile Include="Converters\MultiPageVisibilityConverter.cs" />
     <Compile Include="Data\BigImageDetail.cs" />
     <Compile Include="Data\BookmarkIllustsCollection.cs" />
     <Compile Include="Data\CommentsCollection.cs" />
