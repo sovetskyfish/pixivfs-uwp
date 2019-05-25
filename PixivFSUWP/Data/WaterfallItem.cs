@@ -18,10 +18,10 @@ namespace PixivFSUWP.Data
         public bool IsBookmarked { get; set; }
         public int Width { get; set; }
         public int Height { get; set; }
+
         public static WaterfallItem FromJsonValue(JsonObject Source)
         {
             var toret = new WaterfallItem();
-            var test = Source["id"];
             toret.Id = (int)Source["id"].GetNumber();
             toret.Title = Source["title"].TryGetString();
             toret.Author = Source["user"].GetObject()["name"].TryGetString();
