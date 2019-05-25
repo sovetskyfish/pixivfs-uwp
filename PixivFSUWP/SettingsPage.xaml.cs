@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PixivFSUWP.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -24,12 +25,29 @@ namespace PixivFSUWP
     /// <summary>
     /// 可用于自身或导航至 Frame 内部的空白页。
     /// </summary>
-    public sealed partial class SettingsPage : Page
+    public sealed partial class SettingsPage : Page, IGoBackFlag
     {
         public SettingsPage()
         {
             this.InitializeComponent();
             _ = loadContentsAsync();
+        }
+
+        private bool _backflag { get; set; } = false;
+
+        public void SetBackFlag(bool value)
+        {
+            _backflag = value;
+        }
+
+        protected override void OnNavigatedFrom(NavigationEventArgs e)
+        {
+            base.OnNavigatedFrom(e);
+            if (!_backflag)
+            {
+                Data.Backstack.Default.Push(typeof(SettingsPage), null);
+                ((Frame.Parent as Grid)?.Parent as MainPage)?.UpdateNavButtonState();
+            }
         }
 
         async Task loadContentsAsync()

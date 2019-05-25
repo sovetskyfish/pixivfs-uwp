@@ -18,6 +18,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using PixivFSUWP.Interfaces;
 
 // https://go.microsoft.com/fwlink/?LinkId=234238 上介绍了“空白页”项模板
 
@@ -26,7 +27,7 @@ namespace PixivFSUWP
     /// <summary>
     /// 可用于自身或导航至 Frame 内部的空白页。
     /// </summary>
-    public sealed partial class WaterfallPage : Page
+    public sealed partial class WaterfallPage : Page, IGoBackFlag
     {
         public enum ListContent
         {
@@ -34,6 +35,13 @@ namespace PixivFSUWP
             Bookmark,
             Following,
             Ranking
+        }
+
+        private bool _backflag { get; set; } = false;
+
+        public void SetBackFlag(bool value)
+        {
+            _backflag = value;
         }
 
         ListContent listContent;
@@ -68,9 +76,8 @@ namespace PixivFSUWP
             }
         }
 
-        protected override void OnNavigatingFrom(NavigatingCancelEventArgs e)
+        protected override void OnNavigatedFrom(NavigationEventArgs e)
         {
-            base.OnNavigatingFrom(e);
             switch (listContent)
             {
                 case ListContent.Recommend:
@@ -85,6 +92,12 @@ namespace PixivFSUWP
                 case ListContent.Ranking:
                     Data.OverAll.RankingList.PauseLoading();
                     break;
+            }
+            base.OnNavigatedFrom(e);
+            if (!_backflag)
+            {
+                Data.Backstack.Default.Push(typeof(WaterfallPage), listContent);
+                ((Frame.Parent as Grid)?.Parent as MainPage)?.UpdateNavButtonState();
             }
         }
 

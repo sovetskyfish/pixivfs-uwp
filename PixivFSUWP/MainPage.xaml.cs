@@ -192,5 +192,19 @@ namespace PixivFSUWP
             else
                 ContentFrame.Navigate(typeof(SearchPage));
         }
+
+        public void UpdateNavButtonState()
+        {
+            NavControl.IsBackEnabled = Backstack.Default.CanBack;
+        }
+
+        private void NavControl_BackRequested(NavigationView sender, NavigationViewBackRequestedEventArgs args)
+        {
+            if (Backstack.Default.CanBack)
+            {
+                ContentFrame.Back();
+                UpdateNavButtonState();
+            }
+        }
     }
 }

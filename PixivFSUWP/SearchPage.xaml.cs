@@ -16,6 +16,7 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using PixivCS;
 using Windows.UI.Xaml.Media.Imaging;
+using PixivFSUWP.Interfaces;
 
 // https://go.microsoft.com/fwlink/?LinkId=234238 上介绍了“空白页”项模板
 
@@ -24,7 +25,7 @@ namespace PixivFSUWP
     /// <summary>
     /// 可用于自身或导航至 Frame 内部的空白页。
     /// </summary>
-    public sealed partial class SearchPage : Page
+    public sealed partial class SearchPage : Page, IGoBackFlag
     {
         string lastWord = null;
         int lastIndex1 = -1;
@@ -37,10 +38,22 @@ namespace PixivFSUWP
             _ = loadContents();
         }
 
+        private bool _backflag { get; set; } = false;
+
+        public void SetBackFlag(bool value)
+        {
+            _backflag = value;
+        }
+
         protected override void OnNavigatedFrom(NavigationEventArgs e)
         {
             base.OnNavigatedFrom(e);
             (resultFrame.Content as SearchResultPage)?.ItemsSource?.StopLoading();
+            if (!_backflag)
+            {
+                Data.Backstack.Default.Push(typeof(SearchPage), null);
+                ((Frame.Parent as Grid)?.Parent as MainPage)?.UpdateNavButtonState();
+            }
         }
 
         async Task<List<ViewModels.TagViewModel>> getTrendingTags()

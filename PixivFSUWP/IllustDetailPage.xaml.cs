@@ -28,6 +28,7 @@ using Lumia.Imaging;
 using Windows.Storage.Streams;
 using Windows.Storage.Pickers;
 using Windows.UI.Popups;
+using PixivFSUWP.Interfaces;
 
 // https://go.microsoft.com/fwlink/?LinkId=234238 上介绍了“空白页”项模板
 
@@ -36,7 +37,7 @@ namespace PixivFSUWP
     /// <summary>
     /// 可用于自身或导航至 Frame 内部的空白页。
     /// </summary>
-    public sealed partial class IllustDetailPage : Page
+    public sealed partial class IllustDetailPage : Page, IGoBackFlag
     {
         int illustID;
         Data.IllustDetail illust;
@@ -53,6 +54,13 @@ namespace PixivFSUWP
             this.InitializeComponent();
             DataTransferManager dataTransferManager = DataTransferManager.GetForCurrentView();
             dataTransferManager.DataRequested += DataTransferManager_DataRequested;
+        }
+
+        private bool _backflag { get; set; } = false;
+
+        public void SetBackFlag(bool value)
+        {
+            _backflag = value;
         }
 
         private void DataTransferManager_DataRequested(DataTransferManager sender, DataRequestedEventArgs args)
@@ -79,6 +87,11 @@ namespace PixivFSUWP
             ugoiraPlayer.Source = null;
             if (!_busy)
                 (ImageList.ItemsSource as ObservableCollection<ViewModels.ImageItemViewModel>)?.Clear();
+            if (!_backflag)
+            {
+                Data.Backstack.Default.Push(typeof(IllustDetailPage), illustID);
+                ((Frame.Parent as Grid)?.Parent as MainPage)?.UpdateNavButtonState();
+            }
             GC.Collect();
             base.OnNavigatedFrom(e);
         }

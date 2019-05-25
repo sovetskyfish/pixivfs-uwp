@@ -156,6 +156,7 @@
     <Compile Include="IllustDetailPage.xaml.cs">
       <DependentUpon>IllustDetailPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Interfaces\IGoBackFlag.cs" />
     <Compile Include="LoginPage.xaml.cs">
       <DependentUpon>LoginPage.xaml</DependentUpon>
     </Compile>

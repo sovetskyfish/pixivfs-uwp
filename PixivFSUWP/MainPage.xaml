@@ -26,9 +26,9 @@
     </Page.Transitions>
     <Grid x:Name="LayoutRoot">
         <Frame x:Name="ContentFrame"/>
-        <NavigationView PaneDisplayMode="Top" x:Name="NavControl" 
+        <NavigationView PaneDisplayMode="Top" x:Name="NavControl"
                         SelectionChanged="NavControl_SelectionChanged"
-                        IsSettingsVisible="False">
+                        IsSettingsVisible="False" BackRequested="NavControl_BackRequested">
             <NavigationView.PaneHeader>
                 <Image Source="Assets/PixivHeader.png"/>
             </NavigationView.PaneHeader>

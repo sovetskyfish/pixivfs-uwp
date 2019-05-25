@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PixivFSUWP.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,7 +10,7 @@ namespace PixivFSUWP.Data
 {
     public class Backstack : Stack<(Type, object)>
     {
-        public static Backstack Default;
+        public static Backstack Default { get; } = new Backstack();
 
         public bool CanBack
         {
@@ -21,16 +22,20 @@ namespace PixivFSUWP.Data
             base.Push((Page, Parameter));
         }
 
-        public void Back(Frame Frame)
+        public bool Back(Frame Frame)
         {
             if (!CanBack) throw new InvalidOperationException();
             (var page, var param) = base.Pop();
-            Frame.Navigate(page, param);
+            return Frame.Navigate(page, param);
         }
     }
 
     public static class FrameBackstackExtended
     {
-        public static void Back(this Frame source) => Backstack.Default.Back(source);
+        public static bool Back(this Frame source)
+        {
+            (source.Content as IGoBackFlag).SetBackFlag(true);
+            return Backstack.Default.Back(source);
+        }
     }
 }

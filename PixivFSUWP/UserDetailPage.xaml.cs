@@ -19,6 +19,7 @@ using Windows.ApplicationModel.DataTransfer;
 using Windows.Storage.Pickers;
 using Windows.Storage;
 using Windows.Storage.Provider;
+using PixivFSUWP.Interfaces;
 
 // https://go.microsoft.com/fwlink/?LinkId=234238 上介绍了“空白页”项模板
 
@@ -27,7 +28,7 @@ namespace PixivFSUWP
     /// <summary>
     /// 可用于自身或导航至 Frame 内部的空白页。
     /// </summary>
-    public sealed partial class UserDetailPage : Page
+    public sealed partial class UserDetailPage : Page, IGoBackFlag
     {
         UserIllustsCollection itemsSource;
         int userid = 0;
@@ -37,6 +38,13 @@ namespace PixivFSUWP
             this.InitializeComponent();
             DataTransferManager dataTransferManager = DataTransferManager.GetForCurrentView();
             dataTransferManager.DataRequested += DataTransferManager_DataRequested;
+        }
+
+        private bool _backflag { get; set; } = false;
+
+        public void SetBackFlag(bool value)
+        {
+            _backflag = value;
         }
 
         private void ItemsSource_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
@@ -70,6 +78,11 @@ namespace PixivFSUWP
             itemsSource?.StopLoading();
             itemsSource = null;
             base.OnNavigatedFrom(e);
+            if (!_backflag)
+            {
+                Data.Backstack.Default.Push(typeof(UserDetailPage), userid);
+                ((Frame.Parent as Grid)?.Parent as MainPage)?.UpdateNavButtonState();
+            }
         }
 
         async Task loadContents()
