@@ -106,7 +106,8 @@ namespace PixivFSUWP
         {
             ListView listView = (ListView)sender;
             tapped = ((FrameworkElement)e.OriginalSource).DataContext as ViewModels.WaterfallItemViewModel;
-            quickStar.IsEnabled = !tapped.IsBookmarked;
+            quickStar.Text = (tapped.IsBookmarked) ? "删除收藏" : "快速收藏";
+            quickStar.IsEnabled = tapped.Title != null;
             quickActions.ShowAt(listView, e.GetPosition(listView));
         }
 
@@ -114,7 +115,8 @@ namespace PixivFSUWP
         {
             ListView listView = (ListView)sender;
             tapped = ((FrameworkElement)e.OriginalSource).DataContext as ViewModels.WaterfallItemViewModel;
-            quickStar.IsEnabled = !tapped.IsBookmarked;
+            quickStar.Text = (tapped.IsBookmarked) ? "删除收藏" : "快速收藏";
+            quickStar.IsEnabled = tapped.Title != null;
             quickActions.ShowAt(listView, e.GetPosition(listView));
         }
 
@@ -122,34 +124,72 @@ namespace PixivFSUWP
         {
             if (tapped == null) return;
             var i = tapped;
-            var title = tapped.Title;
-            var id = tapped.ItemId;
-            bool res;
+            var title = i.Title;
             try
             {
-                i.IsBookmarked = true;
-                i.Stars++;
-                await new PixivAppAPI(Data.OverAll.GlobalBaseAPI)
-                    .IllustBookmarkAdd(id.ToString());
-                res = true;
+                //用Title作标识，表明任务是否在执行
+                i.Title = null;
+                if (i.IsBookmarked)
+                {
+                    bool res;
+                    try
+                    {
+                        await new PixivAppAPI(Data.OverAll.GlobalBaseAPI)
+                            .IllustBookmarkDelete(i.ItemId.ToString());
+                        res = true;
+                    }
+                    catch
+                    {
+                        res = false;
+                    }
+                    i.Title = title;
+                    if (res)
+                    {
+                        i.IsBookmarked = false;
+                        i.Stars--;
+                        i.NotifyChange("StarsString");
+                        await ((Frame.Parent as Grid)?.Parent as MainPage)?.
+                            ShowTip(string.Format("作品「{0}」已删除收藏", title));
+                    }
+                    else
+                    {
+                        await ((Frame.Parent as Grid)?.Parent as MainPage)?.
+                            ShowTip(string.Format("作品「{0}」删除收藏失败", title));
+                    }
+                }
+                else
+                {
+                    bool res;
+                    try
+                    {
+                        await new PixivAppAPI(Data.OverAll.GlobalBaseAPI)
+                            .IllustBookmarkAdd(i.ItemId.ToString());
+                        res = true;
+                    }
+                    catch
+                    {
+                        res = false;
+                    }
+                    i.Title = title;
+                    if (res)
+                    {
+                        i.IsBookmarked = true;
+                        i.Stars++;
+                        i.NotifyChange("StarsString");
+                        await ((Frame.Parent as Grid)?.Parent as MainPage)?.
+                            ShowTip(string.Format("作品「{0}」已收藏", title));
+                    }
+                    else
+                    {
+                        await ((Frame.Parent as Grid)?.Parent as MainPage)?.
+                            ShowTip(string.Format("作品「{0}」收藏失败", title));
+                    }
+                }
             }
-            catch
+            finally
             {
-                res = false;
-            }
-            if (res)
-            {
-                i.NotifyChange("StarsString");
-                await ((Frame.Parent as Grid)?.Parent as MainPage)?.
-                    ShowTip(string.Format("作品「{0}」已收藏", title));
-            }
-            else
-            {
-                i.IsBookmarked = false;
-                i.Stars--;
-                i.NotifyChange("StarsString");
-                await ((Frame.Parent as Grid)?.Parent as MainPage)?.
-                    ShowTip(string.Format("作品「{0}」收藏失败", title));
+                //确保出错时数据不被破坏
+                i.Title = title;
             }
         }
 
