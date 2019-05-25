@@ -137,22 +137,38 @@
                 </VisualState>
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
-        <ScrollViewer x:Name="scrollViewer" ViewChanged="ScrollViewer_ViewChanged" VerticalScrollBarVisibility="Hidden">
-            <ListView x:Name="illustsList" ItemTemplate="{StaticResource WaterfallListViewItemTemplate}" IsItemClickEnabled="True"
-                      IncrementalLoadingTrigger="None" Margin="4 0" ItemClick="IllustsList_ItemClick">
-                <ListView.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <controls:WaterfallContentPanel x:Name="WaterfallContent" ItemMargin="2" TopOffset="77" Loaded="WaterfallContent_Loaded">
-                            <controls:WaterfallContentPanel.ChildrenTransitions>
-                                <TransitionCollection>
-                                    <PopupThemeTransition FromVerticalOffset="150"/>
-                                </TransitionCollection>
-                            </controls:WaterfallContentPanel.ChildrenTransitions>
-                        </controls:WaterfallContentPanel>
-                    </ItemsPanelTemplate>
-                </ListView.ItemsPanel>
-            </ListView>
-        </ScrollViewer>
+        <controls:WaterfallListView ScrollViewer.VerticalScrollBarVisibility="Hidden" Margin="4 0"
+            x:Name="WaterfallListView" SelectionMode="None" ItemContainerTransitions="{x:Null}" Holding="WaterfallListView_Holding"
+            ItemTemplate="{StaticResource WaterfallListViewItemTemplate}" RightTapped="WaterfallListView_RightTapped"
+            IsItemClickEnabled="True" ItemClick="WaterfallListView_ItemClick">
+            <ListView.Resources>
+                <MenuFlyout x:Name="quickActions">
+                    <MenuFlyout.Items>
+                        <MenuFlyoutItem x:Name="quickStar" Text="快速收藏" Click="QuickStar_Click">
+                            <MenuFlyoutItem.Icon>
+                                <FontIcon Glyph="&#xE734;"/>
+                            </MenuFlyoutItem.Icon>
+                        </MenuFlyoutItem>
+                        <MenuFlyoutItem x:Name="quickSave" Text="快速保存" Click="QuickSave_Click">
+                            <MenuFlyoutItem.Icon>
+                                <FontIcon Glyph="&#xE74E;"/>
+                            </MenuFlyoutItem.Icon>
+                        </MenuFlyoutItem>
+                    </MenuFlyout.Items>
+                </MenuFlyout>
+            </ListView.Resources>
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <controls:WaterfallContentPanel x:Name="WaterfallContent" Loaded="WaterfallContent_Loaded" TopOffset="77" ItemMargin="2">
+                        <controls:WaterfallContentPanel.ChildrenTransitions>
+                            <TransitionCollection>
+                                <PopupThemeTransition FromVerticalOffset="150"/>
+                            </TransitionCollection>
+                        </controls:WaterfallContentPanel.ChildrenTransitions>
+                    </controls:WaterfallContentPanel>
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+        </controls:WaterfallListView>
         <Grid HorizontalAlignment="Right" VerticalAlignment="Bottom" x:Name="grdUserButton"
               Margin="20" Height="70" Visibility="Collapsed">
             <Button Style="{StaticResource ButtonRevealStyleWithAcrylic}" HorizontalAlignment="Center"

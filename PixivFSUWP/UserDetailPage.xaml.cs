@@ -57,7 +57,7 @@ namespace PixivFSUWP
             userid = (int)e.Parameter;
             itemsSource = new UserIllustsCollection(userid.ToString());
             itemsSource.CollectionChanged += ItemsSource_CollectionChanged;
-            illustsList.ItemsSource = itemsSource;
+            WaterfallListView.ItemsSource = itemsSource;
             base.OnNavigatedTo(e);
             _ = loadContents();
         }
@@ -101,33 +101,6 @@ namespace PixivFSUWP
             btnFollow.IsChecked = detail.IsFollowed;
             imgAvatar.ImageSource = await Data.OverAll.LoadImageAsync(detail.AvatarUrl);
             imgAuthor.ImageSource = imgAvatar.ImageSource;
-            _ = loadPage();
-        }
-
-        async Task loadPage()
-        {
-            while (scrollViewer.ScrollableHeight == 0)
-                try
-                {
-                    var res = await (itemsSource as ISupportIncrementalLoading)?.LoadMoreItemsAsync(0);
-                    if (res.Count == 0) return;
-                }
-                catch (InvalidOperationException)
-                {
-                    return;
-                }
-        }
-
-        private async void ScrollViewer_ViewChanged(object sender, ScrollViewerViewChangedEventArgs e)
-        {
-            if (scrollViewer.VerticalOffset >= scrollViewer.ScrollableHeight - 500)
-            {
-                try
-                {
-                    await (itemsSource as ISupportIncrementalLoading)?.LoadMoreItemsAsync(0);
-                }
-                catch { }
-            }
         }
 
         private void WaterfallContent_Loaded(object sender, RoutedEventArgs e)
@@ -138,7 +111,7 @@ namespace PixivFSUWP
             else (sender as Controls.WaterfallContentPanel).Colums = 6;
         }
 
-        private void IllustsList_ItemClick(object sender, ItemClickEventArgs e)
+        private void WaterfallListView_ItemClick(object sender, ItemClickEventArgs e)
         {
             Frame.Navigate(typeof(IllustDetailPage),
                 (e.ClickedItem as ViewModels
@@ -236,6 +209,104 @@ namespace PixivFSUWP
         {
             copyToClipboard(string.Format("pixiv://user?id={0}", detail.ID));
             btnShareFlyout.Hide();
+        }
+
+        ViewModels.WaterfallItemViewModel tapped = null;
+
+        private void WaterfallListView_RightTapped(object sender, RightTappedRoutedEventArgs e)
+        {
+            ListView listView = (ListView)sender;
+            tapped = ((FrameworkElement)e.OriginalSource).DataContext as ViewModels.WaterfallItemViewModel;
+            quickStar.Text = (tapped.IsBookmarked) ? "删除收藏" : "快速收藏";
+            quickStar.IsEnabled = tapped.Title != null;
+            quickActions.ShowAt(listView, e.GetPosition(listView));
+        }
+
+        private void WaterfallListView_Holding(object sender, HoldingRoutedEventArgs e)
+        {
+            ListView listView = (ListView)sender;
+            tapped = ((FrameworkElement)e.OriginalSource).DataContext as ViewModels.WaterfallItemViewModel;
+            quickStar.Text = (tapped.IsBookmarked) ? "删除收藏" : "快速收藏";
+            quickStar.IsEnabled = tapped.Title != null;
+            quickActions.ShowAt(listView, e.GetPosition(listView));
+        }
+
+        private async void QuickStar_Click(object sender, RoutedEventArgs e)
+        {
+            if (tapped == null) return;
+            var i = tapped;
+            var title = i.Title;
+            try
+            {
+                //用Title作标识，表明任务是否在执行
+                i.Title = null;
+                if (i.IsBookmarked)
+                {
+                    bool res;
+                    try
+                    {
+                        await new PixivAppAPI(Data.OverAll.GlobalBaseAPI)
+                            .IllustBookmarkDelete(i.ItemId.ToString());
+                        res = true;
+                    }
+                    catch
+                    {
+                        res = false;
+                    }
+                    i.Title = title;
+                    if (res)
+                    {
+                        i.IsBookmarked = false;
+                        i.Stars--;
+                        i.NotifyChange("StarsString");
+                        await ((Frame.Parent as Grid)?.Parent as MainPage)?.
+                            ShowTip(string.Format("作品「{0}」已删除收藏", title));
+                    }
+                    else
+                    {
+                        await ((Frame.Parent as Grid)?.Parent as MainPage)?.
+                            ShowTip(string.Format("作品「{0}」删除收藏失败", title));
+                    }
+                }
+                else
+                {
+                    bool res;
+                    try
+                    {
+                        await new PixivAppAPI(Data.OverAll.GlobalBaseAPI)
+                            .IllustBookmarkAdd(i.ItemId.ToString());
+                        res = true;
+                    }
+                    catch
+                    {
+                        res = false;
+                    }
+                    i.Title = title;
+                    if (res)
+                    {
+                        i.IsBookmarked = true;
+                        i.Stars++;
+                        i.NotifyChange("StarsString");
+                        await ((Frame.Parent as Grid)?.Parent as MainPage)?.
+                            ShowTip(string.Format("作品「{0}」已收藏", title));
+                    }
+                    else
+                    {
+                        await ((Frame.Parent as Grid)?.Parent as MainPage)?.
+                            ShowTip(string.Format("作品「{0}」收藏失败", title));
+                    }
+                }
+            }
+            finally
+            {
+                //确保出错时数据不被破坏
+                i.Title = title;
+            }
+        }
+
+        private void QuickSave_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
