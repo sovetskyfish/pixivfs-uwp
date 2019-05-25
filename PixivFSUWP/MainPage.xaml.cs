@@ -154,6 +154,32 @@ namespace PixivFSUWP
             }
         }
 
+        List<(string, int)> tips = new List<(string, int)>();
+        bool _tip_busy = false;
+
+        public async Task ShowTip(string Message, int Seconds = 3)
+        {
+            tips.Add((Message, Seconds));
+            if (!_tip_busy)
+            {
+                _tip_busy = true;
+                while (tips.Count > 0)
+                {
+                    (var m, var s) = tips[0];
+                    txtTip.Text = m;
+                    grdTip.Visibility = Visibility.Visible;
+                    storyTipShow.Begin();
+                    await Task.Delay(200);
+                    await Task.Delay(TimeSpan.FromSeconds(s));
+                    storyTipHide.Begin();
+                    await Task.Delay(200);
+                    grdTip.Visibility = Visibility.Collapsed;
+                    tips.RemoveAt(0);
+                }
+                _tip_busy = false;
+            }
+        }
+
         private void BtnMe_Click(object sender, RoutedEventArgs e)
         {
             ContentFrame.Navigate(typeof(UserDetailPage), currentUser.ID);

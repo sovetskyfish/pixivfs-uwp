@@ -130,6 +130,32 @@ namespace PixivFSUWP
                 await saveImage();
         }
 
+        List<(string, int)> tips = new List<(string, int)>();
+        bool _tip_busy = false;
+
+        public async Task ShowTip(string Message, int Seconds = 3)
+        {
+            tips.Add((Message, Seconds));
+            if (!_tip_busy)
+            {
+                _tip_busy = true;
+                while (tips.Count > 0)
+                {
+                    (var m, var s) = tips[0];
+                    txtTip.Text = m;
+                    grdTip.Visibility = Visibility.Visible;
+                    storyTipShow.Begin();
+                    await Task.Delay(200);
+                    await Task.Delay(TimeSpan.FromSeconds(s));
+                    storyTipHide.Begin();
+                    await Task.Delay(200);
+                    grdTip.Visibility = Visibility.Collapsed;
+                    tips.RemoveAt(0);
+                }
+                _tip_busy = false;
+            }
+        }
+
         private async Task saveImage()
         {
             FileSavePicker picker = new FileSavePicker();
@@ -163,10 +189,7 @@ namespace PixivFSUWP
                 }
                 else
                 {
-                    var messageDialog = new MessageDialog("图片已保存");
-                    messageDialog.Commands.Add(new UICommand("好的"));
-                    messageDialog.DefaultCommandIndex = 0;
-                    await messageDialog.ShowAsync();
+                    await ShowTip("图片已保存");
                 }
             }
         }
@@ -221,19 +244,13 @@ namespace PixivFSUWP
                     }
                     else
                     {
-                        var messageDialog = new MessageDialog("墨迹已保存");
-                        messageDialog.Commands.Add(new UICommand("好的"));
-                        messageDialog.DefaultCommandIndex = 0;
-                        await messageDialog.ShowAsync();
+                        await ShowTip("墨迹已保存");
                     }
                 }
             }
             else
             {
-                var messageDialog = new MessageDialog("没有墨迹可以保存");
-                messageDialog.Commands.Add(new UICommand("好的"));
-                messageDialog.DefaultCommandIndex = 0;
-                await messageDialog.ShowAsync();
+                await ShowTip("没有墨迹可以保存");
             }
         }
     }

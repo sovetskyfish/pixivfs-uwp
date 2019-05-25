@@ -54,11 +54,12 @@
                 <InkCanvas x:Name="mainCanvas" Visibility="Collapsed"/>
             </Grid>
         </ScrollViewer>
-        <Grid x:Name="grdTip" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="10" Visibility="Collapsed" Opacity="0">
+        <Grid x:Name="grdTip" HorizontalAlignment="Center" Grid.RowSpan="3"
+              VerticalAlignment="Bottom" Margin="20" Visibility="Collapsed" Opacity="0">
             <Grid.Background>
                 <AcrylicBrush BackgroundSource="Backdrop" TintOpacity="0.2" TintColor="White" FallbackColor="White"/>
             </Grid.Background>
-            <TextBlock x:Name="txtTip" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            <TextBlock x:Name="txtTip" Margin="10" VerticalAlignment="Center" HorizontalAlignment="Center"/>
         </Grid>
     </Grid>
 </Page>
