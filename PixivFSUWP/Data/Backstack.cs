@@ -28,4 +28,9 @@ namespace PixivFSUWP.Data
             Frame.Navigate(page, param);
         }
     }
+
+    public static class FrameBackstackExtended
+    {
+        public static void Back(this Frame source) => Backstack.Default.Back(source);
+    }
 }
