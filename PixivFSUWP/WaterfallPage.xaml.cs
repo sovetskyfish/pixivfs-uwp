@@ -148,6 +148,7 @@ namespace PixivFSUWP
                         i.IsBookmarked = false;
                         i.Stars--;
                         i.NotifyChange("StarsString");
+                        i.NotifyChange("IsBookmarked");
                         await ((Frame.Parent as Grid)?.Parent as MainPage)?.
                             ShowTip(string.Format("作品「{0}」已删除收藏", title));
                     }
@@ -176,6 +177,7 @@ namespace PixivFSUWP
                         i.IsBookmarked = true;
                         i.Stars++;
                         i.NotifyChange("StarsString");
+                        i.NotifyChange("IsBookmarked");
                         await ((Frame.Parent as Grid)?.Parent as MainPage)?.
                             ShowTip(string.Format("作品「{0}」已收藏", title));
                     }
