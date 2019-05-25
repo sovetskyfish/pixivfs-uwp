@@ -16,31 +16,9 @@ namespace PixivFSUWP.ViewModels
         public string Title { get; set; }
         public string Author { get; set; }
         public string ImageUri { get; set; }
-
-        private int _stars;
-        public int Stars
-        {
-            get => _stars;
-            set
-            {
-                _stars = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Stars)));
-            }
-        }
-
+        public int Stars { get; set; }
         public int Pages { get; set; }
-
-        private bool _isbookmarked;
-        public bool IsBookmarked
-        {
-            get => _isbookmarked;
-            set
-            {
-                _isbookmarked = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(IsBookmarked)));
-            }
-        }
-
+        public bool IsBookmarked { get; set; }
         public BitmapImage ImageSource { get; set; }
         public int Width { get; set; }
         public int Height { get; set; }
@@ -74,5 +52,10 @@ namespace PixivFSUWP.ViewModels
                 Width = Item.Width,
                 Height = Item.Height
             };
+
+        public void NotifyChange(string PropertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(PropertyName));
+        }
     }
 }

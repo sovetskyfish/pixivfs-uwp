@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PixivCS;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
@@ -104,15 +105,57 @@ namespace PixivFSUWP
         private void WaterfallListView_RightTapped(object sender, RightTappedRoutedEventArgs e)
         {
             ListView listView = (ListView)sender;
-            tapped = e.OriginalSource as ViewModels.WaterfallItemViewModel;
+            tapped = ((FrameworkElement)e.OriginalSource).DataContext as ViewModels.WaterfallItemViewModel;
+            quickStar.IsEnabled = !tapped.IsBookmarked;
             quickActions.ShowAt(listView, e.GetPosition(listView));
         }
 
         private void WaterfallListView_Holding(object sender, HoldingRoutedEventArgs e)
         {
             ListView listView = (ListView)sender;
-            tapped = e.OriginalSource as ViewModels.WaterfallItemViewModel;
+            tapped = ((FrameworkElement)e.OriginalSource).DataContext as ViewModels.WaterfallItemViewModel;
+            quickStar.IsEnabled = !tapped.IsBookmarked;
             quickActions.ShowAt(listView, e.GetPosition(listView));
+        }
+
+        private async void QuickStar_Click(object sender, RoutedEventArgs e)
+        {
+            if (tapped == null) return;
+            var i = tapped;
+            var title = tapped.Title;
+            var id = tapped.ItemId;
+            bool res;
+            try
+            {
+                i.IsBookmarked = true;
+                i.Stars++;
+                await new PixivAppAPI(Data.OverAll.GlobalBaseAPI)
+                    .IllustBookmarkAdd(id.ToString());
+                res = true;
+            }
+            catch
+            {
+                res = false;
+            }
+            if (res)
+            {
+                i.NotifyChange("StarsString");
+                await ((Frame.Parent as Grid)?.Parent as MainPage)?.
+                    ShowTip(string.Format("作品「{0}」已收藏", title));
+            }
+            else
+            {
+                i.IsBookmarked = false;
+                i.Stars--;
+                i.NotifyChange("StarsString");
+                await ((Frame.Parent as Grid)?.Parent as MainPage)?.
+                    ShowTip(string.Format("作品「{0}」收藏失败", title));
+            }
+        }
+
+        private void QuickSave_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
