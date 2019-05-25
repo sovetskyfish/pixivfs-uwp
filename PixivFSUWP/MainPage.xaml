@@ -7,7 +7,18 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d" Loaded="Page_Loaded"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
+    <Page.Resources>
+        <Storyboard x:Name="storyTipShow">
+            <DoubleAnimation Storyboard.TargetName="grdTip"
+                             Storyboard.TargetProperty="Opacity"
+                             From="0.0" To="1.0" Duration="0:0:0.2"/>
+        </Storyboard>
+        <Storyboard x:Name="storyTipHide">
+            <DoubleAnimation Storyboard.TargetName="grdTip"
+                             Storyboard.TargetProperty="Opacity"
+                             From="1.0" To="0.0" Duration="0:0:0.2"/>
+        </Storyboard>
+    </Page.Resources>
     <Page.Transitions>
         <TransitionCollection>
             <NavigationThemeTransition />
@@ -52,5 +63,11 @@
                 <NavigationViewItem Content="PlaceHolder" x:Name="NavPlaceholder" Visibility="Collapsed" IsEnabled="False"/>
             </NavigationView.MenuItems>
         </NavigationView>
+        <Grid x:Name="grdTip" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="10" Visibility="Collapsed" Opacity="0">
+            <Grid.Background>
+                <AcrylicBrush BackgroundSource="Backdrop" TintOpacity="0.2" TintColor="White" FallbackColor="White"/>
+            </Grid.Background>
+            <TextBlock x:Name="txtTip" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        </Grid>
     </Grid>
 </Page>
