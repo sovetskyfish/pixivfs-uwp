@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PixivCS;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
@@ -45,7 +46,7 @@ namespace PixivFSUWP
         {
             base.OnNavigatedTo(e);
             if (e.Parameter is SearchParam) param = (SearchParam)e.Parameter;
-            ItemsSource = new Data.SearchResultIllustsCollection(param.Word, param.SearchTarget, 
+            ItemsSource = new Data.SearchResultIllustsCollection(param.Word, param.SearchTarget,
                 param.Sort, param.Duration);
             WaterfallListView.ItemsSource = ItemsSource;
         }
@@ -71,6 +72,104 @@ namespace PixivFSUWP
                 .Navigate(typeof(IllustDetailPage),
                 (e.ClickedItem as ViewModels
                 .WaterfallItemViewModel).ItemId);
+        }
+
+        ViewModels.WaterfallItemViewModel tapped = null;
+
+        private void WaterfallListView_RightTapped(object sender, RightTappedRoutedEventArgs e)
+        {
+            ListView listView = (ListView)sender;
+            tapped = ((FrameworkElement)e.OriginalSource).DataContext as ViewModels.WaterfallItemViewModel;
+            quickStar.Text = (tapped.IsBookmarked) ? "删除收藏" : "快速收藏";
+            quickStar.IsEnabled = tapped.Title != null;
+            quickActions.ShowAt(listView, e.GetPosition(listView));
+        }
+
+        private void WaterfallListView_Holding(object sender, HoldingRoutedEventArgs e)
+        {
+            ListView listView = (ListView)sender;
+            tapped = ((FrameworkElement)e.OriginalSource).DataContext as ViewModels.WaterfallItemViewModel;
+            quickStar.Text = (tapped.IsBookmarked) ? "删除收藏" : "快速收藏";
+            quickStar.IsEnabled = tapped.Title != null;
+            quickActions.ShowAt(listView, e.GetPosition(listView));
+        }
+
+        private async void QuickStar_Click(object sender, RoutedEventArgs e)
+        {
+            if (tapped == null) return;
+            var i = tapped;
+            var title = i.Title;
+            try
+            {
+                //用Title作标识，表明任务是否在执行
+                i.Title = null;
+                if (i.IsBookmarked)
+                {
+                    bool res;
+                    try
+                    {
+                        await new PixivAppAPI(Data.OverAll.GlobalBaseAPI)
+                            .IllustBookmarkDelete(i.ItemId.ToString());
+                        res = true;
+                    }
+                    catch
+                    {
+                        res = false;
+                    }
+                    i.Title = title;
+                    if (res)
+                    {
+                        i.IsBookmarked = false;
+                        i.Stars--;
+                        i.NotifyChange("StarsString");
+                        await (((((Frame.Parent as Grid).Parent as Page).Parent as Frame).Parent as Grid)?.Parent as MainPage)?.
+                            ShowTip(string.Format("作品「{0}」已删除收藏", title));
+                    }
+                    else
+                    {
+                        await (((((Frame.Parent as Grid).Parent as Page).Parent as Frame).Parent as Grid)?.Parent as MainPage)?.
+                            ShowTip(string.Format("作品「{0}」删除收藏失败", title));
+                    }
+                }
+                else
+                {
+                    bool res;
+                    try
+                    {
+                        await new PixivAppAPI(Data.OverAll.GlobalBaseAPI)
+                            .IllustBookmarkAdd(i.ItemId.ToString());
+                        res = true;
+                    }
+                    catch
+                    {
+                        res = false;
+                    }
+                    i.Title = title;
+                    if (res)
+                    {
+                        i.IsBookmarked = true;
+                        i.Stars++;
+                        i.NotifyChange("StarsString");
+                        await (((((Frame.Parent as Grid).Parent as Page).Parent as Frame).Parent as Grid)?.Parent as MainPage)?.
+                            ShowTip(string.Format("作品「{0}」已收藏", title));
+                    }
+                    else
+                    {
+                        await (((((Frame.Parent as Grid).Parent as Page).Parent as Frame).Parent as Grid)?.Parent as MainPage)?.
+                            ShowTip(string.Format("作品「{0}」收藏失败", title));
+                    }
+                }
+            }
+            finally
+            {
+                //确保出错时数据不被破坏
+                i.Title = title;
+            }
+        }
+
+        private void QuickSave_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
