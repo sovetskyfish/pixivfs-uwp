@@ -137,7 +137,7 @@
                 </VisualState>
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
-        <controls:WaterfallListView ScrollViewer.VerticalScrollBarVisibility="Hidden" Margin="4 0"
+        <controls:WaterfallListView ScrollViewer.VerticalScrollBarVisibility="Hidden" Margin="3 0"
             x:Name="WaterfallListView" SelectionMode="None" ItemContainerTransitions="{x:Null}" Holding="WaterfallListView_Holding"
             ItemTemplate="{StaticResource WaterfallListViewItemTemplate}" RightTapped="WaterfallListView_RightTapped"
             IsItemClickEnabled="True" ItemClick="WaterfallListView_ItemClick">
@@ -159,7 +159,7 @@
             </ListView.Resources>
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
-                    <controls:WaterfallContentPanel x:Name="WaterfallContent" Loaded="WaterfallContent_Loaded" TopOffset="77" ItemMargin="2">
+                    <controls:WaterfallContentPanel x:Name="WaterfallContent" Loaded="WaterfallContent_Loaded" TopOffset="76" ItemMargin="2">
                         <controls:WaterfallContentPanel.ChildrenTransitions>
                             <TransitionCollection>
                                 <PopupThemeTransition FromVerticalOffset="150"/>
