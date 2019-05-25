@@ -92,6 +92,8 @@ namespace PixivFSUWP
         {
             if (grdSearchPanel.Visibility == Visibility.Collapsed)
             {
+                searchProgressRing.Visibility = Visibility.Collapsed;
+                searchProgressRing.IsActive = false;
                 grdSearchPanel.Visibility = Visibility.Visible;
                 stkMain.Visibility = Visibility.Collapsed;
                 storyShow.Begin();
