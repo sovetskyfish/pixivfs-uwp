@@ -8,6 +8,9 @@ using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Storage;
+using Windows.Storage.Pickers;
+using Windows.Storage.Provider;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -195,9 +198,36 @@ namespace PixivFSUWP
             }
         }
 
-        private void QuickSave_Click(object sender, RoutedEventArgs e)
+        private async void QuickSave_Click(object sender, RoutedEventArgs e)
         {
-
+            if (tapped == null) return;
+            var i = tapped;
+            FileSavePicker picker = new FileSavePicker();
+            picker.SuggestedStartLocation = PickerLocationId.PicturesLibrary;
+            picker.FileTypeChoices.Add("图片文件", new List<string>() { ".png" });
+            picker.SuggestedFileName = i.Title;
+            var file = await picker.PickSaveFileAsync();
+            if (file != null)
+            {
+                CachedFileManager.DeferUpdates(file);
+                var res = await new PixivAppAPI(Data.OverAll.GlobalBaseAPI)
+                    .IllustDetail(i.ItemId.ToString());
+                var illust = Data.IllustDetail.FromJsonValue(res);
+                using (var imgstream = await Data.OverAll.DownloadImage(illust.OriginalUrls[0]))
+                {
+                    using (var filestream = await file.OpenAsync(FileAccessMode.ReadWrite))
+                    {
+                        await imgstream.CopyToAsync(filestream.AsStream());
+                    }
+                }
+                var updateStatus = await CachedFileManager.CompleteUpdatesAsync(file);
+                if (updateStatus == FileUpdateStatus.Complete)
+                    await ((Frame.Parent as Grid)?.Parent as MainPage)?.
+                            ShowTip(string.Format("作品「{0}」已保存", i.Title));
+                else
+                    await ((Frame.Parent as Grid)?.Parent as MainPage)?.
+                            ShowTip(string.Format("作品「{0}」保存失败", i.Title));
+            }
         }
     }
 }
