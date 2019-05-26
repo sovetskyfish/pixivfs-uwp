@@ -150,5 +150,11 @@ namespace PixivFSUWP
             txtPassword.Focus(FocusState.Programmatic);
             txtPassword.SelectAll();
         }
+
+        private async void Button_Click(object sender, RoutedEventArgs e)
+        {
+            await Launcher.LaunchUriAsync(new
+                Uri(@"https://www.pixiv.net/member_illust.php?mode=medium&illust_id=31251762"));
+        }
     }
 }
