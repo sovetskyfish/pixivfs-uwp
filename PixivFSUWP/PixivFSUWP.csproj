@@ -188,6 +188,7 @@
     <AppxManifest Include="Package.appxmanifest">
       <SubType>Designer</SubType>
     </AppxManifest>
+    <None Include="Assets\AppLogo.kra" />
     <None Include="PixivFSUWP_StoreKey.pfx" />
     <None Include="PixivFSUWP_TemporaryKey.pfx" />
   </ItemGroup>
