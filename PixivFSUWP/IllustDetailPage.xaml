@@ -76,7 +76,7 @@
                     <StackPanel Margin="5">
                         <FontIcon x:Name="iconPlay" FontFamily="{StaticResource SymbolThemeFontFamily}"
                                   FontSize="20" Glyph="&#xE71A;"/>
-                        <TextBlock x:Name="txtPlay" Margin="0,5,0,0">停止</TextBlock>
+                        <TextBlock x:Name="txtPlay" Margin="0,5,0,0" x:Uid="Stop"/>
                     </StackPanel>
                 </Button>
                 <Button Style="{StaticResource ButtonRevealStyle}" x:Name="btnSaveGif" Click="BtnSaveGif_Click"
@@ -85,7 +85,7 @@
                     <StackPanel Margin="5">
                         <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}"
                                   FontSize="20" Glyph="&#xE74E;"/>
-                        <TextBlock Margin="0,5,0,0">保存</TextBlock>
+                        <TextBlock Margin="0,5,0,0" x:Uid="Save"/>
                     </StackPanel>
                 </Button>
                 <Button Style="{StaticResource ButtonRevealStyle}" 
@@ -94,13 +94,13 @@
                     <StackPanel Margin="5">
                         <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}"
                                   FontSize="20" Glyph="&#xE72D;"/>
-                        <TextBlock Margin="0,5,0,0">分享</TextBlock>
+                        <TextBlock Margin="0,5,0,0" x:Uid="Share"/>
                     </StackPanel>
                     <Button.Flyout>
                         <CommandBarFlyout x:Name="btnShareFlyout">
-                            <AppBarButton x:Name="btnShare" Icon="Share" Click="BtnShare_Click" ToolTipService.ToolTip="Windows分享"/>
-                            <AppBarButton x:Name="btnLink" Icon="Link" Click="BtnLink_Click" ToolTipService.ToolTip="复制网页链接"/>
-                            <AppBarButton x:Name="btnAppLink" Icon="PreviewLink" Click="BtnAppLink_Click" ToolTipService.ToolTip="复制应用链接"/>
+                            <AppBarButton x:Name="btnShare" Icon="Share" Click="BtnShare_Click" x:Uid="btnShare"/>
+                            <AppBarButton x:Name="btnLink" Icon="Link" Click="BtnLink_Click" x:Uid="btnLink"/>
+                            <AppBarButton x:Name="btnAppLink" Icon="PreviewLink" Click="BtnAppLink_Click" x:Uid="btnAppLink"/>
                         </CommandBarFlyout>
                     </Button.Flyout>
                 </Button>
@@ -110,7 +110,7 @@
                     <StackPanel Margin="5">
                         <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}"
                                   FontSize="20" Glyph="&#xE734;"/>
-                        <TextBlock x:Name="txtBtnBookmark" Margin="0,5,0,0">未收藏</TextBlock>
+                        <TextBlock x:Name="txtBtnBookmark" Margin="0,5,0,0" x:Uid="NotBookmarked"/>
                     </StackPanel>
                 </ToggleButton>
                 <ToggleButton x:Name="btnFollow" Style="{StaticResource ToggleButtonRevealStyle}" 
@@ -119,7 +119,7 @@
                     <StackPanel Margin="5">
                         <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}" 
                                   FontSize="20" Glyph="&#xE8FA;"/>
-                        <TextBlock x:Name="txtBtnFollow" Margin="0,5,0,0">未关注</TextBlock>
+                        <TextBlock x:Name="txtBtnFollow" Margin="0,5,0,0" x:Uid="NotFollowing"/>
                     </StackPanel>
                 </ToggleButton>
             </StackPanel>

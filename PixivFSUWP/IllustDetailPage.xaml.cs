@@ -29,6 +29,7 @@ using Windows.Storage.Streams;
 using Windows.Storage.Pickers;
 using Windows.UI.Popups;
 using PixivFSUWP.Interfaces;
+using static PixivFSUWP.Data.OverAll;
 
 // https://go.microsoft.com/fwlink/?LinkId=234238 上介绍了“空白页”项模板
 
@@ -66,16 +67,16 @@ namespace PixivFSUWP
         private void DataTransferManager_DataRequested(DataTransferManager sender, DataRequestedEventArgs args)
         {
             var request = args.Request;
-            request.Data.SetText(string.Format("Pixiv作品\n{0} by {1}\n" +
-                "网页链接：https://www.pixiv.net/member_illust.php?mode=medium&illust_id={2}\n" +
-                "PixivFSUWP：pixiv://illust?id={2}", illust.Title, illust.Author, illustID));
-            request.Data.Properties.Title = string.Format("分享：{0}", illust.Title);
-            request.Data.Properties.Description = "该图片页面的链接将被分享";
+            request.Data.SetText(string.Format("{0}\n{1} by {2}\n" +
+                "{3}：https://www.pixiv.net/member_illust.php?mode=medium&illust_id={4}\n" +
+                "PixivFSUWP：pixiv://illust?id={4}", GetResourceString("WorkPlain"), illust.Title, illust.Author, GetResourceString("LinkPlain"), illustID));
+            request.Data.Properties.Title = string.Format("{0}：{1}", GetResourceString("SharePlain"), illust.Title);
+            request.Data.Properties.Description = GetResourceString("SharingPlain");
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            ((Frame.Parent as Grid)?.Parent as MainPage)?.SelectNavPlaceholder("详情");
+            ((Frame.Parent as Grid)?.Parent as MainPage)?.SelectNavPlaceholder(GetResourceString("DetailPlain"));
             illustID = (int)e.Parameter;
             base.OnNavigatedTo(e);
             _ = loadContent();
@@ -101,7 +102,7 @@ namespace PixivFSUWP
             try
             {
                 _busy = true;
-                txtTitle.Text = "加载中";
+                txtTitle.Text = GetResourceString("LoadingPlain");
                 iconView.Visibility = Visibility.Collapsed;
                 iconStar.Visibility = Visibility.Collapsed;
                 stkAuthor.Visibility = Visibility.Collapsed;
@@ -113,8 +114,8 @@ namespace PixivFSUWP
                 txtTitle.Text = illust.Title;
                 btnBookmark.IsChecked = illust.IsBookmarked;
                 btnFollow.IsChecked = illust.IsUserFollowed;
-                txtBtnBookmark.Text = illust.IsBookmarked ? "已收藏" : "未收藏";
-                txtBtnFollow.Text = illust.IsUserFollowed ? "已关注" : "未关注";
+                txtBtnBookmark.Text = illust.IsBookmarked ? GetResourceString("BookmarkedPlain") : GetResourceString("NotBookmarkedPlain");
+                txtBtnFollow.Text = illust.IsUserFollowed ? GetResourceString("NotFollowingPlain") : GetResourceString("FollowingPlain");
                 iconView.Visibility = Visibility.Visible;
                 iconStar.Visibility = Visibility.Visible;
                 stkAuthor.Visibility = Visibility.Visible;
@@ -122,10 +123,10 @@ namespace PixivFSUWP
                 txtBookmarkStatus.Text = illust.TotalBookmarks.ToString();
                 txtAuthor.Text = illust.Author;
                 txtAuthorAccount.Text = string.Format("@{0}", illust.AuthorAccount);
-                txtCaption.Text = (illust.Caption == "") ? "暂无简介" : Regex.Replace(illust.Caption.Replace("<br />", "\n"), "<[^>]+>", "");
-                txtCommentTitle.Text = "评论";
+                txtCaption.Text = (illust.Caption == "") ? GetResourceString("NoCaptionPlain") : Regex.Replace(illust.Caption.Replace("<br />", "\n"), "<[^>]+>", "");
+                txtCommentTitle.Text = GetResourceString("CommentsPlain");
                 listComments.ItemsSource = new Data.CommentsCollection(illustID.ToString());
-                txtLoadingStatus.Text = "正在创建时间线";
+                txtLoadingStatus.Text = GetResourceString("CreatingTimelinePlain");
                 AdaptiveCard card = new AdaptiveCard("1.1");
                 card.Body.Add(new AdaptiveTextBlock()
                 {
@@ -157,17 +158,17 @@ namespace PixivFSUWP
                     btnPlay.Visibility = Visibility.Visible;
                     btnSaveGif.IsEnabled = false;
                     btnSaveGif.Visibility = Visibility.Visible;
-                    txtLoadingStatus.Text = "正在加载预览";
+                    txtLoadingStatus.Text = GetResourceString("LoadingPreviewPlain");
                     ugoiraPlayer.Source = await Data.OverAll.LoadImageAsync(illust.OriginalUrls[0]);
-                    txtLoadingStatus.Text = "正在下载动态剪影";
+                    txtLoadingStatus.Text = GetResourceString("DownloadingUgoiraPlain");
                     if (_emergencyStop)
                     {
                         return;
                     }
                     ugoira = await Data.UgoiraHelper.GetUgoiraAsync(illust.IllustID.ToString());
-                    txtLoadingStatus.Text = "正在生成 Gif";
+                    txtLoadingStatus.Text = GetResourceString("GeneratingGifPlain");
                     await playUgoira();
-                    txtLoadingStatus.Text = "正在播放动态剪影";
+                    txtLoadingStatus.Text = GetResourceString("PlayingUgoiraPlain");
                     btnPlay.IsEnabled = true;
                     btnSaveGif.IsEnabled = true;
                 }
@@ -180,14 +181,14 @@ namespace PixivFSUWP
                         {
                             return;
                         }
-                        txtLoadingStatus.Text = string.Format("正在加载第 {0} 张，共 {1} 张", ++counter, illust.OriginalUrls.Count);
+                        txtLoadingStatus.Text = string.Format(GetResourceString("LoadingStatusPlain"), ++counter, illust.OriginalUrls.Count);
                         (ImageList.ItemsSource as ObservableCollection<ViewModels.ImageItemViewModel>)
                             .Add(new ViewModels.ImageItemViewModel()
                             {
                                 ImageSource = await Data.OverAll.LoadImageAsync(i, 1, 1)
                             });
                     }
-                    txtLoadingStatus.Text = string.Format("共 {0} 张作品，点击或触摸查看大图", illust.OriginalUrls.Count);
+                    txtLoadingStatus.Text = string.Format(GetResourceString("PageInfoPlain"), illust.OriginalUrls.Count);
                 }
             }
             finally
@@ -267,7 +268,7 @@ namespace PixivFSUWP
             {
                 btnSender.IsChecked = false;
                 //进行关注
-                txtBtnBookmark.Text = "请求中";
+                txtBtnBookmark.Text = GetResourceString("RequestingPlain");
                 bool res;
                 try
                 {
@@ -282,7 +283,7 @@ namespace PixivFSUWP
                 if (res)
                 {
                     btnSender.IsChecked = true;
-                    txtBtnBookmark.Text = "已收藏";
+                    txtBtnBookmark.Text = GetResourceString("BookmarkedPlain");
                     txtBookmarkStatus.Text = illust.IsBookmarked ? illust.TotalBookmarks.ToString() : (illust.TotalBookmarks + 1).ToString();
                 }
                 btnSender.IsEnabled = true;
@@ -291,7 +292,7 @@ namespace PixivFSUWP
             {
                 btnSender.IsChecked = true;
                 //取消关注
-                txtBtnBookmark.Text = "请求中";
+                txtBtnBookmark.Text = GetResourceString("RequestingPlain");
                 bool res;
                 try
                 {
@@ -306,7 +307,7 @@ namespace PixivFSUWP
                 if (res)
                 {
                     btnSender.IsChecked = false;
-                    txtBtnBookmark.Text = "未收藏";
+                    txtBtnBookmark.Text = GetResourceString("NotBookmarkedPlain");
                     txtBookmarkStatus.Text = illust.IsBookmarked ? (illust.TotalBookmarks - 1).ToString() : illust.TotalBookmarks.ToString();
                 }
                 btnSender.IsEnabled = true;
@@ -321,7 +322,7 @@ namespace PixivFSUWP
             {
                 btnSender.IsChecked = false;
                 //进行关注
-                txtBtnFollow.Text = "请求中";
+                txtBtnFollow.Text = GetResourceString("RequestingPlain");
                 bool res;
                 try
                 {
@@ -336,7 +337,7 @@ namespace PixivFSUWP
                 if (res)
                 {
                     btnSender.IsChecked = true;
-                    txtBtnFollow.Text = "已关注";
+                    txtBtnFollow.Text = GetResourceString("FollowingPlain");
                 }
                 btnSender.IsEnabled = true;
             }
@@ -344,7 +345,7 @@ namespace PixivFSUWP
             {
                 btnSender.IsChecked = true;
                 //取消关注
-                txtBtnFollow.Text = "请求中";
+                txtBtnFollow.Text = GetResourceString("RequestingPlain");
                 bool res;
                 try
                 {
@@ -359,7 +360,7 @@ namespace PixivFSUWP
                 if (res)
                 {
                     btnSender.IsChecked = false;
-                    txtBtnFollow.Text = "未关注";
+                    txtBtnFollow.Text = GetResourceString("NotFollowingPlain");
                 }
                 btnSender.IsEnabled = true;
             }
@@ -400,13 +401,13 @@ namespace PixivFSUWP
             if (_playing)
             {
                 (ugoiraPlayer.Source as BitmapImage).Stop();
-                txtPlay.Text = "播放";
+                txtPlay.Text = GetResourceString("PlayPlain");
                 iconPlay.Glyph = "";
             }
             else
             {
                 (ugoiraPlayer.Source as BitmapImage).Play();
-                txtPlay.Text = "停止";
+                txtPlay.Text = GetResourceString("StopPlain");
                 iconPlay.Glyph = "";
             }
             _playing = !_playing;
@@ -421,7 +422,7 @@ namespace PixivFSUWP
         {
             FileSavePicker picker = new FileSavePicker();
             picker.SuggestedStartLocation = PickerLocationId.PicturesLibrary;
-            picker.FileTypeChoices.Add("Gif文件", new List<string>() { ".gif" });
+            picker.FileTypeChoices.Add(GetResourceString("GifFilePlain"), new List<string>() { ".gif" });
             picker.SuggestedFileName = illust.Title;
             var file = await picker.PickSaveFileAsync();
             if (file != null)
@@ -434,17 +435,17 @@ namespace PixivFSUWP
                 var updateStatus = await CachedFileManager.CompleteUpdatesAsync(file);
                 if (updateStatus != FileUpdateStatus.Complete)
                 {
-                    var messageDialog = new MessageDialog("剪影保存失败");
-                    messageDialog.Commands.Add(new UICommand("重试", async (a) => { await saveImage(); }));
-                    messageDialog.Commands.Add(new UICommand("放弃"));
+                    var messageDialog = new MessageDialog(GetResourceString("SaveUgoiraFailedPlain"));
+                    messageDialog.Commands.Add(new UICommand(GetResourceString("RetryPlain"), async (a) => { await saveImage(); }));
+                    messageDialog.Commands.Add(new UICommand(GetResourceString("CancelPlain")));
                     messageDialog.DefaultCommandIndex = 0;
                     messageDialog.CancelCommandIndex = 1;
                     await messageDialog.ShowAsync();
                 }
                 else
                 {
-                    var messageDialog = new MessageDialog("剪影已保存");
-                    messageDialog.Commands.Add(new UICommand("好的"));
+                    var messageDialog = new MessageDialog(GetResourceString("SaveUgoiraSucceededPlain"));
+                    messageDialog.Commands.Add(new UICommand(GetResourceString("OKPlain")));
                     messageDialog.DefaultCommandIndex = 0;
                     await messageDialog.ShowAsync();
                 }
