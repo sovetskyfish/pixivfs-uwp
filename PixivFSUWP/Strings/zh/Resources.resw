@@ -429,6 +429,10 @@
     <value>图片保存失败</value>
     <comment>PlainText</comment>
   </data>
+  <data name="SaveImagePlain" xml:space="preserve">
+    <value>保存图片</value>
+    <comment>PlainText</comment>
+  </data>
   <data name="SaveImageSucceededPlain" xml:space="preserve">
     <value>图片已保存</value>
     <comment>PlainText</comment>

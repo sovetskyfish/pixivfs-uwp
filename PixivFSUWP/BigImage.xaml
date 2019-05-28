@@ -37,8 +37,8 @@
                     <InkToolbarStencilButton/>
                 </InkToolbar>
             </CommandBar.Content>
-            <AppBarButton x:Name="btnSaveImage" Icon="Save" Label="保存图片" Click="BtnSaveImage_Click"/>
-            <AppBarToggleButton x:Name="btnDraw" Icon="Edit" Label="临摹" Unchecked="BtnDraw_Unchecked" Checked="BtnDraw_Checked"/>
+            <AppBarButton x:Name="btnSaveImage" Icon="Save" x:Uid="SaveImage" Click="BtnSaveImage_Click"/>
+            <AppBarToggleButton x:Name="btnDraw" Icon="Edit" x:Uid="Draw" Unchecked="BtnDraw_Unchecked" Checked="BtnDraw_Checked"/>
         </CommandBar>
         <ScrollViewer ZoomMode="Enabled" x:Name="scrollRoot" 
                       MinZoomFactor="1" Grid.Row="2"

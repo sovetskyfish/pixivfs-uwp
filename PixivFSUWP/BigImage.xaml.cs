@@ -23,6 +23,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
+using static PixivFSUWP.Data.OverAll;
 
 // https://go.microsoft.com/fwlink/?LinkId=234238 上介绍了“空白页”项模板
 
@@ -108,7 +109,7 @@ namespace PixivFSUWP
             mainCanvas.Visibility = Visibility.Visible;
             inkToolbar.Visibility = Visibility.Visible;
             paper.Visibility = Visibility.Visible;
-            btnSaveImage.Label = "保存墨迹";
+            btnSaveImage.Label = GetResourceString("SaveInkPlain");
             lockView();
         }
 
@@ -118,7 +119,7 @@ namespace PixivFSUWP
             inkToolbar.Visibility = Visibility.Collapsed;
             paper.Visibility = Visibility.Collapsed;
             mainCanvas.InkPresenter.StrokeContainer.Clear();
-            btnSaveImage.Label = "保存图片";
+            btnSaveImage.Label = GetResourceString("SaveImagePlain");
             unlockView();
         }
 
@@ -160,7 +161,7 @@ namespace PixivFSUWP
         {
             FileSavePicker picker = new FileSavePicker();
             picker.SuggestedStartLocation = PickerLocationId.PicturesLibrary;
-            picker.FileTypeChoices.Add("图片文件", new List<string>() { ".png" });
+            picker.FileTypeChoices.Add(GetResourceString("ImageFilePlain"), new List<string>() { ".png" });
             picker.SuggestedFileName = parameter.Title;
             var file = await picker.PickSaveFileAsync();
             if (file != null)
@@ -180,16 +181,16 @@ namespace PixivFSUWP
                 var updateStatus = await CachedFileManager.CompleteUpdatesAsync(file);
                 if (updateStatus != FileUpdateStatus.Complete)
                 {
-                    var messageDialog = new MessageDialog("图片保存失败");
-                    messageDialog.Commands.Add(new UICommand("重试", async (a) => { await saveImage(); }));
-                    messageDialog.Commands.Add(new UICommand("放弃"));
+                    var messageDialog = new MessageDialog(GetResourceString("SaveImageFailedPlain"));
+                    messageDialog.Commands.Add(new UICommand(GetResourceString("RetryPlain"), async (a) => { await saveImage(); }));
+                    messageDialog.Commands.Add(new UICommand(GetResourceString("CancelPlain")));
                     messageDialog.DefaultCommandIndex = 0;
                     messageDialog.CancelCommandIndex = 1;
                     await messageDialog.ShowAsync();
                 }
                 else
                 {
-                    await ShowTip("图片已保存");
+                    await ShowTip(GetResourceString("SaveImageSucceededPlain"));
                 }
             }
         }
@@ -201,9 +202,9 @@ namespace PixivFSUWP
             {
                 FileSavePicker picker = new FileSavePicker();
                 picker.SuggestedStartLocation = PickerLocationId.PicturesLibrary;
-                picker.FileTypeChoices.Add("图片文件", new List<string>() { ".png" });
-                picker.FileTypeChoices.Add("墨迹原始信息", new List<string>() { ".gif" });
-                picker.SuggestedFileName = "我的临摹";
+                picker.FileTypeChoices.Add(GetResourceString("SaveImagePlain"), new List<string>() { ".png" });
+                picker.FileTypeChoices.Add(GetResourceString("RawInkPlain"), new List<string>() { ".gif" });
+                picker.SuggestedFileName = GetResourceString("MyInkPlain");
                 var file = await picker.PickSaveFileAsync();
                 if (file != null)
                 {
@@ -235,22 +236,22 @@ namespace PixivFSUWP
                     var updateStatus = await CachedFileManager.CompleteUpdatesAsync(file);
                     if (updateStatus != FileUpdateStatus.Complete)
                     {
-                        var messageDialog = new MessageDialog("墨迹保存失败");
-                        messageDialog.Commands.Add(new UICommand("重试", async (a) => { await saveStrokes(); }));
-                        messageDialog.Commands.Add(new UICommand("放弃"));
+                        var messageDialog = new MessageDialog(GetResourceString("SaveInkFailedPlain"));
+                        messageDialog.Commands.Add(new UICommand(GetResourceString("RetryPlain"), async (a) => { await saveStrokes(); }));
+                        messageDialog.Commands.Add(new UICommand(GetResourceString("CancelPlain")));
                         messageDialog.DefaultCommandIndex = 0;
                         messageDialog.CancelCommandIndex = 1;
                         await messageDialog.ShowAsync();
                     }
                     else
                     {
-                        await ShowTip("墨迹已保存");
+                        await ShowTip(GetResourceString("SaveInkSucceededPlain"));
                     }
                 }
             }
             else
             {
-                await ShowTip("没有墨迹可以保存");
+                await ShowTip(GetResourceString("NoInkPlain"));
             }
         }
     }
