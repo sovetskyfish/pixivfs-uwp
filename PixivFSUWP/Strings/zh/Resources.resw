@@ -125,6 +125,10 @@
     <value>生日</value>
     <comment>TextBlock</comment>
   </data>
+  <data name="BookmarkDeleteFailedPlain" xml:space="preserve">
+    <value>作品「{0}」删除收藏失败</value>
+    <comment>PlainText</comment>
+  </data>
   <data name="Bookmarked.Content" xml:space="preserve">
     <value>收藏</value>
     <comment>NavigationViewItem</comment>
@@ -172,6 +176,14 @@
   <data name="DateDesc.Content" xml:space="preserve">
     <value>按日期降序</value>
     <comment>ComboBoxItem</comment>
+  </data>
+  <data name="DeleteBookmarkPlain" xml:space="preserve">
+    <value>删除收藏</value>
+    <comment>PlainText</comment>
+  </data>
+  <data name="DeletedBookmarkPlain" xml:space="preserve">
+    <value>作品「{0}」已删除收藏</value>
+    <comment>PlainText</comment>
   </data>
   <data name="Desk.Text" xml:space="preserve">
     <value>桌子</value>
@@ -313,9 +325,17 @@
     <value>未收藏</value>
     <comment>TextBlock</comment>
   </data>
+  <data name="NotBookmarkedPlain" xml:space="preserve">
+    <value>未收藏</value>
+    <comment>PlainText</comment>
+  </data>
   <data name="NotFollowing.Text" xml:space="preserve">
     <value>未关注</value>
     <comment>TextBlock</comment>
+  </data>
+  <data name="NotFollowingPlain" xml:space="preserve">
+    <value>未关注</value>
+    <comment>PlainText</comment>
   </data>
   <data name="OKPlain" xml:space="preserve">
     <value>好的</value>
@@ -364,6 +384,10 @@
   <data name="QuickBookmark.Text" xml:space="preserve">
     <value>快速收藏</value>
     <comment>MenuFlyoutItem</comment>
+  </data>
+  <data name="QuickBookmarkPlain" xml:space="preserve">
+    <value>快速收藏</value>
+    <comment>PlainText</comment>
   </data>
   <data name="QuickDownload.Text" xml:space="preserve">
     <value>快速保存</value>
@@ -461,6 +485,10 @@
     <value>停止</value>
     <comment>TextBlock</comment>
   </data>
+  <data name="StopPlain" xml:space="preserve">
+    <value>停止</value>
+    <comment>PlainText</comment>
+  </data>
   <data name="Tablet.Text" xml:space="preserve">
     <value>数位板</value>
     <comment>TextBlock</comment>
@@ -497,8 +525,24 @@
     <value>作品</value>
     <comment>TextBlock</comment>
   </data>
+  <data name="WorkBookmarkedPlain" xml:space="preserve">
+    <value>作品「{0}」已收藏</value>
+    <comment>PlainText</comment>
+  </data>
+  <data name="WorkBookmarkFailedPlain" xml:space="preserve">
+    <value>作品「{0}」收藏失败</value>
+    <comment>PlainText</comment>
+  </data>
   <data name="WorkPlain" xml:space="preserve">
     <value>Pixiv作品</value>
+    <comment>PlainText</comment>
+  </data>
+  <data name="WorkSavedPlain" xml:space="preserve">
+    <value>作品「{0}」已保存</value>
+    <comment>PlainText</comment>
+  </data>
+  <data name="WorkSaveFailedPlain" xml:space="preserve">
+    <value>作品「{0}」保存失败</value>
     <comment>PlainText</comment>
   </data>
 </root>

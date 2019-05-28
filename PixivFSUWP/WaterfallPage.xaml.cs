@@ -19,6 +19,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using PixivFSUWP.Interfaces;
+using static PixivFSUWP.Data.OverAll;
 
 // https://go.microsoft.com/fwlink/?LinkId=234238 上介绍了“空白页”项模板
 
@@ -122,7 +123,9 @@ namespace PixivFSUWP
         {
             ListView listView = (ListView)sender;
             tapped = ((FrameworkElement)e.OriginalSource).DataContext as ViewModels.WaterfallItemViewModel;
-            quickStar.Text = (tapped.IsBookmarked) ? "删除收藏" : "快速收藏";
+            quickStar.Text = (tapped.IsBookmarked) ?
+                GetResourceString("DeleteBookmarkPlain") :
+                GetResourceString("QuickBookmarkPlain");
             quickStar.IsEnabled = tapped.Title != null;
             quickActions.ShowAt(listView, e.GetPosition(listView));
         }
@@ -131,7 +134,9 @@ namespace PixivFSUWP
         {
             ListView listView = (ListView)sender;
             tapped = ((FrameworkElement)e.OriginalSource).DataContext as ViewModels.WaterfallItemViewModel;
-            quickStar.Text = (tapped.IsBookmarked) ? "删除收藏" : "快速收藏";
+            quickStar.Text = (tapped.IsBookmarked) ?
+                GetResourceString("DeleteBookmarkPlain") :
+                GetResourceString("QuickBookmarkPlain");
             quickStar.IsEnabled = tapped.Title != null;
             quickActions.ShowAt(listView, e.GetPosition(listView));
         }
@@ -166,12 +171,12 @@ namespace PixivFSUWP
                         i.NotifyChange("StarsString");
                         i.NotifyChange("IsBookmarked");
                         await ((Frame.Parent as Grid)?.Parent as MainPage)?.
-                            ShowTip(string.Format("作品「{0}」已删除收藏", title));
+                            ShowTip(string.Format(GetResourceString("DeletedBookmarkPlain"), title));
                     }
                     else
                     {
                         await ((Frame.Parent as Grid)?.Parent as MainPage)?.
-                            ShowTip(string.Format("作品「{0}」删除收藏失败", title));
+                            ShowTip(string.Format(GetResourceString("BookmarkDeleteFailedPlain"), title));
                     }
                 }
                 else
@@ -195,12 +200,12 @@ namespace PixivFSUWP
                         i.NotifyChange("StarsString");
                         i.NotifyChange("IsBookmarked");
                         await ((Frame.Parent as Grid)?.Parent as MainPage)?.
-                            ShowTip(string.Format("作品「{0}」已收藏", title));
+                            ShowTip(string.Format(GetResourceString("WorkBookmarkedPlain"), title));
                     }
                     else
                     {
                         await ((Frame.Parent as Grid)?.Parent as MainPage)?.
-                            ShowTip(string.Format("作品「{0}」收藏失败", title));
+                            ShowTip(string.Format(GetResourceString("WorkBookmarkFailedPlain"), title));
                     }
                 }
             }
@@ -217,7 +222,7 @@ namespace PixivFSUWP
             var i = tapped;
             FileSavePicker picker = new FileSavePicker();
             picker.SuggestedStartLocation = PickerLocationId.PicturesLibrary;
-            picker.FileTypeChoices.Add("图片文件", new List<string>() { ".png" });
+            picker.FileTypeChoices.Add(GetResourceString("ImageFilePlain"), new List<string>() { ".png" });
             picker.SuggestedFileName = i.Title;
             var file = await picker.PickSaveFileAsync();
             if (file != null)
@@ -236,10 +241,10 @@ namespace PixivFSUWP
                 var updateStatus = await CachedFileManager.CompleteUpdatesAsync(file);
                 if (updateStatus == FileUpdateStatus.Complete)
                     await ((Frame.Parent as Grid)?.Parent as MainPage)?.
-                            ShowTip(string.Format("作品「{0}」已保存", i.Title));
+                            ShowTip(string.Format(GetResourceString("WorkSavedPlain"), i.Title));
                 else
                     await ((Frame.Parent as Grid)?.Parent as MainPage)?.
-                            ShowTip(string.Format("作品「{0}」保存失败", i.Title));
+                            ShowTip(string.Format(GetResourceString("WorkSaveFailedPlain"), i.Title));
             }
         }
     }

@@ -162,5 +162,11 @@ namespace PixivFSUWP.Data
                 return "";
             return source.GetString();
         }
+
+        public static string GetResourceString(string ID)
+        {
+            var resourceLoader = Windows.ApplicationModel.Resources.ResourceLoader.GetForCurrentView();
+            return resourceLoader.GetString(ID);
+        }
     }
 }
