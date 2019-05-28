@@ -86,17 +86,17 @@
                 <RowDefinition/>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
-            <TextBlock HorizontalAlignment="Center" Margin="0,150,0,0">让创作变得更有乐趣</TextBlock>
+            <TextBlock HorizontalAlignment="Center" Margin="0,150,0,0" x:Uid="LoginBanner"/>
             <Image Source="Assets/PixivText.png"/>
             <StackPanel x:Name="stkTxts" Grid.Row="1" Margin="20" HorizontalAlignment="Stretch" VerticalAlignment="Center">
-                <TextBlock Margin="5">用户名</TextBlock>
+                <TextBlock Margin="5" x:Uid="Username"/>
                 <TextBox x:Name="txtUserName" Margin="5"/>
-                <TextBlock Margin="5">密码</TextBlock>
+                <TextBlock Margin="5" x:Uid="Password"/>
                 <PasswordBox x:Name="txtPassword" PasswordRevealMode="Peek" Margin="5"/>
             </StackPanel>
             <StackPanel x:Name="stkBtns" Margin="20" HorizontalAlignment="Stretch" VerticalAlignment="Center" Grid.Row="2">
-                <Button x:Name="btnLogin" Click="BtnLogin_Click" Style="{StaticResource LoginButtonStyle}" Background="#25c6ff" Foreground="White" Margin="5,3" HorizontalAlignment="Stretch">登录</Button>
-                <Button x:Name="btnReg" Click="BtnReg_Click" Margin="5,3" HorizontalAlignment="Stretch">注册</Button>
+                <Button x:Name="btnLogin" Click="BtnLogin_Click" Style="{StaticResource LoginButtonStyle}" Background="#25c6ff" Foreground="White" Margin="5,3" HorizontalAlignment="Stretch" x:Uid="Login"/>
+                <Button x:Name="btnReg" Click="BtnReg_Click" Margin="5,3" HorizontalAlignment="Stretch" x:Uid="Register"/>
             </StackPanel>
             <Grid x:Name="grdLoading" Margin="20" Visibility="Collapsed" Grid.Row="1" Grid.RowSpan="2">
                 <Grid.RowDefinitions>
@@ -104,9 +104,9 @@
                     <RowDefinition Height="Auto"/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
-                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center">正在登录</TextBlock>
+                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" x:Uid="LoggingIn"/>
                 <ProgressRing x:Name="ringProgress" IsActive="False" Margin="20" Height="100" Width="100" Grid.Row="1"/>
-                <Button x:Name="btnTrouble" Click="BtnTrouble_Click" Grid.Row="2" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="5">登录失败，点此查看错误排查步骤并重试</Button>
+                <Button x:Name="btnTrouble" Click="BtnTrouble_Click" Grid.Row="2" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="5" x:Uid="LoginFailed"/>
             </Grid>
         </Grid>
         <Grid HorizontalAlignment="Right" VerticalAlignment="Bottom">
