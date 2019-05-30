@@ -65,7 +65,7 @@ namespace PixivFSUWP
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            ((Frame.Parent as Grid)?.Parent as MainPage)?.SelectNavPlaceholder("用户");
+            ((Frame.Parent as Grid)?.Parent as MainPage)?.SelectNavPlaceholder(GetResourceString("UserDetailPagePlain"));
             userid = (int)e.Parameter;
             itemsSource = new UserIllustsCollection(userid.ToString());
             itemsSource.CollectionChanged += ItemsSource_CollectionChanged;

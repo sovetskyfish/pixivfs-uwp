@@ -17,6 +17,7 @@ using Windows.UI.Xaml.Navigation;
 using PixivCS;
 using Windows.UI.Xaml.Media.Imaging;
 using PixivFSUWP.Interfaces;
+using static PixivFSUWP.Data.OverAll;
 
 // https://go.microsoft.com/fwlink/?LinkId=234238 上介绍了“空白页”项模板
 
@@ -85,7 +86,7 @@ namespace PixivFSUWP
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
-            ((Frame.Parent as Grid)?.Parent as MainPage)?.SelectNavPlaceholder("搜索");
+            ((Frame.Parent as Grid)?.Parent as MainPage)?.SelectNavPlaceholder(GetResourceString("SearchPagePlain"));
         }
 
         public async Task ShowSearch()

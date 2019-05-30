@@ -121,6 +121,10 @@
     <value>所有时间</value>
     <comment>ComboBoxItem</comment>
   </data>
+  <data name="ArtistPlain" xml:space="preserve">
+    <value>画师</value>
+    <comment>PlainText</comment>
+  </data>
   <data name="Birthday.Text" xml:space="preserve">
     <value>生日</value>
     <comment>TextBlock</comment>
@@ -208,6 +212,10 @@
   <data name="Email.Text" xml:space="preserve">
     <value>邮箱</value>
     <comment>TextBlock</comment>
+  </data>
+  <data name="FemalePlain" xml:space="preserve">
+    <value>女</value>
+    <comment>PlainText</comment>
   </data>
   <data name="Following.Content" xml:space="preserve">
     <value>关注</value>
@@ -297,6 +305,10 @@
     <value>*这将在您的所有Windows设备上退出登录</value>
     <comment>TextBlock</comment>
   </data>
+  <data name="MalePlain" xml:space="preserve">
+    <value>男</value>
+    <comment>PlainText</comment>
+  </data>
   <data name="Monitor.Text" xml:space="preserve">
     <value>显示器</value>
     <comment>TextBlock</comment>
@@ -369,6 +381,10 @@
     <value>已固定</value>
     <comment>PlainText</comment>
   </data>
+  <data name="PixivUserPlain" xml:space="preserve">
+    <value>Pixiv用户</value>
+    <comment>PlainText</comment>
+  </data>
   <data name="PlayingUgoiraPlain" xml:space="preserve">
     <value>正在播放动态剪影</value>
     <comment>PlainText</comment>
@@ -380,6 +396,14 @@
   <data name="Printer.Text" xml:space="preserve">
     <value>打印机</value>
     <comment>TextBlock</comment>
+  </data>
+  <data name="PrivateOrNonePlain" xml:space="preserve">
+    <value>无/保密</value>
+    <comment>PlainText</comment>
+  </data>
+  <data name="PrivatePlain" xml:space="preserve">
+    <value>保密</value>
+    <comment>PlainText</comment>
   </data>
   <data name="QuickBookmark.Text" xml:space="preserve">
     <value>快速收藏</value>
@@ -469,6 +493,14 @@
     <value>搜索选项</value>
     <comment>TextBlock</comment>
   </data>
+  <data name="SearchPagePlain" xml:space="preserve">
+    <value>搜索</value>
+    <comment>PlainText</comment>
+  </data>
+  <data name="SettingsPagePlain" xml:space="preserve">
+    <value>设置</value>
+    <comment>PlainText</comment>
+  </data>
   <data name="Sex.Text" xml:space="preserve">
     <value>性别</value>
     <comment>TextBlock</comment>
@@ -509,9 +541,17 @@
     <value>趋势标签</value>
     <comment>TextBlock</comment>
   </data>
+  <data name="UnknownPlain" xml:space="preserve">
+    <value>未知</value>
+    <comment>PlainText</comment>
+  </data>
   <data name="Unpinned.Text" xml:space="preserve">
     <value>未固定</value>
     <comment>TextBlock</comment>
+  </data>
+  <data name="UserDetailPagePlain" xml:space="preserve">
+    <value>用户</value>
+    <comment>PlainText</comment>
   </data>
   <data name="UserID.Text" xml:space="preserve">
     <value>用户标识</value>
@@ -520,6 +560,10 @@
   <data name="Username.Text" xml:space="preserve">
     <value>用户名</value>
     <comment>TextBlock</comment>
+  </data>
+  <data name="UserShareTipPlain" xml:space="preserve">
+    <value>该用户页面的链接将被分享</value>
+    <comment>PlainText</comment>
   </data>
   <data name="VersionInfo.Text" xml:space="preserve">
     <value>软件包版本信息</value>
