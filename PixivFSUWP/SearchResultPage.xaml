@@ -52,12 +52,12 @@
             <ListView.Resources>
                 <MenuFlyout x:Name="quickActions">
                     <MenuFlyout.Items>
-                        <MenuFlyoutItem x:Name="quickStar" Text="快速收藏" Click="QuickStar_Click">
+                        <MenuFlyoutItem x:Name="quickStar" x:Uid="QuickBookmark" Click="QuickStar_Click">
                             <MenuFlyoutItem.Icon>
                                 <FontIcon Glyph="&#xE734;"/>
                             </MenuFlyoutItem.Icon>
                         </MenuFlyoutItem>
-                        <MenuFlyoutItem x:Name="quickSave" Text="快速保存" Click="QuickSave_Click">
+                        <MenuFlyoutItem x:Name="quickSave" x:Uid="QuickDownload" Click="QuickSave_Click">
                             <MenuFlyoutItem.Icon>
                                 <FontIcon Glyph="&#xE74E;"/>
                             </MenuFlyoutItem.Icon>
