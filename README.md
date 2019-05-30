@@ -13,3 +13,6 @@ Because .NET Native [hasn't fully supported F# yet](https://github.com/dotnet/co
 多语言支持还未起步，此应用目前仅以简体中文呈现。
 
 Multi-language support is yet to be developed, thus this application only supports Simplified Chinese.
+
+Buy me a coffee? 
+[![ko-fi](https://www.ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/P5P8WD5C)
