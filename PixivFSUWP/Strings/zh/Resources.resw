@@ -210,7 +210,7 @@
     <comment>AppBarButton</comment>
   </data>
   <data name="Email.Text" xml:space="preserve">
-    <value>邮箱</value>
+    <value>邮箱：</value>
     <comment>TextBlock</comment>
   </data>
   <data name="FemalePlain" xml:space="preserve">
@@ -554,7 +554,7 @@
     <comment>PlainText</comment>
   </data>
   <data name="UserID.Text" xml:space="preserve">
-    <value>用户标识</value>
+    <value>用户标识：</value>
     <comment>TextBlock</comment>
   </data>
   <data name="Username.Text" xml:space="preserve">
