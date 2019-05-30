@@ -191,6 +191,7 @@
     <None Include="Assets\AppLogo.kra" />
     <None Include="PixivFSUWP_StoreKey.pfx" />
     <None Include="PixivFSUWP_TemporaryKey.pfx" />
+    <PRIResource Include="Strings\en\Resources.resw" />
     <PRIResource Include="Strings\zh\Resources.resw" />
   </ItemGroup>
   <ItemGroup>
@@ -269,9 +270,7 @@
       <Version>1.23.0</Version>
     </PackageReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Strings\en\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>

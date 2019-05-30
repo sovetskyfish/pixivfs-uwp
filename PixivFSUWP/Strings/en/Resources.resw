@@ -1,0 +1,596 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AllTime.Content" xml:space="preserve">
+    <value>All Time</value>
+    <comment>ComboBoxItem</comment>
+  </data>
+  <data name="ArtistPlain" xml:space="preserve">
+    <value>Artist</value>
+    <comment>PlainText</comment>
+  </data>
+  <data name="Birthday.Text" xml:space="preserve">
+    <value>Birthday</value>
+    <comment>TextBlock</comment>
+  </data>
+  <data name="BookmarkDeleteFailedPlain" xml:space="preserve">
+    <value>Failed to unbookmark「{0}」</value>
+    <comment>PlainText</comment>
+  </data>
+  <data name="Bookmarked.Content" xml:space="preserve">
+    <value>Bookmarked</value>
+    <comment>NavigationViewItem</comment>
+  </data>
+  <data name="BookmarkedPlain" xml:space="preserve">
+    <value>Marked</value>
+    <comment>PlainText</comment>
+  </data>
+  <data name="btnAppLink.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Copy app URL</value>
+    <comment>ToolTip</comment>
+  </data>
+  <data name="btnLink.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Copy web URL</value>
+    <comment>ToolTip</comment>
+  </data>
+  <data name="btnShare.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Windows Share</value>
+    <comment>ToolTip</comment>
+  </data>
+  <data name="CancelPlain" xml:space="preserve">
+    <value>Cancel</value>
+    <comment>PlainText</comment>
+  </data>
+  <data name="Chair.Text" xml:space="preserve">
+    <value>Chair</value>
+    <comment>TextBlock</comment>
+  </data>
+  <data name="CommentsPlain" xml:space="preserve">
+    <value>Comments</value>
+    <comment>PlainText</comment>
+  </data>
+  <data name="CreatingTimelinePlain" xml:space="preserve">
+    <value>Generating Windows® Timeline™</value>
+    <comment>PlainText</comment>
+  </data>
+  <data name="CurrentUser.Text" xml:space="preserve">
+    <value>Current User</value>
+    <comment>TextBlock</comment>
+  </data>
+  <data name="DateAsc.Content" xml:space="preserve">
+    <value>Date ascending</value>
+    <comment>ComboBoxItem</comment>
+  </data>
+  <data name="DateDesc.Content" xml:space="preserve">
+    <value>Date descending</value>
+    <comment>ComboBoxItem</comment>
+  </data>
+  <data name="DeleteBookmarkPlain" xml:space="preserve">
+    <value>Unbookmark</value>
+    <comment>PlainText</comment>
+  </data>
+  <data name="DeletedBookmarkPlain" xml:space="preserve">
+    <value>「{0}」unbookmarked</value>
+    <comment>PlainText</comment>
+  </data>
+  <data name="Desk.Text" xml:space="preserve">
+    <value>Desk</value>
+    <comment>TextBlock</comment>
+  </data>
+  <data name="Desktop.Text" xml:space="preserve">
+    <value>Desktop</value>
+    <comment>TextBlock</comment>
+  </data>
+  <data name="DetailPlain" xml:space="preserve">
+    <value>Detail</value>
+    <comment>PlainText</comment>
+  </data>
+  <data name="DownloadingUgoiraPlain" xml:space="preserve">
+    <value>Downloading ugoira</value>
+    <comment>PlainText</comment>
+  </data>
+  <data name="Draw.Label" xml:space="preserve">
+    <value>Draw</value>
+    <comment>AppBarButton</comment>
+  </data>
+  <data name="Email.Text" xml:space="preserve">
+    <value>Email：</value>
+    <comment>TextBlock</comment>
+  </data>
+  <data name="FemalePlain" xml:space="preserve">
+    <value>Female</value>
+    <comment>PlainText</comment>
+  </data>
+  <data name="Following.Content" xml:space="preserve">
+    <value>Following</value>
+    <comment>NavigationViewItem</comment>
+  </data>
+  <data name="FollowingPlain" xml:space="preserve">
+    <value>Followed</value>
+    <comment>PlainText</comment>
+  </data>
+  <data name="FullyMatchTag.Content" xml:space="preserve">
+    <value>Fully match tag</value>
+    <comment>ComboBoxItem</comment>
+  </data>
+  <data name="GeneratingGifPlain" xml:space="preserve">
+    <value>Generating Gif</value>
+    <comment>PlainText</comment>
+  </data>
+  <data name="GifFilePlain" xml:space="preserve">
+    <value>Gif file</value>
+    <comment>PlainText</comment>
+  </data>
+  <data name="ImageFilePlain" xml:space="preserve">
+    <value>Image file</value>
+    <comment>PlainText</comment>
+  </data>
+  <data name="Job.Text" xml:space="preserve">
+    <value>Job</value>
+    <comment>TextBlock</comment>
+  </data>
+  <data name="Keyword.Text" xml:space="preserve">
+    <value>Keyword</value>
+    <comment>TextBlock</comment>
+  </data>
+  <data name="LastDay.Content" xml:space="preserve">
+    <value>Last day</value>
+    <comment>ComboBoxItem</comment>
+  </data>
+  <data name="LastMonth.Content" xml:space="preserve">
+    <value>Last month</value>
+    <comment>ComboBoxItem</comment>
+  </data>
+  <data name="LastWeek.Content" xml:space="preserve">
+    <value>Last week</value>
+    <comment>ComboBoxItem</comment>
+  </data>
+  <data name="LinkPlain" xml:space="preserve">
+    <value>Link</value>
+    <comment>PlainText</comment>
+  </data>
+  <data name="LivingPlace.Text" xml:space="preserve">
+    <value>Living place</value>
+    <comment>TextBlock</comment>
+  </data>
+  <data name="LoadingPlain" xml:space="preserve">
+    <value>Loading</value>
+    <comment>PlainText</comment>
+  </data>
+  <data name="LoadingPreviewPlain" xml:space="preserve">
+    <value>Loading preview</value>
+    <comment>PlainText</comment>
+  </data>
+  <data name="LoadingStatusPlain" xml:space="preserve">
+    <value>Loading {0}/{1}</value>
+    <comment>PlainText</comment>
+  </data>
+  <data name="LoggingIn.Text" xml:space="preserve">
+    <value>Logging in</value>
+    <comment>TextBlock</comment>
+  </data>
+  <data name="Login.Content" xml:space="preserve">
+    <value>Login</value>
+    <comment>Button</comment>
+  </data>
+  <data name="LoginBanner.Text" xml:space="preserve">
+    <value>让创作变得更有乐趣</value>
+    <comment>TextBlock</comment>
+  </data>
+  <data name="LoginFailed.Content" xml:space="preserve">
+    <value>Login failed. Troubleshoot and try again.</value>
+    <comment>Button</comment>
+  </data>
+  <data name="Logout.Content" xml:space="preserve">
+    <value>Logout</value>
+    <comment>Button</comment>
+  </data>
+  <data name="LogoutWarning.Text" xml:space="preserve">
+    <value>*This will log you out on all your Windows devices</value>
+    <comment>TextBlock</comment>
+  </data>
+  <data name="MalePlain" xml:space="preserve">
+    <value>Male</value>
+    <comment>PlainText</comment>
+  </data>
+  <data name="Monitor.Text" xml:space="preserve">
+    <value>Monitor</value>
+    <comment>TextBlock</comment>
+  </data>
+  <data name="Mouse.Text" xml:space="preserve">
+    <value>Mouse</value>
+    <comment>TextBlock</comment>
+  </data>
+  <data name="Music.Text" xml:space="preserve">
+    <value>Music</value>
+    <comment>TextBlock</comment>
+  </data>
+  <data name="MyInkPlain" xml:space="preserve">
+    <value>Draft</value>
+    <comment>PlainText</comment>
+  </data>
+  <data name="NoCaptionPlain" xml:space="preserve">
+    <value>No caption</value>
+    <comment>PlainText</comment>
+  </data>
+  <data name="NoInkPlain" xml:space="preserve">
+    <value>No ink strokes to save</value>
+    <comment>PlainText</comment>
+  </data>
+  <data name="NotBookmarked.Text" xml:space="preserve">
+    <value>Unmarked</value>
+    <comment>TextBlock</comment>
+  </data>
+  <data name="NotBookmarkedPlain" xml:space="preserve">
+    <value>Unmarked</value>
+    <comment>PlainText</comment>
+  </data>
+  <data name="NotFollowing.Text" xml:space="preserve">
+    <value>Unfollowed</value>
+    <comment>TextBlock</comment>
+  </data>
+  <data name="NotFollowingPlain" xml:space="preserve">
+    <value>Unfollowed</value>
+    <comment>PlainText</comment>
+  </data>
+  <data name="OKPlain" xml:space="preserve">
+    <value>OK</value>
+    <comment>PlainText</comment>
+  </data>
+  <data name="PageInfoPlain" xml:space="preserve">
+    <value>Num of pages: {0}. Click or tap to view in big image mode.</value>
+    <comment>PlainText</comment>
+  </data>
+  <data name="PartiallyMatchTag.Content" xml:space="preserve">
+    <value>Partially match tag</value>
+    <comment>ComboBoxItem</comment>
+  </data>
+  <data name="PartiallyMatchTitleAndCap.Content" xml:space="preserve">
+    <value>Partially match title and caption</value>
+    <comment>ComboBoxItem</comment>
+  </data>
+  <data name="Password.Text" xml:space="preserve">
+    <value>Password</value>
+    <comment>TextBlock</comment>
+  </data>
+  <data name="PC.Text" xml:space="preserve">
+    <value>PC</value>
+    <comment>TextBlock</comment>
+  </data>
+  <data name="PersonalWebsite.Text" xml:space="preserve">
+    <value>Website</value>
+    <comment>TextBlock</comment>
+  </data>
+  <data name="PinnedPlain" xml:space="preserve">
+    <value>Pinned</value>
+    <comment>PlainText</comment>
+  </data>
+  <data name="PixivUserPlain" xml:space="preserve">
+    <value>Pixiv user</value>
+    <comment>PlainText</comment>
+  </data>
+  <data name="PlayingUgoiraPlain" xml:space="preserve">
+    <value>Playing ugoira</value>
+    <comment>PlainText</comment>
+  </data>
+  <data name="PlayPlain" xml:space="preserve">
+    <value>Play</value>
+    <comment>PlainText</comment>
+  </data>
+  <data name="Printer.Text" xml:space="preserve">
+    <value>Printer</value>
+    <comment>TextBlock</comment>
+  </data>
+  <data name="PrivateOrNonePlain" xml:space="preserve">
+    <value>None/Private</value>
+    <comment>PlainText</comment>
+  </data>
+  <data name="PrivatePlain" xml:space="preserve">
+    <value>Private</value>
+    <comment>PlainText</comment>
+  </data>
+  <data name="QuickBookmark.Text" xml:space="preserve">
+    <value>Bookmark</value>
+    <comment>MenuFlyoutItem</comment>
+  </data>
+  <data name="QuickBookmarkPlain" xml:space="preserve">
+    <value>Bookmark</value>
+    <comment>PlainText</comment>
+  </data>
+  <data name="QuickDownload.Text" xml:space="preserve">
+    <value>Save</value>
+    <comment>MenuFlyoutItem</comment>
+  </data>
+  <data name="Ranking.Content" xml:space="preserve">
+    <value>Rankings</value>
+    <comment>NavigationViewItem</comment>
+  </data>
+  <data name="RawInkPlain" xml:space="preserve">
+    <value>Raw ink</value>
+    <comment>PlainText</comment>
+  </data>
+  <data name="Recommended.Content" xml:space="preserve">
+    <value>Recommended</value>
+    <comment>NavigationViewItem</comment>
+  </data>
+  <data name="Register.Content" xml:space="preserve">
+    <value>Register</value>
+    <comment>Button</comment>
+  </data>
+  <data name="RequestingPlain" xml:space="preserve">
+    <value>Requesting</value>
+    <comment>PlainText</comment>
+  </data>
+  <data name="RetryPlain" xml:space="preserve">
+    <value>Retry</value>
+    <comment>PlainText</comment>
+  </data>
+  <data name="Save.Text" xml:space="preserve">
+    <value>Save</value>
+    <comment>TextBlock</comment>
+  </data>
+  <data name="SaveImage.Label" xml:space="preserve">
+    <value>Save Image</value>
+    <comment>AppBarButton</comment>
+  </data>
+  <data name="SaveImageFailedPlain" xml:space="preserve">
+    <value>Failed to save image</value>
+    <comment>PlainText</comment>
+  </data>
+  <data name="SaveImagePlain" xml:space="preserve">
+    <value>Save Image</value>
+    <comment>PlainText</comment>
+  </data>
+  <data name="SaveImageSucceededPlain" xml:space="preserve">
+    <value>Image saved</value>
+    <comment>PlainText</comment>
+  </data>
+  <data name="SaveInkFailedPlain" xml:space="preserve">
+    <value>Failed to save ink strokes</value>
+    <comment>PlainText</comment>
+  </data>
+  <data name="SaveInkPlain" xml:space="preserve">
+    <value>Save ink strokes</value>
+    <comment>PlainText</comment>
+  </data>
+  <data name="SaveInkSucceededPlain" xml:space="preserve">
+    <value>Ink strokes saved</value>
+    <comment>PlainText</comment>
+  </data>
+  <data name="SaveUgoiraFailedPlain" xml:space="preserve">
+    <value>Failed to save ugoira</value>
+    <comment>PlainText</comment>
+  </data>
+  <data name="SaveUgoiraSucceededPlain" xml:space="preserve">
+    <value>Ugoira saved</value>
+    <comment>PlainText</comment>
+  </data>
+  <data name="Scanner.Text" xml:space="preserve">
+    <value>Scanner</value>
+    <comment>TextBlock</comment>
+  </data>
+  <data name="Search.PlaceholderText" xml:space="preserve">
+    <value>Search…</value>
+    <comment>AutoSuggestBox</comment>
+  </data>
+  <data name="SearchOptions.Text" xml:space="preserve">
+    <value>Search options</value>
+    <comment>TextBlock</comment>
+  </data>
+  <data name="SearchPagePlain" xml:space="preserve">
+    <value>Search</value>
+    <comment>PlainText</comment>
+  </data>
+  <data name="SettingsPagePlain" xml:space="preserve">
+    <value>Settings</value>
+    <comment>PlainText</comment>
+  </data>
+  <data name="Sex.Text" xml:space="preserve">
+    <value>Sex</value>
+    <comment>TextBlock</comment>
+  </data>
+  <data name="Share.Text" xml:space="preserve">
+    <value>Share</value>
+    <comment>TextBlock</comment>
+  </data>
+  <data name="SharePlain" xml:space="preserve">
+    <value>Share</value>
+    <comment>PlainText</comment>
+  </data>
+  <data name="SharingPlain" xml:space="preserve">
+    <value>Sharing illust</value>
+    <comment>PlainText</comment>
+  </data>
+  <data name="Stop.Text" xml:space="preserve">
+    <value>Stop</value>
+    <comment>TextBlock</comment>
+  </data>
+  <data name="StopPlain" xml:space="preserve">
+    <value>Stop</value>
+    <comment>PlainText</comment>
+  </data>
+  <data name="Tablet.Text" xml:space="preserve">
+    <value>Tablet</value>
+    <comment>TextBlock</comment>
+  </data>
+  <data name="TagWarning.Text" xml:space="preserve">
+    <value>*Choose a tag will change your search options</value>
+    <comment>TextBlock</comment>
+  </data>
+  <data name="Tool.Text" xml:space="preserve">
+    <value>Tools</value>
+    <comment>TextBlock</comment>
+  </data>
+  <data name="TrendingTags.Text" xml:space="preserve">
+    <value>Trending tags</value>
+    <comment>TextBlock</comment>
+  </data>
+  <data name="UnknownPlain" xml:space="preserve">
+    <value>Unknown</value>
+    <comment>PlainText</comment>
+  </data>
+  <data name="Unpinned.Text" xml:space="preserve">
+    <value>Unpinned</value>
+    <comment>TextBlock</comment>
+  </data>
+  <data name="UserDetailPagePlain" xml:space="preserve">
+    <value>User</value>
+    <comment>PlainText</comment>
+  </data>
+  <data name="UserID.Text" xml:space="preserve">
+    <value>User ID：</value>
+    <comment>TextBlock</comment>
+  </data>
+  <data name="Username.Text" xml:space="preserve">
+    <value>Username</value>
+    <comment>TextBlock</comment>
+  </data>
+  <data name="UserShareTipPlain" xml:space="preserve">
+    <value>Sharing artist</value>
+    <comment>PlainText</comment>
+  </data>
+  <data name="VersionInfo.Text" xml:space="preserve">
+    <value>Version information</value>
+    <comment>TextBlock</comment>
+  </data>
+  <data name="Work.Text" xml:space="preserve">
+    <value>Workd</value>
+    <comment>TextBlock</comment>
+  </data>
+  <data name="WorkBookmarkedPlain" xml:space="preserve">
+    <value>「{0}」bookmarked</value>
+    <comment>PlainText</comment>
+  </data>
+  <data name="WorkBookmarkFailedPlain" xml:space="preserve">
+    <value>Failed to bookmark「{0}」</value>
+    <comment>PlainText</comment>
+  </data>
+  <data name="WorkPlain" xml:space="preserve">
+    <value>Pixiv art</value>
+    <comment>PlainText</comment>
+  </data>
+  <data name="WorkSavedPlain" xml:space="preserve">
+    <value>「{0}」 saved</value>
+    <comment>PlainText</comment>
+  </data>
+  <data name="WorkSaveFailedPlain" xml:space="preserve">
+    <value>Failed to save「{0}」</value>
+    <comment>PlainText</comment>
+  </data>
+</root>
