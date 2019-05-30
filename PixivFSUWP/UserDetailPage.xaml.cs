@@ -20,6 +20,7 @@ using Windows.Storage.Pickers;
 using Windows.Storage;
 using Windows.Storage.Provider;
 using PixivFSUWP.Interfaces;
+using static PixivFSUWP.Data.OverAll;
 
 // https://go.microsoft.com/fwlink/?LinkId=234238 上介绍了“空白页”项模板
 
@@ -55,11 +56,11 @@ namespace PixivFSUWP
         private void DataTransferManager_DataRequested(DataTransferManager sender, DataRequestedEventArgs args)
         {
             var request = args.Request;
-            request.Data.SetText(string.Format("Pixiv用户\n{0}\n" +
-                "网页链接：https://www.pixiv.net/member.php?id={1}\n" +
-                "PixivFSUWP：pixiv://user?id={1}", detail.Name, detail.ID));
-            request.Data.Properties.Title = string.Format("画师：{0}", detail.Name);
-            request.Data.Properties.Description = "该用户页面的链接将被分享";
+            request.Data.SetText(string.Format("{0}\n{1}\n" +
+                "{2}：https://www.pixiv.net/member.php?id={3}\n" +
+                "PixivFSUWP：pixiv://user?id={3}", GetResourceString("PixivUserPlain"), detail.Name, GetResourceString("LinkPlain"), detail.ID));
+            request.Data.Properties.Title = string.Format("{0}：{1}", GetResourceString("ArtistPlain"), detail.Name);
+            request.Data.Properties.Description = GetResourceString("UserShareTipPlain");
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -90,18 +91,18 @@ namespace PixivFSUWP
             var res = await new PixivAppAPI(Data.OverAll.GlobalBaseAPI)
                     .UserDetail(userid.ToString());
             detail = Data.UserDetail.FromJsomValue(res);
-            string _getText(string input) => (input == "") ? "保密" : input;
+            string _getText(string input) => (input == "") ? GetResourceString("PrivatePlain") : input;
             txtUsername.Text = detail.Name;
             txtAuthor.Text = detail.Name;
             txtAccount.Text = "@" + detail.Account;
             txtAuthorAccount.Text = txtAccount.Text;
-            txtWebPage.Text = (detail.WebPage == "") ? "无/保密" : detail.WebPage;
-            if (detail.Gender == "") txtGender.Text = "保密";
-            else txtGender.Text = (detail.Gender == "male") ? "男" : "女";
+            txtWebPage.Text = (detail.WebPage == "") ? GetResourceString("PrivateOrNonePlain") : detail.WebPage;
+            if (detail.Gender == "") txtGender.Text = GetResourceString("PrivatePlain");
+            else txtGender.Text = (detail.Gender == "male") ? GetResourceString("MalePlain") : GetResourceString("FemalePlain");
             txtBirthday.Text = _getText(detail.BirthDay);
             txtRegion.Text = _getText(detail.Region);
             txtJob.Text = _getText(detail.Job);
-            string _getHW(string input) => (input == "") ? "未知" : input;
+            string _getHW(string input) => (input == "") ? GetResourceString("UnknownPlain") : input;
             txtPC.Text = _getHW(detail.PC);
             txtMonitor.Text = _getHW(detail.Monitor);
             txtTool.Text = _getHW(detail.Tool);
@@ -113,7 +114,7 @@ namespace PixivFSUWP
             txtMusic.Text = _getHW(detail.Music);
             txtDesk.Text = _getHW(detail.Desk);
             txtChair.Text = _getHW(detail.Chair);
-            txtBtnFollow.Text = detail.IsFollowed ? "已关注" : "未关注";
+            txtBtnFollow.Text = detail.IsFollowed ? GetResourceString("FollowingPlain") : GetResourceString("NotFollowingPlain");
             btnFollow.IsChecked = detail.IsFollowed;
             imgAvatar.ImageSource = await Data.OverAll.LoadImageAsync(detail.AvatarUrl);
             imgAuthor.ImageSource = imgAvatar.ImageSource;
@@ -158,7 +159,7 @@ namespace PixivFSUWP
             {
                 btnSender.IsChecked = false;
                 //进行关注
-                txtBtnFollow.Text = "请求中";
+                txtBtnFollow.Text = GetResourceString("RequestingPlain");
                 bool res;
                 try
                 {
@@ -173,7 +174,7 @@ namespace PixivFSUWP
                 if (res)
                 {
                     btnSender.IsChecked = true;
-                    txtBtnFollow.Text = "已关注";
+                    txtBtnFollow.Text = GetResourceString("FollowingPlain");
                 }
                 btnSender.IsEnabled = true;
             }
@@ -181,7 +182,7 @@ namespace PixivFSUWP
             {
                 btnSender.IsChecked = true;
                 //取消关注
-                txtBtnFollow.Text = "请求中";
+                txtBtnFollow.Text = GetResourceString("RequestingPlain");
                 bool res;
                 try
                 {
@@ -196,7 +197,7 @@ namespace PixivFSUWP
                 if (res)
                 {
                     btnSender.IsChecked = false;
-                    txtBtnFollow.Text = "未关注";
+                    txtBtnFollow.Text = GetResourceString("NotFollowingPlain");
                 }
                 btnSender.IsEnabled = true;
             }
@@ -233,7 +234,9 @@ namespace PixivFSUWP
         {
             ListView listView = (ListView)sender;
             tapped = ((FrameworkElement)e.OriginalSource).DataContext as ViewModels.WaterfallItemViewModel;
-            quickStar.Text = (tapped.IsBookmarked) ? "删除收藏" : "快速收藏";
+            quickStar.Text = (tapped.IsBookmarked) ?
+                GetResourceString("DeleteBookmarkPlain") :
+                GetResourceString("QuickBookmarkPlain");
             quickStar.IsEnabled = tapped.Title != null;
             quickActions.ShowAt(listView, e.GetPosition(listView));
         }
@@ -242,7 +245,9 @@ namespace PixivFSUWP
         {
             ListView listView = (ListView)sender;
             tapped = ((FrameworkElement)e.OriginalSource).DataContext as ViewModels.WaterfallItemViewModel;
-            quickStar.Text = (tapped.IsBookmarked) ? "删除收藏" : "快速收藏";
+            quickStar.Text = (tapped.IsBookmarked) ?
+                GetResourceString("DeleteBookmarkPlain") :
+                GetResourceString("QuickBookmarkPlain");
             quickStar.IsEnabled = tapped.Title != null;
             quickActions.ShowAt(listView, e.GetPosition(listView));
         }
@@ -277,12 +282,12 @@ namespace PixivFSUWP
                         i.NotifyChange("StarsString");
                         i.NotifyChange("IsBookmarked");
                         await ((Frame.Parent as Grid)?.Parent as MainPage)?.
-                            ShowTip(string.Format("作品「{0}」已删除收藏", title));
+                            ShowTip(string.Format(GetResourceString("DeletedBookmarkPlain"), title));
                     }
                     else
                     {
                         await ((Frame.Parent as Grid)?.Parent as MainPage)?.
-                            ShowTip(string.Format("作品「{0}」删除收藏失败", title));
+                            ShowTip(string.Format(GetResourceString("BookmarkDeleteFailedPlain"), title));
                     }
                 }
                 else
@@ -306,12 +311,12 @@ namespace PixivFSUWP
                         i.NotifyChange("StarsString");
                         i.NotifyChange("IsBookmarked");
                         await ((Frame.Parent as Grid)?.Parent as MainPage)?.
-                            ShowTip(string.Format("作品「{0}」已收藏", title));
+                            ShowTip(string.Format(GetResourceString("WorkBookmarkedPlain"), title));
                     }
                     else
                     {
                         await ((Frame.Parent as Grid)?.Parent as MainPage)?.
-                            ShowTip(string.Format("作品「{0}」收藏失败", title));
+                            ShowTip(string.Format(GetResourceString("WorkBookmarkFailedPlain"), title));
                     }
                 }
             }
@@ -328,7 +333,7 @@ namespace PixivFSUWP
             var i = tapped;
             FileSavePicker picker = new FileSavePicker();
             picker.SuggestedStartLocation = PickerLocationId.PicturesLibrary;
-            picker.FileTypeChoices.Add("图片文件", new List<string>() { ".png" });
+            picker.FileTypeChoices.Add(GetResourceString("ImageFilePlain"), new List<string>() { ".png" });
             picker.SuggestedFileName = i.Title;
             var file = await picker.PickSaveFileAsync();
             if (file != null)
@@ -347,10 +352,10 @@ namespace PixivFSUWP
                 var updateStatus = await CachedFileManager.CompleteUpdatesAsync(file);
                 if (updateStatus == FileUpdateStatus.Complete)
                     await ((Frame.Parent as Grid)?.Parent as MainPage)?.
-                            ShowTip(string.Format("作品「{0}」已保存", i.Title));
+                            ShowTip(string.Format(GetResourceString("WorkSavedPlain"), i.Title));
                 else
                     await ((Frame.Parent as Grid)?.Parent as MainPage)?.
-                            ShowTip(string.Format("作品「{0}」保存失败", i.Title));
+                            ShowTip(string.Format(GetResourceString("WorkSaveFailedPlain"), i.Title));
             }
         }
     }

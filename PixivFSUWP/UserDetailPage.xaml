@@ -76,12 +76,12 @@
             <ListView.Resources>
                 <MenuFlyout x:Name="quickActions">
                     <MenuFlyout.Items>
-                        <MenuFlyoutItem x:Name="quickStar" Text="快速收藏" Click="QuickStar_Click">
+                        <MenuFlyoutItem x:Name="quickStar" x:Uid="QuickBookmark" Click="QuickStar_Click">
                             <MenuFlyoutItem.Icon>
                                 <FontIcon Glyph="&#xE734;"/>
                             </MenuFlyoutItem.Icon>
                         </MenuFlyoutItem>
-                        <MenuFlyoutItem x:Name="quickSave" Text="快速保存" Click="QuickSave_Click">
+                        <MenuFlyoutItem x:Name="quickSave" x:Uid="QuickDownload" Click="QuickSave_Click">
                             <MenuFlyoutItem.Icon>
                                 <FontIcon Glyph="&#xE74E;"/>
                             </MenuFlyoutItem.Icon>
@@ -178,21 +178,21 @@
                             <RowDefinition/>
                             <RowDefinition/>
                         </Grid.RowDefinitions>
-                        <TextBlock Margin="2" VerticalAlignment="Center" Grid.Row="0" FontWeight="Bold">个人主页</TextBlock>
+                        <TextBlock Margin="2" VerticalAlignment="Center" Grid.Row="0" FontWeight="Bold" x:Uid="PersonalWebsite"/>
                         <TextBlock x:Name="txtWebPage" VerticalAlignment="Center" Grid.Row="0" Grid.Column="2" TextTrimming="CharacterEllipsis"/>
-                        <TextBlock Margin="2" VerticalAlignment="Center" Grid.Row="1" FontWeight="Bold">性别</TextBlock>
+                        <TextBlock Margin="2" VerticalAlignment="Center" Grid.Row="1" FontWeight="Bold" x:Uid="Sex"/>
                         <TextBlock x:Name="txtGender" VerticalAlignment="Center" Grid.Row="1" Grid.Column="2" TextTrimming="CharacterEllipsis"/>
-                        <TextBlock Margin="2" VerticalAlignment="Center" Grid.Row="2" FontWeight="Bold">生日</TextBlock>
+                        <TextBlock Margin="2" VerticalAlignment="Center" Grid.Row="2" FontWeight="Bold" x:Uid="Birthday"/>
                         <TextBlock x:Name="txtBirthday" VerticalAlignment="Center" Grid.Row="2" Grid.Column="2" TextTrimming="CharacterEllipsis"/>
-                        <TextBlock Margin="2" VerticalAlignment="Center" Grid.Row="3" FontWeight="Bold">居住地</TextBlock>
+                        <TextBlock Margin="2" VerticalAlignment="Center" Grid.Row="3" FontWeight="Bold" x:Uid="LivingPlace"/>
                         <TextBlock x:Name="txtRegion" VerticalAlignment="Center" Grid.Row="3" Grid.Column="2" TextTrimming="CharacterEllipsis"/>
-                        <TextBlock Margin="2" VerticalAlignment="Center" Grid.Row="4" FontWeight="Bold">当前工作</TextBlock>
+                        <TextBlock Margin="2" VerticalAlignment="Center" Grid.Row="4" FontWeight="Bold" x:Uid="Job"/>
                         <TextBlock x:Name="txtJob" VerticalAlignment="Center" Grid.Row="4" Grid.Column="2" TextTrimming="CharacterEllipsis"/>
-                        <TextBlock Margin="2" VerticalAlignment="Center" Grid.Row="5" FontWeight="Bold">计算机</TextBlock>
+                        <TextBlock Margin="2" VerticalAlignment="Center" Grid.Row="5" FontWeight="Bold" x:Uid="PC"/>
                         <TextBlock x:Name="txtPC" VerticalAlignment="Center" Grid.Row="5" Grid.Column="2" TextTrimming="CharacterEllipsis"/>
-                        <TextBlock Margin="2" VerticalAlignment="Center" Grid.Row="6" FontWeight="Bold">显示器</TextBlock>
+                        <TextBlock Margin="2" VerticalAlignment="Center" Grid.Row="6" FontWeight="Bold" x:Uid="Monitor"/>
                         <TextBlock x:Name="txtMonitor" VerticalAlignment="Center" Grid.Row="6" Grid.Column="2" TextTrimming="CharacterEllipsis"/>
-                        <TextBlock Margin="2" VerticalAlignment="Center" Grid.Row="7" FontWeight="Bold">绘图工具</TextBlock>
+                        <TextBlock Margin="2" VerticalAlignment="Center" Grid.Row="7" FontWeight="Bold" x:Uid="Tool"/>
                         <TextBlock x:Name="txtTool" VerticalAlignment="Center" Grid.Row="7" Grid.Column="2" TextTrimming="CharacterEllipsis"/>
                     </Grid>
                     <Grid Width="Auto" Grid.Column="2">
@@ -211,21 +211,21 @@
                             <RowDefinition/>
                             <RowDefinition/>
                         </Grid.RowDefinitions>
-                        <TextBlock Margin="2" VerticalAlignment="Center" Grid.Row="0" FontWeight="Bold">扫描仪</TextBlock>
+                        <TextBlock Margin="2" VerticalAlignment="Center" Grid.Row="0" FontWeight="Bold" x:Uid="Scanner"/>
                         <TextBlock x:Name="txtScanner" VerticalAlignment="Center" Grid.Row="0" Grid.Column="2" TextTrimming="CharacterEllipsis"/>
-                        <TextBlock Margin="2" VerticalAlignment="Center" Grid.Row="1" FontWeight="Bold">数位板</TextBlock>
+                        <TextBlock Margin="2" VerticalAlignment="Center" Grid.Row="1" FontWeight="Bold" x:Uid="Tablet"/>
                         <TextBlock x:Name="txtTablet" VerticalAlignment="Center" Grid.Row="1" Grid.Column="2" TextTrimming="CharacterEllipsis"/>
-                        <TextBlock Margin="2" VerticalAlignment="Center" Grid.Row="2" FontWeight="Bold">鼠标</TextBlock>
+                        <TextBlock Margin="2" VerticalAlignment="Center" Grid.Row="2" FontWeight="Bold" x:Uid="Mouse"/>
                         <TextBlock x:Name="txtMouse" VerticalAlignment="Center" Grid.Row="2" Grid.Column="2" TextTrimming="CharacterEllipsis"/>
-                        <TextBlock Margin="2" VerticalAlignment="Center" Grid.Row="3" FontWeight="Bold">打印机</TextBlock>
+                        <TextBlock Margin="2" VerticalAlignment="Center" Grid.Row="3" FontWeight="Bold" x:Uid="Printer"/>
                         <TextBlock x:Name="txtPrinter" VerticalAlignment="Center" Grid.Row="3" Grid.Column="2" TextTrimming="CharacterEllipsis"/>
-                        <TextBlock Margin="2" VerticalAlignment="Center" Grid.Row="4" FontWeight="Bold">桌面</TextBlock>
+                        <TextBlock Margin="2" VerticalAlignment="Center" Grid.Row="4" FontWeight="Bold" x:Uid="Desktop"/>
                         <TextBlock x:Name="txtDesktop" VerticalAlignment="Center" Grid.Row="4" Grid.Column="2" TextTrimming="CharacterEllipsis"/>
-                        <TextBlock Margin="2" VerticalAlignment="Center" Grid.Row="5" FontWeight="Bold">音乐</TextBlock>
+                        <TextBlock Margin="2" VerticalAlignment="Center" Grid.Row="5" FontWeight="Bold" x:Uid="Music"/>
                         <TextBlock x:Name="txtMusic" VerticalAlignment="Center" Grid.Row="5" Grid.Column="2" TextTrimming="CharacterEllipsis"/>
-                        <TextBlock Margin="2" VerticalAlignment="Center" Grid.Row="6" FontWeight="Bold">桌子</TextBlock>
+                        <TextBlock Margin="2" VerticalAlignment="Center" Grid.Row="6" FontWeight="Bold" x:Uid="Desk"/>
                         <TextBlock x:Name="txtDesk" VerticalAlignment="Center" Grid.Row="6" Grid.Column="2" TextTrimming="CharacterEllipsis"/>
-                        <TextBlock Margin="2" VerticalAlignment="Center" Grid.Row="7" FontWeight="Bold">椅子</TextBlock>
+                        <TextBlock Margin="2" VerticalAlignment="Center" Grid.Row="7" FontWeight="Bold" x:Uid="Chair"/>
                         <TextBlock x:Name="txtChair" VerticalAlignment="Center" Grid.Row="7" Grid.Column="2" TextTrimming="CharacterEllipsis"/>
                     </Grid>
                 </Grid>
@@ -236,13 +236,13 @@
                         <StackPanel Margin="5">
                             <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}"
                                   FontSize="20" Glyph="&#xE72D;"/>
-                            <TextBlock Margin="0,5,0,0">分享</TextBlock>
+                            <TextBlock Margin="0,5,0,0" x:Uid="Share"/>
                         </StackPanel>
                         <Button.Flyout>
                             <CommandBarFlyout x:Name="btnShareFlyout">
-                                <AppBarButton x:Name="btnShare" Icon="Share" ToolTipService.ToolTip="Windows分享" Click="BtnShare_Click"/>
-                                <AppBarButton x:Name="btnLink" Icon="Link" ToolTipService.ToolTip="复制网页链接" Click="BtnLink_Click"/>
-                                <AppBarButton x:Name="btnAppLink" Icon="PreviewLink" ToolTipService.ToolTip="复制应用链接" Click="BtnAppLink_Click"/>
+                                <AppBarButton x:Name="btnShare" Icon="Share" Click="BtnShare_Click" x:Uid="btnShare"/>
+                                <AppBarButton x:Name="btnLink" Icon="Link" Click="BtnLink_Click" x:Uid="btnLink"/>
+                                <AppBarButton x:Name="btnAppLink" Icon="PreviewLink" Click="BtnAppLink_Click" x:Uid="btnAppLink"/>
                             </CommandBarFlyout>
                         </Button.Flyout>
                     </Button>
@@ -252,7 +252,7 @@
                         <StackPanel Margin="5">
                             <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}"
                                   FontSize="20" Glyph="&#xEDC6;"/>
-                            <TextBlock Margin="0,5,0,0">作品</TextBlock>
+                            <TextBlock Margin="0,5,0,0" x:Uid="Work"/>
                         </StackPanel>
                     </Button>
                     <ToggleButton x:Name="btnFollow" Style="{StaticResource ToggleButtonRevealStyle}" 
@@ -261,7 +261,7 @@
                         <StackPanel Margin="5">
                             <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}" 
                                   FontSize="20" Glyph="&#xE8FA;"/>
-                            <TextBlock x:Name="txtBtnFollow" Margin="0,5,0,0">未关注</TextBlock>
+                            <TextBlock x:Name="txtBtnFollow" Margin="0,5,0,0" x:Uid="NotFollowing"/>
                         </StackPanel>
                     </ToggleButton>
                     <ToggleButton x:Name="btnPin" Style="{StaticResource ToggleButtonRevealStyle}" 
@@ -270,7 +270,7 @@
                         <StackPanel Margin="5">
                             <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}" 
                                   FontSize="20" Glyph="&#xE840;"/>
-                            <TextBlock x:Name="txtBtnPin" Margin="0,5,0,0">未固定</TextBlock>
+                            <TextBlock x:Name="txtBtnPin" Margin="0,5,0,0" x:Uid="Unpinned"/>
                         </StackPanel>
                     </ToggleButton>
                 </StackPanel>
