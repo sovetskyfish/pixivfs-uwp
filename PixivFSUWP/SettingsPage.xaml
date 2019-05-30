@@ -9,7 +9,7 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
     <ScrollViewer Background="{StaticResource PageBackGround}">
         <StackPanel Margin="0,75,0,0">
-            <TextBlock Margin="15,20,15,0" FontSize="18" FontWeight="Bold">当前登录的账户</TextBlock>
+            <TextBlock Margin="15,20,15,0" FontSize="18" FontWeight="Bold" x:Uid="CurrentUser"/>
             <Grid Margin="15,15,15,0" Width="Auto" HorizontalAlignment="Left">
                 <Grid.RowDefinitions>
                     <RowDefinition/>
@@ -28,8 +28,8 @@
                     </Ellipse.Fill>
                 </Ellipse>
                 <TextBlock Margin="0,2" HorizontalTextAlignment="Left" Grid.Column="1">Pixiv ID：</TextBlock>
-                <TextBlock Margin="0,2" HorizontalTextAlignment="Left" Grid.Row="1" Grid.Column="1">用户标识：</TextBlock>
-                <TextBlock Margin="0,2" HorizontalTextAlignment="Left" Grid.Row="2" Grid.Column="1">邮箱：</TextBlock>
+                <TextBlock Margin="0,2" HorizontalTextAlignment="Left" Grid.Row="1" Grid.Column="1" x:Uid="UserID"/>
+                <TextBlock Margin="0,2" HorizontalTextAlignment="Left" Grid.Row="2" Grid.Column="1" x:Uid="Email"/>
                 <TextBlock Margin="0,2" HorizontalTextAlignment="Left" Grid.Column="2" x:Name="txtID"/>
                 <StackPanel Margin="0,2" Grid.Row="1" Grid.Column="2" Orientation="Horizontal">
                     <TextBlock HorizontalTextAlignment="Left" x:Name="txtName"/>
@@ -37,11 +37,11 @@
                 </StackPanel>
                 <TextBlock Margin="0,2" Grid.Row="2" Grid.Column="2" HorizontalTextAlignment="Left" x:Name="txtEmail"/>
                 <StackPanel Grid.Row="3" Grid.ColumnSpan="3">
-                    <Button Style="{StaticResource ButtonRevealStyle}" BorderThickness="1.5" Margin="0,5,0,0" x:Name="btnLogout" Click="BtnLogout_Click" HorizontalAlignment="Stretch">注销登录</Button>
-                    <TextBlock FontSize="12" Foreground="Gray">*这将在您的所有Windows设备上退出登录</TextBlock>
+                    <Button Style="{StaticResource ButtonRevealStyle}" BorderThickness="1.5" Margin="0,5,0,0" x:Name="btnLogout" Click="BtnLogout_Click" HorizontalAlignment="Stretch" x:Uid="Logout"/>
+                    <TextBlock FontSize="12" Foreground="Gray" x:Uid="LogoutWarning"/>
                 </StackPanel>
             </Grid>
-            <TextBlock Margin="15,20,15,0" FontSize="18" FontWeight="Bold">软件包版本信息</TextBlock>
+            <TextBlock Margin="15,20,15,0" FontSize="18" FontWeight="Bold" x:Uid="VersionInfo"/>
             <TextBlock Margin="15,10,15,0" x:Name="txtVersion"/>
             <TextBlock Margin="15,2,15,0" x:Name="txtPkgName"/>
             <TextBlock Margin="15,2,15,0" x:Name="txtInsDate"/>
