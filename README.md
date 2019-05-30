@@ -10,9 +10,12 @@ Almost useable. All dependencies are available on Nuget, so you don't need any s
 
 Because .NET Native [hasn't fully supported F# yet](https://github.com/dotnet/corert/issues/6055), this project is based on [pixivcs](https://github.com/tobiichiamane/pixivcs) rather than [pixivfs](https://github.com/tobiichiamane/pixivfs). 
 
-多语言支持还未起步，此应用目前仅以简体中文呈现。
+# 翻译/Translation
 
-Multi-language support is yet to be developed, thus this application only supports Simplified Chinese.
+本应用急需翻译人员。使用[英文资源文件](https://github.com/tobiichiamane/pixivfs-uwp/blob/master/PixivFSUWP/Strings/en/Resources.resw)为蓝本，翻译出其它的语言。请按照[微软的规范](https://docs.microsoft.com/en-us/windows/uwp/publish/supported-languages)给资源目录命名。
 
-Buy me a coffee? 
+Any help to translate this app will be appreciated. Please use [Resources.resw](https://github.com/tobiichiamane/pixivfs-uwp/blob/master/PixivFSUWP/Strings/en/Resources.resw) as your blueprint.
+
+# Buy me a coffee? 
+
 [![ko-fi](https://www.ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/P5P8WD5C)
