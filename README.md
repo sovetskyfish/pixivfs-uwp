@@ -1,8 +1,10 @@
-# PixivFSUWP
+# Pixiv UWP 2
+
+[<img src='https://assets.windowsphone.com/85864462-9c82-451e-9355-a3d5f874397a/English_get-it-from-MS_InvariantCulture_Default.png' alt='English badge' width=284 height=104/>](https://www.microsoft.com/store/apps/9PM8K64J71PL?cid=storebadge&ocid=badge)
 
 [![编译状态](https://dev.azure.com/tobiichiamane/pixivfs-uwp/_apis/build/status/tobiichiamane.pixivfs-uwp?branchName=master)](https://dev.azure.com/tobiichiamane/pixivfs-uwp/_build?definitionId=1)
 
-基本上可以用了。所有的依赖都是Nuget包，所以除了VS2019和Windows SDK 17763以外你不需要任何特殊的环境来编译代码。你也可以从Azure Pipelines获取Artifact，或者从Release页面获取包。
+已发布至商店。所有的依赖都是Nuget包，所以除了VS2019和Windows SDK 17763以外你不需要任何特殊的环境来编译代码。你也可以从Azure Pipelines获取Artifact，或者从Release页面获取包。
 
 Almost useable. All dependencies are available on Nuget, so you don't need any special environment to compile except Visual Studio 2019 and Windows SDK 17763. Instead, you can get the compiled artifact from Azure Pipelines, or get it from the releases page.
 
