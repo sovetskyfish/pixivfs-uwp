@@ -290,7 +290,7 @@
     <comment>Button</comment>
   </data>
   <data name="LoginBanner.Text" xml:space="preserve">
-    <value>让创作变得更有乐趣</value>
+    <value>Spice up your creating process</value>
     <comment>TextBlock</comment>
   </data>
   <data name="LoginFailed.Content" xml:space="preserve">
