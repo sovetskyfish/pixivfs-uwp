@@ -191,6 +191,7 @@
     <None Include="Assets\AppLogo.kra" />
     <None Include="PixivFSUWP_StoreKey.pfx" />
     <None Include="PixivFSUWP_TemporaryKey.pfx" />
+    <PRIResource Include="Strings\ja\Resources.resw" />
     <PRIResource Include="Strings\zh-Hant\Resources.resw" />
     <PRIResource Include="Strings\en\Resources.resw" />
     <PRIResource Include="Strings\zh-Hans\Resources.resw" />
