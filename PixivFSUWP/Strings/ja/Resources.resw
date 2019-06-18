@@ -1,0 +1,596 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AllTime.Content" xml:space="preserve">
+    <value>すべで</value>
+    <comment>ComboBoxItem</comment>
+  </data>
+  <data name="ArtistPlain" xml:space="preserve">
+    <value>イラストレーター</value>
+    <comment>PlainText</comment>
+  </data>
+  <data name="Birthday.Text" xml:space="preserve">
+    <value>誕生日</value>
+    <comment>TextBlock</comment>
+  </data>
+  <data name="BookmarkDeleteFailedPlain" xml:space="preserve">
+    <value>「{0}」をブックマークから解除できません</value>
+    <comment>PlainText</comment>
+  </data>
+  <data name="Bookmarked.Content" xml:space="preserve">
+    <value>ブックマーク</value>
+    <comment>NavigationViewItem</comment>
+  </data>
+  <data name="BookmarkedPlain" xml:space="preserve">
+    <value>ブックマークに追加しました</value>
+    <comment>PlainText</comment>
+  </data>
+  <data name="btnAppLink.ToolTipService.ToolTip" xml:space="preserve">
+    <value>アプリ内リンクをコピー</value>
+    <comment>ToolTip</comment>
+  </data>
+  <data name="btnLink.ToolTipService.ToolTip" xml:space="preserve">
+    <value>ウェブリンクをコピー</value>
+    <comment>ToolTip</comment>
+  </data>
+  <data name="btnShare.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Windows共有</value>
+    <comment>ToolTip</comment>
+  </data>
+  <data name="CancelPlain" xml:space="preserve">
+    <value>キャンセル</value>
+    <comment>PlainText</comment>
+  </data>
+  <data name="Chair.Text" xml:space="preserve">
+    <value>椅子</value>
+    <comment>TextBlock</comment>
+  </data>
+  <data name="CommentsPlain" xml:space="preserve">
+    <value>コメント</value>
+    <comment>PlainText</comment>
+  </data>
+  <data name="CreatingTimelinePlain" xml:space="preserve">
+    <value>Windows® Timeline™を作成しています</value>
+    <comment>PlainText</comment>
+  </data>
+  <data name="CurrentUser.Text" xml:space="preserve">
+    <value>ユーザー</value>
+    <comment>TextBlock</comment>
+  </data>
+  <data name="DateAsc.Content" xml:space="preserve">
+    <value>日付の昇順</value>
+    <comment>ComboBoxItem</comment>
+  </data>
+  <data name="DateDesc.Content" xml:space="preserve">
+    <value>日付の降順</value>
+    <comment>ComboBoxItem</comment>
+  </data>
+  <data name="DeleteBookmarkPlain" xml:space="preserve">
+    <value>ブックマーク解除</value>
+    <comment>PlainText</comment>
+  </data>
+  <data name="DeletedBookmarkPlain" xml:space="preserve">
+    <value>「{0}」をブックマークから解除しました</value>
+    <comment>PlainText</comment>
+  </data>
+  <data name="Desk.Text" xml:space="preserve">
+    <value>つくえ</value>
+    <comment>TextBlock</comment>
+  </data>
+  <data name="Desktop.Text" xml:space="preserve">
+    <value>デスクトップ</value>
+    <comment>TextBlock</comment>
+  </data>
+  <data name="DetailPlain" xml:space="preserve">
+    <value>詳細</value>
+    <comment>PlainText</comment>
+  </data>
+  <data name="DownloadingUgoiraPlain" xml:space="preserve">
+    <value>うごイラをダウンロードしています</value>
+    <comment>PlainText</comment>
+  </data>
+  <data name="Draw.Label" xml:space="preserve">
+    <value>臨模</value>
+    <comment>AppBarButton</comment>
+  </data>
+  <data name="Email.Text" xml:space="preserve">
+    <value>メール：</value>
+    <comment>TextBlock</comment>
+  </data>
+  <data name="FemalePlain" xml:space="preserve">
+    <value>女</value>
+    <comment>PlainText</comment>
+  </data>
+  <data name="Following.Content" xml:space="preserve">
+    <value>フォロワー</value>
+    <comment>NavigationViewItem</comment>
+  </data>
+  <data name="FollowingPlain" xml:space="preserve">
+    <value>フォロー</value>
+    <comment>PlainText</comment>
+  </data>
+  <data name="FullyMatchTag.Content" xml:space="preserve">
+    <value>完全一致タグ</value>
+    <comment>ComboBoxItem</comment>
+  </data>
+  <data name="GeneratingGifPlain" xml:space="preserve">
+    <value>Gifを作成しています</value>
+    <comment>PlainText</comment>
+  </data>
+  <data name="GifFilePlain" xml:space="preserve">
+    <value>Gifファイル</value>
+    <comment>PlainText</comment>
+  </data>
+  <data name="ImageFilePlain" xml:space="preserve">
+    <value>画像ファイル</value>
+    <comment>PlainText</comment>
+  </data>
+  <data name="Job.Text" xml:space="preserve">
+    <value>仕事</value>
+    <comment>TextBlock</comment>
+  </data>
+  <data name="Keyword.Text" xml:space="preserve">
+    <value>キーワード</value>
+    <comment>TextBlock</comment>
+  </data>
+  <data name="LastDay.Content" xml:space="preserve">
+    <value>前日</value>
+    <comment>ComboBoxItem</comment>
+  </data>
+  <data name="LastMonth.Content" xml:space="preserve">
+    <value>前月</value>
+    <comment>ComboBoxItem</comment>
+  </data>
+  <data name="LastWeek.Content" xml:space="preserve">
+    <value>前週</value>
+    <comment>ComboBoxItem</comment>
+  </data>
+  <data name="LinkPlain" xml:space="preserve">
+    <value>リンク</value>
+    <comment>PlainText</comment>
+  </data>
+  <data name="LivingPlace.Text" xml:space="preserve">
+    <value>居場所</value>
+    <comment>TextBlock</comment>
+  </data>
+  <data name="LoadingPlain" xml:space="preserve">
+    <value>読み込む中</value>
+    <comment>PlainText</comment>
+  </data>
+  <data name="LoadingPreviewPlain" xml:space="preserve">
+    <value>プレビューを読み込む中</value>
+    <comment>PlainText</comment>
+  </data>
+  <data name="LoadingStatusPlain" xml:space="preserve">
+    <value>{0}/{1}を読み込む中</value>
+    <comment>PlainText</comment>
+  </data>
+  <data name="LoggingIn.Text" xml:space="preserve">
+    <value>ログイン中</value>
+    <comment>TextBlock</comment>
+  </data>
+  <data name="Login.Content" xml:space="preserve">
+    <value>ログイン</value>
+    <comment>Button</comment>
+  </data>
+  <data name="LoginBanner.Text" xml:space="preserve">
+    <value>創作活動をもっとたのしく</value>
+    <comment>TextBlock</comment>
+  </data>
+  <data name="LoginFailed.Content" xml:space="preserve">
+    <value>ログインできません。トラブルシューティングを行い、もう一度やり直してください。</value>
+    <comment>Button</comment>
+  </data>
+  <data name="Logout.Content" xml:space="preserve">
+    <value>ログアウト</value>
+    <comment>Button</comment>
+  </data>
+  <data name="LogoutWarning.Text" xml:space="preserve">
+    <value>*すべでのWindowsデバイスからログイン解除します</value>
+    <comment>TextBlock</comment>
+  </data>
+  <data name="MalePlain" xml:space="preserve">
+    <value>男</value>
+    <comment>PlainText</comment>
+  </data>
+  <data name="Monitor.Text" xml:space="preserve">
+    <value>モニター</value>
+    <comment>TextBlock</comment>
+  </data>
+  <data name="Mouse.Text" xml:space="preserve">
+    <value>マウス</value>
+    <comment>TextBlock</comment>
+  </data>
+  <data name="Music.Text" xml:space="preserve">
+    <value>音楽</value>
+    <comment>TextBlock</comment>
+  </data>
+  <data name="MyInkPlain" xml:space="preserve">
+    <value>下書き</value>
+    <comment>PlainText</comment>
+  </data>
+  <data name="NoCaptionPlain" xml:space="preserve">
+    <value>紹介がありません</value>
+    <comment>PlainText</comment>
+  </data>
+  <data name="NoInkPlain" xml:space="preserve">
+    <value>保存できるインクがありません</value>
+    <comment>PlainText</comment>
+  </data>
+  <data name="NotBookmarked.Text" xml:space="preserve">
+    <value>ブックマーク</value>
+    <comment>TextBlock</comment>
+  </data>
+  <data name="NotBookmarkedPlain" xml:space="preserve">
+    <value>ブックマーク</value>
+    <comment>PlainText</comment>
+  </data>
+  <data name="NotFollowing.Text" xml:space="preserve">
+    <value>フォロー</value>
+    <comment>TextBlock</comment>
+  </data>
+  <data name="NotFollowingPlain" xml:space="preserve">
+    <value>フォロー</value>
+    <comment>PlainText</comment>
+  </data>
+  <data name="OKPlain" xml:space="preserve">
+    <value>はい</value>
+    <comment>PlainText</comment>
+  </data>
+  <data name="PageInfoPlain" xml:space="preserve">
+    <value>画像数: {0}。 クリックまたはタップして全画像モードに。</value>
+    <comment>PlainText</comment>
+  </data>
+  <data name="PartiallyMatchTag.Content" xml:space="preserve">
+    <value>部分一致タグ</value>
+    <comment>ComboBoxItem</comment>
+  </data>
+  <data name="PartiallyMatchTitleAndCap.Content" xml:space="preserve">
+    <value>部分一致タイトルと紹介</value>
+    <comment>ComboBoxItem</comment>
+  </data>
+  <data name="Password.Text" xml:space="preserve">
+    <value>パスワード</value>
+    <comment>TextBlock</comment>
+  </data>
+  <data name="PC.Text" xml:space="preserve">
+    <value>パソコン</value>
+    <comment>TextBlock</comment>
+  </data>
+  <data name="PersonalWebsite.Text" xml:space="preserve">
+    <value>ウェブサイト</value>
+    <comment>TextBlock</comment>
+  </data>
+  <data name="PinnedPlain" xml:space="preserve">
+    <value>固定された</value>
+    <comment>PlainText</comment>
+  </data>
+  <data name="PixivUserPlain" xml:space="preserve">
+    <value>Pixivユーザー</value>
+    <comment>PlainText</comment>
+  </data>
+  <data name="PlayingUgoiraPlain" xml:space="preserve">
+    <value>うごイラを再生しています</value>
+    <comment>PlainText</comment>
+  </data>
+  <data name="PlayPlain" xml:space="preserve">
+    <value>再生</value>
+    <comment>PlainText</comment>
+  </data>
+  <data name="Printer.Text" xml:space="preserve">
+    <value>プリンター</value>
+    <comment>TextBlock</comment>
+  </data>
+  <data name="PrivateOrNonePlain" xml:space="preserve">
+    <value>なし/プライベート</value>
+    <comment>PlainText</comment>
+  </data>
+  <data name="PrivatePlain" xml:space="preserve">
+    <value>プライベート</value>
+    <comment>PlainText</comment>
+  </data>
+  <data name="QuickBookmark.Text" xml:space="preserve">
+    <value>ブックマーク</value>
+    <comment>MenuFlyoutItem</comment>
+  </data>
+  <data name="QuickBookmarkPlain" xml:space="preserve">
+    <value>ブックマーク</value>
+    <comment>PlainText</comment>
+  </data>
+  <data name="QuickDownload.Text" xml:space="preserve">
+    <value>保存</value>
+    <comment>MenuFlyoutItem</comment>
+  </data>
+  <data name="Ranking.Content" xml:space="preserve">
+    <value>ランキング</value>
+    <comment>NavigationViewItem</comment>
+  </data>
+  <data name="RawInkPlain" xml:space="preserve">
+    <value>元インク</value>
+    <comment>PlainText</comment>
+  </data>
+  <data name="Recommended.Content" xml:space="preserve">
+    <value>推薦</value>
+    <comment>NavigationViewItem</comment>
+  </data>
+  <data name="Register.Content" xml:space="preserve">
+    <value>登録</value>
+    <comment>Button</comment>
+  </data>
+  <data name="RequestingPlain" xml:space="preserve">
+    <value>処理中</value>
+    <comment>PlainText</comment>
+  </data>
+  <data name="RetryPlain" xml:space="preserve">
+    <value>やり直す</value>
+    <comment>PlainText</comment>
+  </data>
+  <data name="Save.Text" xml:space="preserve">
+    <value>保存</value>
+    <comment>TextBlock</comment>
+  </data>
+  <data name="SaveImage.Label" xml:space="preserve">
+    <value>画像保存</value>
+    <comment>AppBarButton</comment>
+  </data>
+  <data name="SaveImageFailedPlain" xml:space="preserve">
+    <value>画像を保存できません</value>
+    <comment>PlainText</comment>
+  </data>
+  <data name="SaveImagePlain" xml:space="preserve">
+    <value>画像保存</value>
+    <comment>PlainText</comment>
+  </data>
+  <data name="SaveImageSucceededPlain" xml:space="preserve">
+    <value>画像を保存しました</value>
+    <comment>PlainText</comment>
+  </data>
+  <data name="SaveInkFailedPlain" xml:space="preserve">
+    <value>インクを保存できません</value>
+    <comment>PlainText</comment>
+  </data>
+  <data name="SaveInkPlain" xml:space="preserve">
+    <value>インク保存</value>
+    <comment>PlainText</comment>
+  </data>
+  <data name="SaveInkSucceededPlain" xml:space="preserve">
+    <value>インクを保存しました</value>
+    <comment>PlainText</comment>
+  </data>
+  <data name="SaveUgoiraFailedPlain" xml:space="preserve">
+    <value>うごイラを保存できません</value>
+    <comment>PlainText</comment>
+  </data>
+  <data name="SaveUgoiraSucceededPlain" xml:space="preserve">
+    <value>うごイラを保存しました</value>
+    <comment>PlainText</comment>
+  </data>
+  <data name="Scanner.Text" xml:space="preserve">
+    <value>スキャナー</value>
+    <comment>TextBlock</comment>
+  </data>
+  <data name="Search.PlaceholderText" xml:space="preserve">
+    <value>検索…</value>
+    <comment>AutoSuggestBox</comment>
+  </data>
+  <data name="SearchOptions.Text" xml:space="preserve">
+    <value>検索オプション</value>
+    <comment>TextBlock</comment>
+  </data>
+  <data name="SearchPagePlain" xml:space="preserve">
+    <value>検索</value>
+    <comment>PlainText</comment>
+  </data>
+  <data name="SettingsPagePlain" xml:space="preserve">
+    <value>設定</value>
+    <comment>PlainText</comment>
+  </data>
+  <data name="Sex.Text" xml:space="preserve">
+    <value>性別</value>
+    <comment>TextBlock</comment>
+  </data>
+  <data name="Share.Text" xml:space="preserve">
+    <value>共有</value>
+    <comment>TextBlock</comment>
+  </data>
+  <data name="SharePlain" xml:space="preserve">
+    <value>共有</value>
+    <comment>PlainText</comment>
+  </data>
+  <data name="SharingPlain" xml:space="preserve">
+    <value>イラスト共有</value>
+    <comment>PlainText</comment>
+  </data>
+  <data name="Stop.Text" xml:space="preserve">
+    <value>中止</value>
+    <comment>TextBlock</comment>
+  </data>
+  <data name="StopPlain" xml:space="preserve">
+    <value>中止</value>
+    <comment>PlainText</comment>
+  </data>
+  <data name="Tablet.Text" xml:space="preserve">
+    <value>ペンタブレット</value>
+    <comment>TextBlock</comment>
+  </data>
+  <data name="TagWarning.Text" xml:space="preserve">
+    <value>*タグを選択したら検索オプションが変えられます</value>
+    <comment>TextBlock</comment>
+  </data>
+  <data name="Tool.Text" xml:space="preserve">
+    <value>ツール</value>
+    <comment>TextBlock</comment>
+  </data>
+  <data name="TrendingTags.Text" xml:space="preserve">
+    <value>トレンドタグ</value>
+    <comment>TextBlock</comment>
+  </data>
+  <data name="UnknownPlain" xml:space="preserve">
+    <value>未知</value>
+    <comment>PlainText</comment>
+  </data>
+  <data name="Unpinned.Text" xml:space="preserve">
+    <value>固定されていない</value>
+    <comment>TextBlock</comment>
+  </data>
+  <data name="UserDetailPagePlain" xml:space="preserve">
+    <value>ユーザー</value>
+    <comment>PlainText</comment>
+  </data>
+  <data name="UserID.Text" xml:space="preserve">
+    <value>ユーザーID：</value>
+    <comment>TextBlock</comment>
+  </data>
+  <data name="Username.Text" xml:space="preserve">
+    <value>ユーザー名</value>
+    <comment>TextBlock</comment>
+  </data>
+  <data name="UserShareTipPlain" xml:space="preserve">
+    <value>イラストレーターを共有</value>
+    <comment>PlainText</comment>
+  </data>
+  <data name="VersionInfo.Text" xml:space="preserve">
+    <value>バージョン情報</value>
+    <comment>TextBlock</comment>
+  </data>
+  <data name="Work.Text" xml:space="preserve">
+    <value>作品</value>
+    <comment>TextBlock</comment>
+  </data>
+  <data name="WorkBookmarkedPlain" xml:space="preserve">
+    <value>「{0}」をブックマークに追加しました</value>
+    <comment>PlainText</comment>
+  </data>
+  <data name="WorkBookmarkFailedPlain" xml:space="preserve">
+    <value>「{0}」をブックマークに追加できません</value>
+    <comment>PlainText</comment>
+  </data>
+  <data name="WorkPlain" xml:space="preserve">
+    <value>Pixiv作品</value>
+    <comment>PlainText</comment>
+  </data>
+  <data name="WorkSavedPlain" xml:space="preserve">
+    <value>「{0}」を保存しました</value>
+    <comment>PlainText</comment>
+  </data>
+  <data name="WorkSaveFailedPlain" xml:space="preserve">
+    <value>「{0}」を保存できません</value>
+    <comment>PlainText</comment>
+  </data>
+</root>
