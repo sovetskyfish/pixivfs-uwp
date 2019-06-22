@@ -115,7 +115,7 @@ namespace PixivFSUWP
                 btnBookmark.IsChecked = illust.IsBookmarked;
                 btnFollow.IsChecked = illust.IsUserFollowed;
                 txtBtnBookmark.Text = illust.IsBookmarked ? GetResourceString("BookmarkedPlain") : GetResourceString("NotBookmarkedPlain");
-                txtBtnFollow.Text = illust.IsUserFollowed ? GetResourceString("NotFollowingPlain") : GetResourceString("FollowingPlain");
+                txtBtnFollow.Text = illust.IsUserFollowed ? GetResourceString("FollowingPlain") : GetResourceString("NotFollowingPlain");
                 iconView.Visibility = Visibility.Visible;
                 iconStar.Visibility = Visibility.Visible;
                 stkAuthor.Visibility = Visibility.Visible;
