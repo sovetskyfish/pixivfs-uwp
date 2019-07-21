@@ -16,7 +16,7 @@ Because .NET Native [hasn't fully supported F# yet](https://github.com/dotnet/co
 
 本应用急需翻译人员。参照[如何翻译](https://github.com/tobiichiamane/pixivfs-uwp/blob/master/Translate.md)。
 
-Any help to translate this app will be appreciated. Please read *[How to translate]((https://github.com/tobiichiamane/pixivfs-uwp/blob/master/Translate.md))*.
+Any help to translate this app will be appreciated. Please read [*How to translate*](https://github.com/tobiichiamane/pixivfs-uwp/blob/master/Translate.md).
 
 # Buy me a coffee? 
 
