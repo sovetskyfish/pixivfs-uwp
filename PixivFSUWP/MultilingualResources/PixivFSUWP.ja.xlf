@@ -1,0 +1,607 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 xliff-core-1.2-transitional.xsd">
+  <file datatype="xml" source-language="en" target-language="ja" original="PIXIVFSUWP/STRINGS/EN/RESOURCES.RESW" tool-id="MultilingualAppToolkit" product-name="n/a" product-version="n/a" build-num="n/a">
+    <header>
+      <tool tool-id="MultilingualAppToolkit" tool-name="Multilingual App Toolkit" tool-version="4.0.6914.0" tool-company="Microsoft" />
+    </header>
+    <body>
+      <group id="PIXIVFSUWP/STRINGS/EN/RESOURCES.RESW" datatype="resx">
+        <trans-unit id="AllTime.Content" translate="yes" xml:space="preserve">
+          <source>All Time</source>
+          <target state="translated">すべで</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">ComboBoxItem</note>
+        </trans-unit>
+        <trans-unit id="ArtistPlain" translate="yes" xml:space="preserve">
+          <source>Artist</source>
+          <target state="translated">イラストレーター</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">PlainText</note>
+        </trans-unit>
+        <trans-unit id="Birthday.Text" translate="yes" xml:space="preserve">
+          <source>Birthday</source>
+          <target state="translated">誕生日</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">TextBlock</note>
+        </trans-unit>
+        <trans-unit id="BookmarkDeleteFailedPlain" translate="yes" xml:space="preserve">
+          <source>Failed to unbookmark「{0}」</source>
+          <target state="translated">「{0}」をブックマークから解除できません</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">PlainText</note>
+        </trans-unit>
+        <trans-unit id="Bookmarked.Content" translate="yes" xml:space="preserve">
+          <source>Bookmarked</source>
+          <target state="translated">ブックマーク</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">NavigationViewItem</note>
+        </trans-unit>
+        <trans-unit id="BookmarkedPlain" translate="yes" xml:space="preserve">
+          <source>Marked</source>
+          <target state="translated">ブックマークに追加しました</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">PlainText</note>
+        </trans-unit>
+        <trans-unit id="btnAppLink.ToolTipService.ToolTip" translate="yes" xml:space="preserve">
+          <source>Copy app URL</source>
+          <target state="translated">アプリ内リンクをコピー</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">ToolTip</note>
+        </trans-unit>
+        <trans-unit id="btnLink.ToolTipService.ToolTip" translate="yes" xml:space="preserve">
+          <source>Copy web URL</source>
+          <target state="translated">ウェブリンクをコピー</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">ToolTip</note>
+        </trans-unit>
+        <trans-unit id="btnShare.ToolTipService.ToolTip" translate="yes" xml:space="preserve">
+          <source>Windows Share</source>
+          <target state="translated">Windows共有</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">ToolTip</note>
+        </trans-unit>
+        <trans-unit id="CancelPlain" translate="yes" xml:space="preserve">
+          <source>Cancel</source>
+          <target state="translated">キャンセル</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">PlainText</note>
+        </trans-unit>
+        <trans-unit id="Chair.Text" translate="yes" xml:space="preserve">
+          <source>Chair</source>
+          <target state="translated">椅子</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">TextBlock</note>
+        </trans-unit>
+        <trans-unit id="CommentsPlain" translate="yes" xml:space="preserve">
+          <source>Comments</source>
+          <target state="translated">コメント</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">PlainText</note>
+        </trans-unit>
+        <trans-unit id="CreatingTimelinePlain" translate="yes" xml:space="preserve">
+          <source>Generating Windows® Timeline™</source>
+          <target state="translated">Windows® Timeline™を作成しています</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">PlainText</note>
+        </trans-unit>
+        <trans-unit id="CurrentUser.Text" translate="yes" xml:space="preserve">
+          <source>Current User</source>
+          <target state="translated">ユーザー</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">TextBlock</note>
+        </trans-unit>
+        <trans-unit id="DateAsc.Content" translate="yes" xml:space="preserve">
+          <source>Date ascending</source>
+          <target state="translated">日付の昇順</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">ComboBoxItem</note>
+        </trans-unit>
+        <trans-unit id="DateDesc.Content" translate="yes" xml:space="preserve">
+          <source>Date descending</source>
+          <target state="translated">日付の降順</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">ComboBoxItem</note>
+        </trans-unit>
+        <trans-unit id="DeleteBookmarkPlain" translate="yes" xml:space="preserve">
+          <source>Unbookmark</source>
+          <target state="translated">ブックマーク解除</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">PlainText</note>
+        </trans-unit>
+        <trans-unit id="DeletedBookmarkPlain" translate="yes" xml:space="preserve">
+          <source>「{0}」unbookmarked</source>
+          <target state="translated">「{0}」をブックマークから解除しました</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">PlainText</note>
+        </trans-unit>
+        <trans-unit id="Desk.Text" translate="yes" xml:space="preserve">
+          <source>Desk</source>
+          <target state="translated">つくえ</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">TextBlock</note>
+        </trans-unit>
+        <trans-unit id="Desktop.Text" translate="yes" xml:space="preserve">
+          <source>Desktop</source>
+          <target state="translated">デスクトップ</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">TextBlock</note>
+        </trans-unit>
+        <trans-unit id="DetailPlain" translate="yes" xml:space="preserve">
+          <source>Detail</source>
+          <target state="translated">詳細</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">PlainText</note>
+        </trans-unit>
+        <trans-unit id="DownloadingUgoiraPlain" translate="yes" xml:space="preserve">
+          <source>Downloading ugoira</source>
+          <target state="translated">うごイラをダウンロードしています</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">PlainText</note>
+        </trans-unit>
+        <trans-unit id="Draw.Label" translate="yes" xml:space="preserve">
+          <source>Draw</source>
+          <target state="translated">臨模</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">AppBarButton</note>
+        </trans-unit>
+        <trans-unit id="Email.Text" translate="yes" xml:space="preserve">
+          <source>Email：</source>
+          <target state="translated">メール：</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">TextBlock</note>
+        </trans-unit>
+        <trans-unit id="FemalePlain" translate="yes" xml:space="preserve">
+          <source>Female</source>
+          <target state="translated">女</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">PlainText</note>
+        </trans-unit>
+        <trans-unit id="Following.Content" translate="yes" xml:space="preserve">
+          <source>Following</source>
+          <target state="translated">フォロワー</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">NavigationViewItem</note>
+        </trans-unit>
+        <trans-unit id="FollowingPlain" translate="yes" xml:space="preserve">
+          <source>Followed</source>
+          <target state="translated">フォロー</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">PlainText</note>
+        </trans-unit>
+        <trans-unit id="FullyMatchTag.Content" translate="yes" xml:space="preserve">
+          <source>Fully match tag</source>
+          <target state="translated">完全一致タグ</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">ComboBoxItem</note>
+        </trans-unit>
+        <trans-unit id="GeneratingGifPlain" translate="yes" xml:space="preserve">
+          <source>Generating Gif</source>
+          <target state="translated">Gifを作成しています</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">PlainText</note>
+        </trans-unit>
+        <trans-unit id="GifFilePlain" translate="yes" xml:space="preserve">
+          <source>Gif file</source>
+          <target state="translated">Gifファイル</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">PlainText</note>
+        </trans-unit>
+        <trans-unit id="ImageFilePlain" translate="yes" xml:space="preserve">
+          <source>Image file</source>
+          <target state="translated">画像ファイル</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">PlainText</note>
+        </trans-unit>
+        <trans-unit id="Job.Text" translate="yes" xml:space="preserve">
+          <source>Job</source>
+          <target state="translated">仕事</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">TextBlock</note>
+        </trans-unit>
+        <trans-unit id="Keyword.Text" translate="yes" xml:space="preserve">
+          <source>Keyword</source>
+          <target state="translated">キーワード</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">TextBlock</note>
+        </trans-unit>
+        <trans-unit id="LastDay.Content" translate="yes" xml:space="preserve">
+          <source>Last day</source>
+          <target state="translated">前日</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">ComboBoxItem</note>
+        </trans-unit>
+        <trans-unit id="LastMonth.Content" translate="yes" xml:space="preserve">
+          <source>Last month</source>
+          <target state="translated">前月</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">ComboBoxItem</note>
+        </trans-unit>
+        <trans-unit id="LastWeek.Content" translate="yes" xml:space="preserve">
+          <source>Last week</source>
+          <target state="translated">前週</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">ComboBoxItem</note>
+        </trans-unit>
+        <trans-unit id="LinkPlain" translate="yes" xml:space="preserve">
+          <source>Link</source>
+          <target state="translated">リンク</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">PlainText</note>
+        </trans-unit>
+        <trans-unit id="LivingPlace.Text" translate="yes" xml:space="preserve">
+          <source>Living place</source>
+          <target state="translated">居場所</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">TextBlock</note>
+        </trans-unit>
+        <trans-unit id="LoadingPlain" translate="yes" xml:space="preserve">
+          <source>Loading</source>
+          <target state="translated">読み込む中</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">PlainText</note>
+        </trans-unit>
+        <trans-unit id="LoadingPreviewPlain" translate="yes" xml:space="preserve">
+          <source>Loading preview</source>
+          <target state="translated">プレビューを読み込む中</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">PlainText</note>
+        </trans-unit>
+        <trans-unit id="LoadingStatusPlain" translate="yes" xml:space="preserve">
+          <source>Loading {0}/{1}</source>
+          <target state="translated">{0}/{1}を読み込む中</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">PlainText</note>
+        </trans-unit>
+        <trans-unit id="LoggingIn.Text" translate="yes" xml:space="preserve">
+          <source>Logging in</source>
+          <target state="translated">ログイン中</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">TextBlock</note>
+        </trans-unit>
+        <trans-unit id="Login.Content" translate="yes" xml:space="preserve">
+          <source>Login</source>
+          <target state="translated">ログイン</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Button</note>
+        </trans-unit>
+        <trans-unit id="LoginBanner.Text" translate="yes" xml:space="preserve">
+          <source>Spice up your creating process</source>
+          <target state="translated">創作活動をもっとたのしく</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">TextBlock</note>
+        </trans-unit>
+        <trans-unit id="LoginFailed.Content" translate="yes" xml:space="preserve">
+          <source>Login failed. Troubleshoot and try again.</source>
+          <target state="translated">ログインできません。トラブルシューティングを行い、もう一度やり直してください。</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Button</note>
+        </trans-unit>
+        <trans-unit id="Logout.Content" translate="yes" xml:space="preserve">
+          <source>Logout</source>
+          <target state="translated">ログアウト</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Button</note>
+        </trans-unit>
+        <trans-unit id="LogoutWarning.Text" translate="yes" xml:space="preserve">
+          <source>*This will log you out on all your Windows devices</source>
+          <target state="translated">*すべでのWindowsデバイスからログイン解除します</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">TextBlock</note>
+        </trans-unit>
+        <trans-unit id="MalePlain" translate="yes" xml:space="preserve">
+          <source>Male</source>
+          <target state="translated">男</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">PlainText</note>
+        </trans-unit>
+        <trans-unit id="Monitor.Text" translate="yes" xml:space="preserve">
+          <source>Monitor</source>
+          <target state="translated">モニター</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">TextBlock</note>
+        </trans-unit>
+        <trans-unit id="Mouse.Text" translate="yes" xml:space="preserve">
+          <source>Mouse</source>
+          <target state="translated">マウス</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">TextBlock</note>
+        </trans-unit>
+        <trans-unit id="Music.Text" translate="yes" xml:space="preserve">
+          <source>Music</source>
+          <target state="translated">音楽</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">TextBlock</note>
+        </trans-unit>
+        <trans-unit id="MyInkPlain" translate="yes" xml:space="preserve">
+          <source>Draft</source>
+          <target state="translated">下書き</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">PlainText</note>
+        </trans-unit>
+        <trans-unit id="NoCaptionPlain" translate="yes" xml:space="preserve">
+          <source>No caption</source>
+          <target state="translated">紹介がありません</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">PlainText</note>
+        </trans-unit>
+        <trans-unit id="NoInkPlain" translate="yes" xml:space="preserve">
+          <source>No ink strokes to save</source>
+          <target state="translated">保存できるインクがありません</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">PlainText</note>
+        </trans-unit>
+        <trans-unit id="NotBookmarked.Text" translate="yes" xml:space="preserve">
+          <source>Unmarked</source>
+          <target state="translated">ブックマーク</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">TextBlock</note>
+        </trans-unit>
+        <trans-unit id="NotBookmarkedPlain" translate="yes" xml:space="preserve">
+          <source>Unmarked</source>
+          <target state="translated">ブックマーク</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">PlainText</note>
+        </trans-unit>
+        <trans-unit id="NotFollowing.Text" translate="yes" xml:space="preserve">
+          <source>Unfollowed</source>
+          <target state="translated">フォロー</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">TextBlock</note>
+        </trans-unit>
+        <trans-unit id="NotFollowingPlain" translate="yes" xml:space="preserve">
+          <source>Unfollowed</source>
+          <target state="translated">フォロー</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">PlainText</note>
+        </trans-unit>
+        <trans-unit id="OKPlain" translate="yes" xml:space="preserve">
+          <source>OK</source>
+          <target state="translated">はい</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">PlainText</note>
+        </trans-unit>
+        <trans-unit id="PageInfoPlain" translate="yes" xml:space="preserve">
+          <source>Num of pages: {0}. Click or tap to view in big image mode.</source>
+          <target state="translated">画像数: {0}。 クリックまたはタップして全画像モードに。</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">PlainText</note>
+        </trans-unit>
+        <trans-unit id="PartiallyMatchTag.Content" translate="yes" xml:space="preserve">
+          <source>Partially match tag</source>
+          <target state="translated">部分一致タグ</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">ComboBoxItem</note>
+        </trans-unit>
+        <trans-unit id="PartiallyMatchTitleAndCap.Content" translate="yes" xml:space="preserve">
+          <source>Partially match title and caption</source>
+          <target state="translated">部分一致タイトルと紹介</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">ComboBoxItem</note>
+        </trans-unit>
+        <trans-unit id="Password.Text" translate="yes" xml:space="preserve">
+          <source>Password</source>
+          <target state="translated">パスワード</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">TextBlock</note>
+        </trans-unit>
+        <trans-unit id="PC.Text" translate="yes" xml:space="preserve">
+          <source>PC</source>
+          <target state="translated">パソコン</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">TextBlock</note>
+        </trans-unit>
+        <trans-unit id="PersonalWebsite.Text" translate="yes" xml:space="preserve">
+          <source>Website</source>
+          <target state="translated">ウェブサイト</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">TextBlock</note>
+        </trans-unit>
+        <trans-unit id="PinnedPlain" translate="yes" xml:space="preserve">
+          <source>Pinned</source>
+          <target state="translated">固定された</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">PlainText</note>
+        </trans-unit>
+        <trans-unit id="PixivUserPlain" translate="yes" xml:space="preserve">
+          <source>Pixiv user</source>
+          <target state="translated">Pixivユーザー</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">PlainText</note>
+        </trans-unit>
+        <trans-unit id="PlayingUgoiraPlain" translate="yes" xml:space="preserve">
+          <source>Playing ugoira</source>
+          <target state="translated">うごイラを再生しています</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">PlainText</note>
+        </trans-unit>
+        <trans-unit id="PlayPlain" translate="yes" xml:space="preserve">
+          <source>Play</source>
+          <target state="translated">再生</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">PlainText</note>
+        </trans-unit>
+        <trans-unit id="Printer.Text" translate="yes" xml:space="preserve">
+          <source>Printer</source>
+          <target state="translated">プリンター</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">TextBlock</note>
+        </trans-unit>
+        <trans-unit id="PrivateOrNonePlain" translate="yes" xml:space="preserve">
+          <source>None/Private</source>
+          <target state="translated">なし/プライベート</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">PlainText</note>
+        </trans-unit>
+        <trans-unit id="PrivatePlain" translate="yes" xml:space="preserve">
+          <source>Private</source>
+          <target state="translated">プライベート</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">PlainText</note>
+        </trans-unit>
+        <trans-unit id="QuickBookmark.Text" translate="yes" xml:space="preserve">
+          <source>Bookmark</source>
+          <target state="translated">ブックマーク</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">MenuFlyoutItem</note>
+        </trans-unit>
+        <trans-unit id="QuickBookmarkPlain" translate="yes" xml:space="preserve">
+          <source>Bookmark</source>
+          <target state="translated">ブックマーク</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">PlainText</note>
+        </trans-unit>
+        <trans-unit id="QuickDownload.Text" translate="yes" xml:space="preserve">
+          <source>Save</source>
+          <target state="translated">保存</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">MenuFlyoutItem</note>
+        </trans-unit>
+        <trans-unit id="Ranking.Content" translate="yes" xml:space="preserve">
+          <source>Rankings</source>
+          <target state="translated">ランキング</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">NavigationViewItem</note>
+        </trans-unit>
+        <trans-unit id="RawInkPlain" translate="yes" xml:space="preserve">
+          <source>Raw ink</source>
+          <target state="translated">元インク</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">PlainText</note>
+        </trans-unit>
+        <trans-unit id="Recommended.Content" translate="yes" xml:space="preserve">
+          <source>Recommended</source>
+          <target state="translated">推薦</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">NavigationViewItem</note>
+        </trans-unit>
+        <trans-unit id="Register.Content" translate="yes" xml:space="preserve">
+          <source>Register</source>
+          <target state="translated">登録</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Button</note>
+        </trans-unit>
+        <trans-unit id="RequestingPlain" translate="yes" xml:space="preserve">
+          <source>Requesting</source>
+          <target state="translated">処理中</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">PlainText</note>
+        </trans-unit>
+        <trans-unit id="RetryPlain" translate="yes" xml:space="preserve">
+          <source>Retry</source>
+          <target state="translated">やり直す</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">PlainText</note>
+        </trans-unit>
+        <trans-unit id="Save.Text" translate="yes" xml:space="preserve">
+          <source>Save</source>
+          <target state="translated">保存</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">TextBlock</note>
+        </trans-unit>
+        <trans-unit id="SaveImage.Label" translate="yes" xml:space="preserve">
+          <source>Save Image</source>
+          <target state="translated">画像保存</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">AppBarButton</note>
+        </trans-unit>
+        <trans-unit id="SaveImageFailedPlain" translate="yes" xml:space="preserve">
+          <source>Failed to save image</source>
+          <target state="translated">画像を保存できません</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">PlainText</note>
+        </trans-unit>
+        <trans-unit id="SaveImagePlain" translate="yes" xml:space="preserve">
+          <source>Save Image</source>
+          <target state="translated">画像保存</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">PlainText</note>
+        </trans-unit>
+        <trans-unit id="SaveImageSucceededPlain" translate="yes" xml:space="preserve">
+          <source>Image saved</source>
+          <target state="translated">画像を保存しました</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">PlainText</note>
+        </trans-unit>
+        <trans-unit id="SaveInkFailedPlain" translate="yes" xml:space="preserve">
+          <source>Failed to save ink strokes</source>
+          <target state="translated">インクを保存できません</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">PlainText</note>
+        </trans-unit>
+        <trans-unit id="SaveInkPlain" translate="yes" xml:space="preserve">
+          <source>Save ink strokes</source>
+          <target state="translated">インク保存</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">PlainText</note>
+        </trans-unit>
+        <trans-unit id="SaveInkSucceededPlain" translate="yes" xml:space="preserve">
+          <source>Ink strokes saved</source>
+          <target state="translated">インクを保存しました</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">PlainText</note>
+        </trans-unit>
+        <trans-unit id="SaveUgoiraFailedPlain" translate="yes" xml:space="preserve">
+          <source>Failed to save ugoira</source>
+          <target state="translated">うごイラを保存できません</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">PlainText</note>
+        </trans-unit>
+        <trans-unit id="SaveUgoiraSucceededPlain" translate="yes" xml:space="preserve">
+          <source>Ugoira saved</source>
+          <target state="translated">うごイラを保存しました</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">PlainText</note>
+        </trans-unit>
+        <trans-unit id="Scanner.Text" translate="yes" xml:space="preserve">
+          <source>Scanner</source>
+          <target state="translated">スキャナー</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">TextBlock</note>
+        </trans-unit>
+        <trans-unit id="Search.PlaceholderText" translate="yes" xml:space="preserve">
+          <source>Search…</source>
+          <target state="translated">検索…</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">AutoSuggestBox</note>
+        </trans-unit>
+        <trans-unit id="SearchOptions.Text" translate="yes" xml:space="preserve">
+          <source>Search options</source>
+          <target state="translated">検索オプション</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">TextBlock</note>
+        </trans-unit>
+        <trans-unit id="SearchPagePlain" translate="yes" xml:space="preserve">
+          <source>Search</source>
+          <target state="translated">検索</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">PlainText</note>
+        </trans-unit>
+        <trans-unit id="SettingsPagePlain" translate="yes" xml:space="preserve">
+          <source>Settings</source>
+          <target state="translated">設定</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">PlainText</note>
+        </trans-unit>
+        <trans-unit id="Sex.Text" translate="yes" xml:space="preserve">
+          <source>Sex</source>
+          <target state="translated">性別</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">TextBlock</note>
+        </trans-unit>
+        <trans-unit id="Share.Text" translate="yes" xml:space="preserve">
+          <source>Share</source>
+          <target state="translated">共有</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">TextBlock</note>
+        </trans-unit>
+        <trans-unit id="SharePlain" translate="yes" xml:space="preserve">
+          <source>Share</source>
+          <target state="translated">共有</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">PlainText</note>
+        </trans-unit>
+        <trans-unit id="SharingPlain" translate="yes" xml:space="preserve">
+          <source>Sharing illust</source>
+          <target state="translated">イラスト共有</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">PlainText</note>
+        </trans-unit>
+        <trans-unit id="Stop.Text" translate="yes" xml:space="preserve">
+          <source>Stop</source>
+          <target state="translated">中止</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">TextBlock</note>
+        </trans-unit>
+        <trans-unit id="StopPlain" translate="yes" xml:space="preserve">
+          <source>Stop</source>
+          <target state="translated">中止</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">PlainText</note>
+        </trans-unit>
+        <trans-unit id="Tablet.Text" translate="yes" xml:space="preserve">
+          <source>Tablet</source>
+          <target state="translated">ペンタブレット</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">TextBlock</note>
+        </trans-unit>
+        <trans-unit id="TagWarning.Text" translate="yes" xml:space="preserve">
+          <source>*Choose a tag will change your search options</source>
+          <target state="translated">*タグを選択したら検索オプションが変えられます</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">TextBlock</note>
+        </trans-unit>
+        <trans-unit id="Tool.Text" translate="yes" xml:space="preserve">
+          <source>Tools</source>
+          <target state="translated">ツール</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">TextBlock</note>
+        </trans-unit>
+        <trans-unit id="TrendingTags.Text" translate="yes" xml:space="preserve">
+          <source>Trending tags</source>
+          <target state="translated">トレンドタグ</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">TextBlock</note>
+        </trans-unit>
+        <trans-unit id="UnknownPlain" translate="yes" xml:space="preserve">
+          <source>Unknown</source>
+          <target state="translated">未知</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">PlainText</note>
+        </trans-unit>
+        <trans-unit id="Unpinned.Text" translate="yes" xml:space="preserve">
+          <source>Unpinned</source>
+          <target state="translated">固定されていない</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">TextBlock</note>
+        </trans-unit>
+        <trans-unit id="UserDetailPagePlain" translate="yes" xml:space="preserve">
+          <source>User</source>
+          <target state="translated">ユーザー</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">PlainText</note>
+        </trans-unit>
+        <trans-unit id="UserID.Text" translate="yes" xml:space="preserve">
+          <source>User ID：</source>
+          <target state="translated">ユーザーID：</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">TextBlock</note>
+        </trans-unit>
+        <trans-unit id="Username.Text" translate="yes" xml:space="preserve">
+          <source>Username</source>
+          <target state="translated">ユーザー名</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">TextBlock</note>
+        </trans-unit>
+        <trans-unit id="UserShareTipPlain" translate="yes" xml:space="preserve">
+          <source>Sharing artist</source>
+          <target state="translated">イラストレーターを共有</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">PlainText</note>
+        </trans-unit>
+        <trans-unit id="VersionInfo.Text" translate="yes" xml:space="preserve">
+          <source>Version information</source>
+          <target state="translated">バージョン情報</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">TextBlock</note>
+        </trans-unit>
+        <trans-unit id="Work.Text" translate="yes" xml:space="preserve">
+          <source>Workd</source>
+          <target state="translated">作品</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">TextBlock</note>
+        </trans-unit>
+        <trans-unit id="WorkBookmarkedPlain" translate="yes" xml:space="preserve">
+          <source>「{0}」bookmarked</source>
+          <target state="translated">「{0}」をブックマークに追加しました</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">PlainText</note>
+        </trans-unit>
+        <trans-unit id="WorkBookmarkFailedPlain" translate="yes" xml:space="preserve">
+          <source>Failed to bookmark「{0}」</source>
+          <target state="translated">「{0}」をブックマークに追加できません</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">PlainText</note>
+        </trans-unit>
+        <trans-unit id="WorkPlain" translate="yes" xml:space="preserve">
+          <source>Pixiv art</source>
+          <target state="translated">Pixiv作品</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">PlainText</note>
+        </trans-unit>
+        <trans-unit id="WorkSavedPlain" translate="yes" xml:space="preserve">
+          <source>「{0}」 saved</source>
+          <target state="translated">「{0}」を保存しました</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">PlainText</note>
+        </trans-unit>
+        <trans-unit id="WorkSaveFailedPlain" translate="yes" xml:space="preserve">
+          <source>Failed to save「{0}」</source>
+          <target state="translated">「{0}」を保存できません</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">PlainText</note>
+        </trans-unit>
+      </group>
+    </body>
+  </file>
+</xliff>
