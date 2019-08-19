@@ -488,4 +488,8 @@
     <value>「{0}」を保存できません</value>
     <comment>PlainText</comment>
   </data>
+  <data name="ExperimentalConnection.Content" xml:space="preserve">
+    <value>Direct Connection (!Experimental!)</value>
+    <comment>CheckBox</comment>
+  </data>
 </root>

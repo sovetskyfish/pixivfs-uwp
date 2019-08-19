@@ -601,6 +601,11 @@
           <target state="translated">「{0}」を保存できません</target>
           <note from="MultilingualBuild" annotates="source" priority="2">PlainText</note>
         </trans-unit>
+        <trans-unit id="ExperimentalConnection.Content" translate="yes" xml:space="preserve">
+          <source>Direct Connection (!Experimental!)</source>
+          <target state="translated">Direct Connection (!Experimental!)</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">CheckBox</note>
+        </trans-unit>
       </group>
     </body>
   </file>

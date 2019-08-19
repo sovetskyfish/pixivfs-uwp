@@ -488,4 +488,8 @@
     <value>作品「{0}」保存失败</value>
     <comment>PlainText</comment>
   </data>
+  <data name="ExperimentalConnection.Content" xml:space="preserve">
+    <value>直连（实验性，可以绕过中国大陆的封锁）</value>
+    <comment>CheckBox</comment>
+  </data>
 </root>

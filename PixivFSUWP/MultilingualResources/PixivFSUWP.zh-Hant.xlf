@@ -601,6 +601,11 @@
           <target state="translated">作品「{0}」保存失败</target>
           <note from="MultilingualBuild" annotates="source" priority="2">PlainText</note>
         </trans-unit>
+        <trans-unit id="ExperimentalConnection.Content" translate="yes" xml:space="preserve">
+          <source>Direct Connection (!Experimental!)</source>
+          <target state="translated">直连（实验性，可以绕过中国大陆的封锁）</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">CheckBox</note>
+        </trans-unit>
       </group>
     </body>
   </file>

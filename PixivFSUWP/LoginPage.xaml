@@ -76,7 +76,7 @@
     </Page.Resources>
     <Grid>
         <Image Source="Assets/LoginBG.jpg" Stretch="UniformToFill"/>
-        <Grid Height="460" Width="400"
+        <Grid Height="480" Width="400"
               HorizontalAlignment="Center" VerticalAlignment="Center">
             <Grid.Background>
                 <AcrylicBrush BackgroundSource="Backdrop" TintOpacity="0.4" TintColor="White" FallbackColor="#99ffffff"/>
@@ -88,13 +88,14 @@
             </Grid.RowDefinitions>
             <TextBlock HorizontalAlignment="Center" Margin="0,150,0,0" x:Uid="LoginBanner"/>
             <Image Source="Assets/PixivText.png"/>
-            <StackPanel x:Name="stkTxts" Grid.Row="1" Margin="20" HorizontalAlignment="Stretch" VerticalAlignment="Center">
+            <StackPanel x:Name="stkTxts" Grid.Row="1" Margin="20,20,20,10" HorizontalAlignment="Stretch" VerticalAlignment="Center">
                 <TextBlock Margin="5" x:Uid="Username"/>
                 <TextBox x:Name="txtUserName" Margin="5"/>
                 <TextBlock Margin="5" x:Uid="Password"/>
                 <PasswordBox x:Name="txtPassword" PasswordRevealMode="Peek" Margin="5"/>
             </StackPanel>
-            <StackPanel x:Name="stkBtns" Margin="20" HorizontalAlignment="Stretch" VerticalAlignment="Center" Grid.Row="2">
+            <StackPanel x:Name="stkBtns" Margin="20,10,20,20" HorizontalAlignment="Stretch" VerticalAlignment="Center" Grid.Row="2">
+                <CheckBox x:Name="chkExperimental" x:Uid="ExperimentalConnection" Margin="5,3"/>
                 <Button x:Name="btnLogin" Click="BtnLogin_Click" Style="{StaticResource LoginButtonStyle}" Background="#25c6ff" Foreground="White" Margin="5,3" HorizontalAlignment="Stretch" x:Uid="Login"/>
                 <Button x:Name="btnReg" Click="BtnReg_Click" Margin="5,3" HorizontalAlignment="Stretch" x:Uid="Register"/>
             </StackPanel>

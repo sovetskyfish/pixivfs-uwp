@@ -36,6 +36,8 @@ namespace PixivFSUWP
         private string password = null;
         private string refreshToken = null;
         private bool useToken = false;
+        private bool directConnetion = false;
+        Windows.Storage.ApplicationDataContainer localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
 
         public LoginPage()
         {
@@ -46,6 +48,10 @@ namespace PixivFSUWP
             view.TitleBar.ButtonForegroundColor = Colors.White;
             view.TitleBar.ButtonInactiveBackgroundColor = Colors.Transparent;
             view.TitleBar.ButtonInactiveForegroundColor = Colors.Gray;
+            if (localSettings.Values["directConnection"] == null)
+                localSettings.Values["directConnection"] = false;
+            directConnetion = (bool)localSettings.Values["directConnection"];
+            chkExperimental.IsChecked = directConnetion;
             var refreshTokenCredential = GetCredentialFromLocker(refreshTokenResource);
             var passwordCredential = GetCredentialFromLocker(passwordResource);
             if (passwordCredential != null)
@@ -83,6 +89,11 @@ namespace PixivFSUWP
 
         private async void Login()
         {
+            //启用实验性功能
+            directConnetion = chkExperimental.IsChecked.Value;
+            GlobalBaseAPI.ExperimentalConnection = directConnetion;
+            //保存设置
+            localSettings.Values["directConnection"] = directConnetion;
             stkTxts.Visibility = Visibility.Collapsed;
             stkBtns.Visibility = Visibility.Collapsed;
             btnTrouble.Visibility = Visibility.Collapsed;

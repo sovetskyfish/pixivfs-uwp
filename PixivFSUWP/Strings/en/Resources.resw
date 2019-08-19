@@ -213,6 +213,10 @@
     <value>Email：</value>
     <comment>TextBlock</comment>
   </data>
+  <data name="ExperimentalConnection.Content" xml:space="preserve">
+    <value>Direct Connection (!Experimental!)</value>
+    <comment>CheckBox</comment>
+  </data>
   <data name="FemalePlain" xml:space="preserve">
     <value>Female</value>
     <comment>PlainText</comment>
