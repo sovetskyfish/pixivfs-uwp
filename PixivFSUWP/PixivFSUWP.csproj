@@ -259,7 +259,7 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="AdaptiveCards">
-      <Version>1.2.0-beta1</Version>
+      <Version>1.2.2</Version>
     </PackageReference>
     <PackageReference Include="LumiaImagingSDK.UWP">
       <Version>3.0.593</Version>
@@ -271,7 +271,7 @@
       <Version>5.1.1</Version>
     </PackageReference>
     <PackageReference Include="PixivCS">
-      <Version>0.1.7</Version>
+      <Version>0.1.8</Version>
     </PackageReference>
     <PackageReference Include="Win2D.uwp">
       <Version>1.23.0</Version>
