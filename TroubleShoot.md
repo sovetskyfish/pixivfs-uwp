@@ -5,7 +5,13 @@ Pixiv及其相关服务在中国大陆处于被封锁状态，若希望使用Pix
 
 ### 解除UWP应用本地回环限制
 
-这里使用免费实用工具[Fiddler](https://www.telerik.com/fiddler)的一个子功能来达成目的：
+直接在cmd中使用下面的命令即可
+
+```cmd
+checknetisolation loopbackexempt -a -n=18416PixeezPlusProject.PixivUWP_fsr1r9g7nfjfw
+```
+
+也可以使用免费实用工具[Fiddler](https://www.telerik.com/fiddler)的一个子功能来达成目的：
 
 - 下载并安装Fiddler
 - 启动Fiddler，并点击工具栏上第一个按钮“WinConfig”
