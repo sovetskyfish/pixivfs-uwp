@@ -3,15 +3,23 @@
 
 Pixiv及其相关服务在中国大陆处于被封锁状态，若希望使用PixivUWP，则必须使用稳定的代理工具；对于部分代理工具（如Shadowsocks等）则需要解除UWP应用的本地回环限制。
 
+**!实验性功能!** 在[版本2.2.1](https://github.com/tobiichiamane/pixivfs-uwp/tree/v2.2.1)之后，你可以在登录时勾选“直连”功能以期绕过中国大陆的封锁。对于某些地区，此功能未必有效；对于此功能有效的地区，连接速度可能会不理想。
+
 ### 解除UWP应用本地回环限制
 
-直接在cmd中使用下面的命令即可
+**使用命令提示符**
 
+- 若您的应用来自于GitHub或Azure DevOps：
+```cmd
+checknetisolation loopbackexempt -a -n=31db69de-89d1-4fa9-9878-fcd942f090ca_5v6yvh15ag700
+```
+
+- 若您的应用来自于商店：
 ```cmd
 checknetisolation loopbackexempt -a -n=18416PixeezPlusProject.PixivUWP_fsr1r9g7nfjfw
 ```
 
-也可以使用免费实用工具[Fiddler](https://www.telerik.com/fiddler)的一个子功能来达成目的：
+**使用[Fiddler](https://www.telerik.com/fiddler)**
 
 - 下载并安装Fiddler
 - 启动Fiddler，并点击工具栏上第一个按钮“WinConfig”
@@ -25,6 +33,10 @@ PixivUWP使用下列域名完成应用功能：
 - public-api.secure.pixiv.net/*
 - oauth.secure.pixiv.net/*
 - public-api.pixiv.net/*
+
+Pixiv的图片由以下域名提供：
+
+- i.pximg.net/*
 
 请确保将这些域名加入你的代理列表中。
 
