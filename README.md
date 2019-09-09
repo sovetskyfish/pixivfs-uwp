@@ -12,6 +12,10 @@ Almost useable. All dependencies are available on Nuget, so you don't need any s
 
 Because .NET Native [hasn't fully supported F# yet](https://github.com/dotnet/corert/issues/6055), this project is based on [pixivcs](https://github.com/tobiichiamane/pixivcs) rather than [pixivfs](https://github.com/tobiichiamane/pixivfs). 
 
+如果您也使用安卓设备，那么[@Notsfsssf](https://github.com/Notsfsssf)开发的[Pix-EzViewer](https://github.com/Notsfsssf/Pix-EzViewer)会是不错的选择。
+
+If you also use Android devices, [Pix-EzViewer](https://github.com/Notsfsssf/Pix-EzViewer) developed by [@Notsfsssf](https://github.com/Notsfsssf) will be a great alternative to the official app.
+
 # 翻译/Translation
 
 本应用急需翻译人员。参照[如何翻译](https://github.com/tobiichiamane/pixivfs-uwp/blob/master/Translate.md)。
