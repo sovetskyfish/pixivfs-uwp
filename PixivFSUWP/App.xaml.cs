@@ -7,6 +7,7 @@ using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -30,6 +31,15 @@ namespace PixivFSUWP
         {
             this.InitializeComponent();
             this.Suspending += OnSuspending;
+            this.UnhandledException += App_UnhandledException;
+        }
+
+        private async void App_UnhandledException(object sender, Windows.UI.Xaml.UnhandledExceptionEventArgs e)
+        {
+            e.Handled = true;
+            MessageDialog dialog = new MessageDialog(string.Format("Unhandled Execption: {0}\nPlease screenshot for later use.", e.Exception.Message), "Exception");
+            await dialog.ShowAsync();
+            this.Exit();
         }
 
         protected override void OnActivated(IActivatedEventArgs args)
