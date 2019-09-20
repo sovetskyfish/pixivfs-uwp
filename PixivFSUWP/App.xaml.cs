@@ -39,6 +39,9 @@ namespace PixivFSUWP
         private async void App_UnhandledException(object sender, Windows.UI.Xaml.UnhandledExceptionEventArgs e)
         {
             e.Handled = true;
+            if (localSettings.Values.ContainsKey("exception"))
+                localSettings.Values.Remove("exception");
+            localSettings.Values["exception"] = e.Exception.ToString();
             localSettings.Values["isCrashed"] = true;
             MessageDialog dialog = new MessageDialog("Pixiv UWP has crashed. Please restart this app in order to report this issue.\n程序已崩溃，请重启本应用以便于报告此问题。", "Crashed/程序崩溃");
             await dialog.ShowAsync();
@@ -125,11 +128,12 @@ namespace PixivFSUWP
                         {
                             rootFrame.Navigate(typeof(ReportIssuePage), e.Arguments);
                         }
+                        else
+                        {
+                            rootFrame.Navigate(typeof(LoginPage), e.Arguments);
+                        }
                     }
-                    // 当导航堆栈尚未还原时，导航到第一页，
-                    // 并通过将所需信息作为导航参数传入来配置
-                    // 参数
-                    rootFrame.Navigate(typeof(LoginPage), e.Arguments);
+                    else rootFrame.Navigate(typeof(LoginPage), e.Arguments);
                 }
                 // 确保当前窗口处于活动状态
                 Window.Current.Activate();
