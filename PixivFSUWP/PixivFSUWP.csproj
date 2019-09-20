@@ -205,6 +205,7 @@
     <PRIResource Include="Strings\en\Resources.resw" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\GitHub-Mark-32px.png" />
     <Content Include="Assets\LoginBG.jpg" />
     <Content Include="Assets\PixivHeader.png" />
     <Content Include="Assets\PixivText.png" />

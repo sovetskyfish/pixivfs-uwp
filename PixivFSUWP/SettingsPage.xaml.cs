@@ -9,6 +9,7 @@ using Windows.ApplicationModel;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.Security.Credentials;
+using Windows.System;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -87,6 +88,12 @@ namespace PixivFSUWP
             {
                 ((Frame.Parent as Grid).Parent as MainPage).Frame.Navigate(typeof(LoginPage));
             }
+        }
+
+        private async void BtnGithub_Click(object sender, RoutedEventArgs e)
+        {
+            await Launcher.LaunchUriAsync(new
+                Uri(@"https://github.com/tobiichiamane/pixivfs-uwp"));
         }
     }
 }

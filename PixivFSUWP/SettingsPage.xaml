@@ -45,6 +45,9 @@
             <TextBlock Margin="15,10,15,0" x:Name="txtVersion"/>
             <TextBlock Margin="15,2,15,0" x:Name="txtPkgName"/>
             <TextBlock Margin="15,2,15,0" x:Name="txtInsDate"/>
+            <Button Style="{StaticResource ButtonRevealStyle}" Margin="15,10,15,0" x:Name="btnGithub" Width="Auto" Height="Auto" Click="BtnGithub_Click">
+                <Image Source="Assets/GitHub-Mark-32px.png" Margin="-3 0" Stretch="None" Width="32" Height="32"/>
+            </Button>
         </StackPanel>
     </ScrollViewer>
 </Page>
