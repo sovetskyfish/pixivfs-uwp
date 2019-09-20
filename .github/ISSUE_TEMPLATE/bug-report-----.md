@@ -12,5 +12,5 @@ assignees: tobiichiamane
 **How to reproduce/复现问题的步骤**
 
 **Additional information/额外信息**
-Please paste the information copied from the app below.
-请将从应用中复制的信息粘贴在下面。
+Please paste the information copied from the app below if you experienced a crash.
+如果您遭遇了崩溃，请将从应用中复制的信息粘贴在下面。
