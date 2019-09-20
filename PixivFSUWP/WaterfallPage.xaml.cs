@@ -123,6 +123,7 @@ namespace PixivFSUWP
         {
             ListView listView = (ListView)sender;
             tapped = ((FrameworkElement)e.OriginalSource).DataContext as ViewModels.WaterfallItemViewModel;
+            if (tapped == null) return;
             quickStar.Text = (tapped.IsBookmarked) ?
                 GetResourceString("DeleteBookmarkPlain") :
                 GetResourceString("QuickBookmarkPlain");
