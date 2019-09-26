@@ -31,6 +31,15 @@
       "contributions": [
         "bug"
       ]
+    },
+    {
+      "login": "RazeSoldier",
+      "name": "Raze Soldier",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/29511518?v=4",
+      "profile": "http://razesoldier.cn",
+      "contributions": [
+        "bug"
+      ]
     }
   ],
   "contributorsPerLine": 7,
