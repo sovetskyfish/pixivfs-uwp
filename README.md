@@ -1,4 +1,4 @@
-# Pixiv UWP 2 [![All Contributors](https://img.shields.io/badge/all_contributors-6-orange.svg?style=flat-square)](#contributors) [![编译状态](https://dev.azure.com/tobiichiamane/pixivfs-uwp/_apis/build/status/tobiichiamane.pixivfs-uwp?branchName=master)](https://dev.azure.com/tobiichiamane/pixivfs-uwp/_build?definitionId=1)
+# Pixiv UWP 2 [![编译状态](https://dev.azure.com/tobiichiamane/pixivfs-uwp/_apis/build/status/tobiichiamane.pixivfs-uwp?branchName=master)](https://dev.azure.com/tobiichiamane/pixivfs-uwp/_build?definitionId=1)
 
 [<img src='https://assets.windowsphone.com/85864462-9c82-451e-9355-a3d5f874397a/English_get-it-from-MS_InvariantCulture_Default.png' alt='English badge' width=284 height=104/>](https://www.microsoft.com/store/apps/9PM8K64J71PL?cid=storebadge&ocid=badge)
 
