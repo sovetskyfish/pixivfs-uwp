@@ -1,0 +1,23 @@
+{
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "contributors": [
+    {
+      "login": "chenxuuu",
+      "name": "chenxuuu",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/10357394?v=4",
+      "profile": "https://www.chenxublog.com/",
+      "contributions": [
+        "doc"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7,
+  "projectName": "pixivfs-uwp",
+  "projectOwner": "tobiichiamane",
+  "repoType": "github",
+  "repoHost": "https://github.com"
+}
