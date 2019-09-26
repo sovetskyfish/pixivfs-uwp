@@ -20,10 +20,6 @@ If you also use Android devices, [Pix-EzViewer](https://github.com/Notsfsssf/Pix
 
 Any help to translate this app will be appreciated. Please read [*How to translate*](https://github.com/tobiichiamane/pixivfs-uwp/blob/master/Translate.md).
 
-# Buy me a coffee? 
-
-[![ko-fi](https://www.ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/P5P8WD5C)
-
 # 参与者/Contributors ✨
 
 Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
@@ -39,3 +35,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
 This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
+
+# Buy me a coffee? 
+
+[![ko-fi](https://www.ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/P5P8WD5C)
