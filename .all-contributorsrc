@@ -22,6 +22,15 @@
       "contributions": [
         "translation"
       ]
+    },
+    {
+      "login": "TuMIer",
+      "name": "TuMIer",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/45781074?v=4",
+      "profile": "https://github.com/TuMIer",
+      "contributions": [
+        "bug"
+      ]
     }
   ],
   "contributorsPerLine": 7,
