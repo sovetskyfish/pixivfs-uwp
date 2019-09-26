@@ -34,6 +34,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="http://razesoldier.cn"><img src="https://avatars0.githubusercontent.com/u/29511518?v=4" width="100px;" alt="Raze Soldier"/><br /><sub><b>Raze Soldier</b></sub></a><br /><a href="https://github.com/tobiichiamane/pixivfs-uwp/issues?q=author%3ARazeSoldier" title="Bug reports">🐛</a></td>
     <td align="center"><a href="https://github.com/Funny-ppt"><img src="https://avatars3.githubusercontent.com/u/48616775?v=4" width="100px;" alt="Funny-ppt"/><br /><sub><b>Funny-ppt</b></sub></a><br /><a href="https://github.com/tobiichiamane/pixivfs-uwp/issues?q=author%3AFunny-ppt" title="Bug reports">🐛</a></td>
     <td align="center"><a href="https://github.com/dsyo2008"><img src="https://avatars2.githubusercontent.com/u/3739056?v=4" width="100px;" alt="dsyo2008"/><br /><sub><b>dsyo2008</b></sub></a><br /><a href="#ideas-dsyo2008" title="Ideas, Planning, & Feedback">🤔</a></td>
+    <td align="center"><a href="https://github.com/ZeroSimple"><img src="https://avatars2.githubusercontent.com/u/22572927?v=4" width="100px;" alt="Henry He"/><br /><sub><b>Henry He</b></sub></a><br /><a href="https://github.com/tobiichiamane/pixivfs-uwp/issues?q=author%3AZeroSimple" title="Bug reports">🐛</a></td>
   </tr>
 </table>
 
