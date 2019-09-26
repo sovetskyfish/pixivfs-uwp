@@ -1,4 +1,4 @@
-# Pixiv UWP 2 [![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat)](#contributors) [![编译状态](https://dev.azure.com/tobiichiamane/pixivfs-uwp/_apis/build/status/tobiichiamane.pixivfs-uwp?branchName=master)](https://dev.azure.com/tobiichiamane/pixivfs-uwp/_build?definitionId=1)
+# Pixiv UWP 2 [![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](#contributors) [![编译状态](https://dev.azure.com/tobiichiamane/pixivfs-uwp/_apis/build/status/tobiichiamane.pixivfs-uwp?branchName=master)](https://dev.azure.com/tobiichiamane/pixivfs-uwp/_build?definitionId=1)
 
 [<img src='https://assets.windowsphone.com/85864462-9c82-451e-9355-a3d5f874397a/English_get-it-from-MS_InvariantCulture_Default.png' alt='English badge' width=284 height=104/>](https://www.microsoft.com/store/apps/9PM8K64J71PL?cid=storebadge&ocid=badge)
 
@@ -29,6 +29,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <table>
   <tr>
     <td align="center"><a href="https://www.chenxublog.com/"><img src="https://avatars3.githubusercontent.com/u/10357394?v=4" width="100px;" alt="chenxuuu"/><br /><sub><b>chenxuuu</b></sub></a><br /><a href="https://github.com/tobiichiamane/pixivfs-uwp/commits?author=chenxuuu" title="Documentation">📖</a></td>
+    <td align="center"><a href="https://qaq.jp"><img src="https://avatars1.githubusercontent.com/u/24848528?v=4" width="100px;" alt="逢坂桜"/><br /><sub><b>逢坂桜</b></sub></a><br /><a href="#translation-SakuraSa233" title="Translation">🌍</a></td>
   </tr>
 </table>
 
