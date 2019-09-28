@@ -141,6 +141,7 @@
     <Compile Include="Controls\WaterfallContentPanel.cs" />
     <Compile Include="Controls\WaterfallListView.cs" />
     <Compile Include="Converters\BookmarkHeartVisibilityConverter.cs" />
+    <Compile Include="Converters\ChildrenCommentVisibilityConverter.cs" />
     <Compile Include="Converters\MultiPageVisibilityConverter.cs" />
     <Compile Include="Data\Backstack.cs" />
     <Compile Include="Data\BigImageDetail.cs" />

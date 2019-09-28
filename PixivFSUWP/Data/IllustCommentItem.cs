@@ -16,7 +16,6 @@ namespace PixivFSUWP.Data
         public string UserAccount { get; set; }
         public string AvatarUrl { get; set; }
         public int ParentCommentID { get; set; }
-        public List<int> ChildrenComments { get; set; } = null;
 
         public static IllustCommentItem FromJsonValue(JsonObject Source)
         {
