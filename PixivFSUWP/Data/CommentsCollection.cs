@@ -117,7 +117,7 @@ namespace PixivFSUWP.Data
                                 {
                                     childschild.Comment = string.Format("RE {0}: {1}",
                                         child.UserName, childschild.Comment);
-                                    recommendmodel.ChildrenComments.Insert(0, childschild);
+                                    recommendmodel.ChildrenComments.Add(childschild);
                                 }
                                 child.ChildrenComments.Clear();
                                 child.ChildrenComments = null;
