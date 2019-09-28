@@ -117,13 +117,13 @@ namespace PixivFSUWP.Data
                                 {
                                     childschild.Comment = string.Format("RE {0}: {1}",
                                         child.UserName, childschild.Comment);
-                                    recommendmodel.ChildrenComments.Add(childschild);
+                                    recommendmodel.ChildrenComments.Insert(0, childschild);
                                 }
                                 child.ChildrenComments.Clear();
                                 child.ChildrenComments = null;
                                 GC.Collect();
                             }
-                            recommendmodel.ChildrenComments.Add(child);
+                            recommendmodel.ChildrenComments.Insert(0, child);
                             ChildrenComments.Remove(child);
                         }
                     }
