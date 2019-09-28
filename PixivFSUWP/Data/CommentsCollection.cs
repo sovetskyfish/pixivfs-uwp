@@ -104,6 +104,7 @@ namespace PixivFSUWP.Data
                                    in ChildrenComments
                                    where item.ParentID == recommendmodel.ID
                                    select item;
+                    children = children.ToList();
                     if (children.Count() > 0)
                     {
                         //存在子回复

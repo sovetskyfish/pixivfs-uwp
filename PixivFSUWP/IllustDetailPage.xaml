@@ -5,10 +5,14 @@
     xmlns:local="using:PixivFSUWP"
     xmlns:controls="using:PixivFSUWP.Controls"
     xmlns:viewmodels="using:PixivFSUWP.ViewModels"
+    xmlns:converters="using:PixivFSUWP.Converters"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d" SizeChanged="Page_SizeChanged"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Page.Resources>
+        <converters:ChildrenCommentVisibilityConverter x:Name="ChildrenCommentVisibilityConverter"/>
+    </Page.Resources>
     <ScrollViewer Background="{StaticResource PageBackGround}" VerticalScrollBarVisibility="Hidden" ViewChanged="ScrollViewer_ViewChanged">
         <StackPanel Margin="0,75,0,0">
             <StackPanel Orientation="Horizontal" Margin="15,15,15,0">
@@ -138,6 +142,7 @@
                                     <RowDefinition/>
                                     <RowDefinition/>
                                     <RowDefinition/>
+                                    <RowDefinition Height="Auto"/>
                                 </Grid.RowDefinitions>
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Text="{Binding UserName}" FontWeight="Bold"/>
@@ -145,6 +150,31 @@
                                 </StackPanel>
                                 <TextBlock Grid.Row="1" Text="{Binding Comment}" TextWrapping="WrapWholeWords"/>
                                 <TextBlock Grid.Row="2" Margin="0,3,0,0" Text="{Binding DateTime}" FontSize="12" Foreground="Gray"/>
+                                <ListView Grid.Row="3" Visibility="{Binding ChildrenComments,Converter={StaticResource ChildrenCommentVisibilityConverter}}" ItemsSource="{Binding ChildrenComments}">
+                                    <ListView.ItemTemplate>
+                                        <DataTemplate x:DataType="viewmodels:CommentViewModel">
+                                            <Border Background="#99F3F3F3" Margin="0,5" BorderThickness="1.5">
+                                                <Border.BorderBrush>
+                                                    <RevealBorderBrush Color="Transparent" FallbackColor="LightGray"/>
+                                                </Border.BorderBrush>
+                                                <Grid Margin="10">
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition/>
+                                                        <RowDefinition/>
+                                                        <RowDefinition/>
+                                                        <RowDefinition Height="Auto"/>
+                                                    </Grid.RowDefinitions>
+                                                    <StackPanel Orientation="Horizontal">
+                                                        <TextBlock Text="{Binding UserName}" FontWeight="Bold"/>
+                                                        <TextBlock Text="{Binding UserAccount}" Foreground="Gray"/>
+                                                    </StackPanel>
+                                                    <TextBlock Grid.Row="1" Text="{Binding Comment}" TextWrapping="WrapWholeWords"/>
+                                                    <TextBlock Grid.Row="2" Margin="0,3,0,0" Text="{Binding DateTime}" FontSize="12" Foreground="Gray"/>
+                                                </Grid>
+                                            </Border>
+                                        </DataTemplate>
+                                    </ListView.ItemTemplate>
+                                </ListView>
                             </Grid>
                         </Border>
                     </DataTemplate>
