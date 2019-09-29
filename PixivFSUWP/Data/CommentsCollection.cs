@@ -99,6 +99,7 @@ namespace PixivFSUWP.Data
                     }
                     Data.IllustCommentItem recommendi = Data.IllustCommentItem.FromJsonValue(recillust.GetObject());
                     var recommendmodel = ViewModels.CommentViewModel.FromItem(recommendi);
+                    await recommendmodel.LoadAvatarAsync();
                     //查找是否存在子回复
                     var children = from item
                                    in ChildrenComments
@@ -136,7 +137,6 @@ namespace PixivFSUWP.Data
                     else
                     {
                         //自己并非子回复
-                        //await recommendmodel.LoadAvatarAsync();
                         Add(recommendmodel);
                         toret.Count++;
                     }
