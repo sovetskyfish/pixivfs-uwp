@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,7 +9,7 @@ using Windows.UI.Xaml.Media.Imaging;
 
 namespace PixivFSUWP.ViewModels
 {
-    public class CommentViewModel
+    public class CommentViewModel : INotifyPropertyChanged
     {
         public int ID { get; set; }
         public string Comment { get; set; }
@@ -16,7 +17,7 @@ namespace PixivFSUWP.ViewModels
         public string UserAccount { get; set; }
         private string _dateTime { get; set; }
         public string AvatarUrl { get; set; }
-        //public BitmapImage Avatar { get; set; }
+        public BitmapImage Avatar { get; set; }
         public int ParentID { get; set; }
         public ObservableCollection<CommentViewModel> ChildrenComments { get; set; } = null;
 
@@ -25,8 +26,13 @@ namespace PixivFSUWP.ViewModels
             get => DateTimeOffset.Parse(_dateTime).LocalDateTime.ToString();
         }
 
-        //public async Task LoadAvatarAsync()
-        //    => Avatar = await Data.OverAll.LoadImageAsync(AvatarUrl);
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        public async Task LoadAvatarAsync()
+        {
+            Avatar = await Data.OverAll.LoadImageAsync(AvatarUrl);
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Avatar"));
+        }
 
         public static CommentViewModel FromItem(Data.IllustCommentItem Item)
         {
