@@ -492,4 +492,8 @@
     <value>直连（实验性，可以绕过中国大陆的封锁）</value>
     <comment>CheckBox</comment>
   </data>
+  <data name="NewComment.Content" xml:space="preserve">
+    <value>撰写评论</value>
+    <comment>ToggleButton</comment>
+  </data>
 </root>

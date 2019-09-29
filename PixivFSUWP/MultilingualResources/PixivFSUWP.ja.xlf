@@ -606,6 +606,11 @@
           <target state="translated">Direct Connection (!Experimental!)</target>
           <note from="MultilingualBuild" annotates="source" priority="2">CheckBox</note>
         </trans-unit>
+        <trans-unit id="NewComment.Content" translate="yes" xml:space="preserve">
+          <source>New comment</source>
+          <target state="new">New comment</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">ToggleButton</note>
+        </trans-unit>
       </group>
     </body>
   </file>

@@ -120,7 +120,7 @@ namespace PixivFSUWP.Data
                             {
                                 foreach (var childschild in child.ChildrenComments)
                                 {
-                                    childschild.Comment = string.Format("RE {0}: {1}",
+                                    childschild.Comment = string.Format("Re: {0}: {1}",
                                         child.UserName, childschild.Comment);
                                     recommendmodel.ChildrenComments.Add(childschild);
                                 }

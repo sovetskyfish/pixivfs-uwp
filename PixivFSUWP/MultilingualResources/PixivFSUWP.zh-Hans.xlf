@@ -606,6 +606,11 @@
           <target state="translated">直连（实验性，可以绕过中国大陆的封锁）</target>
           <note from="MultilingualBuild" annotates="source" priority="2">CheckBox</note>
         </trans-unit>
+        <trans-unit id="NewComment.Content" translate="yes" xml:space="preserve">
+          <source>New comment</source>
+          <target state="translated">撰写评论</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">ToggleButton</note>
+        </trans-unit>
       </group>
     </body>
   </file>

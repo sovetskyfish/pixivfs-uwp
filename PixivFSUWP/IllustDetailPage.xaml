@@ -128,7 +128,11 @@
                 </ToggleButton>
             </StackPanel>
             <TextBlock x:Name="txtCaption" Margin="15,15,15,0" Height="Auto" TextWrapping="WrapWholeWords"/>
-            <TextBlock x:Name="txtCommentTitle" Margin="15,15,15,0" Height="Auto" FontSize="20" FontWeight="Bold"/>
+            <StackPanel Margin="15,15,15,0" Orientation="Horizontal">
+                <TextBlock x:Name="txtCommentTitle" Height="Auto" FontSize="20" FontWeight="Bold"/>
+                <Button x:Uid="NewComment" Height="Auto" Style="{StaticResource ButtonRevealStyle}" Visibility="Collapsed"
+                        Margin="5,0,0,0" Background="#99F3F3F3" BorderThickness="1.5" x:Name="btnNewComment"/>
+            </StackPanel>
             <ListView x:Name="listComments" Margin="0,15" IncrementalLoadingTrigger="None" SelectionMode="None"
                       ScrollViewer.VerticalScrollMode="Disabled" ScrollViewer.HorizontalScrollMode="Disabled">
                 <ListView.ItemTemplate>

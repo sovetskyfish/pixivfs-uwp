@@ -329,6 +329,10 @@
     <value>Draft</value>
     <comment>PlainText</comment>
   </data>
+  <data name="NewComment.Content" xml:space="preserve">
+    <value>New comment</value>
+    <comment>ToggleButton</comment>
+  </data>
   <data name="NoCaptionPlain" xml:space="preserve">
     <value>No caption</value>
     <comment>PlainText</comment>
