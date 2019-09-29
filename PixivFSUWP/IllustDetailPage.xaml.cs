@@ -93,6 +93,9 @@ namespace PixivFSUWP
                 Data.Backstack.Default.Push(typeof(IllustDetailPage), illustID);
                 ((Frame.Parent as Grid)?.Parent as MainPage)?.UpdateNavButtonState();
             }
+            (listComments.ItemsSource as Data.CommentsCollection)?.AvatarLoader?.EmergencyStop();
+            (listComments.ItemsSource as Data.CommentsCollection)?.StopLoading();
+            (listComments.ItemsSource as Data.CommentsCollection)?.Clear();
             GC.Collect();
             base.OnNavigatedFrom(e);
         }

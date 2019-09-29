@@ -21,8 +21,13 @@ namespace PixivFSUWP.Data
         EventWaitHandle pause = new ManualResetEvent(true);
         readonly string illustid;
         List<ViewModels.CommentViewModel> ChildrenComments = new List<ViewModels.CommentViewModel>();
+        public CommentAvatarLoader AvatarLoader;
 
-        public CommentsCollection(string IllustID) => illustid = IllustID;
+        public CommentsCollection(string IllustID)
+        {
+            illustid = IllustID;
+            AvatarLoader = new CommentAvatarLoader(this);
+        }
 
         public bool HasMoreItems
         {
@@ -99,7 +104,6 @@ namespace PixivFSUWP.Data
                     }
                     Data.IllustCommentItem recommendi = Data.IllustCommentItem.FromJsonValue(recillust.GetObject());
                     var recommendmodel = ViewModels.CommentViewModel.FromItem(recommendi);
-                    await recommendmodel.LoadAvatarAsync();
                     //查找是否存在子回复
                     var children = from item
                                    in ChildrenComments
@@ -146,8 +150,10 @@ namespace PixivFSUWP.Data
             finally
             {
                 _busy = false;
+                _ = AvatarLoader.LoadAvatars();
                 if (_emergencyStop)
                 {
+                    AvatarLoader.EmergencyStop();
                     nexturl = "";
                     Clear();
                     GC.Collect();

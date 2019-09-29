@@ -137,38 +137,61 @@
                             <Border.BorderBrush>
                                 <RevealBorderBrush Color="Transparent" FallbackColor="LightGray"/>
                             </Border.BorderBrush>
-                            <Grid Margin="10">
+                            <Grid Margin="15,15,15,10">
                                 <Grid.RowDefinitions>
                                     <RowDefinition/>
                                     <RowDefinition/>
                                     <RowDefinition/>
                                     <RowDefinition Height="Auto"/>
                                 </Grid.RowDefinitions>
-                                <StackPanel Orientation="Horizontal">
-                                    <Image Source="{Binding Avatar}" Height="32" Width="32"/>
-                                    <StackPanel Orientation="Vertical">
-                                        <TextBlock Text="{Binding UserName}" FontWeight="Bold"/>
-                                        <TextBlock Text="{Binding UserAccount}" Foreground="Gray"/>
-                                    </StackPanel>
-                                </StackPanel>
-                                <TextBlock Grid.Row="1" Text="{Binding Comment}" TextWrapping="WrapWholeWords"/>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="40"/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                    </Grid.RowDefinitions>
+                                    <Ellipse Grid.RowSpan="2" Width="40" Height="40">
+                                        <Ellipse.Fill>
+                                            <ImageBrush ImageSource="{Binding Avatar}"/>
+                                        </Ellipse.Fill>
+                                    </Ellipse>
+                                    <TextBlock Margin="5,0" Grid.Column="1" FontSize="14" FontWeight="Bold" VerticalAlignment="Bottom" Text="{Binding UserName}"/>
+                                    <TextBlock Margin="5,0" Grid.Row="1" Grid.Column="1" FontSize="12" Foreground="Gray" VerticalAlignment="Top" Text="{Binding UserAccount}"/>
+                                </Grid>
+                                <TextBlock Grid.Row="1" Margin="0,5,0,0" Text="{Binding Comment}" TextWrapping="WrapWholeWords"/>
                                 <TextBlock Grid.Row="2" Margin="0,3,0,0" Text="{Binding DateTime}" FontSize="12" Foreground="Gray"/>
-                                <ListView Grid.Row="3" Margin="0,5,0,0" Visibility="{Binding ChildrenComments,Converter={StaticResource ChildrenCommentVisibilityConverter}}"
+                                <ListView Grid.Row="3" Margin="10,5,0,0" Visibility="{Binding ChildrenComments,Converter={StaticResource ChildrenCommentVisibilityConverter}}"
                                           ItemsSource="{Binding ChildrenComments}" SelectionMode="None"
                                           ScrollViewer.VerticalScrollMode="Disabled" ScrollViewer.HorizontalScrollMode="Disabled">
                                     <ListView.ItemTemplate>
                                         <DataTemplate x:DataType="viewmodels:CommentViewModel">
                                             <Border Margin="0,-5" BorderThickness="0">
-                                                <Grid Margin="10">
+                                                <Grid Margin="15">
                                                     <Grid.RowDefinitions>
                                                         <RowDefinition/>
                                                         <RowDefinition/>
                                                         <RowDefinition/>
                                                     </Grid.RowDefinitions>
-                                                    <StackPanel Orientation="Horizontal">
-                                                        <TextBlock Text="{Binding UserName}" FontWeight="Bold"/>
-                                                        <TextBlock Text="{Binding UserAccount}" Foreground="Gray"/>
-                                                    </StackPanel>
+                                                    <Grid>
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="40"/>
+                                                            <ColumnDefinition/>
+                                                        </Grid.ColumnDefinitions>
+                                                        <Grid.RowDefinitions>
+                                                            <RowDefinition/>
+                                                            <RowDefinition/>
+                                                        </Grid.RowDefinitions>
+                                                        <Ellipse Grid.RowSpan="2" Width="40" Height="40">
+                                                            <Ellipse.Fill>
+                                                                <ImageBrush ImageSource="{Binding Avatar}"/>
+                                                            </Ellipse.Fill>
+                                                        </Ellipse>
+                                                        <TextBlock Margin="5,0" Grid.Column="1" FontSize="14" FontWeight="Bold" VerticalAlignment="Bottom" Text="{Binding UserName}"/>
+                                                        <TextBlock Margin="5,0" Grid.Row="1" Grid.Column="1" FontSize="12" Foreground="Gray" VerticalAlignment="Top" Text="{Binding UserAccount}"/>
+                                                    </Grid>
                                                     <TextBlock Grid.Row="1" Text="{Binding Comment}" TextWrapping="WrapWholeWords"/>
                                                     <TextBlock Grid.Row="2" Margin="0,3,0,0" Text="{Binding DateTime}" FontSize="12" Foreground="Gray"/>
                                                 </Grid>

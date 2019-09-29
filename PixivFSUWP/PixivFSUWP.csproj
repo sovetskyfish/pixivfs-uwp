@@ -146,6 +146,7 @@
     <Compile Include="Data\Backstack.cs" />
     <Compile Include="Data\BigImageDetail.cs" />
     <Compile Include="Data\BookmarkIllustsCollection.cs" />
+    <Compile Include="Data\CommentAvatarLoader.cs" />
     <Compile Include="Data\CommentsCollection.cs" />
     <Compile Include="Data\CurrentUser.cs" />
     <Compile Include="Data\FollowingIllustsCollection.cs" />
