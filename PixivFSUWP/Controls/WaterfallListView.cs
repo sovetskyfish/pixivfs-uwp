@@ -12,6 +12,8 @@ namespace PixivFSUWP.Controls
     //似乎是我的panel弄坏了ListView，这里只能自己造一个(lll￢ω￢)
     public class WaterfallListView : ListView
     {
+        bool busyLoading = false;
+
         public WaterfallListView() : base()
         {
             //不使用base的增量加载
@@ -29,27 +31,44 @@ namespace PixivFSUWP.Controls
         private async Task LoadPage()
         {
             var scrollViewer = GetTemplateChild("ScrollViewer") as ScrollViewer;
-            while (scrollViewer.ScrollableHeight == 0)
-                try
-                {
-                    var res = await (ItemsSource as ISupportIncrementalLoading)?.LoadMoreItemsAsync(0);
-                    if (res.Count == 0) return;
-                }
-                catch (InvalidOperationException)
-                {
-                    return;
-                }
+            busyLoading = true;
+            try
+            {
+                while (scrollViewer.ScrollableHeight == 0)
+                    try
+                    {
+                        var res = await (ItemsSource as ISupportIncrementalLoading)?.LoadMoreItemsAsync(0);
+                        if (res.Count == 0) return;
+                    }
+                    catch (InvalidOperationException)
+                    {
+                        return;
+                    }
+            }
+            finally
+            {
+                busyLoading = false;
+            }
         }
 
         private async void ScrollViewer_ViewChanged(object sender, ScrollViewerViewChangedEventArgs e)
         {
-            if ((sender as ScrollViewer).VerticalOffset >= (sender as ScrollViewer).ScrollableHeight - 500)
+            if (busyLoading) return;
+            busyLoading = true;
+            try
             {
-                try
+                while ((sender as ScrollViewer).VerticalOffset >= (sender as ScrollViewer).ScrollableHeight - 500)
                 {
-                    await (ItemsSource as ISupportIncrementalLoading)?.LoadMoreItemsAsync(0);
+                    try
+                    {
+                        await (ItemsSource as ISupportIncrementalLoading)?.LoadMoreItemsAsync(0);
+                    }
+                    catch { }
                 }
-                catch { }
+            }
+            finally
+            {
+                busyLoading = false;
             }
         }
     }
