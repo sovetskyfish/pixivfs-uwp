@@ -63,6 +63,10 @@ namespace PixivFSUWP.Controls
                     {
                         await (ItemsSource as ISupportIncrementalLoading)?.LoadMoreItemsAsync(0);
                     }
+                    catch (InvalidOperationException)
+                    {
+                        return;
+                    }
                     catch { }
                 }
             }
