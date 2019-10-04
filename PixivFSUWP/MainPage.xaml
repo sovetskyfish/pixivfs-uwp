@@ -48,6 +48,9 @@
                         <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}" 
                                   FontSize="16" Glyph="&#xE721;"/>
                     </AppBarButton>
+                    <AppBarButton Width="48" x:Name="btnSauceNAO" Click="btnSauceNAO_Click">
+                        <Image Source="/Assets/SauceNAO.png"/>
+                    </AppBarButton>
                     <AppBarButton Width="48" x:Name="btnSetting" Click="BtnSetting_Click">
                         <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}" 
                                   FontSize="16" Glyph="&#xE713;"/>

@@ -45,3 +45,10 @@ This project follows the [all-contributors](https://github.com/all-contributors/
 # Buy me a coffee? 
 
 [![ko-fi](https://www.ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/P5P8WD5C)
+======================  
+# 缺少的资源  
+SauceNaoAPI.Text  
+ImgurAPI.Text   
+ImageDir.Text  
+# import  
+* [SauceNao-Windows](https://github.com/RoxasShadow/SauceNao-Windows)  

@@ -10,7 +10,7 @@
     <ScrollViewer Background="{StaticResource PageBackGround}">
         <StackPanel Margin="0,75,0,0">
             <TextBlock Margin="15,20,15,0" FontSize="18" FontWeight="Bold" x:Uid="CurrentUser"/>
-            <Grid Margin="15,15,15,0" Width="Auto" HorizontalAlignment="Left">
+            <Grid Margin="15,15,15,10" Width="Auto" HorizontalAlignment="Left">
                 <Grid.RowDefinitions>
                     <RowDefinition/>
                     <RowDefinition/>
@@ -41,13 +41,31 @@
                     <TextBlock FontSize="12" Foreground="Gray" x:Uid="LogoutWarning"/>
                 </StackPanel>
             </Grid>
-            <TextBlock Margin="15,20,15,0" FontSize="18" FontWeight="Bold" x:Uid="VersionInfo"/>
-            <TextBlock Margin="15,10,15,0" x:Name="txtVersion"/>
-            <TextBlock Margin="15,2,15,0" x:Name="txtPkgName"/>
-            <TextBlock Margin="15,2,15,0" x:Name="txtInsDate"/>
-            <Button Style="{StaticResource ButtonRevealStyle}" Margin="15,10,15,0" x:Name="btnGithub" Width="Auto" Height="Auto" Click="BtnGithub_Click">
-                <Image Source="Assets/GitHub-Mark-32px.png" Margin="-3 0" Stretch="None" Width="32" Height="32"/>
-            </Button>
+            <StackPanel Margin="0,10">
+                <TextBlock Margin="15,0,15,0" FontSize="18" FontWeight="Bold" Text="Settings"/>
+                <Grid>
+                    <TextBlock x:Uid="SauceNaoAPI" Margin="20,0" HorizontalAlignment="Left" VerticalAlignment="Center" HorizontalTextAlignment="Right"/>
+                    <TextBox x:Name="tbSauceNAO" Margin="200,0" Width="400" HorizontalAlignment="Left" TextChanged="API_TextChanged"/>
+                </Grid>
+                <Grid>
+                    <TextBlock x:Uid="ImgurAPI" Margin="20,0" HorizontalAlignment="Left" VerticalAlignment="Center" HorizontalTextAlignment="Right"/>
+                    <TextBox x:Name="tbImgur" Margin="200,0" Width="400" HorizontalAlignment="Left" TextChanged="API_TextChanged"/>
+                </Grid>
+                <Grid>
+                    <TextBlock x:Uid="ImageDir" Margin="20,0" HorizontalAlignment="Left" VerticalAlignment="Center" HorizontalTextAlignment="Right"/>
+                    <TextBox x:Name="tbDir" Margin="200,0" Width="350" HorizontalAlignment="Left" TextChanged="tbDir_TextChanged"/>
+                    <Button Margin="550,0" Width="50" VerticalAlignment="Stretch" Content="..." Click="BtnDirChange_Click"/>
+                </Grid>
+            </StackPanel>
+            <StackPanel Margin="0,10">
+                <TextBlock Margin="15,0,15,0" FontSize="18" FontWeight="Bold" x:Uid="VersionInfo"/>
+                <TextBlock Margin="15,10,15,0" x:Name="txtVersion"/>
+                <TextBlock Margin="15,2,15,0" x:Name="txtPkgName"/>
+                <TextBlock Margin="15,2,15,0" x:Name="txtInsDate"/>
+                <Button Style="{StaticResource ButtonRevealStyle}" Margin="15,10,15,0" x:Name="btnGithub" Width="Auto" Height="Auto" Click="BtnGithub_Click">
+                    <Image Source="Assets/GitHub-Mark-32px.png" Margin="-3 0" Stretch="None" Width="32" Height="32"/>
+                </Button>
+            </StackPanel>
         </StackPanel>
     </ScrollViewer>
 </Page>

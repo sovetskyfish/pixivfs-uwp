@@ -1,4 +1,5 @@
 ﻿using PixivFSUWP.Data;
+using PixivFSUWP.SauceNao;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -227,6 +228,52 @@ namespace PixivFSUWP
                 }
                 UpdateNavButtonState();
             }
+        }
+        private async void SauceNAO()
+        {
+            Windows.Storage.ApplicationDataContainer localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
+            string SAUCENAO_API_KEY = localSettings.Values["SauceNAOAPI"] as string;//读取设置项
+            string IMGUR_API_KEY = localSettings.Values["ImgurAPI"] as string;
+            
+            var picker = new Windows.Storage.Pickers.FileOpenPicker();
+            picker.ViewMode = Windows.Storage.Pickers.PickerViewMode.Thumbnail;
+            picker.SuggestedStartLocation = Windows.Storage.Pickers.PickerLocationId.PicturesLibrary;
+            picker.FileTypeFilter.Add(".jpg");
+            picker.FileTypeFilter.Add(".jpeg");
+            picker.FileTypeFilter.Add(".png");
+
+            Windows.Storage.StorageFile file = await picker.PickSingleFileAsync();
+            if (file == null)return;
+            byte[] IMAGE_PATH = await StorageFileExt.AsByteArray(file);
+            string image = Imgur.Upload(IMAGE_PATH, IMGUR_API_KEY);
+            List<Result> results = new SauceNao.SauceNao(SAUCENAO_API_KEY).Request(image, null);
+            results.RemoveAll(result => !result.HasRecognizableSauce());
+            
+            foreach (Result result in results)
+            {
+                System.Diagnostics.Debug.WriteLine(result.ToString() + "\n");
+            }
+            System.Diagnostics.Debug.WriteLine(results[0].Response.SauceId.ToString());
+            ContentFrame.Navigate(typeof(IllustDetailPage), results[0].Response.SauceId);
+        }
+        private void btnSauceNAO_Click(object sender, RoutedEventArgs e)
+        {
+            System.Threading.ThreadStart threadStart = new System.Threading.ThreadStart(SauceNAO);
+            var thread = new System.Threading.Thread(threadStart);
+            thread.Start();//开始线程
+        }
+    }
+    static class StorageFileExt
+    {
+        public static async Task<byte[]> AsByteArray(this Windows.Storage.StorageFile file)
+        {
+            Windows.Storage.Streams.IRandomAccessStream fileStream =
+                await file.OpenAsync(Windows.Storage.FileAccessMode.Read);
+            var reader = new Windows.Storage.Streams.DataReader(fileStream.GetInputStreamAt(0));
+            await reader.LoadAsync((uint)fileStream.Size);
+            byte[] pixels = new byte[fileStream.Size];
+            reader.ReadBytes(pixels);
+            return pixels;
         }
     }
 }
