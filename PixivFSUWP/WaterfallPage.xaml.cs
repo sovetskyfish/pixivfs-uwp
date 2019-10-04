@@ -142,7 +142,7 @@ namespace PixivFSUWP
             quickActions.ShowAt(listView, e.GetPosition(listView));
         }
 
-        private async void QuickStar_Click(object sender, RoutedEventArgs e)
+        private async void QuickStar_Click()
         {
             if (tapped == null) return;
             var i = tapped;
@@ -216,15 +216,20 @@ namespace PixivFSUWP
                 i.Title = title;
             }
         }
-
-        private async void QuickSave_Click(object sender, RoutedEventArgs e)
+        private void QuickStar_Click(object sender, RoutedEventArgs e) => QuickStar_Click();
+        private async void QuickSave_Click()
         {
             if (tapped == null) return;
             var i = tapped;
             FileSavePicker picker = new FileSavePicker();
             picker.SuggestedStartLocation = PickerLocationId.PicturesLibrary;
             picker.FileTypeChoices.Add(GetResourceString("ImageFilePlain"), new List<string>() { ".png" });
-            picker.SuggestedFileName = i.Title;
+            System.Diagnostics.Debug.WriteLine(i.ImageUri);
+            string[] FileUriToNameArray = i.ImageUri.Split('/');
+            FileUriToNameArray = FileUriToNameArray[FileUriToNameArray.Length - 1].Split('_');
+            string fileName = FileUriToNameArray[0] + "_" + FileUriToNameArray[1];
+            System.Diagnostics.Debug.WriteLine(fileName);
+            picker.SuggestedFileName = fileName;//.Split("/artworks/")[1]
             var file = await picker.PickSaveFileAsync();
             if (file != null)
             {
@@ -247,6 +252,12 @@ namespace PixivFSUWP
                     await ((Frame.Parent as Grid)?.Parent as MainPage)?.
                             ShowTip(string.Format(GetResourceString("WorkSaveFailedPlain"), i.Title));
             }
+        }
+        private void QuickSave_Click(object sender, RoutedEventArgs e) => QuickSave_Click();
+        private void quickDouble_Click(object sender, RoutedEventArgs e)
+        {
+            QuickStar_Click();
+            QuickSave_Click();
         }
     }
 }
