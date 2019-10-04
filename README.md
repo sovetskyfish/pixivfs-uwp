@@ -52,3 +52,10 @@ ImgurAPI.Text
 ImageDir.Text  
 # import  
 * [SauceNao-Windows](https://github.com/RoxasShadow/SauceNao-Windows)  
+# 更新
+```
++ 一键二连(Like & Save)
++ 以图搜源(SauceNAO)
++ 快速保存(默认下载路径)
+* 修复功能(完善以图搜源)
+```
