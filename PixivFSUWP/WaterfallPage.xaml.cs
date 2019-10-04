@@ -219,24 +219,26 @@ namespace PixivFSUWP
         private void QuickStar_Click(object sender, RoutedEventArgs e) => QuickStar_Click();
         private async void QuickSave_Click()
         {
+            ApplicationDataContainer localSettings = ApplicationData.Current.LocalSettings;
             if (tapped == null) return;
             var i = tapped;
-            FileSavePicker picker = new FileSavePicker();
-            picker.SuggestedStartLocation = PickerLocationId.PicturesLibrary;
-            picker.FileTypeChoices.Add(GetResourceString("ImageFilePlain"), new List<string>() { ".png" });
-            System.Diagnostics.Debug.WriteLine(i.ImageUri);
+            string saveDir = localSettings.Values["DownloadPath"] as string;
             string[] FileUriToNameArray = i.ImageUri.Split('/');
             FileUriToNameArray = FileUriToNameArray[FileUriToNameArray.Length - 1].Split('_');
-            string fileName = FileUriToNameArray[0] + "_" + FileUriToNameArray[1];
-            System.Diagnostics.Debug.WriteLine(fileName);
-            picker.SuggestedFileName = fileName;//.Split("/artworks/")[1]
-            var file = await picker.PickSaveFileAsync();
+            string fileName = FileUriToNameArray[0] + "_" + FileUriToNameArray[1] + ".jpg";
+            StorageFolder storageFolder = await StorageFolder.GetFolderFromPathAsync(saveDir);
+            var file = await storageFolder.CreateFileAsync(fileName, CreationCollisionOption.GenerateUniqueName);
             if (file != null)
             {
                 CachedFileManager.DeferUpdates(file);
-                var res = await new PixivAppAPI(Data.OverAll.GlobalBaseAPI)
-                    .IllustDetail(i.ItemId.ToString());
+                var res = await new PixivAppAPI(Data.OverAll.GlobalBaseAPI).IllustDetail(i.ItemId.ToString());
                 var illust = Data.IllustDetail.FromJsonValue(res);
+                System.Diagnostics.Debug.WriteLine("Download From = " + illust.OriginalUrls[0]);
+                /*
+                foreach (var str in illust.OriginalUrls)
+                {
+                    System.Diagnostics.Debug.WriteLine(str);
+                }//*/
                 using (var imgstream = await Data.OverAll.DownloadImage(illust.OriginalUrls[0]))
                 {
                     using (var filestream = await file.OpenAsync(FileAccessMode.ReadWrite))
@@ -245,6 +247,7 @@ namespace PixivFSUWP
                     }
                 }
                 var updateStatus = await CachedFileManager.CompleteUpdatesAsync(file);
+                System.Diagnostics.Debug.WriteLine("Finished");
                 if (updateStatus == FileUpdateStatus.Complete)
                     await ((Frame.Parent as Grid)?.Parent as MainPage)?.
                             ShowTip(string.Format(GetResourceString("WorkSavedPlain"), i.Title));
