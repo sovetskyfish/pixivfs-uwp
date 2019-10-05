@@ -255,10 +255,26 @@ namespace PixivFSUWP
             };
             action.Invoke(IMAGE_PATH);
         }
-
+        /*
         private void BtnGoTo_Click(object sender, RoutedEventArgs e)
         {
             Frame.Navigate(typeof(GoToPIDPage));
+        }//*/
+        private void BtnGoTo_Click(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(IllustDetailPage), Convert.ToInt32(tbPID.Text));
+
+        }
+
+        private void tbPID_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            var textbox = (TextBox)sender;
+            if (!System.Text.RegularExpressions.Regex.IsMatch(textbox.Text, "^\\d*\\.?\\d*$") && textbox.Text != "")
+            {
+                int pos = textbox.SelectionStart - 1;
+                textbox.Text = textbox.Text.Remove(pos, 1);
+                textbox.SelectionStart = pos;
+            }
         }
     }
     static class StorageFileExt
