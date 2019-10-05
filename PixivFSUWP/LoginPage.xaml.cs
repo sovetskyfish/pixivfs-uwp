@@ -73,11 +73,7 @@ namespace PixivFSUWP
         private async void BtnReg_Click(object sender, RoutedEventArgs e) =>
             await Launcher.LaunchUriAsync(new
                 Uri(@"https://accounts.pixiv.net/signup?lang=zh&source=pc&view_type=page&ref=wwwtop_accounts_index"));
-        /// <summary>
-        /// 登录按钮
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+
         private void BtnLogin_Click(object sender, RoutedEventArgs e)
         {
             username = txtUserName.Text;

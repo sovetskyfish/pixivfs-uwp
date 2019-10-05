@@ -421,9 +421,6 @@
     <value>Bookmark</value>
     <comment>PlainText</comment>
   </data>
-  <data name="QuickDouble.Text" xml:space="preserve">
-    <value>Star &amp; Save</value>
-  </data>
   <data name="QuickDownload.Text" xml:space="preserve">
     <value>Save</value>
     <comment>MenuFlyoutItem</comment>
