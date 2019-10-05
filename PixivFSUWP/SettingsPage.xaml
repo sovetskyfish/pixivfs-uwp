@@ -54,7 +54,12 @@
                 <Grid>
                     <TextBlock x:Uid="ImageDir" Margin="20,0" HorizontalAlignment="Left" VerticalAlignment="Center" HorizontalTextAlignment="Right"/>
                     <TextBox x:Name="tbDir" Margin="200,0" Width="350" HorizontalAlignment="Left" TextChanged="tbDir_TextChanged"/>
-                    <Button Margin="550,0" Width="50" VerticalAlignment="Stretch" Content="..." Click="BtnDirChange_Click"/>
+                    <Button Margin="550,0" Width="50" VerticalAlignment="Stretch" Click="BtnDirChange_Click">
+                        <Button.Content>
+                            <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}" 
+                                  FontSize="16" Glyph="&#xE838;"/>
+                        </Button.Content>
+                    </Button>
                 </Grid>
             </StackPanel>
             <StackPanel Margin="0,10">

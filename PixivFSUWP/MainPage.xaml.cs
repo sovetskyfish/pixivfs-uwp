@@ -231,6 +231,7 @@ namespace PixivFSUWP
         }
         private async void btnSauceNAO_Click(object sender, RoutedEventArgs e)
         {
+            ContentFrame.Navigate(typeof(SauceNAOPage));
             Windows.Storage.ApplicationDataContainer localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
             string SAUCENAO_API_KEY = localSettings.Values["SauceNAOAPI"] as string;//读取设置项
             string IMGUR_API_KEY = localSettings.Values["ImgurAPI"] as string;
@@ -269,7 +270,11 @@ namespace PixivFSUWP
             picker.FileTypeFilter.Add(".jpeg");
             picker.FileTypeFilter.Add(".png");
             Windows.Storage.StorageFile file = await picker.PickSingleFileAsync();
-            if (file == null) return;
+            if (file == null)
+            {
+                ContentFrame.Back();
+                return;
+            }
             byte[] IMAGE_PATH = await StorageFileExt.AsByteArray(file);
 
             Action<byte[]> action = IMAGE_BYTES =>
@@ -289,9 +294,18 @@ namespace PixivFSUWP
             action.Invoke(IMAGE_PATH);
         }
 
+        private void BtnGoTo_Click(object sender, RoutedEventArgs e)
+        {
+            ContentFrame.Navigate(typeof(GoToPIDPage));
+        }
     }
     static class StorageFileExt
     {
+        /// <summary>
+        /// 将文件转换为字节数组
+        /// </summary>
+        /// <param name="file"></param>
+        /// <returns></returns>
         public static async Task<byte[]> AsByteArray(this Windows.Storage.StorageFile file)
         {
             Windows.Storage.Streams.IRandomAccessStream fileStream =

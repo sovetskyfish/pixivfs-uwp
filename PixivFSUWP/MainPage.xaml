@@ -39,7 +39,7 @@
                             <ProgressRing x:Name="avatarRing" Height="20" Width="20" IsActive="True"/>
                             <Ellipse VerticalAlignment="Center" Height="24" Width="24">
                                 <Ellipse.Fill>
-                                    <ImageBrush x:Name="imgAvatar"/>
+                                    <ImageBrush x:Name="imgAvatar" Stretch="UniformToFill"/>
                                 </Ellipse.Fill>
                             </Ellipse>
                         </Grid>
@@ -47,6 +47,10 @@
                     <AppBarButton Width="48" x:Name="btnSearch" Click="BtnSearch_Click">
                         <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}" 
                                   FontSize="16" Glyph="&#xE721;"/>
+                    </AppBarButton>
+                    <AppBarButton Width="48" x:Name="btnGoToID" Click="BtnGoTo_Click">
+                        <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}" 
+                                  FontSize="16" Glyph="&#xE751;"/>
                     </AppBarButton>
                     <AppBarButton Width="48" x:Name="btnSauceNAO" Click="btnSauceNAO_Click">
                         <Image Source="/Assets/SauceNAO.png"/>

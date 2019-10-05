@@ -136,6 +136,9 @@
     <Compile Include="BigImage.xaml.cs">
       <DependentUpon>BigImage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="GoToPIDPage.xaml.cs">
+      <DependentUpon>GoToPIDPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\ImageSelectorPanel.cs" />
     <Compile Include="Controls\TagsPanel.cs" />
     <Compile Include="Controls\WaterfallContentPanel.cs" />
@@ -174,6 +177,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReportIssuePage.xaml.cs">
       <DependentUpon>ReportIssuePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SauceNAOPage.xaml.cs">
+      <DependentUpon>SauceNAOPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="SauceNAO\Imgur.cs" />
     <Compile Include="SauceNAO\Pixiv.cs" />
@@ -237,6 +243,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="GoToPIDPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="IllustDetailPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -250,6 +260,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="ReportIssuePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SauceNAOPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -58,4 +58,6 @@ ImageDir.Text
 + 以图搜源(SauceNAO)
 + 快速保存(默认下载路径)
 * 修复功能(完善以图搜源)
++ PixivID搜图
++ SauceNAO页(仅创建)
 ```
