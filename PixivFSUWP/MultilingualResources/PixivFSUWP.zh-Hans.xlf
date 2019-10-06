@@ -613,17 +613,17 @@
         </trans-unit>
         <trans-unit id="BtnSauceNAO.Content" translate="yes" xml:space="preserve">
           <source>SauceNAO</source>
-          <target state="new">SauceNAO</target>
+          <target state="translated">SauceNAO 以图搜图</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Button +</note>
         </trans-unit>
         <trans-unit id="GoPixivID.PlaceholderText" translate="yes" xml:space="preserve">
           <source>Pixiv ID</source>
-          <target state="new">Pixiv ID</target>
+          <target state="translated">Pixiv ID</target>
           <note from="MultilingualBuild" annotates="source" priority="2">AutoSuggestBox +</note>
         </trans-unit>
         <trans-unit id="ImageDir.Text" translate="yes" xml:space="preserve">
           <source>Image Saving Folder:</source>
-          <target state="new">Image Saving Folder:</target>
+          <target state="translated">图像保存目录:</target>
           <note from="MultilingualBuild" annotates="source" priority="2">TextBlock +</note>
         </trans-unit>
         <trans-unit id="ImgurAPI.Text" translate="yes" xml:space="preserve">
@@ -638,17 +638,17 @@
         </trans-unit>
         <trans-unit id="SearchMore.Text" translate="yes" xml:space="preserve">
           <source>More Search Methods</source>
-          <target state="new">More Search Methods</target>
+          <target state="translated">更多搜索功能</target>
           <note from="MultilingualBuild" annotates="source" priority="2">TextBlock +</note>
         </trans-unit>
         <trans-unit id="GoToPixivID.Text" translate="yes" xml:space="preserve">
           <source>Pixiv ID</source>
-          <target state="new">Pixiv ID</target>
+          <target state="translated">Pixiv ID 直达</target>
           <note from="MultilingualBuild" annotates="source" priority="2">TextBlock +</note>
         </trans-unit>
         <trans-unit id="QuickLS.Text" translate="yes" xml:space="preserve">
           <source>Like &amp; Save</source>
-          <target state="new">Like &amp; Save</target>
+          <target state="translated">一键二连</target>
           <note from="MultilingualBuild" annotates="source" priority="2">MenuFlyoutItem +</note>
         </trans-unit>
       </group>

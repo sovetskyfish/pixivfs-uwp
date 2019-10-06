@@ -608,7 +608,7 @@
         </trans-unit>
         <trans-unit id="NewComment.Content" translate="yes" xml:space="preserve">
           <source>New comment</source>
-          <target state="new">New comment</target>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">新しいコメント</target>
           <note from="MultilingualBuild" annotates="source" priority="2">ToggleButton</note>
         </trans-unit>
         <trans-unit id="BtnSauceNAO.Content" translate="yes" xml:space="preserve">
