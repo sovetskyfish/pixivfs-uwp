@@ -195,30 +195,29 @@ namespace PixivFSUWP
         {
             Frame.Navigate(typeof(SauceNAOPage));
             Windows.Storage.ApplicationDataContainer localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
-            string SAUCENAO_API_KEY = localSettings.Values["SauceNAOAPI"] as string;//读取设置项
-            string IMGUR_API_KEY = localSettings.Values["ImgurAPI"] as string;
-            if (SAUCENAO_API_KEY == null)
+            //读取设置项
+            if (localSettings.Values["SauceNAOAPI"] as string == null)
             {
                 // "未设置SauceNAO API"
                 Frame.Navigate(typeof(SettingsPage));
                 return;
                 // SAUCENAO_API_KEY = "默认API";
             }
-            else if (SAUCENAO_API_KEY.Length == 0)
+            else if ((localSettings.Values["SauceNAOAPI"] as string).Length == 0)
             {
                 // "未设置SauceNAO API"
                 Frame.Navigate(typeof(SettingsPage));
                 return;
                 // SAUCENAO_API_KEY = "默认API";
             }
-            if (IMGUR_API_KEY == null)
+            if (localSettings.Values["ImgurAPI"] as string == null)
             {
                 // "未设置Imger API"
                 Frame.Navigate(typeof(SettingsPage));
                 return;
                 // IMGUR_API_KEY = "默认API";
             }
-            else if (IMGUR_API_KEY.Length == 0)
+            else if ((localSettings.Values["ImgurAPI"] as string).Length == 0)
             {
                 // "未设置Imger API"
                 Frame.Navigate(typeof(SettingsPage));
@@ -237,13 +236,12 @@ namespace PixivFSUWP
                 Frame.GoBack();
                 return;
             }
-            byte[] IMAGE_PATH = await StorageFileExt.AsByteArray(file);
 
-            Action<byte[]> action = IMAGE_BYTES =>
+            Action<byte[]> action = imageBytes =>
             {
                 Console.WriteLine("==== 以图搜源 ====");
-                string image = Imgur.Upload(IMAGE_BYTES, IMGUR_API_KEY);
-                List<Result> results = new SauceNao.SauceNao(SAUCENAO_API_KEY).Request(image, null);
+                string image = Imgur.Upload(imageBytes, localSettings.Values["ImgurAPI"] as string);
+                List<Result> results = new SauceNao.SauceNao(localSettings.Values["SauceNAOAPI"] as string).Request(image, null);
                 // 这里是调试输出查询结果的内容..
                 //results.RemoveAll(result => !result.HasRecognizableSauce());
                 //foreach (Result result in results)
@@ -253,29 +251,11 @@ namespace PixivFSUWP
                 System.Diagnostics.Debug.WriteLine("Pixiv ID = " + results[0].Response.SauceId.ToString());
                 Frame.Navigate(typeof(IllustDetailPage), results[0].Response.SauceId);
             };
-            action.Invoke(IMAGE_PATH);
+            action.Invoke(await StorageFileExt.AsByteArray(file));
         }
-        /*
-        private void BtnGoTo_Click(object sender, RoutedEventArgs e)
-        {
-            Frame.Navigate(typeof(GoToPIDPage));
-        }//*/
-
-        private void tbPID_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            var textbox = (TextBox)sender;
-            if (!System.Text.RegularExpressions.Regex.IsMatch(textbox.Text, "^\\d*\\.?\\d*$") && textbox.Text != "")
-            {
-                int pos = textbox.SelectionStart - 1;
-                textbox.Text = textbox.Text.Remove(pos, 1);
-                textbox.SelectionStart = pos;
-            }
-        }
-
         private void GoPixivID_QuerySubmitted(AutoSuggestBox sender, AutoSuggestBoxQuerySubmittedEventArgs args)
         {
             Frame.Navigate(typeof(IllustDetailPage), Convert.ToInt32(asbGTPID.Text));
-
         }
 
         private void asbGTPID_TextChanged(AutoSuggestBox sender, AutoSuggestBoxTextChangedEventArgs args)
@@ -283,11 +263,6 @@ namespace PixivFSUWP
             if (!System.Text.RegularExpressions.Regex.IsMatch(asbGTPID.Text, "^\\d*\\.?\\d*$") && asbGTPID.Text != "")
             {
                 asbGTPID.Text = asbGTPID.Text.Substring(0, asbGTPID.Text.Length - 1);
-                /*
-                int pos = textbox.SelectionStart - 1;
-                textbox.Text = textbox.Text.Remove(pos, 1);
-                textbox.SelectionStart = pos;
-                //*/
             }
         }
     }

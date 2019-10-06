@@ -228,6 +228,5 @@ namespace PixivFSUWP
                 UpdateNavButtonState();
             }
         }
-
     }
 }
