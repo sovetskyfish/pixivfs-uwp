@@ -149,6 +149,10 @@
     <value>Copy web URL</value>
     <comment>ToolTip</comment>
   </data>
+  <data name="BtnSauceNAO.Content" xml:space="preserve">
+    <value>SauceNAO</value>
+    <comment>Button +</comment>
+  </data>
   <data name="btnShare.ToolTipService.ToolTip" xml:space="preserve">
     <value>Windows Share</value>
     <comment>ToolTip</comment>
@@ -241,9 +245,25 @@
     <value>Gif file</value>
     <comment>PlainText</comment>
   </data>
+  <data name="GoPixivID.PlaceholderText" xml:space="preserve">
+    <value>Pixiv ID</value>
+    <comment>AutoSuggestBox +</comment>
+  </data>
+  <data name="GoToPixivID.Text" xml:space="preserve">
+    <value>Pixiv ID</value>
+    <comment>TextBlock +</comment>
+  </data>
+  <data name="ImageDir.Text" xml:space="preserve">
+    <value>Image Saving Folder:</value>
+    <comment>TextBlock +</comment>
+  </data>
   <data name="ImageFilePlain" xml:space="preserve">
     <value>Image file</value>
     <comment>PlainText</comment>
+  </data>
+  <data name="ImgurAPI.Text" xml:space="preserve">
+    <value>Imgur API:</value>
+    <comment>TextBlock +</comment>
   </data>
   <data name="Job.Text" xml:space="preserve">
     <value>Job</value>
@@ -425,6 +445,10 @@
     <value>Save</value>
     <comment>MenuFlyoutItem</comment>
   </data>
+  <data name="QuickLS.Text" xml:space="preserve">
+    <value>Like &amp; Save</value>
+    <comment>MenuFlyoutItem +</comment>
+  </data>
   <data name="Ranking.Content" xml:space="preserve">
     <value>Rankings</value>
     <comment>NavigationViewItem</comment>
@@ -448,6 +472,10 @@
   <data name="RetryPlain" xml:space="preserve">
     <value>Retry</value>
     <comment>PlainText</comment>
+  </data>
+  <data name="SauceNaoAPI.Text" xml:space="preserve">
+    <value>SauceNAO API:</value>
+    <comment>TextBlock +</comment>
   </data>
   <data name="Save.Text" xml:space="preserve">
     <value>Save</value>
@@ -496,6 +524,10 @@
   <data name="Search.PlaceholderText" xml:space="preserve">
     <value>Search…</value>
     <comment>AutoSuggestBox</comment>
+  </data>
+  <data name="SearchMore.Text" xml:space="preserve">
+    <value>More Search Methods</value>
+    <comment>TextBlock +</comment>
   </data>
   <data name="SearchOptions.Text" xml:space="preserve">
     <value>Search options</value>

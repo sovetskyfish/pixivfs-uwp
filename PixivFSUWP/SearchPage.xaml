@@ -78,9 +78,11 @@
                         <RowDefinition Height="1*"/>
                         <RowDefinition Height="1*"/>
                     </Grid.RowDefinitions>
-                    <StackPanel Grid.Row="0">
-                        <TextBlock x:Uid="GoPixivID" Text="跳转到图片ID" />
-                        <Grid>
+                    <StackPanel Grid.Row="0" HorizontalAlignment="Stretch">
+                        <TextBlock x:Uid="GoToPixivID"/>
+                        <AutoSuggestBox x:Name="asbGTPID" Margin="0 5 0 0" x:Uid="GoPixivID" QuerySubmitted="GoPixivID_QuerySubmitted"
+                                HorizontalAlignment="Stretch" QueryIcon="Find" TextChanged="asbGTPID_TextChanged"/>
+                        <!--<Grid HorizontalAlignment="Stretch"> 
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="50"/>
@@ -92,10 +94,9 @@
                                   FontSize="16" Glyph="&#xE724;"/>
                                 </Button.Content>
                             </Button>
-                        </Grid>
+                        </Grid>-->
                     </StackPanel>
-
-                    <Button Grid.Row="1" x:Name="btnSauceNAO" x:Uid="BtnSauceNAO" HorizontalAlignment="Stretch" Click="btnSauceNAO_Click" Content="以图搜图"/>
+                    <Button Grid.Row="1" Margin="0,5,0,0" x:Name="btnSauceNAO" x:Uid="BtnSauceNAO" HorizontalAlignment="Stretch" Click="btnSauceNAO_Click"/>
                 </Grid>
                 <StackPanel Margin="0 10 0 0" HorizontalAlignment="Left" Orientation="Horizontal">
                     <TextBlock FontSize="14" FontWeight="Bold" x:Uid="TrendingTags"/>

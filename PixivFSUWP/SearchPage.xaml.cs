@@ -260,11 +260,6 @@ namespace PixivFSUWP
         {
             Frame.Navigate(typeof(GoToPIDPage));
         }//*/
-        private void BtnGoTo_Click(object sender, RoutedEventArgs e)
-        {
-            Frame.Navigate(typeof(IllustDetailPage), Convert.ToInt32(tbPID.Text));
-
-        }
 
         private void tbPID_TextChanged(object sender, TextChangedEventArgs e)
         {
@@ -274,6 +269,25 @@ namespace PixivFSUWP
                 int pos = textbox.SelectionStart - 1;
                 textbox.Text = textbox.Text.Remove(pos, 1);
                 textbox.SelectionStart = pos;
+            }
+        }
+
+        private void GoPixivID_QuerySubmitted(AutoSuggestBox sender, AutoSuggestBoxQuerySubmittedEventArgs args)
+        {
+            Frame.Navigate(typeof(IllustDetailPage), Convert.ToInt32(asbGTPID.Text));
+
+        }
+
+        private void asbGTPID_TextChanged(AutoSuggestBox sender, AutoSuggestBoxTextChangedEventArgs args)
+        {
+            if (!System.Text.RegularExpressions.Regex.IsMatch(asbGTPID.Text, "^\\d*\\.?\\d*$") && asbGTPID.Text != "")
+            {
+                asbGTPID.Text = asbGTPID.Text.Substring(0, asbGTPID.Text.Length - 1);
+                /*
+                int pos = textbox.SelectionStart - 1;
+                textbox.Text = textbox.Text.Remove(pos, 1);
+                textbox.SelectionStart = pos;
+                //*/
             }
         }
     }
