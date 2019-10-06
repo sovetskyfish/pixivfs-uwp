@@ -492,4 +492,8 @@
     <value>Direct Connection (!Experimental!)</value>
     <comment>CheckBox</comment>
   </data>
+  <data name="NewComment.Content" xml:space="preserve">
+    <value>新しいコメント</value>
+    <comment>ToggleButton</comment>
+  </data>
 </root>

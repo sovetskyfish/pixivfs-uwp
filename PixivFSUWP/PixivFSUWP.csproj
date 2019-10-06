@@ -178,12 +178,6 @@
     <Compile Include="SauceNAOPage.xaml.cs">
       <DependentUpon>SauceNAOPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="SauceNAO\Imgur.cs" />
-    <Compile Include="SauceNAO\Pixiv.cs" />
-    <Compile Include="SauceNAO\Response.cs" />
-    <Compile Include="SauceNAO\Result.cs" />
-    <Compile Include="SauceNAO\Sauce.cs" />
-    <Compile Include="SauceNAO\SauceNao.cs" />
     <Compile Include="SearchPage.xaml.cs">
       <DependentUpon>SearchPage.xaml</DependentUpon>
     </Compile>
