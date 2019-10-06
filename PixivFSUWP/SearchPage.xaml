@@ -81,7 +81,7 @@
                     <StackPanel Grid.Row="0" HorizontalAlignment="Stretch">
                         <TextBlock x:Uid="GoToPixivID"/>
                         <AutoSuggestBox x:Name="asbGTPID" Margin="0 5 0 0" x:Uid="GoPixivID" QuerySubmitted="GoPixivID_QuerySubmitted"
-                                HorizontalAlignment="Stretch" QueryIcon="Find" TextChanged="asbGTPID_TextChanged"/>
+                                HorizontalAlignment="Stretch" QueryIcon="Forward" TextChanged="asbGTPID_TextChanged"/>
                         <!--<Grid HorizontalAlignment="Stretch"> 
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"/>
