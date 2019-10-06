@@ -631,11 +631,6 @@
           <target state="new">Imgur API:</target>
           <note from="MultilingualBuild" annotates="source" priority="2">TextBlock +</note>
         </trans-unit>
-        <trans-unit id="QuickDouble.Text" translate="yes" xml:space="preserve">
-          <source>Like &amp; Save</source>
-          <target state="new">Like &amp; Save</target>
-          <note from="MultilingualBuild" annotates="source" priority="2">MenuFlyoutItem +</note>
-        </trans-unit>
         <trans-unit id="SauceNaoAPI.Text" translate="yes" xml:space="preserve">
           <source>SauceNAO API:</source>
           <target state="new">SauceNAO API:</target>
@@ -645,6 +640,16 @@
           <source>More Search Methods</source>
           <target state="new">More Search Methods</target>
           <note from="MultilingualBuild" annotates="source" priority="2">TextBlock +</note>
+        </trans-unit>
+        <trans-unit id="GoToPixivID.Text" translate="yes" xml:space="preserve">
+          <source>Pixiv ID</source>
+          <target state="new">Pixiv ID</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">TextBlock +</note>
+        </trans-unit>
+        <trans-unit id="QuickLS.Text" translate="yes" xml:space="preserve">
+          <source>Like &amp; Save</source>
+          <target state="new">Like &amp; Save</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">MenuFlyoutItem +</note>
         </trans-unit>
       </group>
     </body>

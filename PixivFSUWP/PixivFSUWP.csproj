@@ -136,9 +136,6 @@
     <Compile Include="BigImage.xaml.cs">
       <DependentUpon>BigImage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="GoToPIDPage.xaml.cs">
-      <DependentUpon>GoToPIDPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Controls\ImageSelectorPanel.cs" />
     <Compile Include="Controls\TagsPanel.cs" />
     <Compile Include="Controls\WaterfallContentPanel.cs" />
@@ -240,10 +237,6 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Page Include="BigImage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="GoToPIDPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
