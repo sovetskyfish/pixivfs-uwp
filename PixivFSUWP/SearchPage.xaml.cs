@@ -14,12 +14,11 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-using PixivCS;
+using PixivCS; // 
 using Windows.UI.Xaml.Media.Imaging;
 using PixivFSUWP.Interfaces;
 using static PixivFSUWP.Data.OverAll;
-// 额外内容
-using PixivCS.SauceNao;
+using Windows.Data.Json;
 
 // https://go.microsoft.com/fwlink/?LinkId=234238 上介绍了“空白页”项模板
 
@@ -193,37 +192,39 @@ namespace PixivFSUWP
 
         private async void btnSauceNAO_Click(object sender, RoutedEventArgs e)
         {
+            const string sauceNAOAPI=null;
+            const string imgurAPI = null;
+            string SAUCENAO_API_KEY, IMGUR_API_KEY;
             Frame.Navigate(typeof(SauceNAOPage));
             Windows.Storage.ApplicationDataContainer localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
             //读取设置项
             if (localSettings.Values["SauceNAOAPI"] as string == null)
             {
-                // "未设置SauceNAO API"
                 Frame.Navigate(typeof(SettingsPage));
+                SAUCENAO_API_KEY = sauceNAOAPI;
                 return;
-                // SAUCENAO_API_KEY = "默认API";
             }
             else if ((localSettings.Values["SauceNAOAPI"] as string).Length == 0)
             {
-                // "未设置SauceNAO API"
                 Frame.Navigate(typeof(SettingsPage));
+                SAUCENAO_API_KEY = sauceNAOAPI;
                 return;
-                // SAUCENAO_API_KEY = "默认API";
             }
             if (localSettings.Values["ImgurAPI"] as string == null)
             {
-                // "未设置Imger API"
                 Frame.Navigate(typeof(SettingsPage));
+                IMGUR_API_KEY = imgurAPI;
                 return;
-                // IMGUR_API_KEY = "默认API";
             }
             else if ((localSettings.Values["ImgurAPI"] as string).Length == 0)
             {
-                // "未设置Imger API"
                 Frame.Navigate(typeof(SettingsPage));
-                return;
-                // IMGUR_API_KEY = "默认API";
+                IMGUR_API_KEY = imgurAPI;
+                return; 
             }
+            SAUCENAO_API_KEY = localSettings.Values["SauceNAOAPI"] as string;
+            IMGUR_API_KEY = localSettings.Values["ImgurAPI"] as string;
+            // 选择文件
             var picker = new Windows.Storage.Pickers.FileOpenPicker();
             picker.ViewMode = Windows.Storage.Pickers.PickerViewMode.Thumbnail;
             picker.SuggestedStartLocation = Windows.Storage.Pickers.PickerLocationId.PicturesLibrary;
@@ -231,33 +232,24 @@ namespace PixivFSUWP
             picker.FileTypeFilter.Add(".jpeg");
             picker.FileTypeFilter.Add(".png");
             Windows.Storage.StorageFile file = await picker.PickSingleFileAsync();
+            // 检测文件
             if (file == null)
             {
                 Frame.GoBack();
                 return;
             }
-
-            Action<byte[]> action = imageBytes =>
-            {
-                Console.WriteLine("==== 以图搜源 ====");
-                string image = Imgur.Upload(imageBytes, localSettings.Values["ImgurAPI"] as string);
-                List<Result> results = new SauceNao.SauceNao(localSettings.Values["SauceNAOAPI"] as string).Request(image, null);
-                // 这里是调试输出查询结果的内容..
-                //results.RemoveAll(result => !result.HasRecognizableSauce());
-                //foreach (Result result in results)
-                //{
-                //    System.Diagnostics.Debug.WriteLine(result.ToString() + "\n");
-                //}
-                System.Diagnostics.Debug.WriteLine("Pixiv ID = " + results[0].Response.SauceId.ToString());
-                Frame.Navigate(typeof(IllustDetailPage), results[0].Response.SauceId);
-            };
-            action.Invoke(await StorageFileExt.AsByteArray(file));
+            // 
+            ImgurNaoAPI imgurNaoApi = new ImgurNaoAPI(SAUCENAO_API_KEY, IMGUR_API_KEY);
+            string image = imgurNaoApi.UpLoad(await StorageFileExt.AsByteArray(file)).GetNamedString("link");
+            int retPid = (int)imgurNaoApi.DownLoad(image).GetNamedNumber("pixiv_id");
+            Frame.Navigate(typeof(IllustDetailPage), retPid);
         }
         private void GoPixivID_QuerySubmitted(AutoSuggestBox sender, AutoSuggestBoxQuerySubmittedEventArgs args)
         {
             Frame.Navigate(typeof(IllustDetailPage), Convert.ToInt32(asbGTPID.Text));
         }
-
+        // 使Pixiv ID文本输入框始终保持纯数字
+        // 这里作用:出现非数字则删除最右侧一个字符
         private void asbGTPID_TextChanged(AutoSuggestBox sender, AutoSuggestBoxTextChangedEventArgs args)
         {
             if (!System.Text.RegularExpressions.Regex.IsMatch(asbGTPID.Text, "^\\d*\\.?\\d*$") && asbGTPID.Text != "")
