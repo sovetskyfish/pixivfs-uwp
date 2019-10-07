@@ -248,11 +248,11 @@ namespace PixivFSUWP
             var res = await new PixivAppAPI(Data.OverAll.GlobalBaseAPI).IllustDetail(i.ItemId.ToString());
             var illust = Data.IllustDetail.FromJsonValue(res);
             string[] FileUriToNameArray = illust.OriginalUrls[0].Split('/');
-            //FileUriToNameArray = FileUriToNameArray[FileUriToNameArray.Length - 1].Split('_');
-            //string fileName = FileUriToNameArray[0] + "_" + FileUriToNameArray[1] + ".jpg";
             string fileName = FileUriToNameArray[FileUriToNameArray.Length - 1];
             StorageFolder storageFolder = await StorageFolder.GetFolderFromPathAsync(saveDir);
             var file = await storageFolder.CreateFileAsync(fileName, CreationCollisionOption.GenerateUniqueName);
+            //FileUriToNameArray = FileUriToNameArray[FileUriToNameArray.Length - 1].Split('_');
+            //string fileName = FileUriToNameArray[0] + "_" + FileUriToNameArray[1] + ".jpg";
             if (file != null)
             {
                 CachedFileManager.DeferUpdates(file);
