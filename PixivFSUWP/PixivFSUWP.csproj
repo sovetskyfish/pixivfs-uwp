@@ -289,7 +289,7 @@
       <Version>5.1.1</Version>
     </PackageReference>
     <PackageReference Include="PixivCS">
-      <Version>0.2.2</Version>
+      <Version>0.3.1</Version>
     </PackageReference>
     <PackageReference Include="Win2D.uwp">
       <Version>1.23.0</Version>
