@@ -36,6 +36,9 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://github.com/dsyo2008"><img src="https://avatars2.githubusercontent.com/u/3739056?v=4" width="100px;" alt="dsyo2008"/><br /><sub><b>dsyo2008</b></sub></a><br /><a href="#ideas-dsyo2008" title="Ideas, Planning, & Feedback">🤔</a></td>
     <td align="center"><a href="https://github.com/ZeroSimple"><img src="https://avatars2.githubusercontent.com/u/22572927?v=4" width="100px;" alt="Henry He"/><br /><sub><b>Henry He</b></sub></a><br /><a href="https://github.com/tobiichiamane/pixivfs-uwp/issues?q=author%3AZeroSimple" title="Bug reports">🐛</a></td>
   </tr>
+  <tr>
+    <td align="center"><a href="https://github.com/frg2089"><img src="https://avatars0.githubusercontent.com/u/42184238?v=4" width="100px;" alt="舰队的偶像-岛风酱！"/><br /><sub><b>舰队的偶像-岛风酱！</b></sub></a><br /><a href="https://github.com/tobiichiamane/pixivfs-uwp/commits?author=frg2089" title="Code">💻</a></td>
+  </tr>
 </table>
 
 <!-- ALL-CONTRIBUTORS-LIST:END -->
