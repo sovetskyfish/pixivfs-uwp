@@ -18,6 +18,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using static PixivFSUWP.Data.OverAll;
+using Windows.Storage;
 
 // https://go.microsoft.com/fwlink/?LinkId=234238 上介绍了“空白页”项模板
 
@@ -73,6 +74,11 @@ namespace PixivFSUWP
             txtAccount.Text = "@" + currentUser.UserAccount;
             txtEmail.Text = currentUser.Email;
             imgAvatar.ImageSource = await imgTask;
+            // =================
+            ApplicationDataContainer localSettings = ApplicationData.Current.LocalSettings;
+            tbSauceNAO.Text = localSettings.Values["SauceNAOAPI"] as string;//读取设置项
+            tbImgur.Text = localSettings.Values["ImgurAPI"] as string;
+            tbDir.Text = localSettings.Values["DownloadPath"] as string;
         }
 
         private void BtnLogout_Click(object sender, RoutedEventArgs e)
@@ -94,6 +100,41 @@ namespace PixivFSUWP
         {
             await Launcher.LaunchUriAsync(new
                 Uri(@"https://github.com/tobiichiamane/pixivfs-uwp"));
+        }
+
+        private void API_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            ApplicationDataContainer localSettings = ApplicationData.Current.LocalSettings;//获取本地设置，你也可以获取漫游设置和临时设置，后面的操作都一样
+            localSettings.Values["SauceNAOAPI"] = tbSauceNAO.Text;//在本地设置中添加一个设置项，类似字典赋值方式，theme是localSettings里面的key，而"Light"是值，可以设置的类型在上面已经列出
+            localSettings.Values["ImgurAPI"] = tbImgur.Text;
+            //localSettings.Values.Remove("theme");//删除设置项
+
+            
+        }
+
+        private async void BtnDirChange_Click(object sender, RoutedEventArgs e)
+        {
+            var folderPicker = new Windows.Storage.Pickers.FolderPicker();
+            folderPicker.SuggestedStartLocation = Windows.Storage.Pickers.PickerLocationId.Desktop;
+            folderPicker.FileTypeFilter.Add("*");
+
+            StorageFolder folder = await folderPicker.PickSingleFolderAsync();
+            if (folder != null)
+            {
+                Windows.Storage.AccessCache.StorageApplicationPermissions.
+                FutureAccessList.AddOrReplace("PickedFolderToken", folder);
+                this.tbDir.Text = folder.Path;
+            }
+            else
+            {
+                //this.tbDir.Text = "Operation cancelled.";
+            }
+        }
+
+        private void tbDir_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            ApplicationDataContainer localSettings = ApplicationData.Current.LocalSettings;
+            localSettings.Values["DownloadPath"] = tbDir.Text;
         }
     }
 }

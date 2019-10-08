@@ -179,19 +179,26 @@ namespace PixivFSUWP
 
         private async void QuickSave_Click(object sender, RoutedEventArgs e)
         {
+            ApplicationDataContainer localSettings = ApplicationData.Current.LocalSettings;
             if (tapped == null) return;
             var i = tapped;
-            FileSavePicker picker = new FileSavePicker();
-            picker.SuggestedStartLocation = PickerLocationId.PicturesLibrary;
-            picker.FileTypeChoices.Add(GetResourceString("ImageFilePlain"), new List<string>() { ".png" });
-            picker.SuggestedFileName = i.Title;
-            var file = await picker.PickSaveFileAsync();
+            string saveDir = localSettings.Values["DownloadPath"] as string;
+            if (saveDir == null)
+            {
+                await ((Frame.Parent as Grid)?.Parent as MainPage)?.
+                    ShowTip("未设置储存目录");
+                Frame.Navigate(typeof(SettingsPage));
+                return;
+            }
+            var res = await new PixivAppAPI(Data.OverAll.GlobalBaseAPI).IllustDetail(i.ItemId.ToString());
+            var illust = Data.IllustDetail.FromJsonValue(res);
+            string[] FileUriToNameArray = illust.OriginalUrls[0].Split('/');
+            string fileName = FileUriToNameArray[FileUriToNameArray.Length - 1];
+            StorageFolder storageFolder = await StorageFolder.GetFolderFromPathAsync(saveDir);
+            var file = await storageFolder.CreateFileAsync(fileName, CreationCollisionOption.GenerateUniqueName);
             if (file != null)
             {
                 CachedFileManager.DeferUpdates(file);
-                var res = await new PixivAppAPI(Data.OverAll.GlobalBaseAPI)
-                    .IllustDetail(i.ItemId.ToString());
-                var illust = Data.IllustDetail.FromJsonValue(res);
                 using (var imgstream = await Data.OverAll.DownloadImage(illust.OriginalUrls[0]))
                 {
                     using (var filestream = await file.OpenAsync(FileAccessMode.ReadWrite))

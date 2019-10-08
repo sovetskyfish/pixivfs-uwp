@@ -39,38 +39,64 @@
                 <AutoSuggestBox Margin="0 5 0 0" x:Name="txtWord" x:Uid="Search" QuerySubmitted="TxtWord_QuerySubmitted"
                                 HorizontalAlignment="Stretch" QueryIcon="Find"/>
                 <TextBlock Margin="0 10 0 0" HorizontalAlignment="Left" FontSize="14" FontWeight="Bold" x:Uid="SearchOptions"/>
-                <Grid Margin="0 5 0 0">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition/>
-                        <ColumnDefinition Width="5"/>
-                        <ColumnDefinition/>
-                        <ColumnDefinition Width="5"/>
-                        <ColumnDefinition/>
-                    </Grid.ColumnDefinitions>
-                    <ComboBox x:Name="cbSearchTarget" IsEditable="False" BorderThickness="1"
+                    <Grid Margin="0 5 0 0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="5"/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="5"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <ComboBox x:Name="cbSearchTarget" IsEditable="False" BorderThickness="1"
                               HorizontalAlignment="Stretch" SelectedIndex="0">
-                        <ComboBox.Items>
-                            <ComboBoxItem x:Uid="PartiallyMatchTag"/>
-                            <ComboBoxItem x:Uid="FullyMatchTag"/>
-                            <ComboBoxItem x:Uid="PartiallyMatchTitleAndCap"/>
-                        </ComboBox.Items>
-                    </ComboBox>
-                    <ComboBox x:Name="cbSort" Grid.Column="2" IsEditable="False" BorderThickness="1"
+                            <ComboBox.Items>
+                                <ComboBoxItem x:Uid="PartiallyMatchTag"/>
+                                <ComboBoxItem x:Uid="FullyMatchTag"/>
+                                <ComboBoxItem x:Uid="PartiallyMatchTitleAndCap"/>
+                            </ComboBox.Items>
+                        </ComboBox>
+                        <ComboBox x:Name="cbSort" Grid.Column="2" IsEditable="False" BorderThickness="1"
                               HorizontalAlignment="Stretch" SelectedIndex="0">
-                        <ComboBox.Items>
-                            <ComboBoxItem x:Uid="DateDesc"/>
-                            <ComboBoxItem x:Uid="DateAsc"/>
-                        </ComboBox.Items>
-                    </ComboBox>
-                    <ComboBox x:Name="cbDuration" Grid.Column="4" IsEditable="False" BorderThickness="1"
+                            <ComboBox.Items>
+                                <ComboBoxItem x:Uid="DateDesc"/>
+                                <ComboBoxItem x:Uid="DateAsc"/>
+                            </ComboBox.Items>
+                        </ComboBox>
+                        <ComboBox x:Name="cbDuration" Grid.Column="4" IsEditable="False" BorderThickness="1"
                               HorizontalAlignment="Stretch" SelectedIndex="0">
-                        <ComboBox.Items>
-                            <ComboBoxItem x:Uid="AllTime"/>
-                            <ComboBoxItem x:Uid="LastDay"/>
-                            <ComboBoxItem x:Uid="LastWeek"/>
-                            <ComboBoxItem x:Uid="LastMonth"/>
-                        </ComboBox.Items>
-                    </ComboBox>
+                            <ComboBox.Items>
+                                <ComboBoxItem x:Uid="AllTime"/>
+                                <ComboBoxItem x:Uid="LastDay"/>
+                                <ComboBoxItem x:Uid="LastWeek"/>
+                                <ComboBoxItem x:Uid="LastMonth"/>
+                            </ComboBox.Items>
+                        </ComboBox>
+                    </Grid>
+                <TextBlock Margin="0,10,0,0" HorizontalAlignment="Left" FontSize="14" FontWeight="Bold" x:Uid="SearchMore"/>
+                <Grid Grid.Row="1" Margin="0,10,0,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                    </Grid.RowDefinitions>
+                    <StackPanel Grid.Row="0" HorizontalAlignment="Stretch">
+                        <TextBlock x:Uid="GoToPixivID"/>
+                        <AutoSuggestBox x:Name="asbGTPID" Margin="0 5 0 0" x:Uid="GoPixivID" QuerySubmitted="GoPixivID_QuerySubmitted"
+                                HorizontalAlignment="Stretch" QueryIcon="Forward" TextChanged="asbGTPID_TextChanged"/>
+                        <!--<Grid HorizontalAlignment="Stretch"> 
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="50"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBox Grid.Column="0" x:Name="tbPID" TextChanged="tbPID_TextChanged"/>
+                            <Button Grid.Column="1" VerticalAlignment="Stretch" Click="BtnGoTo_Click">
+                                <Button.Content>
+                                    <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}" 
+                                  FontSize="16" Glyph="&#xE724;"/>
+                                </Button.Content>
+                            </Button>
+                        </Grid>-->
+                    </StackPanel>
+                    <Button Grid.Row="1" Margin="0,5,0,0" x:Name="btnSauceNAO" x:Uid="BtnSauceNAO" HorizontalAlignment="Stretch" Click="btnSauceNAO_Click"/>
                 </Grid>
                 <StackPanel Margin="0 10 0 0" HorizontalAlignment="Left" Orientation="Horizontal">
                     <TextBlock FontSize="14" FontWeight="Bold" x:Uid="TrendingTags"/>

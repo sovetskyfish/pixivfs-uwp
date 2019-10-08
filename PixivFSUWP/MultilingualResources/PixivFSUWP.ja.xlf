@@ -608,8 +608,48 @@
         </trans-unit>
         <trans-unit id="NewComment.Content" translate="yes" xml:space="preserve">
           <source>New comment</source>
-          <target state="new">New comment</target>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">新しいコメント</target>
           <note from="MultilingualBuild" annotates="source" priority="2">ToggleButton</note>
+        </trans-unit>
+        <trans-unit id="BtnSauceNAO.Content" translate="yes" xml:space="preserve">
+          <source>SauceNAO</source>
+          <target state="new">SauceNAO</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Button +</note>
+        </trans-unit>
+        <trans-unit id="GoPixivID.PlaceholderText" translate="yes" xml:space="preserve">
+          <source>Pixiv ID</source>
+          <target state="new">Pixiv ID</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">AutoSuggestBox +</note>
+        </trans-unit>
+        <trans-unit id="ImageDir.Text" translate="yes" xml:space="preserve">
+          <source>Image Saving Folder:</source>
+          <target state="new">Image Saving Folder:</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">TextBlock +</note>
+        </trans-unit>
+        <trans-unit id="ImgurAPI.Text" translate="yes" xml:space="preserve">
+          <source>Imgur API:</source>
+          <target state="new">Imgur API:</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">TextBlock +</note>
+        </trans-unit>
+        <trans-unit id="SauceNaoAPI.Text" translate="yes" xml:space="preserve">
+          <source>SauceNAO API:</source>
+          <target state="new">SauceNAO API:</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">TextBlock +</note>
+        </trans-unit>
+        <trans-unit id="SearchMore.Text" translate="yes" xml:space="preserve">
+          <source>More Search Methods</source>
+          <target state="new">More Search Methods</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">TextBlock +</note>
+        </trans-unit>
+        <trans-unit id="GoToPixivID.Text" translate="yes" xml:space="preserve">
+          <source>Pixiv ID</source>
+          <target state="new">Pixiv ID</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">TextBlock +</note>
+        </trans-unit>
+        <trans-unit id="QuickLS.Text" translate="yes" xml:space="preserve">
+          <source>Like &amp; Save</source>
+          <target state="new">Like &amp; Save</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">MenuFlyoutItem +</note>
         </trans-unit>
       </group>
     </body>

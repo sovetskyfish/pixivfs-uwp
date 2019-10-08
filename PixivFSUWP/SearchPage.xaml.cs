@@ -14,10 +14,11 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-using PixivCS;
+using PixivCS; // 
 using Windows.UI.Xaml.Media.Imaging;
 using PixivFSUWP.Interfaces;
 using static PixivFSUWP.Data.OverAll;
+using Windows.Data.Json;
 
 // https://go.microsoft.com/fwlink/?LinkId=234238 上介绍了“空白页”项模板
 
@@ -187,6 +188,92 @@ namespace PixivFSUWP
             cbSort.SelectedIndex = 0;
             cbDuration.SelectedIndex = 0;
             TxtWord_QuerySubmitted(null, null);
+        }
+
+        private async void btnSauceNAO_Click(object sender, RoutedEventArgs e)
+        {
+            const string sauceNAOAPI=null;
+            const string imgurAPI = null;
+            string SAUCENAO_API_KEY, IMGUR_API_KEY;
+            Frame.Navigate(typeof(SauceNAOPage));
+            Windows.Storage.ApplicationDataContainer localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
+            //读取设置项
+            if (localSettings.Values["SauceNAOAPI"] as string == null)
+            {
+                Frame.Navigate(typeof(SettingsPage));
+                SAUCENAO_API_KEY = sauceNAOAPI;
+                return;
+            }
+            else if ((localSettings.Values["SauceNAOAPI"] as string).Length == 0)
+            {
+                Frame.Navigate(typeof(SettingsPage));
+                SAUCENAO_API_KEY = sauceNAOAPI;
+                return;
+            }
+            if (localSettings.Values["ImgurAPI"] as string == null)
+            {
+                Frame.Navigate(typeof(SettingsPage));
+                IMGUR_API_KEY = imgurAPI;
+                return;
+            }
+            else if ((localSettings.Values["ImgurAPI"] as string).Length == 0)
+            {
+                Frame.Navigate(typeof(SettingsPage));
+                IMGUR_API_KEY = imgurAPI;
+                return; 
+            }
+            SAUCENAO_API_KEY = localSettings.Values["SauceNAOAPI"] as string;
+            IMGUR_API_KEY = localSettings.Values["ImgurAPI"] as string;
+            // 选择文件
+            var picker = new Windows.Storage.Pickers.FileOpenPicker();
+            picker.ViewMode = Windows.Storage.Pickers.PickerViewMode.Thumbnail;
+            picker.SuggestedStartLocation = Windows.Storage.Pickers.PickerLocationId.PicturesLibrary;
+            picker.FileTypeFilter.Add(".jpg");
+            picker.FileTypeFilter.Add(".jpeg");
+            picker.FileTypeFilter.Add(".png");
+            Windows.Storage.StorageFile file = await picker.PickSingleFileAsync();
+            // 检测文件
+            if (file == null)
+            {
+                Frame.GoBack();
+                return;
+            }
+            // 
+            ImgurNaoAPI imgurNaoApi = new ImgurNaoAPI(SAUCENAO_API_KEY, IMGUR_API_KEY);
+            string image = imgurNaoApi.UpLoad(await StorageFileExt.AsByteArray(file)).GetNamedString("link");
+            int retPid = (int)imgurNaoApi.DownLoad(image).GetNamedNumber("pixiv_id");
+            Frame.Navigate(typeof(IllustDetailPage), retPid);
+        }
+        private void GoPixivID_QuerySubmitted(AutoSuggestBox sender, AutoSuggestBoxQuerySubmittedEventArgs args)
+        {
+            Frame.Navigate(typeof(IllustDetailPage), Convert.ToInt32(asbGTPID.Text));
+        }
+        // 使Pixiv ID文本输入框始终保持纯数字
+        // 这里作用:出现非数字则删除最右侧一个字符
+        private void asbGTPID_TextChanged(AutoSuggestBox sender, AutoSuggestBoxTextChangedEventArgs args)
+        {
+            if (!System.Text.RegularExpressions.Regex.IsMatch(asbGTPID.Text, "^\\d*\\.?\\d*$") && asbGTPID.Text != "")
+            {
+                asbGTPID.Text = asbGTPID.Text.Substring(0, asbGTPID.Text.Length - 1);
+            }
+        }
+    }
+    static class StorageFileExt
+    {
+        /// <summary>
+        /// 将文件转换为字节数组
+        /// </summary>
+        /// <param name="file"></param>
+        /// <returns></returns>
+        public static async Task<byte[]> AsByteArray(this Windows.Storage.StorageFile file)
+        {
+            Windows.Storage.Streams.IRandomAccessStream fileStream =
+                await file.OpenAsync(Windows.Storage.FileAccessMode.Read);
+            var reader = new Windows.Storage.Streams.DataReader(fileStream.GetInputStreamAt(0));
+            await reader.LoadAsync((uint)fileStream.Size);
+            byte[] pixels = new byte[fileStream.Size];
+            reader.ReadBytes(pixels);
+            return pixels;
         }
     }
 }

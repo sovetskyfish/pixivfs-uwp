@@ -35,11 +35,11 @@
             <NavigationView.PaneFooter>
                 <StackPanel Orientation="Horizontal">
                     <AppBarButton Width="48" x:Name="btnMe" Click="BtnMe_Click">
-                        <Grid Margin="-10">
+                        <Grid Margin="-7">
                             <ProgressRing x:Name="avatarRing" Height="20" Width="20" IsActive="True"/>
                             <Ellipse VerticalAlignment="Center" Height="24" Width="24">
                                 <Ellipse.Fill>
-                                    <ImageBrush x:Name="imgAvatar"/>
+                                    <ImageBrush x:Name="imgAvatar" Stretch="UniformToFill"/>
                                 </Ellipse.Fill>
                             </Ellipse>
                         </Grid>

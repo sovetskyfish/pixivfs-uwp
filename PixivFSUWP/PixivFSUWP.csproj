@@ -175,6 +175,9 @@
     <Compile Include="ReportIssuePage.xaml.cs">
       <DependentUpon>ReportIssuePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SauceNAOPage.xaml.cs">
+      <DependentUpon>SauceNAOPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SearchPage.xaml.cs">
       <DependentUpon>SearchPage.xaml</DependentUpon>
     </Compile>
@@ -212,6 +215,7 @@
     <Content Include="Assets\PixivHeader.png" />
     <Content Include="Assets\PixivText.png" />
     <None Include="Package.StoreAssociation.xml" />
+    <Content Include="Assets\SauceNAO.png" />
     <Content Include="Assets\Square44x44Logo.targetsize-256_altform-unplated.png" />
     <Content Include="Assets\Square71x71Logo.scale-200.png" />
     <Content Include="Properties\Default.rd.xml" />
@@ -243,6 +247,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="ReportIssuePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SauceNAOPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -281,7 +289,7 @@
       <Version>5.1.1</Version>
     </PackageReference>
     <PackageReference Include="PixivCS">
-      <Version>0.2.2</Version>
+      <Version>0.3.1</Version>
     </PackageReference>
     <PackageReference Include="Win2D.uwp">
       <Version>1.23.0</Version>

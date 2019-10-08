@@ -496,4 +496,28 @@
     <value>撰写评论</value>
     <comment>ToggleButton</comment>
   </data>
+  <data name="BtnSauceNAO.Content" xml:space="preserve">
+    <value>SauceNAO 以图搜图</value>
+    <comment>Button +</comment>
+  </data>
+  <data name="GoPixivID.PlaceholderText" xml:space="preserve">
+    <value>Pixiv ID</value>
+    <comment>AutoSuggestBox +</comment>
+  </data>
+  <data name="ImageDir.Text" xml:space="preserve">
+    <value>图像保存目录:</value>
+    <comment>TextBlock +</comment>
+  </data>
+  <data name="SearchMore.Text" xml:space="preserve">
+    <value>更多搜索功能</value>
+    <comment>TextBlock +</comment>
+  </data>
+  <data name="GoToPixivID.Text" xml:space="preserve">
+    <value>Pixiv ID 直达</value>
+    <comment>TextBlock +</comment>
+  </data>
+  <data name="QuickLS.Text" xml:space="preserve">
+    <value>一键二连</value>
+    <comment>MenuFlyoutItem +</comment>
+  </data>
 </root>
