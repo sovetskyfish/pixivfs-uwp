@@ -47,3 +47,4 @@
 >-|删除SauceNAO API|将SauceNAO相关API移至项目PixivCS
 >!|修订|根据PixivCS修改代码
 >*|快速保存|将文件快速保存至设定的目录
+>!|更新PixivCS包|更新项目引用的PixivCS的nuget包
