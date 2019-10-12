@@ -513,7 +513,7 @@
     <comment>TextBlock +</comment>
   </data>
   <data name="QuickLS.Text" xml:space="preserve">
-    <value>一鍵收藏保存</value>
+    <value>喜欢并下载</value>
     <comment>MenuFlyoutItem +</comment>
   </data>
 </root>

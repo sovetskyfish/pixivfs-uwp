@@ -648,7 +648,7 @@
         </trans-unit>
         <trans-unit id="QuickLS.Text" translate="yes" xml:space="preserve">
           <source>Like &amp; Save</source>
-          <target state="translated">一键二连</target>
+          <target state="translated">喜欢并下载</target>
           <note from="MultilingualBuild" annotates="source" priority="2">MenuFlyoutItem +</note>
         </trans-unit>
       </group>
