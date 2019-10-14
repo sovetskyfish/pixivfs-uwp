@@ -41,6 +41,7 @@
                     <TextBlock FontSize="12" Foreground="Gray" x:Uid="LogoutWarning"/>
                 </StackPanel>
             </Grid>
+            <!--TODO：完善UI-->
             <StackPanel Margin="0,10" Visibility="Collapsed">
                 <TextBlock Margin="15,0,15,0" FontSize="18" FontWeight="Bold" Text="SauceNAO"/>
                 <Grid>

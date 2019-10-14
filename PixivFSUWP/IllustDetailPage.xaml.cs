@@ -78,7 +78,7 @@ namespace PixivFSUWP
         {
             ((Frame.Parent as Grid)?.Parent as MainPage)?.SelectNavPlaceholder(GetResourceString("DetailPlain"));
             illustID = (int)e.Parameter;
-            System.Diagnostics.Debug.WriteLine("View Pixiv ID = " + illustID.ToString());
+            //System.Diagnostics.Debug.WriteLine("View Pixiv ID = " + illustID.ToString());
             base.OnNavigatedTo(e);
             _ = loadContent();
         }

@@ -175,9 +175,6 @@
     <Compile Include="ReportIssuePage.xaml.cs">
       <DependentUpon>ReportIssuePage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="SauceNAOPage.xaml.cs">
-      <DependentUpon>SauceNAOPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="SearchPage.xaml.cs">
       <DependentUpon>SearchPage.xaml</DependentUpon>
     </Compile>
@@ -247,10 +244,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="ReportIssuePage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="SauceNAOPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

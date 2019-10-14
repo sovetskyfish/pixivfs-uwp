@@ -195,7 +195,6 @@ namespace PixivFSUWP
             const string sauceNAOAPI=null;
             const string imgurAPI = null;
             string SAUCENAO_API_KEY, IMGUR_API_KEY;
-            Frame.Navigate(typeof(SauceNAOPage));
             Windows.Storage.ApplicationDataContainer localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
             //读取设置项
             if (localSettings.Values["SauceNAOAPI"] as string == null)
