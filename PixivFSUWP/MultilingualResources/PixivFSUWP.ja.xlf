@@ -158,9 +158,8 @@
         </trans-unit>
         <trans-unit id="ImageFilePlain" translate="yes" xml:space="preserve">
           <source>Image</source>
-          <target state="needs-review-translation">画像ファイル</target>
+          <target state="translated">画像ファイル</target>
           <note from="MultilingualBuild" annotates="source" priority="2">PlainText</note>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
         </trans-unit>
         <trans-unit id="Job.Text" translate="yes" xml:space="preserve">
           <source>Job</source>
@@ -631,13 +630,11 @@
           <source>Imgur API key</source>
           <target state="new">Imgur API key</target>
           <note from="MultilingualBuild" annotates="source" priority="2">TextBlock +</note>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
         </trans-unit>
         <trans-unit id="SauceNaoAPI.Text" translate="yes" xml:space="preserve">
           <source>SauceNAO API key</source>
           <target state="new">SauceNAO API key</target>
           <note from="MultilingualBuild" annotates="source" priority="2">TextBlock +</note>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
         </trans-unit>
         <trans-unit id="SearchMore.Text" translate="yes" xml:space="preserve">
           <source>More functions</source>

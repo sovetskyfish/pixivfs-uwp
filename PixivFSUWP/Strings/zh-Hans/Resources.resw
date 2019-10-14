@@ -508,8 +508,16 @@
     <value>图像保存目录</value>
     <comment>TextBlock +</comment>
   </data>
+  <data name="ImgurAPI.Text" xml:space="preserve">
+    <value>Imgur API密钥</value>
+    <comment>TextBlock +</comment>
+  </data>
+  <data name="SauceNaoAPI.Text" xml:space="preserve">
+    <value>SauceNAO API密钥</value>
+    <comment>TextBlock +</comment>
+  </data>
   <data name="SearchMore.Text" xml:space="preserve">
-    <value>更多搜索功能</value>
+    <value>更多功能</value>
     <comment>TextBlock +</comment>
   </data>
   <data name="GoToPixivID.Text" xml:space="preserve">

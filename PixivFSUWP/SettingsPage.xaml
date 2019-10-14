@@ -41,8 +41,8 @@
                     <TextBlock FontSize="12" Foreground="Gray" x:Uid="LogoutWarning"/>
                 </StackPanel>
             </Grid>
-            <StackPanel Margin="0,10">
-                <TextBlock Margin="15,0,15,0" FontSize="18" FontWeight="Bold" Text="Settings"/>
+            <StackPanel Margin="0,10" Visibility="Collapsed">
+                <TextBlock Margin="15,0,15,0" FontSize="18" FontWeight="Bold" Text="SauceNAO"/>
                 <Grid>
                     <TextBlock x:Uid="SauceNaoAPI" Margin="20,0" HorizontalAlignment="Left" VerticalAlignment="Center" HorizontalTextAlignment="Right"/>
                     <TextBox x:Name="tbSauceNAO" Margin="200,0" Width="400" HorizontalAlignment="Left" TextChanged="API_TextChanged"/>
