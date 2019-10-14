@@ -68,7 +68,7 @@ namespace PixivFSUWP
         {
             var request = args.Request;
             request.Data.SetText(string.Format("{0}\n{1} by {2}\n" +
-                "{3}：https://www.pixiv.net/member_illust.php?mode=medium&illust_id={4}\n" +
+                "{3}：https://www.pixiv.net/artworks/{4}\n" +
                 "PixivFSUWP：pixiv://illust?id={4}", GetResourceString("WorkPlain"), illust.Title, illust.Author, GetResourceString("LinkPlain"), illustID));
             request.Data.Properties.Title = string.Format("{0}：{1}", GetResourceString("SharePlain"), illust.Title);
             request.Data.Properties.Description = GetResourceString("SharingPlain");
@@ -386,7 +386,7 @@ namespace PixivFSUWP
 
         private void BtnLink_Click(object sender, RoutedEventArgs e)
         {
-            copyToClipboard(string.Format("https://www.pixiv.net/member_illust.php?mode=medium&illust_id={0}", illustID));
+            copyToClipboard(string.Format("https://www.pixiv.net/artworks/{0}", illustID));
             btnShareFlyout.Hide();
         }
 
