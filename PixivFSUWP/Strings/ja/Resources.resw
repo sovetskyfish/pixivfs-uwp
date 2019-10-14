@@ -496,4 +496,8 @@
     <value>新しいコメント</value>
     <comment>ToggleButton</comment>
   </data>
+  <data name="BtnSauceNAO.Content" xml:space="preserve">
+    <value>SauceNAO</value>
+    <comment>Button +</comment>
+  </data>
 </root>

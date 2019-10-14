@@ -157,8 +157,9 @@
           <note from="MultilingualBuild" annotates="source" priority="2">PlainText</note>
         </trans-unit>
         <trans-unit id="ImageFilePlain" translate="yes" xml:space="preserve">
-          <source>Image file</source>
-          <target state="translated">图片文件</target>
+          <source>Image</source>
+          <target state="needs-review-translation">图片文件</target>
+          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
           <note from="MultilingualBuild" annotates="source" priority="2">PlainText</note>
         </trans-unit>
         <trans-unit id="Job.Text" translate="yes" xml:space="preserve">
@@ -613,7 +614,7 @@
         </trans-unit>
         <trans-unit id="BtnSauceNAO.Content" translate="yes" xml:space="preserve">
           <source>SauceNAO</source>
-          <target state="translated">SauceNAO 以圖搜圖</target>
+          <target state="translated">以圖搜圖</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Button +</note>
         </trans-unit>
         <trans-unit id="GoPixivID.PlaceholderText" translate="yes" xml:space="preserve">
@@ -622,28 +623,30 @@
           <note from="MultilingualBuild" annotates="source" priority="2">AutoSuggestBox +</note>
         </trans-unit>
         <trans-unit id="ImageDir.Text" translate="yes" xml:space="preserve">
-          <source>Image Saving Folder:</source>
-          <target state="translated">圖像保存目錄</target>
+          <source>Default save location</source>
+          <target state="needs-review-translation">圖像保存目錄</target>
+          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
           <note from="MultilingualBuild" annotates="source" priority="2">TextBlock +</note>
         </trans-unit>
         <trans-unit id="ImgurAPI.Text" translate="yes" xml:space="preserve">
-          <source>Imgur API:</source>
-          <target state="new">Imgur API:</target>
+          <source>Imgur API key</source>
+          <target state="new">Imgur API key</target>
           <note from="MultilingualBuild" annotates="source" priority="2">TextBlock +</note>
         </trans-unit>
         <trans-unit id="SauceNaoAPI.Text" translate="yes" xml:space="preserve">
-          <source>SauceNAO API:</source>
-          <target state="new">SauceNAO API:</target>
+          <source>SauceNAO API key</source>
+          <target state="new">SauceNAO API key</target>
           <note from="MultilingualBuild" annotates="source" priority="2">TextBlock +</note>
         </trans-unit>
         <trans-unit id="SearchMore.Text" translate="yes" xml:space="preserve">
-          <source>More Search Methods</source>
-          <target state="translated">更多功能</target>
+          <source>More functions</source>
+          <target state="needs-review-translation">更多功能</target>
+          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
           <note from="MultilingualBuild" annotates="source" priority="2">TextBlock +</note>
         </trans-unit>
         <trans-unit id="GoToPixivID.Text" translate="yes" xml:space="preserve">
           <source>Pixiv ID</source>
-          <target state="translated">Pixiv ID 直達</target>
+          <target state="translated">作品直达</target>
           <note from="MultilingualBuild" annotates="source" priority="2">TextBlock +</note>
         </trans-unit>
         <trans-unit id="QuickLS.Text" translate="yes" xml:space="preserve">

@@ -254,15 +254,15 @@
     <comment>TextBlock +</comment>
   </data>
   <data name="ImageDir.Text" xml:space="preserve">
-    <value>Image Saving Folder:</value>
+    <value>Default save location</value>
     <comment>TextBlock +</comment>
   </data>
   <data name="ImageFilePlain" xml:space="preserve">
-    <value>Image file</value>
+    <value>Image</value>
     <comment>PlainText</comment>
   </data>
   <data name="ImgurAPI.Text" xml:space="preserve">
-    <value>Imgur API:</value>
+    <value>Imgur API key</value>
     <comment>TextBlock +</comment>
   </data>
   <data name="Job.Text" xml:space="preserve">
@@ -474,7 +474,7 @@
     <comment>PlainText</comment>
   </data>
   <data name="SauceNaoAPI.Text" xml:space="preserve">
-    <value>SauceNAO API:</value>
+    <value>SauceNAO API key</value>
     <comment>TextBlock +</comment>
   </data>
   <data name="Save.Text" xml:space="preserve">
@@ -526,7 +526,7 @@
     <comment>AutoSuggestBox</comment>
   </data>
   <data name="SearchMore.Text" xml:space="preserve">
-    <value>More Search Methods</value>
+    <value>More functions</value>
     <comment>TextBlock +</comment>
   </data>
   <data name="SearchOptions.Text" xml:space="preserve">
