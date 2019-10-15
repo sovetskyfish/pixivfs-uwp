@@ -486,6 +486,7 @@ namespace PixivFSUWP
                 txtComment.IsEnabled = true;
                 btnPublishComment.IsEnabled = true;
                 btnNewComment.IsEnabled = true;
+                txtComment.Text = "";
             }
         }
     }
