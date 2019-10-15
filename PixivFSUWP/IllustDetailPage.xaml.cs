@@ -466,8 +466,12 @@ namespace PixivFSUWP
                 txtComment.IsEnabled = false;
                 btnPublishComment.IsEnabled = false;
                 btnNewComment.IsEnabled = false;
-                await new PixivAppAPI(Data.OverAll.GlobalBaseAPI)
+                var res = await new PixivAppAPI(Data.OverAll.GlobalBaseAPI)
                     .IllustCommentAdd(illustID.ToString(), txtComment.Text);
+                Data.IllustCommentItem newItem = Data.IllustCommentItem.FromJsonValue(res["comment"].GetObject());
+                ViewModels.CommentViewModel viewModel = ViewModels.CommentViewModel.FromItem(newItem);
+                _ = viewModel.LoadAvatarAsync();
+                (listComments.ItemsSource as Data.CommentsCollection).Insert(0, viewModel);
                 (((FrameworkElement)Frame?.Parent)?.Parent as MainPage)
                     ?.ShowTip("评论已发表");
             }

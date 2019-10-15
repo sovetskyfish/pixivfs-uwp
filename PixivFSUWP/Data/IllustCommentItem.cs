@@ -26,8 +26,16 @@ namespace PixivFSUWP.Data
             toret.UserName = Source["user"].GetObject()["name"].TryGetString();
             toret.UserAccount = Source["user"].GetObject()["account"].TryGetString();
             toret.AvatarUrl = Source["user"].GetObject()["profile_image_urls"].GetObject()["medium"].TryGetString();
-            var parent = Source["parent_comment"].ToString();
-            if(parent!="{}")
+            string parent;
+            try
+            {
+                parent = Source["parent_comment"].ToString();
+            }
+            catch
+            {
+                parent = "{}";
+            }
+            if (parent != "{}")
             {
                 //有父级评论
                 toret.ParentCommentID = (int)Source["parent_comment"].GetObject()["id"].GetNumber();
