@@ -456,5 +456,33 @@ namespace PixivFSUWP
                 }
             }
         }
+
+        private async void btnPublishComment_Click(object sender, RoutedEventArgs e)
+        {
+            //发表评论
+            try
+            {
+                if (string.IsNullOrEmpty(txtComment.Text)) throw new Exception("评论不能为空");
+                txtComment.IsEnabled = false;
+                btnPublishComment.IsEnabled = false;
+                btnNewComment.IsEnabled = false;
+                await new PixivAppAPI(Data.OverAll.GlobalBaseAPI)
+                    .IllustCommentAdd(illustID.ToString(), txtComment.Text);
+                (((FrameworkElement)Frame?.Parent)?.Parent as MainPage)
+                    ?.ShowTip("评论已发表");
+            }
+            catch (Exception exception)
+            {
+                (((FrameworkElement)Frame?.Parent)?.Parent as MainPage)
+                    ?.ShowTip(string.Format("评论未能发表：{0}", exception.Message));
+            }
+            finally
+            {
+                btnNewComment.IsChecked = false;
+                txtComment.IsEnabled = true;
+                btnPublishComment.IsEnabled = true;
+                btnNewComment.IsEnabled = true;
+            }
+        }
     }
 }
