@@ -52,11 +52,6 @@
             <ListView.Resources>
                 <MenuFlyout x:Name="quickActions">
                     <MenuFlyout.Items>
-                        <MenuFlyoutItem x:Name="quickDouble" x:Uid="QuickLS" Click="quickDouble_Click" Visibility="Collapsed">
-                            <MenuFlyoutItem.Icon>
-                                <FontIcon Glyph="&#xEBD2;"/>
-                            </MenuFlyoutItem.Icon>
-                        </MenuFlyoutItem>
                         <MenuFlyoutItem x:Name="quickStar" x:Uid="QuickBookmark" Click="QuickStar_Click">
                             <MenuFlyoutItem.Icon>
                                 <FontIcon Glyph="&#xE734;"/>

@@ -30,26 +30,11 @@ namespace PixivFSUWP
     /// </summary>
     public sealed partial class WaterfallPage : Page, IGoBackFlag
     {
-        /// <summary>
-        /// 页面
-        /// </summary>
         public enum ListContent
         {
-            /// <summary>
-            /// 推荐
-            /// </summary>
             Recommend,
-            /// <summary>
-            /// 收藏
-            /// </summary>
             Bookmark,
-            /// <summary>
-            /// 关注
-            /// </summary>
             Following,
-            /// <summary>
-            /// 排行
-            /// </summary>
             Ranking
         }
 
@@ -138,7 +123,6 @@ namespace PixivFSUWP
         {
             ListView listView = (ListView)sender;
             tapped = ((FrameworkElement)e.OriginalSource).DataContext as ViewModels.WaterfallItemViewModel;
-            if (tapped == null) return;
             quickStar.Text = (tapped.IsBookmarked) ?
                 GetResourceString("DeleteBookmarkPlain") :
                 GetResourceString("QuickBookmarkPlain");
@@ -157,7 +141,7 @@ namespace PixivFSUWP
             quickActions.ShowAt(listView, e.GetPosition(listView));
         }
 
-        private async void QuickStar_Click()
+        private async void QuickStar_Click(object sender, RoutedEventArgs e)
         {
             if (tapped == null) return;
             var i = tapped;
@@ -231,66 +215,37 @@ namespace PixivFSUWP
                 i.Title = title;
             }
         }
-        private void QuickStar_Click(object sender, RoutedEventArgs e) => QuickStar_Click();
-        private async void QuickSave_Click()
+
+        private async void QuickSave_Click(object sender, RoutedEventArgs e)
         {
-            ApplicationDataContainer localSettings = ApplicationData.Current.LocalSettings;
             if (tapped == null) return;
             var i = tapped;
-            string saveDir = localSettings.Values["DownloadPath"] as string;
-            if (saveDir == null)
-            {
-                await ((Frame.Parent as Grid)?.Parent as MainPage)?.
-                    ShowTip("未设置储存目录");
-                Frame.Navigate(typeof(SettingsPage));
-                return;
-            }
-            var res = await new PixivAppAPI(Data.OverAll.GlobalBaseAPI).IllustDetail(i.ItemId.ToString());
-            var illust = Data.IllustDetail.FromJsonValue(res);
-            string[] FileUriToNameArray = illust.OriginalUrls[0].Split('/');
-            string fileName = FileUriToNameArray[FileUriToNameArray.Length - 1];
-            StorageFolder storageFolder = await StorageFolder.GetFolderFromPathAsync(saveDir);
-            var file = await storageFolder.CreateFileAsync(fileName, CreationCollisionOption.GenerateUniqueName);
-            //FileUriToNameArray = FileUriToNameArray[FileUriToNameArray.Length - 1].Split('_');
-            //string fileName = FileUriToNameArray[0] + "_" + FileUriToNameArray[1] + ".jpg";
+            FileSavePicker picker = new FileSavePicker();
+            picker.SuggestedStartLocation = PickerLocationId.PicturesLibrary;
+            picker.FileTypeChoices.Add(GetResourceString("ImageFilePlain"), new List<string>() { ".png" });
+            picker.SuggestedFileName = i.Title;
+            var file = await picker.PickSaveFileAsync();
             if (file != null)
             {
                 CachedFileManager.DeferUpdates(file);
-
-                System.Diagnostics.Debug.WriteLine("Download From = " + illust.OriginalUrls[0]);
-                System.Diagnostics.Debug.WriteLine("Download To = " + file.Path);
-                try
+                var res = await new PixivAppAPI(Data.OverAll.GlobalBaseAPI)
+                    .IllustDetail(i.ItemId.ToString());
+                var illust = Data.IllustDetail.FromJsonValue(res);
+                using (var imgstream = await Data.OverAll.DownloadImage(illust.OriginalUrls[0]))
                 {
-                    using (var imgstream = await Data.OverAll.DownloadImage(illust.OriginalUrls[0]))
+                    using (var filestream = await file.OpenAsync(FileAccessMode.ReadWrite))
                     {
-                        using (var filestream = await file.OpenAsync(FileAccessMode.ReadWrite))
-                        {
-                            await imgstream.CopyToAsync(filestream.AsStream());
-                        }
+                        await imgstream.CopyToAsync(filestream.AsStream());
                     }
-                    var updateStatus = await CachedFileManager.CompleteUpdatesAsync(file);
-                    if (updateStatus == FileUpdateStatus.Complete)
-                    {
-                        System.Diagnostics.Debug.WriteLine("Download Complete = " + file.Name);
-                        await ((Frame.Parent as Grid)?.Parent as MainPage)?.
-                                    ShowTip(string.Format(GetResourceString("WorkSavedPlain"), i.Title));
-                    }
-                    else
-                        await ((Frame.Parent as Grid)?.Parent as MainPage)?.
-                                ShowTip(string.Format(GetResourceString("WorkSaveFailedPlain"), i.Title));
-                }catch (System.Threading.Tasks.TaskCanceledException e)
-                {
-                    System.Diagnostics.Debug.WriteLine("Download Failed :\n" + e.Message);
-                    ((Frame.Parent as Grid)?.Parent as MainPage)?.
-                                ShowTip(string.Format(GetResourceString("WorkSaveFailedPlain"), i.Title));
                 }
+                var updateStatus = await CachedFileManager.CompleteUpdatesAsync(file);
+                if (updateStatus == FileUpdateStatus.Complete)
+                    await ((Frame.Parent as Grid)?.Parent as MainPage)?.
+                            ShowTip(string.Format(GetResourceString("WorkSavedPlain"), i.Title));
+                else
+                    await ((Frame.Parent as Grid)?.Parent as MainPage)?.
+                            ShowTip(string.Format(GetResourceString("WorkSaveFailedPlain"), i.Title));
             }
-        }
-        private void QuickSave_Click(object sender, RoutedEventArgs e) => QuickSave_Click();
-        private void quickDouble_Click(object sender, RoutedEventArgs e)
-        {
-            QuickStar_Click();
-            QuickSave_Click();
         }
     }
 }
