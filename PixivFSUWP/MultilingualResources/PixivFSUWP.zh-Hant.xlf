@@ -621,11 +621,6 @@
           <target state="new">Pixiv ID</target>
           <note from="MultilingualBuild" annotates="source" priority="2">AutoSuggestBox +</note>
         </trans-unit>
-        <trans-unit id="ImageDir.Text" translate="yes" xml:space="preserve">
-          <source>Default save location</source>
-          <target state="translated">圖像保存目錄</target>
-          <note from="MultilingualBuild" annotates="source" priority="2">TextBlock +</note>
-        </trans-unit>
         <trans-unit id="ImgurAPI.Text" translate="yes" xml:space="preserve">
           <source>Imgur API key</source>
           <target state="translated">Imgur API密钥</target>
@@ -645,11 +640,6 @@
           <source>Pixiv ID</source>
           <target state="translated">作品直达</target>
           <note from="MultilingualBuild" annotates="source" priority="2">TextBlock +</note>
-        </trans-unit>
-        <trans-unit id="QuickLS.Text" translate="yes" xml:space="preserve">
-          <source>Like &amp; Save</source>
-          <target state="translated">喜欢并下载</target>
-          <note from="MultilingualBuild" annotates="source" priority="2">MenuFlyoutItem +</note>
         </trans-unit>
       </group>
     </body>

@@ -504,10 +504,6 @@
     <value>作品ID</value>
     <comment>AutoSuggestBox +</comment>
   </data>
-  <data name="ImageDir.Text" xml:space="preserve">
-    <value>图像保存目录</value>
-    <comment>TextBlock +</comment>
-  </data>
   <data name="ImgurAPI.Text" xml:space="preserve">
     <value>Imgur API密钥</value>
     <comment>TextBlock +</comment>
@@ -523,9 +519,5 @@
   <data name="GoToPixivID.Text" xml:space="preserve">
     <value>作品直达</value>
     <comment>TextBlock +</comment>
-  </data>
-  <data name="QuickLS.Text" xml:space="preserve">
-    <value>喜欢并下载</value>
-    <comment>MenuFlyoutItem +</comment>
   </data>
 </root>

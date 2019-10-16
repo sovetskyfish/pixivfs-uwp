@@ -621,11 +621,6 @@
           <target state="new">Pixiv ID</target>
           <note from="MultilingualBuild" annotates="source" priority="2">AutoSuggestBox +</note>
         </trans-unit>
-        <trans-unit id="ImageDir.Text" translate="yes" xml:space="preserve">
-          <source>Default save location</source>
-          <target state="new">Default save location</target>
-          <note from="MultilingualBuild" annotates="source" priority="2">TextBlock +</note>
-        </trans-unit>
         <trans-unit id="ImgurAPI.Text" translate="yes" xml:space="preserve">
           <source>Imgur API key</source>
           <target state="new">Imgur API key</target>
@@ -645,11 +640,6 @@
           <source>Pixiv ID</source>
           <target state="new">Pixiv ID</target>
           <note from="MultilingualBuild" annotates="source" priority="2">TextBlock +</note>
-        </trans-unit>
-        <trans-unit id="QuickLS.Text" translate="yes" xml:space="preserve">
-          <source>Like &amp; Save</source>
-          <target state="new">Like &amp; Save</target>
-          <note from="MultilingualBuild" annotates="source" priority="2">MenuFlyoutItem +</note>
         </trans-unit>
       </group>
     </body>

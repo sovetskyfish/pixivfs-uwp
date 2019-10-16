@@ -253,10 +253,6 @@
     <value>Pixiv ID</value>
     <comment>TextBlock +</comment>
   </data>
-  <data name="ImageDir.Text" xml:space="preserve">
-    <value>Default save location</value>
-    <comment>TextBlock +</comment>
-  </data>
   <data name="ImageFilePlain" xml:space="preserve">
     <value>Image</value>
     <comment>PlainText</comment>
@@ -444,10 +440,6 @@
   <data name="QuickDownload.Text" xml:space="preserve">
     <value>Save</value>
     <comment>MenuFlyoutItem</comment>
-  </data>
-  <data name="QuickLS.Text" xml:space="preserve">
-    <value>Like &amp; Save</value>
-    <comment>MenuFlyoutItem +</comment>
   </data>
   <data name="Ranking.Content" xml:space="preserve">
     <value>Rankings</value>
