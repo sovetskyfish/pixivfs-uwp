@@ -39,6 +39,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
   <tr>
     <td align="center"><a href="https://github.com/frg2089"><img src="https://avatars0.githubusercontent.com/u/42184238?v=4" width="100px;" alt="舰队的偶像-岛风酱！"/><br /><sub><b>舰队的偶像-岛风酱！</b></sub></a><br /><a href="https://github.com/tobiichiamane/pixivfs-uwp/commits?author=frg2089" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/handsome-yaokun"><img src="https://avatars1.githubusercontent.com/u/48851792?v=4" width="100px;" alt="handsome-yaokun"/><br /><sub><b>handsome-yaokun</b></sub></a><br /><a href="https://github.com/tobiichiamane/pixivfs-uwp/issues?q=author%3Ahandsome-yaokun" title="Bug reports">🐛</a></td>
+    <td align="center"><a href="https://github.com/Baka632"><img src="https://avatars1.githubusercontent.com/u/48171809?v=4" width="100px;" alt="Baka632"/><br /><sub><b>Baka632</b></sub></a><br /><a href="https://github.com/tobiichiamane/pixivfs-uwp/issues?q=author%3ABaka632" title="Bug reports">🐛</a></td>
   </tr>
 </table>
 
