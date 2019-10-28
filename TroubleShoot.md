@@ -2,7 +2,7 @@
 
 ## 检查您的应用版本
 
-任何早于[v2.2.2](https://github.com/tobiichiamane/pixivfs-uwp/tree/v2.2.2)的版本都有可能出现无法使用用户名和密码登录的情况，这是Pixiv升级了其API所造成的。请更新应用至v2.2.2及以后版本来获得正常体验。
+任何早于[v2.5.4](https://github.com/tobiichiamane/pixivfs-uwp/tree/v2.5.4)的版本都有可能出现无法使用用户名和密码登录的情况，这是Pixiv升级了其API所造成的。请更新应用至v2.5.4及以后版本来获得正常体验。
 
 ## 中国大陆用户特别注意
 
