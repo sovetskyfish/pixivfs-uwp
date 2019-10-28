@@ -500,4 +500,44 @@
     <value>SauceNAO</value>
     <comment>Button +</comment>
   </data>
+  <data name="GoPixivID.PlaceholderText" xml:space="preserve">
+    <value>Pixiv ID</value>
+    <comment>AutoSuggestBox +</comment>
+  </data>
+  <data name="ImgurAPI.Text" xml:space="preserve">
+    <value>Imgur API key</value>
+    <comment>TextBlock +</comment>
+  </data>
+  <data name="SauceNaoAPI.Text" xml:space="preserve">
+    <value>SauceNAO API key</value>
+    <comment>TextBlock +</comment>
+  </data>
+  <data name="SearchMore.Text" xml:space="preserve">
+    <value>More functions</value>
+    <comment>TextBlock +</comment>
+  </data>
+  <data name="GoToPixivID.Text" xml:space="preserve">
+    <value>Pixiv ID</value>
+    <comment>TextBlock +</comment>
+  </data>
+  <data name="Cache.Text" xml:space="preserve">
+    <value>Cache</value>
+    <comment>TextBlock</comment>
+  </data>
+  <data name="CacheSize.Text" xml:space="preserve">
+    <value>Cache size: </value>
+    <comment>TextBlock</comment>
+  </data>
+  <data name="Calculating.Text" xml:space="preserve">
+    <value>Calculating...</value>
+    <comment>TextBlock</comment>
+  </data>
+  <data name="ClearCache.Content" xml:space="preserve">
+    <value>Clear cache</value>
+    <comment>Button</comment>
+  </data>
+  <data name="DeleteInvalid.Content" xml:space="preserve">
+    <value>Delete invalid files</value>
+    <comment>Button</comment>
+  </data>
 </root>

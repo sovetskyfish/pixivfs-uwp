@@ -157,6 +157,18 @@
     <value>Windows Share</value>
     <comment>ToolTip</comment>
   </data>
+  <data name="Cache.Text" xml:space="preserve">
+    <value>Cache</value>
+    <comment>TextBlock</comment>
+  </data>
+  <data name="CacheSize.Text" xml:space="preserve">
+    <value>Cache size: </value>
+    <comment>TextBlock</comment>
+  </data>
+  <data name="Calculating.Text" xml:space="preserve">
+    <value>Calculating...</value>
+    <comment>TextBlock</comment>
+  </data>
   <data name="CancelPlain" xml:space="preserve">
     <value>Cancel</value>
     <comment>PlainText</comment>
@@ -164,6 +176,10 @@
   <data name="Chair.Text" xml:space="preserve">
     <value>Chair</value>
     <comment>TextBlock</comment>
+  </data>
+  <data name="ClearCache.Content" xml:space="preserve">
+    <value>Clear cache</value>
+    <comment>Button</comment>
   </data>
   <data name="CommentsPlain" xml:space="preserve">
     <value>Comments</value>
@@ -192,6 +208,10 @@
   <data name="DeletedBookmarkPlain" xml:space="preserve">
     <value>「{0}」unbookmarked</value>
     <comment>PlainText</comment>
+  </data>
+  <data name="DeleteInvalid.Content" xml:space="preserve">
+    <value>Delete invalid files</value>
+    <comment>Button</comment>
   </data>
   <data name="Desk.Text" xml:space="preserve">
     <value>Desk</value>
@@ -447,6 +467,10 @@
   </data>
   <data name="RawInkPlain" xml:space="preserve">
     <value>Raw ink</value>
+    <comment>PlainText</comment>
+  </data>
+  <data name="Recalculating" xml:space="preserve">
+    <value>Recalculating...</value>
     <comment>PlainText</comment>
   </data>
   <data name="Recommended.Content" xml:space="preserve">

@@ -608,7 +608,7 @@
         </trans-unit>
         <trans-unit id="NewComment.Content" translate="yes" xml:space="preserve">
           <source>New comment</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">新しいコメント</target>
+          <target state="translated" state-qualifier="tm-suggestion">新しいコメント</target>
           <note from="MultilingualBuild" annotates="source" priority="2">ToggleButton</note>
         </trans-unit>
         <trans-unit id="BtnSauceNAO.Content" translate="yes" xml:space="preserve">
@@ -618,28 +618,58 @@
         </trans-unit>
         <trans-unit id="GoPixivID.PlaceholderText" translate="yes" xml:space="preserve">
           <source>Pixiv ID</source>
-          <target state="new">Pixiv ID</target>
+          <target state="translated">Pixiv ID</target>
           <note from="MultilingualBuild" annotates="source" priority="2">AutoSuggestBox +</note>
         </trans-unit>
         <trans-unit id="ImgurAPI.Text" translate="yes" xml:space="preserve">
           <source>Imgur API key</source>
-          <target state="new">Imgur API key</target>
+          <target state="translated">Imgur API key</target>
           <note from="MultilingualBuild" annotates="source" priority="2">TextBlock +</note>
         </trans-unit>
         <trans-unit id="SauceNaoAPI.Text" translate="yes" xml:space="preserve">
           <source>SauceNAO API key</source>
-          <target state="new">SauceNAO API key</target>
+          <target state="translated">SauceNAO API key</target>
           <note from="MultilingualBuild" annotates="source" priority="2">TextBlock +</note>
         </trans-unit>
         <trans-unit id="SearchMore.Text" translate="yes" xml:space="preserve">
           <source>More functions</source>
-          <target state="new">More functions</target>
+          <target state="translated">More functions</target>
           <note from="MultilingualBuild" annotates="source" priority="2">TextBlock +</note>
         </trans-unit>
         <trans-unit id="GoToPixivID.Text" translate="yes" xml:space="preserve">
           <source>Pixiv ID</source>
-          <target state="new">Pixiv ID</target>
+          <target state="translated">Pixiv ID</target>
           <note from="MultilingualBuild" annotates="source" priority="2">TextBlock +</note>
+        </trans-unit>
+        <trans-unit id="Cache.Text" translate="yes" xml:space="preserve">
+          <source>Cache</source>
+          <target state="translated">Cache</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">TextBlock</note>
+        </trans-unit>
+        <trans-unit id="CacheSize.Text" translate="yes" xml:space="preserve">
+          <source>Cache size: </source>
+          <target state="translated">Cache size: </target>
+          <note from="MultilingualBuild" annotates="source" priority="2">TextBlock</note>
+        </trans-unit>
+        <trans-unit id="Calculating.Text" translate="yes" xml:space="preserve">
+          <source>Calculating...</source>
+          <target state="translated">Calculating...</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">TextBlock</note>
+        </trans-unit>
+        <trans-unit id="ClearCache.Content" translate="yes" xml:space="preserve">
+          <source>Clear cache</source>
+          <target state="translated">Clear cache</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Button</note>
+        </trans-unit>
+        <trans-unit id="DeleteInvalid.Content" translate="yes" xml:space="preserve">
+          <source>Delete invalid files</source>
+          <target state="translated">Delete invalid files</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Button</note>
+        </trans-unit>
+        <trans-unit id="Recalculating" translate="yes" xml:space="preserve">
+          <source>Recalculating...</source>
+          <target state="new">Recalculating...</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">PlainText</note>
         </trans-unit>
       </group>
     </body>

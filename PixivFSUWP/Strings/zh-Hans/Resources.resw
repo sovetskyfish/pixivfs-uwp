@@ -520,4 +520,24 @@
     <value>作品直达</value>
     <comment>TextBlock +</comment>
   </data>
+  <data name="Cache.Text" xml:space="preserve">
+    <value>缓存</value>
+    <comment>TextBlock</comment>
+  </data>
+  <data name="CacheSize.Text" xml:space="preserve">
+    <value>缓存大小：</value>
+    <comment>TextBlock</comment>
+  </data>
+  <data name="Calculating.Text" xml:space="preserve">
+    <value>计算中...</value>
+    <comment>TextBlock</comment>
+  </data>
+  <data name="ClearCache.Content" xml:space="preserve">
+    <value>清除缓存</value>
+    <comment>Button</comment>
+  </data>
+  <data name="DeleteInvalid.Content" xml:space="preserve">
+    <value>删除无效文件</value>
+    <comment>Button</comment>
+  </data>
 </root>

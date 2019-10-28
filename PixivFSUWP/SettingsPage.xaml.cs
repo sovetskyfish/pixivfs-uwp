@@ -73,11 +73,21 @@ namespace PixivFSUWP
             txtName.Text = currentUser.Username;
             txtAccount.Text = "@" + currentUser.UserAccount;
             txtEmail.Text = currentUser.Email;
+            //TODO: 考虑设置项不存在的情况
+            //ApplicationDataContainer localSettings = ApplicationData.Current.LocalSettings;
+            //tbSauceNAO.Text = localSettings.Values["SauceNAOAPI"] as string;//读取设置项
+            //tbImgur.Text = localSettings.Values["ImgurAPI"] as string;
+            _ = calculateCacheSize();
+            //等待头像加载完毕
             imgAvatar.ImageSource = await imgTask;
-            // =================
-            ApplicationDataContainer localSettings = ApplicationData.Current.LocalSettings;
-            tbSauceNAO.Text = localSettings.Values["SauceNAOAPI"] as string;//读取设置项
-            tbImgur.Text = localSettings.Values["ImgurAPI"] as string;
+        }
+
+        async Task calculateCacheSize()
+        {
+            //计算缓存大小
+            var cacheSize = await Data.CacheManager.GetCacheSizeAsync();
+            decimal sizeInMB = new decimal(cacheSize) / new decimal(1048576);
+            txtCacheSize.Text = decimal.Round(sizeInMB, 2).ToString() + "MB";
         }
 
         private void BtnLogout_Click(object sender, RoutedEventArgs e)
@@ -106,6 +116,20 @@ namespace PixivFSUWP
             ApplicationDataContainer localSettings = ApplicationData.Current.LocalSettings;
             localSettings.Values["SauceNAOAPI"] = tbSauceNAO.Text;
             localSettings.Values["ImgurAPI"] = tbImgur.Text;
+        }
+
+        private async void btnClearCache_Click(object sender, RoutedEventArgs e)
+        {
+            txtCacheSize.Text = GetResourceString("Recalculating");
+            await Data.CacheManager.ClearCacheAsync();
+            await calculateCacheSize();
+        }
+
+        private async void btnDelInvalid_Click(object sender, RoutedEventArgs e)
+        {
+            txtCacheSize.Text = GetResourceString("Recalculating");
+            await Data.CacheManager.ClearTempFilesAsync();
+            await calculateCacheSize();
         }
     }
 }

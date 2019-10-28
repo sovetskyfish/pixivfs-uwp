@@ -53,12 +53,26 @@
                     <TextBox x:Name="tbImgur" Margin="200,0" Width="400" HorizontalAlignment="Left" TextChanged="API_TextChanged"/>
                 </Grid>
             </StackPanel>
+            <!--缓存管理-->
+            <StackPanel Margin="0,10">
+                <TextBlock Margin="15,0,15,0" FontSize="18" FontWeight="Bold" x:Uid="Cache"/>
+                <StackPanel Margin="15,10,15,0" Orientation="Horizontal">
+                    <TextBlock x:Uid="CacheSize"/>
+                    <TextBlock x:Name="txtCacheSize" x:Uid="Calculating"/>
+                </StackPanel>
+                <Button Style="{StaticResource ButtonRevealStyle}" BorderThickness="1.5"
+                        Margin="15,10,15,0" x:Uid="ClearCache"
+                        Width="170" x:Name="btnClearCache" Click="btnClearCache_Click"/>
+                <Button Style="{StaticResource ButtonRevealStyle}"
+                        BorderThickness="1.5" Margin="15,5,15,0" x:Uid="DeleteInvalid" 
+                        Width="170" x:Name="btnDelInvalid" Click="btnDelInvalid_Click"/>
+            </StackPanel>
             <StackPanel Margin="0,10">
                 <TextBlock Margin="15,0,15,0" FontSize="18" FontWeight="Bold" x:Uid="VersionInfo"/>
                 <TextBlock Margin="15,10,15,0" x:Name="txtVersion"/>
                 <TextBlock Margin="15,2,15,0" x:Name="txtPkgName"/>
                 <TextBlock Margin="15,2,15,0" x:Name="txtInsDate"/>
-                <Button Style="{StaticResource ButtonRevealStyle}" Margin="15,10,15,0" x:Name="btnGithub" Width="Auto" Height="Auto" Click="BtnGithub_Click">
+                <Button Style="{StaticResource ButtonRevealStyle}" BorderThickness="1.5" Margin="15,10,15,0" x:Name="btnGithub" Width="Auto" Height="Auto" Click="BtnGithub_Click">
                     <Image Source="Assets/GitHub-Mark-32px.png" Margin="-3 0" Stretch="None" Width="32" Height="32"/>
                 </Button>
             </StackPanel>

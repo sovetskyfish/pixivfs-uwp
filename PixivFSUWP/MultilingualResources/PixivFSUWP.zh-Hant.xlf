@@ -641,6 +641,36 @@
           <target state="translated">作品直达</target>
           <note from="MultilingualBuild" annotates="source" priority="2">TextBlock +</note>
         </trans-unit>
+        <trans-unit id="Cache.Text" translate="yes" xml:space="preserve">
+          <source>Cache</source>
+          <target state="translated">缓存</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">TextBlock</note>
+        </trans-unit>
+        <trans-unit id="CacheSize.Text" translate="yes" xml:space="preserve">
+          <source>Cache size: </source>
+          <target state="translated">缓存大小：</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">TextBlock</note>
+        </trans-unit>
+        <trans-unit id="Calculating.Text" translate="yes" xml:space="preserve">
+          <source>Calculating...</source>
+          <target state="translated">计算中...</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">TextBlock</note>
+        </trans-unit>
+        <trans-unit id="ClearCache.Content" translate="yes" xml:space="preserve">
+          <source>Clear cache</source>
+          <target state="translated">清除缓存</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Button</note>
+        </trans-unit>
+        <trans-unit id="DeleteInvalid.Content" translate="yes" xml:space="preserve">
+          <source>Delete invalid files</source>
+          <target state="translated">删除无效文件</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Button</note>
+        </trans-unit>
+        <trans-unit id="Recalculating" translate="yes" xml:space="preserve">
+          <source>Recalculating...</source>
+          <target state="new">Recalculating...</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">PlainText</note>
+        </trans-unit>
       </group>
     </body>
   </file>

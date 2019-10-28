@@ -31,8 +31,8 @@ namespace PixivFSUWP.Data
         //清除缓存
         public static async Task ClearCacheAsync()
         {
-            var cacheFolder = await tmpFolder.TryGetItemAsync("imgCache");
-            if (cacheFolder != null) await cacheFolder.DeleteAsync();
+            var cacheFolder = await getCacheFolderAsync();
+            await cacheFolder.DeleteAsync(StorageDeleteOption.PermanentDelete);
         }
 
         //得到目录大小
@@ -89,13 +89,20 @@ namespace PixivFSUWP.Data
         //ForceUpdate: 是否覆盖已有的文件
         public static async Task<bool> FinishCachedFileAsync(TempStorageFile File, bool ForceUpdate = false)
         {
-            if (await GetCachedFileAsync(File.ExpectedName) != null)
+            try
             {
-                if (ForceUpdate) await DeleteCachedFileAsync(File.ExpectedName);
-                else return false;
+                if (await GetCachedFileAsync(File.ExpectedName) != null)
+                {
+                    if (ForceUpdate) await DeleteCachedFileAsync(File.ExpectedName);
+                    else return false;
+                }
+                await File.File.MoveAsync(await getCacheFolderAsync(), File.ExpectedName);
+                return true;
             }
-            await File.File.MoveAsync(await getCacheFolderAsync(), File.ExpectedName);
-            return true;
+            catch
+            {
+                return false;
+            }
         }
 
         //清理名称为GUID的临时文件
