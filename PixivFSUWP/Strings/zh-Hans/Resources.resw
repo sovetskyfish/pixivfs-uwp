@@ -540,4 +540,8 @@
     <value>删除无效文件</value>
     <comment>Button</comment>
   </data>
+  <data name="Recalculating" xml:space="preserve">
+    <value>重新计算中...</value>
+    <comment>PlainText</comment>
+  </data>
 </root>

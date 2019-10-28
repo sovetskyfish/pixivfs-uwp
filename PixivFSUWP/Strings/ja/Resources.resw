@@ -540,4 +540,8 @@
     <value>Delete invalid files</value>
     <comment>Button</comment>
   </data>
+  <data name="Recalculating" xml:space="preserve">
+    <value>Recalculating...</value>
+    <comment>PlainText</comment>
+  </data>
 </root>

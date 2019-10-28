@@ -668,7 +668,7 @@
         </trans-unit>
         <trans-unit id="Recalculating" translate="yes" xml:space="preserve">
           <source>Recalculating...</source>
-          <target state="new">Recalculating...</target>
+          <target state="translated">Recalculating...</target>
           <note from="MultilingualBuild" annotates="source" priority="2">PlainText</note>
         </trans-unit>
       </group>
