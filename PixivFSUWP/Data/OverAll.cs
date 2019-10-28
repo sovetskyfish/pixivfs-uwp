@@ -15,6 +15,7 @@ using AdaptiveCards;
 using Windows.UI.Shell;
 using PixivCS;
 using Windows.Data.Json;
+using System.Linq;
 
 namespace PixivFSUWP.Data
 {
@@ -54,16 +55,39 @@ namespace PixivFSUWP.Data
             RankingList = new RankingIllustsCollection();
         }
 
+        //携带缓存的图像下载
         public static async Task<MemoryStream> DownloadImage(string Uri)
         {
-            using (var resStream = await (await new PixivAppAPI(GlobalBaseAPI).RequestCall("GET",
-                  Uri, new Dictionary<string, string>() { { "Referer", "https://app-api.pixiv.net/" } })).
-                  Content.ReadAsStreamAsync())
+            var tmpFileName = Uri.Split('/').Last();
+            var cachedFile = await CacheManager.GetCachedFileAsync(tmpFileName);
+            if (cachedFile == null)
             {
-                var memStream = new MemoryStream();
-                await resStream.CopyToAsync(memStream);
-                memStream.Position = 0;
-                return memStream;
+                //没有对应的缓存文件
+                using (var resStream = await (await new PixivAppAPI(GlobalBaseAPI).RequestCall("GET",
+                      Uri, new Dictionary<string, string>() { { "Referer", "https://app-api.pixiv.net/" } })).
+                      Content.ReadAsStreamAsync())
+                {
+                    var memStream = new MemoryStream();
+                    await resStream.CopyToAsync(memStream);
+                    memStream.Position = 0;
+                    var newCachedFile = await CacheManager.CreateCacheFileAsync(tmpFileName);
+                    using (var fileStream = await newCachedFile.Value.File.OpenStreamForWriteAsync())
+                        await memStream.CopyToAsync(fileStream);
+                    await CacheManager.FinishCachedFileAsync(newCachedFile.Value, true);
+                    memStream.Position = 0;
+                    return memStream;
+                }
+            }
+            else
+            {
+                //有缓存文件
+                using (var fileStream = await cachedFile.OpenStreamForReadAsync())
+                {
+                    var memStream = new MemoryStream();
+                    await fileStream.CopyToAsync(memStream);
+                    memStream.Position = 0;
+                    return memStream;
+                }
             }
         }
 
