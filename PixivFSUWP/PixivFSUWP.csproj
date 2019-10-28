@@ -271,7 +271,7 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="AdaptiveCards">
-      <Version>1.2.2</Version>
+      <Version>1.2.3</Version>
     </PackageReference>
     <PackageReference Include="LumiaImagingSDK.UWP">
       <Version>3.0.593</Version>
