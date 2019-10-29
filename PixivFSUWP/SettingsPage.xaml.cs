@@ -73,6 +73,17 @@ namespace PixivFSUWP
             txtName.Text = currentUser.Username;
             txtAccount.Text = "@" + currentUser.UserAccount;
             txtEmail.Text = currentUser.Email;
+            //硬编码主要开发者信息
+            List<ViewModels.ContributorViewModel> mainDevs = new List<ViewModels.ContributorViewModel>();
+            mainDevs.Add(new ViewModels.ContributorViewModel()
+            {
+                Account = "@tobiichiamane",
+                DisplayName = "Communist Fish",
+                AvatarUrl = "https://avatars2.githubusercontent.com/u/14824064?v=4&s=45"
+            });
+            lstMainDev.ItemsSource = mainDevs;
+            //加载贡献者信息
+            _ = loadContributors();
             //TODO: 考虑设置项不存在的情况
             //ApplicationDataContainer localSettings = ApplicationData.Current.LocalSettings;
             //tbSauceNAO.Text = localSettings.Values["SauceNAOAPI"] as string;//读取设置项
@@ -80,6 +91,25 @@ namespace PixivFSUWP
             _ = calculateCacheSize();
             //等待头像加载完毕
             imgAvatar.ImageSource = await imgTask;
+        }
+
+        async Task loadContributors()
+        {
+            progressLoadingContributors.Visibility = Visibility.Visible;
+            progressLoadingContributors.IsActive = true;
+            var res = await Data.ContributorsHelper.GetContributorsAsync();
+            if(res==null)
+            {
+                progressLoadingContributors.Visibility = Visibility.Collapsed;
+                progressLoadingContributors.IsActive = false;
+                txtContributors.Text = "Failed to load contributors.";
+                return;
+            }
+            var enumerable = from item in res select ViewModels.ContributorViewModel.FromItem(item);
+            lstContributors.ItemsSource = enumerable.ToList();
+            progressLoadingContributors.Visibility = Visibility.Collapsed;
+            progressLoadingContributors.IsActive = false;
+            lstContributors.Visibility = Visibility.Visible;
         }
 
         async Task calculateCacheSize()

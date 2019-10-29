@@ -544,4 +544,16 @@
     <value>Recalculating...</value>
     <comment>PlainText</comment>
   </data>
+  <data name="Contributors.Text" xml:space="preserve">
+    <value>Contributors</value>
+    <comment>TextBlock</comment>
+  </data>
+  <data name="Developers.Text" xml:space="preserve">
+    <value>Developers</value>
+    <comment>TextBlock</comment>
+  </data>
+  <data name="MainDeveloper.Text" xml:space="preserve">
+    <value>Main developer</value>
+    <comment>TextBlock</comment>
+  </data>
 </root>

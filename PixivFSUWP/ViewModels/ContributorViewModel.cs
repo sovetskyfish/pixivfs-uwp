@@ -19,9 +19,9 @@ namespace PixivFSUWP.ViewModels
         {
             return new ContributorViewModel()
             {
-                AvatarUrl = Item.AvatarUrl,
+                AvatarUrl = Item.AvatarUrl + "&s=45",
                 DisplayName = Item.DisplayName,
-                Account = Item.Account,
+                Account = "@" + Item.Account,
                 ProfileUrl = Item.ProfileUrl,
                 Contributions = Item.Contributions
             };

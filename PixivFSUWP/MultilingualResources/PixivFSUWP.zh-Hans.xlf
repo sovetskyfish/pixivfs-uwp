@@ -673,17 +673,17 @@
         </trans-unit>
         <trans-unit id="Contributors.Text" translate="yes" xml:space="preserve">
           <source>Contributors</source>
-          <target state="new">Contributors</target>
+          <target state="translated">参与者</target>
           <note from="MultilingualBuild" annotates="source" priority="2">TextBlock</note>
         </trans-unit>
         <trans-unit id="Developers.Text" translate="yes" xml:space="preserve">
           <source>Developers</source>
-          <target state="new">Developers</target>
+          <target state="translated">开发人员</target>
           <note from="MultilingualBuild" annotates="source" priority="2">TextBlock</note>
         </trans-unit>
         <trans-unit id="MainDeveloper.Text" translate="yes" xml:space="preserve">
           <source>Main developer</source>
-          <target state="new">Main developer</target>
+          <target state="translated">主要开发者</target>
           <note from="MultilingualBuild" annotates="source" priority="2">TextBlock</note>
         </trans-unit>
       </group>

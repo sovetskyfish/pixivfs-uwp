@@ -540,4 +540,16 @@
     <value>重新计算中...</value>
     <comment>PlainText</comment>
   </data>
+  <data name="Contributors.Text" xml:space="preserve">
+    <value>参与者</value>
+    <comment>TextBlock</comment>
+  </data>
+  <data name="Developers.Text" xml:space="preserve">
+    <value>开发人员</value>
+    <comment>TextBlock</comment>
+  </data>
+  <data name="MainDeveloper.Text" xml:space="preserve">
+    <value>主要开发者</value>
+    <comment>TextBlock</comment>
+  </data>
 </root>

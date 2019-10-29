@@ -149,6 +149,7 @@
     <Compile Include="Data\CommentAvatarLoader.cs" />
     <Compile Include="Data\CommentsCollection.cs" />
     <Compile Include="Data\Contributor.cs" />
+    <Compile Include="Data\ContributorsHelper.cs" />
     <Compile Include="Data\CurrentUser.cs" />
     <Compile Include="Data\FollowingIllustsCollection.cs" />
     <Compile Include="Data\IllustCommentItem.cs" />
