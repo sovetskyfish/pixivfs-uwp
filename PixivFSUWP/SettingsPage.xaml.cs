@@ -80,6 +80,7 @@ namespace PixivFSUWP
                 Account = "@tobiichiamane",
                 DisplayName = "Communist Fish",
                 AvatarUrl = "https://avatars2.githubusercontent.com/u/14824064?v=4&s=45",
+                ProfileUrl = "https://github.com/tobiichiamane",
                 Contributions = new List<Data.Contribution>()
                 {
                     Data.Contribution.bug,
@@ -168,6 +169,12 @@ namespace PixivFSUWP
             txtCacheSize.Text = GetResourceString("Recalculating");
             await Data.CacheManager.ClearTempFilesAsync();
             await calculateCacheSize();
+        }
+
+        private async void lstMainDev_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            var item = e.ClickedItem as ViewModels.ContributorViewModel;
+            await Launcher.LaunchUriAsync(new Uri(item.ProfileUrl));
         }
     }
 }
