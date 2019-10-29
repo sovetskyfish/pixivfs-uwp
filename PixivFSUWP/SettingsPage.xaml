@@ -4,16 +4,19 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:PixivFSUWP"
     xmlns:viewmodels="using:PixivFSUWP.ViewModels"
+    xmlns:converters="using:PixivFSUWP.Converters"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
     <Page.Resources>
+        <converters:ContributionsConverter x:Key="ContributionsConverter"/>
         <DataTemplate x:Key="contributorTemplate" x:DataType="viewmodels:ContributorViewModel">
-            <Grid Margin="0 5" Width="300">
+            <Grid Margin="0 5" Width="350">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="45"/>
                     <ColumnDefinition/>
+                    <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition/>
@@ -26,6 +29,7 @@
                 </Ellipse>
                 <TextBlock Text="{Binding DisplayName}" Margin="10,0" Grid.Column="1" VerticalAlignment="Bottom"/>
                 <TextBlock Text="{Binding Account}" Margin="10,0" Grid.Row="1" Grid.Column="1" Foreground="Gray" VerticalAlignment="Top"/>
+                <TextBlock Text="{Binding Contributions,Converter={StaticResource ContributionsConverter}}" Grid.RowSpan="2" Grid.Column="2" VerticalAlignment="Center"/>
             </Grid>
         </DataTemplate>
     </Page.Resources>

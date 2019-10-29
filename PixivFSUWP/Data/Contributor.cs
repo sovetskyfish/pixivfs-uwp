@@ -9,7 +9,7 @@ namespace PixivFSUWP.Data
 {
     public enum Contribution
     {
-        doc, translation, code, bug, idea, unknown
+        code, doc, translation, bug, idea, unknown
     }
 
     public class Contributor

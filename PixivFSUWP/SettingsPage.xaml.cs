@@ -79,7 +79,15 @@ namespace PixivFSUWP
             {
                 Account = "@tobiichiamane",
                 DisplayName = "Communist Fish",
-                AvatarUrl = "https://avatars2.githubusercontent.com/u/14824064?v=4&s=45"
+                AvatarUrl = "https://avatars2.githubusercontent.com/u/14824064?v=4&s=45",
+                Contributions = new List<Data.Contribution>()
+                {
+                    Data.Contribution.bug,
+                    Data.Contribution.code,
+                    Data.Contribution.doc,
+                    Data.Contribution.idea,
+                    Data.Contribution.translation
+                }
             });
             lstMainDev.ItemsSource = mainDevs;
             //加载贡献者信息
@@ -98,7 +106,7 @@ namespace PixivFSUWP
             progressLoadingContributors.Visibility = Visibility.Visible;
             progressLoadingContributors.IsActive = true;
             var res = await Data.ContributorsHelper.GetContributorsAsync();
-            if(res==null)
+            if (res == null)
             {
                 progressLoadingContributors.Visibility = Visibility.Collapsed;
                 progressLoadingContributors.IsActive = false;
