@@ -109,7 +109,7 @@
                 <ListView Margin="15,10,0,0" x:Name="lstMainDev" SelectionMode="None" Width="365" HorizontalAlignment="Left"
                           IsItemClickEnabled="True" ItemTemplate="{StaticResource contributorTemplate}" ItemClick="lstMainDev_ItemClick"/>
                 <TextBlock x:Name="txtContributors" Margin="15,10,5,0" x:Uid="Contributors"/>
-                <ProgressRing x:Name="progressLoadingContributors" Margin="15,10,5,0" Width="350"
+                <ProgressRing x:Name="progressLoadingContributors" Margin="15,10,5,0"
                               IsActive="False" Visibility="Collapsed" HorizontalAlignment="Left"/>
                 <ListView Margin="15,10,0,0" x:Name="lstContributors" SelectionMode="None" Width="365" Visibility="Collapsed" HorizontalAlignment="Left"
                           IsItemClickEnabled="True" ItemTemplate="{StaticResource contributorTemplate}" ItemClick="lstMainDev_ItemClick"/>
