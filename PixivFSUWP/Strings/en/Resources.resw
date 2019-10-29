@@ -185,6 +185,10 @@
     <value>Comments</value>
     <comment>PlainText</comment>
   </data>
+  <data name="Contributors.Text" xml:space="preserve">
+    <value>Contributors</value>
+    <comment>TextBlock</comment>
+  </data>
   <data name="CreatingTimelinePlain" xml:space="preserve">
     <value>Generating Windows® Timeline™</value>
     <comment>PlainText</comment>
@@ -224,6 +228,10 @@
   <data name="DetailPlain" xml:space="preserve">
     <value>Detail</value>
     <comment>PlainText</comment>
+  </data>
+  <data name="Developers.Text" xml:space="preserve">
+    <value>Developers</value>
+    <comment>TextBlock</comment>
   </data>
   <data name="DownloadingUgoiraPlain" xml:space="preserve">
     <value>Downloading ugoira</value>
@@ -343,6 +351,10 @@
   </data>
   <data name="LogoutWarning.Text" xml:space="preserve">
     <value>*This will log you out on all your Windows devices</value>
+    <comment>TextBlock</comment>
+  </data>
+  <data name="MainDeveloper.Text" xml:space="preserve">
+    <value>Main developer</value>
     <comment>TextBlock</comment>
   </data>
   <data name="MalePlain" xml:space="preserve">

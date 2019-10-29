@@ -67,6 +67,12 @@
                         BorderThickness="1.5" Margin="15,5,15,0" x:Uid="DeleteInvalid" 
                         Width="170" x:Name="btnDelInvalid" Click="btnDelInvalid_Click"/>
             </StackPanel>
+            <!--作者和参与者-->
+            <StackPanel Margin="0,10">
+                <TextBlock Margin="15,0,15,0" FontSize="18" FontWeight="Bold" x:Uid="Developers"/>
+                <TextBlock Margin="15,10,15,0" x:Uid="MainDeveloper"/>
+                <TextBlock Margin="15,10,15,0" x:Uid="Contributors"/>
+            </StackPanel>
             <StackPanel Margin="0,10">
                 <TextBlock Margin="15,0,15,0" FontSize="18" FontWeight="Bold" x:Uid="VersionInfo"/>
                 <TextBlock Margin="15,10,15,0" x:Name="txtVersion"/>
