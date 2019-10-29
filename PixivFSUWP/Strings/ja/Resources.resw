@@ -545,7 +545,7 @@
     <comment>PlainText</comment>
   </data>
   <data name="Contributors.Text" xml:space="preserve">
-    <value>Contributors</value>
+    <value>Contributors from GitHub</value>
     <comment>TextBlock</comment>
   </data>
   <data name="Developers.Text" xml:space="preserve">

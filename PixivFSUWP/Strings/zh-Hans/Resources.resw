@@ -545,7 +545,7 @@
     <comment>PlainText</comment>
   </data>
   <data name="Contributors.Text" xml:space="preserve">
-    <value>参与者</value>
+    <value>来自GitHub的参与者</value>
     <comment>TextBlock</comment>
   </data>
   <data name="Developers.Text" xml:space="preserve">

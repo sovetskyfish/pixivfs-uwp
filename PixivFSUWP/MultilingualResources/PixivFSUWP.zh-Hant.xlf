@@ -672,8 +672,8 @@
           <note from="MultilingualBuild" annotates="source" priority="2">PlainText</note>
         </trans-unit>
         <trans-unit id="Contributors.Text" translate="yes" xml:space="preserve">
-          <source>Contributors</source>
-          <target state="translated">参与者</target>
+          <source>Contributors from GitHub</source>
+          <target state="translated">来自GitHub的参与者</target>
           <note from="MultilingualBuild" annotates="source" priority="2">TextBlock</note>
         </trans-unit>
         <trans-unit id="Developers.Text" translate="yes" xml:space="preserve">
