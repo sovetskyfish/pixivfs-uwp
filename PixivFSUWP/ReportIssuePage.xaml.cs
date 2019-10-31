@@ -70,7 +70,7 @@ namespace PixivFSUWP
         private async void BtnGitHub_Click(object sender, RoutedEventArgs e)
         {
             await Launcher.LaunchUriAsync(new
-                Uri(@"https://github.com/tobiichiamane/pixivfs-uwp/issues/new"));
+                Uri(@"https://github.com/tobiichiamane/pixivfs-uwp/issues/new/choose"));
         }
 
         private async void BtnEmail_Click(object sender, RoutedEventArgs e)
