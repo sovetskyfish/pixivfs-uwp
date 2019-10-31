@@ -192,7 +192,7 @@ namespace PixivFSUWP
 
         private async void btnSauceNAO_Click(object sender, RoutedEventArgs e)
         {
-            const string sauceNAOAPI=null;
+            const string sauceNAOAPI = null;
             const string imgurAPI = null;
             string SAUCENAO_API_KEY, IMGUR_API_KEY;
             Windows.Storage.ApplicationDataContainer localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
@@ -219,7 +219,7 @@ namespace PixivFSUWP
             {
                 Frame.Navigate(typeof(SettingsPage));
                 IMGUR_API_KEY = imgurAPI;
-                return; 
+                return;
             }
             SAUCENAO_API_KEY = localSettings.Values["SauceNAOAPI"] as string;
             IMGUR_API_KEY = localSettings.Values["ImgurAPI"] as string;
@@ -247,16 +247,20 @@ namespace PixivFSUWP
         {
             Frame.Navigate(typeof(IllustDetailPage), Convert.ToInt32(asbGTPID.Text));
         }
-        // 使Pixiv ID文本输入框始终保持纯数字
-        // 这里作用:出现非数字则删除最右侧一个字符
-        private void asbGTPID_TextChanged(AutoSuggestBox sender, AutoSuggestBoxTextChangedEventArgs args)
+
+        private void style_TextBox_TextChanging(TextBox sender, TextBoxTextChangingEventArgs args)
         {
-            if (!System.Text.RegularExpressions.Regex.IsMatch(asbGTPID.Text, "^\\d*\\.?\\d*$") && asbGTPID.Text != "")
-            {
-                asbGTPID.Text = asbGTPID.Text.Substring(0, asbGTPID.Text.Length - 1);
-            }
+            //IME输入不能触发BeforeTextChanging，我估计是个Bug
+            //只能在此确保绝对没有不是数字的东西混进来
+            sender.Text = new string(sender.Text.Where(char.IsDigit).ToArray());
+        }
+
+        private void style_TextBox_BeforeTextChanging(TextBox sender, TextBoxBeforeTextChangingEventArgs args)
+        {
+            args.Cancel = args.NewText.Any(c => !char.IsDigit(c));
         }
     }
+
     static class StorageFileExt
     {
         /// <summary>

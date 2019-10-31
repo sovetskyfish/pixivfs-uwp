@@ -25,6 +25,44 @@
                              Storyboard.TargetProperty="Opacity"
                              From="0.0" To="1.0" Duration="0:0:0.2"/>
         </Storyboard>
+        <Style x:Key="DigitOnlyAutoSuggestBox" TargetType="AutoSuggestBox">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="AutoSuggestBox">
+                        <Grid x:Name="LayoutRoot">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="Orientation">
+                                    <VisualState x:Name="Landscape"/>
+                                    <VisualState x:Name="Portrait"/>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                            <TextBox x:Name="TextBox" ScrollViewer.BringIntoViewOnFocusChange="False" Description="{TemplateBinding Description}" 
+                                     DesiredCandidateWindowAlignment="BottomEdge" Header="{TemplateBinding Header}" Margin="0" 
+                                     PlaceholderText="{TemplateBinding PlaceholderText}" Style="{TemplateBinding TextBoxStyle}" InputScope="Digits"
+                                     UseSystemFocusVisuals="{TemplateBinding UseSystemFocusVisuals}" Width="{TemplateBinding Width}" Canvas.ZIndex="0"
+                                     TextChanging="style_TextBox_TextChanging" BeforeTextChanging="style_TextBox_BeforeTextChanging"/>
+                            <Popup x:Name="SuggestionsPopup">
+                                <Border x:Name="SuggestionsContainer">
+                                    <ListView x:Name="SuggestionsList" Background="{ThemeResource AutoSuggestBoxSuggestionsListBackground}" 
+                                              BorderThickness="{ThemeResource AutoSuggestListBorderThemeThickness}" 
+                                              BorderBrush="{ThemeResource AutoSuggestBoxSuggestionsListBorderBrush}" 
+                                              DisplayMemberPath="{TemplateBinding DisplayMemberPath}" ItemContainerStyle="{TemplateBinding ItemContainerStyle}" 
+                                              ItemTemplate="{TemplateBinding ItemTemplate}" IsItemClickEnabled="True" 
+                                              ItemTemplateSelector="{TemplateBinding ItemTemplateSelector}" MaxHeight="{ThemeResource AutoSuggestListMaxHeight}" 
+                                              Margin="{ThemeResource AutoSuggestListMargin}" Padding="{ThemeResource AutoSuggestListPadding}"/>
+                                </Border>
+                            </Popup>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
     </Page.Resources>
     <Grid>
         <Frame x:Name="resultFrame"/>
@@ -80,8 +118,8 @@
                     </Grid.RowDefinitions>
                     <StackPanel Grid.Row="0" HorizontalAlignment="Stretch">
                         <TextBlock x:Uid="GoToPixivID"/>
-                        <AutoSuggestBox x:Name="asbGTPID" Margin="0 5 0 0" x:Uid="GoPixivID" QuerySubmitted="GoPixivID_QuerySubmitted"
-                                HorizontalAlignment="Stretch" QueryIcon="Forward" TextChanged="asbGTPID_TextChanged"/>
+                        <AutoSuggestBox Style="{StaticResource DigitOnlyAutoSuggestBox}" x:Name="asbGTPID" Margin="0 5 0 0" x:Uid="GoPixivID" QuerySubmitted="GoPixivID_QuerySubmitted"
+                                HorizontalAlignment="Stretch" QueryIcon="Forward"/>
                     </StackPanel>
                     <Button Grid.Row="1" Margin="0,5,0,0" x:Name="btnSauceNAO" x:Uid="BtnSauceNAO" HorizontalAlignment="Stretch" Click="btnSauceNAO_Click" Visibility="Collapsed"/>
                 </Grid>
