@@ -245,7 +245,14 @@ namespace PixivFSUWP
         }
         private void GoPixivID_QuerySubmitted(AutoSuggestBox sender, AutoSuggestBoxQuerySubmittedEventArgs args)
         {
-            Frame.Navigate(typeof(IllustDetailPage), Convert.ToInt32(asbGTPID.Text));
+            try
+            {
+                Frame.Navigate(typeof(IllustDetailPage), Convert.ToInt32(asbGTPID.Text));
+            }
+            catch
+            {
+                //吞了异常。一般是由于输入的数字过大，超过了Int32的限制导致
+            }
         }
 
         private void style_TextBox_TextChanging(TextBox sender, TextBoxTextChangingEventArgs args)
