@@ -618,7 +618,7 @@
         </trans-unit>
         <trans-unit id="GoPixivID.PlaceholderText" translate="yes" xml:space="preserve">
           <source>Pixiv ID</source>
-          <target state="new">Pixiv ID</target>
+          <target state="translated">Pixiv ID</target>
           <note from="MultilingualBuild" annotates="source" priority="2">AutoSuggestBox +</note>
         </trans-unit>
         <trans-unit id="ImgurAPI.Text" translate="yes" xml:space="preserve">
