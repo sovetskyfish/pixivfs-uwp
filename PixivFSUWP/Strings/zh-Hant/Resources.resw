@@ -500,6 +500,10 @@
     <value>以圖搜圖</value>
     <comment>Button +</comment>
   </data>
+  <data name="GoPixivID.PlaceholderText" xml:space="preserve">
+    <value>Pixiv ID</value>
+    <comment>AutoSuggestBox +</comment>
+  </data>
   <data name="ImgurAPI.Text" xml:space="preserve">
     <value>Imgur API密钥</value>
     <comment>TextBlock +</comment>
