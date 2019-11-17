@@ -42,6 +42,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://github.com/Baka632"><img src="https://avatars1.githubusercontent.com/u/48171809?v=4" width="100px;" alt="Baka632"/><br /><sub><b>Baka632</b></sub></a><br /><a href="https://github.com/tobiichiamane/pixivfs-uwp/issues?q=author%3ABaka632" title="Bug reports">🐛</a></td>
     <td align="center"><a href="https://github.com/pccanales"><img src="https://avatars3.githubusercontent.com/u/57200458?v=4" width="100px;" alt="pccanales"/><br /><sub><b>pccanales</b></sub></a><br /><a href="https://github.com/tobiichiamane/pixivfs-uwp/issues?q=author%3Apccanales" title="Bug reports">🐛</a></td>
     <td align="center"><a href="https://github.com/SLK-xlw"><img src="https://avatars0.githubusercontent.com/u/57425595?v=4" width="100px;" alt="SLK-xlw"/><br /><sub><b>SLK-xlw</b></sub></a><br /><a href="https://github.com/tobiichiamane/pixivfs-uwp/issues?q=author%3ASLK-xlw" title="Bug reports">🐛</a></td>
+    <td align="center"><a href="https://github.com/Stars-sea"><img src="https://avatars0.githubusercontent.com/u/47738830?v=4" width="100px;" alt="Star sea"/><br /><sub><b>Star sea</b></sub></a><br /><a href="https://github.com/tobiichiamane/pixivfs-uwp/issues?q=author%3AStars-sea" title="Bug reports">🐛</a></td>
   </tr>
 </table>
 
