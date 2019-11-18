@@ -176,5 +176,11 @@ namespace PixivFSUWP
             var item = e.ClickedItem as ViewModels.ContributorViewModel;
             await Launcher.LaunchUriAsync(new Uri(item.ProfileUrl));
         }
+
+        private async void btnQQGroup_Click(object sender, RoutedEventArgs e)
+        {
+            await Launcher.LaunchUriAsync(new
+                Uri(@"https://github.com/tobiichiamane/pixivfs-uwp"));
+        }
     }
 }

@@ -98,9 +98,28 @@
                 <TextBlock Margin="15,10,15,0" x:Name="txtVersion"/>
                 <TextBlock Margin="15,2,15,0" x:Name="txtPkgName"/>
                 <TextBlock Margin="15,2,15,0" x:Name="txtInsDate"/>
-                <Button Style="{StaticResource ButtonRevealStyle}" BorderThickness="1.5" Margin="15,10,15,0" x:Name="btnGithub" Width="Auto" Height="Auto" Click="BtnGithub_Click">
-                    <Image Source="Assets/GitHub-Mark-32px.png" Margin="-3 0" Stretch="None" Width="32" Height="32"/>
-                </Button>
+                <StackPanel Orientation="Vertical" Margin="15,10,15,0">
+                    <Button Style="{StaticResource ButtonRevealStyle}" BorderThickness="1.5" x:Name="btnGithub" Width="170" Height="Auto" Click="BtnGithub_Click">
+                        <Grid Width="130">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="20"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Image Grid.Column="0" Source="Assets/GH_64.png" Stretch="Uniform" Width="20" Height="20"/>
+                            <TextBlock Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="10 0 0 0">GitHub Repo</TextBlock>
+                        </Grid>
+                    </Button>
+                    <Button Margin="0 5 0 0" Style="{StaticResource ButtonRevealStyle}" BorderThickness="1.5" x:Name="btnQQGroup" Width="170" Height="Auto" Click="btnQQGroup_Click">
+                        <Grid Width="130">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="20"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Image Grid.Column="0" Source="Assets/QQ_64.png" Stretch="Uniform" Width="20" Height="20"/>
+                            <TextBlock Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="10 0 0 0">QQ Community</TextBlock>
+                        </Grid>
+                    </Button>
+                </StackPanel>
             </StackPanel>
             <!--作者和参与者-->
             <StackPanel Margin="0,10">
