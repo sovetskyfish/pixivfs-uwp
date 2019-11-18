@@ -179,8 +179,9 @@ namespace PixivFSUWP
 
         private async void btnQQGroup_Click(object sender, RoutedEventArgs e)
         {
+            //腾讯的一键加群
             await Launcher.LaunchUriAsync(new
-                Uri(@"https://github.com/tobiichiamane/pixivfs-uwp"));
+                Uri(@"https://shang.qq.com/wpa/qunwpa?idkey=d6ba54103ced0e2d7c5bbf6422e4f9f6fa4849c91d4521fe9a1beec72626bbb6"));
         }
     }
 }
