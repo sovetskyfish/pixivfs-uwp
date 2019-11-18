@@ -11,14 +11,20 @@ using Windows.Data.Json;
 using Windows.Foundation;
 using Windows.UI.Xaml.Data;
 
-namespace PixivFSUWP.Data
+namespace PixivFSUWP.Data.Collections
 {
-    public class RankingIllustsCollection : ObservableCollection<ViewModels.WaterfallItemViewModel>, ISupportIncrementalLoading
+    public class UserIllustsCollection : ObservableCollection<ViewModels.WaterfallItemViewModel>, ISupportIncrementalLoading
     {
+        readonly string userID;
         string nexturl = "begin";
         bool _busy = false;
         bool _emergencyStop = false;
         EventWaitHandle pause = new ManualResetEvent(true);
+
+        public UserIllustsCollection(string UserID)
+        {
+            userID = UserID;
+        }
 
         public bool HasMoreItems
         {
@@ -63,28 +69,28 @@ namespace PixivFSUWP.Data
             {
                 if (!HasMoreItems) return new LoadMoreItemsResult() { Count = 0 };
                 LoadMoreItemsResult toret = new LoadMoreItemsResult() { Count = 0 };
-                JsonObject rankingres = null;
+                JsonObject illustsres = null;
                 try
                 {
                     if (nexturl == "begin")
-                        rankingres = await new PixivCS
+                        illustsres = await new PixivCS
                             .PixivAppAPI(OverAll.GlobalBaseAPI)
-                            .IllustRanking();
+                            .UserIllusts(userID);
                     else
                     {
                         Uri next = new Uri(nexturl);
                         string getparam(string param) => HttpUtility.ParseQueryString(next.Query).Get(param);
-                        rankingres = await new PixivCS
+                        illustsres = await new PixivCS
                             .PixivAppAPI(OverAll.GlobalBaseAPI)
-                            .IllustRanking(Mode: getparam("mode"), Filter: getparam("filter"), Offset: getparam("offset"));
+                            .UserIllusts(getparam("user_id"), getparam("type"), getparam("filter"), getparam("offset"));
                     }
                 }
                 catch
                 {
                     return toret;
                 }
-                nexturl = rankingres["next_url"].TryGetString();
-                foreach (var recillust in rankingres["illusts"].GetArray())
+                nexturl = illustsres["next_url"].TryGetString();
+                foreach (var recillust in illustsres["illusts"].GetArray())
                 {
                     await Task.Run(() => pause.WaitOne());
                     if (_emergencyStop)
@@ -93,7 +99,7 @@ namespace PixivFSUWP.Data
                         Clear();
                         return new LoadMoreItemsResult() { Count = 0 };
                     }
-                    Data.WaterfallItem recommendi = Data.WaterfallItem.FromJsonValue(recillust.GetObject());
+                    WaterfallItem recommendi = WaterfallItem.FromJsonValue(recillust.GetObject());
                     var recommendmodel = ViewModels.WaterfallItemViewModel.FromItem(recommendi);
                     await recommendmodel.LoadImageAsync();
                     Add(recommendmodel);

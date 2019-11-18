@@ -11,14 +11,27 @@ using Windows.UI.Xaml.Data;
 using System.Web;
 using Windows.Data.Json;
 
-namespace PixivFSUWP.Data
+namespace PixivFSUWP.Data.Collections
 {
-    public class FollowingIllustsCollection : ObservableCollection<ViewModels.WaterfallItemViewModel>, ISupportIncrementalLoading
+    public class SearchResultIllustsCollection : ObservableCollection<ViewModels.WaterfallItemViewModel>, ISupportIncrementalLoading
     {
+        readonly string word;
+        readonly string searchTarget;
+        readonly string sort;
+        readonly string duration;
         string nexturl = "begin";
         bool _busy = false;
         bool _emergencyStop = false;
         EventWaitHandle pause = new ManualResetEvent(true);
+
+        public SearchResultIllustsCollection(string Word, string SearchTarget = "partial_match_for_tags",
+            string Sort = "date_desc", string Duration = null)
+        {
+            word = Word;
+            searchTarget = SearchTarget;
+            sort = Sort;
+            duration = null;
+        }
 
         public bool HasMoreItems
         {
@@ -63,28 +76,30 @@ namespace PixivFSUWP.Data
             {
                 if (!HasMoreItems) return new LoadMoreItemsResult() { Count = 0 };
                 LoadMoreItemsResult toret = new LoadMoreItemsResult() { Count = 0 };
-                JsonObject followingres = null;
+                JsonObject searchres = null;
                 try
                 {
                     if (nexturl == "begin")
-                        followingres = await new PixivCS
+                        searchres = await new PixivCS
                             .PixivAppAPI(OverAll.GlobalBaseAPI)
-                            .IllustFollow();
+                            .SearchIllust(word, searchTarget, sort, duration);
                     else
                     {
                         Uri next = new Uri(nexturl);
                         string getparam(string param) => HttpUtility.ParseQueryString(next.Query).Get(param);
-                        followingres = await new PixivCS
+                        var test = getparam("duration");
+                        searchres = await new PixivCS
                             .PixivAppAPI(OverAll.GlobalBaseAPI)
-                            .IllustFollow(getparam("restrict"), getparam("offset"));
+                            .SearchIllust(getparam("word"), getparam("search_target"),
+                            getparam("sort"), getparam("duration"), getparam("filter"), getparam("offset"));
                     }
                 }
                 catch
                 {
                     return toret;
                 }
-                nexturl = followingres["next_url"].TryGetString();
-                foreach (var recillust in followingres["illusts"].GetArray())
+                nexturl = searchres["next_url"].TryGetString();
+                foreach (var recillust in searchres["illusts"].GetArray())
                 {
                     await Task.Run(() => pause.WaitOne());
                     if (_emergencyStop)
@@ -93,7 +108,7 @@ namespace PixivFSUWP.Data
                         Clear();
                         return new LoadMoreItemsResult() { Count = 0 };
                     }
-                    Data.WaterfallItem recommendi = Data.WaterfallItem.FromJsonValue(recillust.GetObject());
+                    WaterfallItem recommendi = WaterfallItem.FromJsonValue(recillust.GetObject());
                     var recommendmodel = ViewModels.WaterfallItemViewModel.FromItem(recommendi);
                     await recommendmodel.LoadImageAsync();
                     Add(recommendmodel);

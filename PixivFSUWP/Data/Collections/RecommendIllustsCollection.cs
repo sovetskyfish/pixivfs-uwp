@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PixivCS;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -6,25 +7,19 @@ using System.Runtime.InteropServices.WindowsRuntime;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Web;
-using Windows.Data.Json;
 using Windows.Foundation;
 using Windows.UI.Xaml.Data;
+using System.Web;
+using Windows.Data.Json;
 
-namespace PixivFSUWP.Data
+namespace PixivFSUWP.Data.Collections
 {
-    public class UserIllustsCollection : ObservableCollection<ViewModels.WaterfallItemViewModel>, ISupportIncrementalLoading
+    public class RecommendIllustsCollection : ObservableCollection<ViewModels.WaterfallItemViewModel>, ISupportIncrementalLoading
     {
-        readonly string userID;
         string nexturl = "begin";
         bool _busy = false;
         bool _emergencyStop = false;
         EventWaitHandle pause = new ManualResetEvent(true);
-
-        public UserIllustsCollection(string UserID)
-        {
-            userID = UserID;
-        }
 
         public bool HasMoreItems
         {
@@ -69,28 +64,34 @@ namespace PixivFSUWP.Data
             {
                 if (!HasMoreItems) return new LoadMoreItemsResult() { Count = 0 };
                 LoadMoreItemsResult toret = new LoadMoreItemsResult() { Count = 0 };
-                JsonObject illustsres = null;
+                JsonObject recommendres = null;
                 try
                 {
                     if (nexturl == "begin")
-                        illustsres = await new PixivCS
-                            .PixivAppAPI(OverAll.GlobalBaseAPI)
-                            .UserIllusts(userID);
+                        recommendres = await new PixivAppAPI(OverAll.GlobalBaseAPI)
+                            .IllustRecommended();
                     else
                     {
                         Uri next = new Uri(nexturl);
                         string getparam(string param) => HttpUtility.ParseQueryString(next.Query).Get(param);
-                        illustsres = await new PixivCS
-                            .PixivAppAPI(OverAll.GlobalBaseAPI)
-                            .UserIllusts(getparam("user_id"), getparam("type"), getparam("filter"), getparam("offset"));
+                        recommendres = await new PixivAppAPI(OverAll.GlobalBaseAPI)
+                            .IllustRecommended(ContentType:
+                                getparam("content_type"),
+                                IncludeRankingLabel: bool.Parse(getparam("include_ranking_label")),
+                                Filter: getparam("filter"),
+                                MinBookmarkIDForRecentIllust: getparam("min_bookmark_id_for_recent_illust"),
+                                MaxBookmarkIDForRecommended: getparam("max_bookmark_id_for_recommend"),
+                                Offset: getparam("offset"),
+                                IncludeRankingIllusts: bool.Parse(getparam("include_ranking_illusts")),
+                                IncludePrivacyPolicy: getparam("include_privacy_policy"));
                     }
                 }
                 catch
                 {
                     return toret;
                 }
-                nexturl = illustsres["next_url"].TryGetString();
-                foreach (var recillust in illustsres["illusts"].GetArray())
+                nexturl = recommendres["next_url"].TryGetString();
+                foreach (var recillust in recommendres["illusts"].GetArray())
                 {
                     await Task.Run(() => pause.WaitOne());
                     if (_emergencyStop)
@@ -99,7 +100,7 @@ namespace PixivFSUWP.Data
                         Clear();
                         return new LoadMoreItemsResult() { Count = 0 };
                     }
-                    Data.WaterfallItem recommendi = Data.WaterfallItem.FromJsonValue(recillust.GetObject());
+                    WaterfallItem recommendi = WaterfallItem.FromJsonValue(recillust.GetObject());
                     var recommendmodel = ViewModels.WaterfallItemViewModel.FromItem(recommendi);
                     await recommendmodel.LoadImageAsync();
                     Add(recommendmodel);
@@ -120,3 +121,4 @@ namespace PixivFSUWP.Data
         }
     }
 }
+

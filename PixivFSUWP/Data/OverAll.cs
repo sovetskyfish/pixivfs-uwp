@@ -16,6 +16,7 @@ using Windows.UI.Shell;
 using PixivCS;
 using Windows.Data.Json;
 using System.Linq;
+using PixivFSUWP.Data.Collections;
 
 namespace PixivFSUWP.Data
 {

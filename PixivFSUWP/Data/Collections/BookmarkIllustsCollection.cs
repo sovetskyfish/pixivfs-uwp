@@ -11,27 +11,22 @@ using Windows.UI.Xaml.Data;
 using System.Web;
 using Windows.Data.Json;
 
-namespace PixivFSUWP.Data
+namespace PixivFSUWP.Data.Collections
 {
-    public class SearchResultIllustsCollection : ObservableCollection<ViewModels.WaterfallItemViewModel>, ISupportIncrementalLoading
+    public class BookmarkIllustsCollection : ObservableCollection<ViewModels.WaterfallItemViewModel>, ISupportIncrementalLoading
     {
-        readonly string word;
-        readonly string searchTarget;
-        readonly string sort;
-        readonly string duration;
+        readonly string userID;
         string nexturl = "begin";
         bool _busy = false;
         bool _emergencyStop = false;
         EventWaitHandle pause = new ManualResetEvent(true);
 
-        public SearchResultIllustsCollection(string Word, string SearchTarget = "partial_match_for_tags",
-            string Sort = "date_desc", string Duration = null)
+        public BookmarkIllustsCollection(string UserID)
         {
-            word = Word;
-            searchTarget = SearchTarget;
-            sort = Sort;
-            duration = null;
+            userID = UserID;
         }
+
+        public BookmarkIllustsCollection() : this(OverAll.GlobalBaseAPI.UserID) { }
 
         public bool HasMoreItems
         {
@@ -76,30 +71,29 @@ namespace PixivFSUWP.Data
             {
                 if (!HasMoreItems) return new LoadMoreItemsResult() { Count = 0 };
                 LoadMoreItemsResult toret = new LoadMoreItemsResult() { Count = 0 };
-                JsonObject searchres = null;
+                JsonObject bookmarkres = null;
                 try
                 {
                     if (nexturl == "begin")
-                        searchres = await new PixivCS
+                        bookmarkres = await new PixivCS
                             .PixivAppAPI(OverAll.GlobalBaseAPI)
-                            .SearchIllust(word, searchTarget, sort, duration);
+                            .UserBookmarksIllust(userID);
                     else
                     {
                         Uri next = new Uri(nexturl);
                         string getparam(string param) => HttpUtility.ParseQueryString(next.Query).Get(param);
-                        var test = getparam("duration");
-                        searchres = await new PixivCS
+                        bookmarkres = await new PixivCS
                             .PixivAppAPI(OverAll.GlobalBaseAPI)
-                            .SearchIllust(getparam("word"),getparam("search_target"),
-                            getparam("sort"),getparam("duration"),getparam("filter"),getparam("offset"));
+                            .UserBookmarksIllust(userID, getparam("restrict"),
+                            getparam("filter"), getparam("max_bookmark_id"));
                     }
                 }
                 catch
                 {
                     return toret;
                 }
-                nexturl = searchres["next_url"].TryGetString();
-                foreach (var recillust in searchres["illusts"].GetArray())
+                nexturl = bookmarkres["next_url"].TryGetString();
+                foreach (var recillust in bookmarkres["illusts"].GetArray())
                 {
                     await Task.Run(() => pause.WaitOne());
                     if (_emergencyStop)
@@ -108,7 +102,7 @@ namespace PixivFSUWP.Data
                         Clear();
                         return new LoadMoreItemsResult() { Count = 0 };
                     }
-                    Data.WaterfallItem recommendi = Data.WaterfallItem.FromJsonValue(recillust.GetObject());
+                    WaterfallItem recommendi = WaterfallItem.FromJsonValue(recillust.GetObject());
                     var recommendmodel = ViewModels.WaterfallItemViewModel.FromItem(recommendi);
                     await recommendmodel.LoadImageAsync();
                     Add(recommendmodel);

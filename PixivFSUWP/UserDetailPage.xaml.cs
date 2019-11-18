@@ -14,13 +14,13 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using System.Threading.Tasks;
 using PixivCS;
-using PixivFSUWP.Data;
 using Windows.ApplicationModel.DataTransfer;
 using Windows.Storage.Pickers;
 using Windows.Storage;
 using Windows.Storage.Provider;
 using PixivFSUWP.Interfaces;
 using static PixivFSUWP.Data.OverAll;
+using PixivFSUWP.Data.Collections;
 
 // https://go.microsoft.com/fwlink/?LinkId=234238 上介绍了“空白页”项模板
 

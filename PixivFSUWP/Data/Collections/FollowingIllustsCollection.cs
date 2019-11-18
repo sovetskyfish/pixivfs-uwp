@@ -1,5 +1,4 @@
-﻿using PixivCS;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -12,9 +11,9 @@ using Windows.UI.Xaml.Data;
 using System.Web;
 using Windows.Data.Json;
 
-namespace PixivFSUWP.Data
+namespace PixivFSUWP.Data.Collections
 {
-    public class RecommendIllustsCollection : ObservableCollection<ViewModels.WaterfallItemViewModel>, ISupportIncrementalLoading
+    public class FollowingIllustsCollection : ObservableCollection<ViewModels.WaterfallItemViewModel>, ISupportIncrementalLoading
     {
         string nexturl = "begin";
         bool _busy = false;
@@ -64,36 +63,28 @@ namespace PixivFSUWP.Data
             {
                 if (!HasMoreItems) return new LoadMoreItemsResult() { Count = 0 };
                 LoadMoreItemsResult toret = new LoadMoreItemsResult() { Count = 0 };
-                JsonObject recommendres = null;
+                JsonObject followingres = null;
                 try
                 {
                     if (nexturl == "begin")
-                        recommendres = await new PixivCS
+                        followingres = await new PixivCS
                             .PixivAppAPI(OverAll.GlobalBaseAPI)
-                            .IllustRecommended();
+                            .IllustFollow();
                     else
                     {
                         Uri next = new Uri(nexturl);
                         string getparam(string param) => HttpUtility.ParseQueryString(next.Query).Get(param);
-                        recommendres = await new PixivCS
+                        followingres = await new PixivCS
                             .PixivAppAPI(OverAll.GlobalBaseAPI)
-                            .IllustRecommended(ContentType:
-                                getparam("content_type"),
-                                IncludeRankingLabel: bool.Parse(getparam("include_ranking_label")),
-                                Filter: getparam("filter"),
-                                MinBookmarkIDForRecentIllust: getparam("min_bookmark_id_for_recent_illust"),
-                                MaxBookmarkIDForRecommended: getparam("max_bookmark_id_for_recommend"),
-                                Offset: getparam("offset"),
-                                IncludeRankingIllusts: bool.Parse(getparam("include_ranking_illusts")),
-                                IncludePrivacyPolicy: getparam("include_privacy_policy"));
+                            .IllustFollow(getparam("restrict"), getparam("offset"));
                     }
                 }
                 catch
                 {
                     return toret;
                 }
-                nexturl = recommendres["next_url"].TryGetString();
-                foreach (var recillust in recommendres["illusts"].GetArray())
+                nexturl = followingres["next_url"].TryGetString();
+                foreach (var recillust in followingres["illusts"].GetArray())
                 {
                     await Task.Run(() => pause.WaitOne());
                     if (_emergencyStop)
@@ -102,7 +93,7 @@ namespace PixivFSUWP.Data
                         Clear();
                         return new LoadMoreItemsResult() { Count = 0 };
                     }
-                    Data.WaterfallItem recommendi = Data.WaterfallItem.FromJsonValue(recillust.GetObject());
+                    WaterfallItem recommendi = WaterfallItem.FromJsonValue(recillust.GetObject());
                     var recommendmodel = ViewModels.WaterfallItemViewModel.FromItem(recommendi);
                     await recommendmodel.LoadImageAsync();
                     Add(recommendmodel);

@@ -1,4 +1,5 @@
 ﻿using PixivCS;
+using PixivFSUWP.Data.Collections;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -39,7 +40,7 @@ namespace PixivFSUWP
 
         SearchParam param;
 
-        public Data.SearchResultIllustsCollection ItemsSource;
+        public SearchResultIllustsCollection ItemsSource;
 
         public SearchResultPage()
         {
@@ -50,7 +51,7 @@ namespace PixivFSUWP
         {
             base.OnNavigatedTo(e);
             if (e.Parameter is SearchParam) param = (SearchParam)e.Parameter;
-            ItemsSource = new Data.SearchResultIllustsCollection(param.Word, param.SearchTarget,
+            ItemsSource = new SearchResultIllustsCollection(param.Word, param.SearchTarget,
                 param.Sort, param.Duration);
             WaterfallListView.ItemsSource = ItemsSource;
         }

@@ -11,7 +11,7 @@ using Windows.Data.Json;
 using Windows.Foundation;
 using Windows.UI.Xaml.Data;
 
-namespace PixivFSUWP.Data
+namespace PixivFSUWP.Data.Collections
 {
     public class CommentsCollection : ObservableCollection<ViewModels.CommentViewModel>, ISupportIncrementalLoading
     {
@@ -102,7 +102,7 @@ namespace PixivFSUWP.Data
                         Clear();
                         return new LoadMoreItemsResult() { Count = 0 };
                     }
-                    Data.IllustCommentItem recommendi = Data.IllustCommentItem.FromJsonValue(recillust.GetObject());
+                    IllustCommentItem recommendi = IllustCommentItem.FromJsonValue(recillust.GetObject());
                     var recommendmodel = ViewModels.CommentViewModel.FromItem(recommendi);
                     //查找是否存在子回复
                     var children = from item

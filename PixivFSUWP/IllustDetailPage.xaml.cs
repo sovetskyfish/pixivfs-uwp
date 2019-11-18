@@ -30,6 +30,7 @@ using Windows.Storage.Pickers;
 using Windows.UI.Popups;
 using PixivFSUWP.Interfaces;
 using static PixivFSUWP.Data.OverAll;
+using PixivFSUWP.Data.Collections;
 
 // https://go.microsoft.com/fwlink/?LinkId=234238 上介绍了“空白页”项模板
 
@@ -94,9 +95,9 @@ namespace PixivFSUWP
                 Data.Backstack.Default.Push(typeof(IllustDetailPage), illustID);
                 ((Frame.Parent as Grid)?.Parent as MainPage)?.UpdateNavButtonState();
             }
-            (listComments.ItemsSource as Data.CommentsCollection)?.AvatarLoader?.EmergencyStop();
-            (listComments.ItemsSource as Data.CommentsCollection)?.StopLoading();
-            (listComments.ItemsSource as Data.CommentsCollection)?.Clear();
+            (listComments.ItemsSource as CommentsCollection)?.AvatarLoader?.EmergencyStop();
+            (listComments.ItemsSource as CommentsCollection)?.StopLoading();
+            (listComments.ItemsSource as CommentsCollection)?.Clear();
             GC.Collect();
             base.OnNavigatedFrom(e);
         }
@@ -130,7 +131,7 @@ namespace PixivFSUWP
                 txtCaption.Text = (illust.Caption == "") ? GetResourceString("NoCaptionPlain") : Regex.Replace(illust.Caption.Replace("<br />", "\n"), "<[^>]+>", "");
                 txtCommentTitle.Text = GetResourceString("CommentsPlain");
                 btnNewComment.Visibility = Visibility.Visible;
-                listComments.ItemsSource = new Data.CommentsCollection(illustID.ToString());
+                listComments.ItemsSource = new CommentsCollection(illustID.ToString());
                 txtLoadingStatus.Text = GetResourceString("CreatingTimelinePlain");
                 AdaptiveCard card = new AdaptiveCard("1.1");
                 card.Body.Add(new AdaptiveTextBlock()
@@ -471,7 +472,7 @@ namespace PixivFSUWP
                 Data.IllustCommentItem newItem = Data.IllustCommentItem.FromJsonValue(res["comment"].GetObject());
                 ViewModels.CommentViewModel viewModel = ViewModels.CommentViewModel.FromItem(newItem);
                 _ = viewModel.LoadAvatarAsync();
-                (listComments.ItemsSource as Data.CommentsCollection).Insert(0, viewModel);
+                (listComments.ItemsSource as CommentsCollection).Insert(0, viewModel);
                 (((FrameworkElement)Frame?.Parent)?.Parent as MainPage)
                     ?.ShowTip("评论已发表");
             }
