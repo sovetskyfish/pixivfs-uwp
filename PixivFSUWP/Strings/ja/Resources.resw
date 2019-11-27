@@ -113,7 +113,7 @@
     <comment>PlainText</comment>
   </data>
   <data name="Following.Content" xml:space="preserve">
-    <value>フォロー</value>
+    <value>フォロワー</value>
     <comment>NavigationViewItem</comment>
   </data>
   <data name="FollowingPlain" xml:space="preserve">
@@ -321,7 +321,7 @@
     <comment>PlainText</comment>
   </data>
   <data name="Recommended.Content" xml:space="preserve">
-    <value>おすすめ</value>
+    <value>推薦</value>
     <comment>NavigationViewItem</comment>
   </data>
   <data name="Register.Content" xml:space="preserve">
@@ -433,7 +433,7 @@
     <comment>TextBlock</comment>
   </data>
   <data name="TrendingTags.Text" xml:space="preserve">
-    <value>トレンド</value>
+    <value>トレンドタグ</value>
     <comment>TextBlock</comment>
   </data>
   <data name="UnknownPlain" xml:space="preserve">
@@ -489,7 +489,7 @@
     <comment>PlainText</comment>
   </data>
   <data name="ExperimentalConnection.Content" xml:space="preserve">
-    <value>直接接続 (実験的、中国専用)</value>
+    <value>Direct Connection (!Experimental!)</value>
     <comment>CheckBox</comment>
   </data>
   <data name="NewComment.Content" xml:space="preserve">
@@ -505,15 +505,15 @@
     <comment>AutoSuggestBox +</comment>
   </data>
   <data name="ImgurAPI.Text" xml:space="preserve">
-    <value>Imgur API キー</value>
+    <value>Imgur API key</value>
     <comment>TextBlock +</comment>
   </data>
   <data name="SauceNaoAPI.Text" xml:space="preserve">
-    <value>SauceNAO API キー</value>
+    <value>SauceNAO API key</value>
     <comment>TextBlock +</comment>
   </data>
   <data name="SearchMore.Text" xml:space="preserve">
-    <value>追加機能</value>
+    <value>More functions</value>
     <comment>TextBlock +</comment>
   </data>
   <data name="GoToPixivID.Text" xml:space="preserve">
@@ -521,39 +521,39 @@
     <comment>TextBlock +</comment>
   </data>
   <data name="Cache.Text" xml:space="preserve">
-    <value>キャッシュ</value>
+    <value>Cache</value>
     <comment>TextBlock</comment>
   </data>
   <data name="CacheSize.Text" xml:space="preserve">
-    <value>キャッシュ　サイズ: </value>
+    <value>Cache size: </value>
     <comment>TextBlock</comment>
   </data>
   <data name="Calculating.Text" xml:space="preserve">
-    <value>計算中...</value>
+    <value>Calculating...</value>
     <comment>TextBlock</comment>
   </data>
   <data name="ClearCache.Content" xml:space="preserve">
-    <value>キャッシュを消去</value>
+    <value>Clear cache</value>
     <comment>Button</comment>
   </data>
   <data name="DeleteInvalid.Content" xml:space="preserve">
-    <value>無効なファイルを消去</value>
+    <value>Delete invalid files</value>
     <comment>Button</comment>
   </data>
   <data name="Recalculating" xml:space="preserve">
-    <value>再計算中...</value>
+    <value>Recalculating...</value>
     <comment>PlainText</comment>
   </data>
   <data name="Contributors.Text" xml:space="preserve">
-    <value>GitHubからの参加者たち</value>
+    <value>Contributors from GitHub</value>
     <comment>TextBlock</comment>
   </data>
   <data name="Developers.Text" xml:space="preserve">
-    <value>開発者たち</value>
+    <value>Developers</value>
     <comment>TextBlock</comment>
   </data>
   <data name="MainDeveloper.Text" xml:space="preserve">
-    <value>メイン開発者</value>
+    <value>Main developer</value>
     <comment>TextBlock</comment>
   </data>
 </root>
