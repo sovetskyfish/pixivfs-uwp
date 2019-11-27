@@ -133,7 +133,7 @@
         </trans-unit>
         <trans-unit id="Following.Content" translate="yes" xml:space="preserve">
           <source>Following</source>
-          <target state="translated">フォロワー</target>
+          <target state="translated">フォロー</target>
           <note from="MultilingualBuild" annotates="source" priority="2">NavigationViewItem</note>
         </trans-unit>
         <trans-unit id="FollowingPlain" translate="yes" xml:space="preserve">
@@ -393,7 +393,7 @@
         </trans-unit>
         <trans-unit id="Recommended.Content" translate="yes" xml:space="preserve">
           <source>Recommended</source>
-          <target state="translated">推薦</target>
+          <target state="translated">おすすめ</target>
           <note from="MultilingualBuild" annotates="source" priority="2">NavigationViewItem</note>
         </trans-unit>
         <trans-unit id="Register.Content" translate="yes" xml:space="preserve">
@@ -533,7 +533,7 @@
         </trans-unit>
         <trans-unit id="TrendingTags.Text" translate="yes" xml:space="preserve">
           <source>Trending tags</source>
-          <target state="translated">トレンドタグ</target>
+          <target state="translated">トレンド</target>
           <note from="MultilingualBuild" annotates="source" priority="2">TextBlock</note>
         </trans-unit>
         <trans-unit id="UnknownPlain" translate="yes" xml:space="preserve">
@@ -603,7 +603,7 @@
         </trans-unit>
         <trans-unit id="ExperimentalConnection.Content" translate="yes" xml:space="preserve">
           <source>Direct Connection (!Experimental!)</source>
-          <target state="translated">Direct Connection (!Experimental!)</target>
+          <target state="translated">直接接続 (実験的、中国専用)</target>
           <note from="MultilingualBuild" annotates="source" priority="2">CheckBox</note>
         </trans-unit>
         <trans-unit id="NewComment.Content" translate="yes" xml:space="preserve">
@@ -633,7 +633,7 @@
         </trans-unit>
         <trans-unit id="SearchMore.Text" translate="yes" xml:space="preserve">
           <source>More functions</source>
-          <target state="translated">More functions</target>
+          <target state="translated">追加機能</target>
           <note from="MultilingualBuild" annotates="source" priority="2">TextBlock +</note>
         </trans-unit>
         <trans-unit id="GoToPixivID.Text" translate="yes" xml:space="preserve">
@@ -643,47 +643,47 @@
         </trans-unit>
         <trans-unit id="Cache.Text" translate="yes" xml:space="preserve">
           <source>Cache</source>
-          <target state="translated">Cache</target>
+          <target state="translated">キャッシュ</target>
           <note from="MultilingualBuild" annotates="source" priority="2">TextBlock</note>
         </trans-unit>
         <trans-unit id="CacheSize.Text" translate="yes" xml:space="preserve">
           <source>Cache size: </source>
-          <target state="translated">Cache size: </target>
+          <target state="translated">キャッシュ　サイズ: </target>
           <note from="MultilingualBuild" annotates="source" priority="2">TextBlock</note>
         </trans-unit>
         <trans-unit id="Calculating.Text" translate="yes" xml:space="preserve">
           <source>Calculating...</source>
-          <target state="translated">Calculating...</target>
+          <target state="translated">計算中...</target>
           <note from="MultilingualBuild" annotates="source" priority="2">TextBlock</note>
         </trans-unit>
         <trans-unit id="ClearCache.Content" translate="yes" xml:space="preserve">
           <source>Clear cache</source>
-          <target state="translated">Clear cache</target>
+          <target state="translated">キャッシュを消去</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Button</note>
         </trans-unit>
         <trans-unit id="DeleteInvalid.Content" translate="yes" xml:space="preserve">
           <source>Delete invalid files</source>
-          <target state="translated">Delete invalid files</target>
+          <target state="translated">無効なファイルを消去</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Button</note>
         </trans-unit>
         <trans-unit id="Recalculating" translate="yes" xml:space="preserve">
           <source>Recalculating...</source>
-          <target state="translated">Recalculating...</target>
+          <target state="translated">再計算中...</target>
           <note from="MultilingualBuild" annotates="source" priority="2">PlainText</note>
         </trans-unit>
         <trans-unit id="Contributors.Text" translate="yes" xml:space="preserve">
           <source>Contributors from GitHub</source>
-          <target state="translated">Contributors from GitHub</target>
+          <target state="translated">GitHubからの参加者たち</target>
           <note from="MultilingualBuild" annotates="source" priority="2">TextBlock</note>
         </trans-unit>
         <trans-unit id="Developers.Text" translate="yes" xml:space="preserve">
           <source>Developers</source>
-          <target state="translated">Developers</target>
+          <target state="translated">開発者たち</target>
           <note from="MultilingualBuild" annotates="source" priority="2">TextBlock</note>
         </trans-unit>
         <trans-unit id="MainDeveloper.Text" translate="yes" xml:space="preserve">
           <source>Main developer</source>
-          <target state="translated">Main developer</target>
+          <target state="translated">メイン開発者</target>
           <note from="MultilingualBuild" annotates="source" priority="2">TextBlock</note>
         </trans-unit>
       </group>
