@@ -222,31 +222,39 @@ namespace PixivFSUWP
         {
             if (tapped == null) return;
             var i = tapped;
-            FileSavePicker picker = new FileSavePicker();
-            picker.SuggestedStartLocation = PickerLocationId.PicturesLibrary;
-            picker.FileTypeChoices.Add(GetResourceString("ImageFilePlain"), new List<string>() { ".png" });
-            picker.SuggestedFileName = i.Title;
-            var file = await picker.PickSaveFileAsync();
-            if (file != null)
+            try
             {
-                CachedFileManager.DeferUpdates(file);
-                var res = await new PixivAppAPI(Data.OverAll.GlobalBaseAPI)
-                    .IllustDetail(i.ItemId.ToString());
-                var illust = Data.IllustDetail.FromJsonValue(res);
-                using (var imgstream = await Data.OverAll.DownloadImage(illust.OriginalUrls[0]))
+                FileSavePicker picker = new FileSavePicker();
+                picker.SuggestedStartLocation = PickerLocationId.PicturesLibrary;
+                picker.FileTypeChoices.Add(GetResourceString("ImageFilePlain"), new List<string>() { ".png" });
+                picker.SuggestedFileName = i.Title;
+                var file = await picker.PickSaveFileAsync();
+                if (file != null)
                 {
-                    using (var filestream = await file.OpenAsync(FileAccessMode.ReadWrite))
+                    CachedFileManager.DeferUpdates(file);
+                    var res = await new PixivAppAPI(Data.OverAll.GlobalBaseAPI)
+                        .IllustDetail(i.ItemId.ToString());
+                    var illust = Data.IllustDetail.FromJsonValue(res);
+                    using (var imgstream = await Data.OverAll.DownloadImage(illust.OriginalUrls[0]))
                     {
-                        await imgstream.CopyToAsync(filestream.AsStream());
+                        using (var filestream = await file.OpenAsync(FileAccessMode.ReadWrite))
+                        {
+                            await imgstream.CopyToAsync(filestream.AsStream());
+                        }
                     }
+                    var updateStatus = await CachedFileManager.CompleteUpdatesAsync(file);
+                    if (updateStatus == FileUpdateStatus.Complete)
+                        await ((Frame.Parent as Grid)?.Parent as MainPage)?.
+                                ShowTip(string.Format(GetResourceString("WorkSavedPlain"), i.Title));
+                    else
+                        await ((Frame.Parent as Grid)?.Parent as MainPage)?.
+                                ShowTip(string.Format(GetResourceString("WorkSaveFailedPlain"), i.Title));
                 }
-                var updateStatus = await CachedFileManager.CompleteUpdatesAsync(file);
-                if (updateStatus == FileUpdateStatus.Complete)
-                    await ((Frame.Parent as Grid)?.Parent as MainPage)?.
-                            ShowTip(string.Format(GetResourceString("WorkSavedPlain"), i.Title));
-                else
-                    await ((Frame.Parent as Grid)?.Parent as MainPage)?.
-                            ShowTip(string.Format(GetResourceString("WorkSaveFailedPlain"), i.Title));
+            }
+            catch
+            {
+                await ((Frame.Parent as Grid)?.Parent as MainPage)?.
+                                ShowTip(string.Format(GetResourceString("WorkSaveFailedPlain"), i.Title));
             }
         }
     }
