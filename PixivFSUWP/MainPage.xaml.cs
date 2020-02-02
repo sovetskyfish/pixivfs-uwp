@@ -233,5 +233,10 @@ namespace PixivFSUWP
                 UpdateNavButtonState();
             }
         }
+
+        private void btnReport_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
