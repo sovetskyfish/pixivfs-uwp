@@ -36,16 +36,18 @@ namespace PixivFSUWP
             this.UnhandledException += App_UnhandledException;
         }
 
-        private async void App_UnhandledException(object sender, Windows.UI.Xaml.UnhandledExceptionEventArgs e)
+        private void App_UnhandledException(object sender, Windows.UI.Xaml.UnhandledExceptionEventArgs e)
         {
+            //遇到未处理的异常时
             e.Handled = true;
             if (localSettings.Values.ContainsKey("exception"))
                 localSettings.Values.Remove("exception");
             localSettings.Values["exception"] = e.Exception.ToString();
             localSettings.Values["isCrashed"] = true;
-            MessageDialog dialog = new MessageDialog("Pixiv UWP has crashed. Please restart this app in order to report this issue.\n程序已崩溃，请重启本应用以便于报告此问题。", "Crashed/程序崩溃");
-            await dialog.ShowAsync();
-            this.Exit();
+            //只储存异常信息，而不强制退出应用。很多异常不影响应用稳定性。
+            //MessageDialog dialog = new MessageDialog("Pixiv UWP has crashed. Please restart this app in order to report this issue.\n程序已崩溃，请重启本应用以便于报告此问题。", "Crashed/程序崩溃");
+            //await dialog.ShowAsync();
+            //this.Exit();
         }
 
         protected override void OnActivated(IActivatedEventArgs args)
@@ -113,27 +115,29 @@ namespace PixivFSUWP
             {
                 if (rootFrame.Content == null)
                 {
-                    //检测上次的崩溃
-                    if (localSettings.Values["isCrashed"] != null && (bool)localSettings.Values["isCrashed"] == true)
-                    {
-                        localSettings.Values.Remove("isCrashed");
-                        var yesCommand = new UICommand("Yes/是");
-                        var noCommand = new UICommand("No/否");
-                        MessageDialog dialog = new MessageDialog("A crash has been detected in your last session. Do you want to report this issue?\n在您上次的会话中我们探测到一次崩溃。请问您要报告此问题吗？", "Crash Report/错误报告");
-                        dialog.Commands.Add(yesCommand);
-                        dialog.Commands.Add(noCommand);
-                        dialog.DefaultCommandIndex = 0;
-                        var cmd = await dialog.ShowAsync();
-                        if (cmd == yesCommand)
-                        {
-                            rootFrame.Navigate(typeof(ReportIssuePage), e.Arguments);
-                        }
-                        else
-                        {
-                            rootFrame.Navigate(typeof(LoginPage), e.Arguments);
-                        }
-                    }
-                    else rootFrame.Navigate(typeof(LoginPage), e.Arguments);
+                    ////检测上次的崩溃
+                    //if (localSettings.Values["isCrashed"] != null && (bool)localSettings.Values["isCrashed"] == true)
+                    //{
+                    //    localSettings.Values.Remove("isCrashed");
+                    //    var yesCommand = new UICommand("Yes/是");
+                    //    var noCommand = new UICommand("No/否");
+                    //    MessageDialog dialog = new MessageDialog("A crash has been detected in your last session. Do you want to report this issue?\n在您上次的会话中我们探测到一次崩溃。请问您要报告此问题吗？", "Crash Report/错误报告");
+                    //    dialog.Commands.Add(yesCommand);
+                    //    dialog.Commands.Add(noCommand);
+                    //    dialog.DefaultCommandIndex = 0;
+                    //    var cmd = await dialog.ShowAsync();
+                    //    if (cmd == yesCommand)
+                    //    {
+                    //        rootFrame.Navigate(typeof(ReportIssuePage), e.Arguments);
+                    //    }
+                    //    else
+                    //    {
+                    //        rootFrame.Navigate(typeof(LoginPage), e.Arguments);
+                    //    }
+                    //}
+                    //else 
+                    //不再在程序起始时弹出反馈窗口
+                    rootFrame.Navigate(typeof(LoginPage), e.Arguments);
                 }
                 // 确保当前窗口处于活动状态
                 Window.Current.Activate();
