@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.ApplicationModel;
+using Windows.ApplicationModel.Core;
 using Windows.ApplicationModel.DataTransfer;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
@@ -31,15 +32,9 @@ namespace PixivFSUWP
         public ReportIssuePage()
         {
             this.InitializeComponent();
-            Windows.Storage.ApplicationDataContainer localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
-            if (localSettings.Values["exception"] == null)
-            {
-                Frame.Navigate(typeof(LoginPage));
-                return;
-            }
-            var lastExeption = (string)localSettings.Values["exception"];
+            CoreApplication.GetCurrentView().TitleBar.ExtendViewIntoTitleBar = true;
             var view = ApplicationView.GetForCurrentView();
-            view.Title = "Crash Report/崩溃报告";
+            view.Title = "Report an issue/问题反馈";
             txtDetails.Text += "General:\n";
             txtDetails.Text += string.Format("OS version: build {0}\n", SystemInformation.OperatingSystemVersion.Build);
             txtDetails.Text += string.Format("App version: {0}.{1}.{2} {3}\n",
@@ -48,13 +43,16 @@ namespace PixivFSUWP
                 Package.Current.Id.Version.Build,
                 Package.Current.Id.Architecture);
             txtDetails.Text += string.Format("Package ID: {0}\n\n", Package.Current.Id.Name);
-            txtDetails.Text += "Exception:\n";
-            txtDetails.Text += lastExeption;
-        }
-
-        private void BtnContinue_Click(object sender, RoutedEventArgs e)
-        {
-            Frame.Navigate(typeof(LoginPage));
+            Windows.Storage.ApplicationDataContainer localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
+            if (localSettings.Values["isCrashed"] != null &&
+                (bool)localSettings.Values["isCrashed"] == true &&
+                localSettings.Values["exception"] != null)
+            {
+                localSettings.Values.Remove("isCrashed");
+                var lastExeption = (string)localSettings.Values["exception"];
+                txtDetails.Text += "Exception:\n";
+                txtDetails.Text += lastExeption;
+            }
         }
 
         private async void BtnCopy_Click(object sender, RoutedEventArgs e)

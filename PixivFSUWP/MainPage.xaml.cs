@@ -234,9 +234,10 @@ namespace PixivFSUWP
             }
         }
 
-        private void btnReport_Click(object sender, RoutedEventArgs e)
+        private async void btnReport_Click(object sender, RoutedEventArgs e)
         {
-
+            //在新窗口中打开发送反馈的窗口
+            await ShowNewWindow(typeof(ReportIssuePage), null);
         }
     }
 }
