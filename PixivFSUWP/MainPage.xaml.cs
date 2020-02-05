@@ -106,7 +106,10 @@ namespace PixivFSUWP
         {
             var imgTask = LoadImageAsync(currentUser.Avatar170);
             HandleUri();
-            imgAvatar.ImageSource = await imgTask;
+            var img = await imgTask;
+            img.DecodePixelHeight = 24;
+            img.DecodePixelWidth = 24;
+            imgAvatar.ImageSource = img;
             avatarRing.IsActive = false;
             avatarRing.Visibility = Visibility.Collapsed;
         }
