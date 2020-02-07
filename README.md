@@ -14,6 +14,10 @@ Because .NET Native [hasn't fully supported F# yet](https://github.com/dotnet/co
 
 If you also use Android devices, [Pix-EzViewer](https://github.com/Notsfsssf/Pix-EzViewer) developed by [@Notsfsssf](https://github.com/Notsfsssf) will be a great alternative to the official app.
 
+如果您正使用版本低于Windows 10 Version 17134或更旧的操作系统（包括Windows 8.1、Windows 8和Windows 7在内），或者单纯希望获得非UWP的桌面体验，则[@Rinacm](https://github.com/Rinacm)开发的[Pixeval](https://github.com/Rinacm/Pixeval)将会给予您优秀的使用体验。
+
+If you are running Windows 10 version 17134 or older (including Windows 8, Windows 8.1 and Windows 7), or you just want a non-UWP desktop experience, [Pixeval](https://github.com/Rinacm/Pixeval) developed by [@Rinacm](https://github.com/Rinacm) will be the perfect choice.
+
 # 翻译/Translation
 
 本应用急需翻译人员。参照[如何翻译](https://github.com/tobiichiamane/pixivfs-uwp/blob/master/Translate.md)。
