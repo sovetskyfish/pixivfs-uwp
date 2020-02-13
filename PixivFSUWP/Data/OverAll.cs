@@ -57,8 +57,13 @@ namespace PixivFSUWP.Data
         }
 
         //携带缓存的图像下载
-        public static async Task<MemoryStream> DownloadImage(string Uri)
+        public static async Task<MemoryStream> DownloadImage(string _Uri)
         {
+            var Uri = _Uri;
+            if (Uri.StartsWith("https"))
+            {
+                Uri = Uri.Replace("https://", "http://");
+            }
             var tmpFileName = Uri.Split('/').Last();
             var cachedFile = await CacheManager.GetCachedFileAsync(tmpFileName);
             if (cachedFile == null)
