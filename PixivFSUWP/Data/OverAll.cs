@@ -23,7 +23,7 @@ namespace PixivFSUWP.Data
     public static class OverAll
     {
         public static Uri AppUri = null;
-        public static PixivBaseAPI GlobalBaseAPI = new PixivBaseAPI();
+        public static PixivBaseAPI GlobalBaseAPI = new PixivBaseAPI(null, null, null, false, 0);
         public const string passwordResource = "PixivFSUWPPassword";
         public const string refreshTokenResource = "PixivFSUWPRefreshToken";
         public static CurrentUser currentUser = null;
