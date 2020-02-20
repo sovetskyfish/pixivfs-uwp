@@ -56,7 +56,7 @@
                         <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}" 
                                   FontSize="16" Glyph="&#xE713;"/>
                     </AppBarButton>
-                    <AppBarButton Width="48" x:Name="btnExperimentalWarning" Click="btnExperimentalWarning_Click">
+                    <AppBarButton Width="48" x:Name="btnExperimentalWarning" Click="btnExperimentalWarning_Click" Visibility="Collapsed">
                         <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}" 
                                   FontSize="16" Glyph="&#xE7BA;"/>
                     </AppBarButton>

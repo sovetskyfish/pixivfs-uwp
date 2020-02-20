@@ -38,6 +38,7 @@ namespace PixivFSUWP
             view.TitleBar.ButtonForegroundColor = Colors.Black;
             view.TitleBar.ButtonInactiveForegroundColor = Colors.Gray;
             view.Title = "";
+            btnExperimentalWarning.Visibility = GlobalBaseAPI.ExperimentalConnection ? Visibility.Visible : Visibility.Collapsed;
         }
 
         bool _programmablechange = false;
@@ -243,9 +244,23 @@ namespace PixivFSUWP
             await ShowNewWindow(typeof(ReportIssuePage), null);
         }
 
-        private void btnExperimentalWarning_Click(object sender, RoutedEventArgs e)
+        /// <summary>
+        /// 实验性功能警告。可以用来关闭实验性功能。
+        /// </summary>
+        private async void btnExperimentalWarning_Click(object sender, RoutedEventArgs e)
         {
-
+            MessageDialog warningDialog = new MessageDialog(GetResourceString("ExperimentalWarningPlain"));
+            warningDialog.Commands.Add(new UICommand("Yes", async (_) =>
+             {
+                 //关闭直连
+                 Windows.Storage.ApplicationDataContainer localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
+                 localSettings.Values["directConnection"] = false;
+                 //通知重启应用生效
+                 MessageDialog restartDialog = new MessageDialog("请重启本程序来应用更改。\nPlease restart this app to apply the changes.");
+                 await restartDialog.ShowAsync();
+             }));
+            warningDialog.Commands.Add(new UICommand("No"));
+            await warningDialog.ShowAsync();
         }
     }
 }
