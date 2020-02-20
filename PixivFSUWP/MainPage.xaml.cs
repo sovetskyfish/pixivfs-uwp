@@ -242,5 +242,10 @@ namespace PixivFSUWP
             //在新窗口中打开发送反馈的窗口
             await ShowNewWindow(typeof(ReportIssuePage), null);
         }
+
+        private void btnExperimentalWarning_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
