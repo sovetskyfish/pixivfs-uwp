@@ -686,6 +686,13 @@
           <target state="translated">主要开发者</target>
           <note from="MultilingualBuild" annotates="source" priority="2">TextBlock</note>
         </trans-unit>
+        <trans-unit id="ExperimentalWarningPlain" translate="yes" xml:space="preserve">
+          <source>You have experimental features enabled. They may cause stability issues.
+Do you want to disable them?</source>
+          <target state="new">You have experimental features enabled. They may cause stability issues.
+Do you want to disable them?</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">PlainText</note>
+        </trans-unit>
       </group>
     </body>
   </file>

@@ -556,4 +556,9 @@
     <value>主要开发者</value>
     <comment>TextBlock</comment>
   </data>
+  <data name="ExperimentalWarningPlain" xml:space="preserve">
+    <value>您开启了实验性功能，它们可能带来稳定性问题。
+您想关闭它们吗？</value>
+    <comment>PlainText</comment>
+  </data>
 </root>

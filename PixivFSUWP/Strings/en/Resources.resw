@@ -249,6 +249,11 @@
     <value>Direct Connection (!Experimental!)</value>
     <comment>CheckBox</comment>
   </data>
+  <data name="ExperimentalWarningPlain" xml:space="preserve">
+    <value>You have experimental features enabled. They may cause stability issues.
+Do you want to disable them?</value>
+    <comment>PlainText</comment>
+  </data>
   <data name="FemalePlain" xml:space="preserve">
     <value>Female</value>
     <comment>PlainText</comment>
