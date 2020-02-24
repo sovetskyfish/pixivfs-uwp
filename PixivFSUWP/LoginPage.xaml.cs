@@ -167,6 +167,8 @@ namespace PixivFSUWP
             stkBtns.Visibility = Visibility.Visible;
             ringProgress.IsActive = false;
             grdLoading.Visibility = Visibility.Collapsed;
+            txtUserName.Text = username;
+            txtPassword.Password = password;
             txtPassword.Focus(FocusState.Programmatic);
             txtPassword.SelectAll();
         }
