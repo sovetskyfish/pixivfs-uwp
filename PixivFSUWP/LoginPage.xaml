@@ -129,5 +129,15 @@
                 </Grid>
             </Button>
         </Grid>
+        <Grid HorizontalAlignment="Left" VerticalAlignment="Bottom">
+            <Button Style="{StaticResource ButtonRevealStyleWithAcrylic}" HorizontalAlignment="Center"
+                        BorderThickness="1.5" VerticalAlignment="Stretch" x:Name="btnReport" Click="btnReport_Click">
+                <Button.Background>
+                    <AcrylicBrush BackgroundSource="Backdrop" TintOpacity="0.2" TintColor="White" FallbackColor="White"/>
+                </Button.Background>
+                <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}" 
+                                  FontSize="16" Glyph="&#xED15;"/>
+            </Button>
+        </Grid>
     </Grid>
 </Page>

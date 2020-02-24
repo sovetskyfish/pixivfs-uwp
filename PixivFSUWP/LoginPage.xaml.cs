@@ -167,5 +167,11 @@ namespace PixivFSUWP
             await Launcher.LaunchUriAsync(new
                 Uri(@"https://www.pixiv.net/member_illust.php?mode=medium&illust_id=31251762"));
         }
+
+        private async void btnReport_Click(object sender, RoutedEventArgs e)
+        {
+            //在新窗口中打开发送反馈的窗口
+            await ShowNewWindow(typeof(ReportIssuePage), null);
+        }
     }
 }
