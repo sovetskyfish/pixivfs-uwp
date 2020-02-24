@@ -37,6 +37,7 @@ namespace PixivFSUWP
         private string refreshToken = null;
         private bool useToken = false;
         private bool directConnetion = false;
+        private bool isCancelled = false;
         Windows.Storage.ApplicationDataContainer localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
 
         public LoginPage()
@@ -145,7 +146,9 @@ namespace PixivFSUWP
                 }
                 //保存当前的身份信息
                 currentUser = Data.CurrentUser.FromJsonValue(res["response"].GetObject()["user"].GetObject());
-                Frame.Navigate(typeof(MainPage));
+                //如果取消了登录，则避免跳转到主页面
+                if (isCancelled) resetView();
+                else Frame.Navigate(typeof(MainPage));
             }
             else btnTrouble.Visibility = Visibility.Visible;
         }
@@ -154,6 +157,12 @@ namespace PixivFSUWP
         {
             await Launcher.LaunchUriAsync(new
                 Uri(@"https://github.com/tobiichiamane/pixivfs-uwp/blob/master/TroubleShoot.md"));
+            resetView();
+        }
+
+        private void resetView()
+        {
+            isCancelled = false;
             stkTxts.Visibility = Visibility.Visible;
             stkBtns.Visibility = Visibility.Visible;
             ringProgress.IsActive = false;
@@ -170,6 +179,8 @@ namespace PixivFSUWP
 
         private async void btnReport_Click(object sender, RoutedEventArgs e)
         {
+            //阻止跳转到主页面
+            isCancelled = true;
             //在新窗口中打开发送反馈的窗口
             await ShowNewWindow(typeof(ReportIssuePage), null);
         }
