@@ -61,6 +61,10 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 
 This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
 
+# Special thanks
+
+Thanks [JetBrains](https://www.jetbrains.com/?from=pixivuwp) for kindly supporting this project.
+
 # Buy me a coffee? 
 
 [![ko-fi](https://www.ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/P5P8WD5C)
