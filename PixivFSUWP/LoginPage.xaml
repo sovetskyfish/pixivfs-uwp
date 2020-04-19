@@ -79,7 +79,7 @@
         <Grid Height="480" Width="400"
               HorizontalAlignment="Center" VerticalAlignment="Center">
             <Grid.Background>
-                <AcrylicBrush BackgroundSource="Backdrop" TintOpacity="0.4" TintColor="{ThemeResource SystemAltHighColor}" FallbackColor="{ThemeResource SystemAltMediumColor}"/>
+                <AcrylicBrush BackgroundSource="Backdrop" TintOpacity="0.4" TintColor="White" FallbackColor="#99ffffff"/>
             </Grid.Background>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
@@ -87,7 +87,7 @@
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
             <TextBlock HorizontalAlignment="Center" Margin="0,150,0,0" x:Uid="LoginBanner"/>
-            <Image Source="{ThemeResource PixivText}"/>
+            <Image Source="Assets/PixivText.png"/>
             <StackPanel x:Name="stkTxts" Grid.Row="1" Margin="20,20,20,10" HorizontalAlignment="Stretch" VerticalAlignment="Center">
                 <TextBlock Margin="5" x:Uid="Username"/>
                 <TextBox x:Name="txtUserName" Margin="5"/>
@@ -114,7 +114,7 @@
             <Button Style="{StaticResource ButtonRevealStyleWithAcrylic}" HorizontalAlignment="Center"
                         BorderThickness="1.5" VerticalAlignment="Stretch" Click="Button_Click">
                 <Button.Background>
-                    <AcrylicBrush BackgroundSource="Backdrop" TintOpacity="0.2" TintColor="{ThemeResource SystemAltHighColor}" FallbackColor="{ThemeResource SystemAltHighColor}"/>
+                    <AcrylicBrush BackgroundSource="Backdrop" TintOpacity="0.2" TintColor="White" FallbackColor="White"/>
                 </Button.Background>
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -133,7 +133,7 @@
             <Button Style="{StaticResource ButtonRevealStyleWithAcrylic}" HorizontalAlignment="Center"
                         BorderThickness="1.5" VerticalAlignment="Stretch" x:Name="btnReport" Click="btnReport_Click">
                 <Button.Background>
-                    <AcrylicBrush BackgroundSource="Backdrop" TintOpacity="0.2" TintColor="{ThemeResource SystemAltHighColor}" FallbackColor="{ThemeResource SystemAltHighColor}"/>
+                    <AcrylicBrush BackgroundSource="Backdrop" TintOpacity="0.2" TintColor="White" FallbackColor="White"/>
                 </Button.Background>
                 <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}" 
                                   FontSize="16" Glyph="&#xED15;"/>
