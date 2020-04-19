@@ -69,7 +69,7 @@
         <Grid x:Name="grdSearchPanel"
               VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
             <Grid.Background>
-                <AcrylicBrush x:Name="detailBackground" BackgroundSource="Backdrop" TintOpacity="0.2" TintColor="White" FallbackColor="White"/>
+                <AcrylicBrush x:Name="detailBackground" BackgroundSource="Backdrop" TintOpacity="0.2" TintColor="{ThemeResource SystemAltHighColor}" FallbackColor="{ThemeResource SystemAltHighColor}"/>
             </Grid.Background>
             <StackPanel Margin="0 75 0 0" Orientation="Vertical" Width="500" x:Name="stkMain"
                         HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Collapsed">

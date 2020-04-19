@@ -7,9 +7,14 @@
     xmlns:converters="using:PixivFSUWP.Converters"
     RequestedTheme="Light">
     <Application.Resources>
+        <ResourceDictionary>
+            <!--<ResourceDictionary.ThemeDictionaries>
+                <ResourceDictionary x:Key="Dark" Source="/Themes/Dark.xaml" />
+                <ResourceDictionary x:Key="Default" Source="/Themes/Light.xaml" />
+            </ResourceDictionary.ThemeDictionaries>-->
         <converters:MultiPageVisibilityConverter x:Name="MultiPageVisibilityConverter"/>
         <converters:BookmarkHeartVisibilityConverter x:Name="BookmarkHeartVisibilityConverter"/>
-        <AcrylicBrush x:Name="PageBackGround" BackgroundSource="HostBackdrop" TintColor="White" TintOpacity="0.5" FallbackColor="White"/>
+        <AcrylicBrush x:Name="PageBackGround" BackgroundSource="HostBackdrop" TintColor="{ThemeResource SystemAltHighColor}" TintOpacity="0.5" FallbackColor="{ThemeResource SystemAltHighColor}"/>
         <ControlTemplate x:Name="ScrollViewerScrollBarlessTemplate" TargetType="ScrollViewer">
             <Grid Background="{TemplateBinding Background}">
                 <ScrollContentPresenter x:Name="ScrollContentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Margin="{TemplateBinding Padding}"/>
@@ -128,5 +133,6 @@
                 </Setter.Value>
             </Setter>
         </Style>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>
