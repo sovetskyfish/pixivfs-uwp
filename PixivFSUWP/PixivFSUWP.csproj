@@ -215,8 +215,10 @@
     <Content Include="Assets\GH_64.png" />
     <Content Include="Assets\LoginBG.jpg" />
     <Content Include="Assets\PixivHeader.png" />
+    <Content Include="Assets\PixivHeader_L.png" />
     <Content Include="Assets\PixivText.png" />
     <None Include="Package.StoreAssociation.xml" />
+    <Content Include="Assets\PixivText_L.png" />
     <Content Include="Assets\QQ_64.png" />
     <Content Include="Assets\SauceNAO.png" />
     <Content Include="Assets\Square44x44Logo.targetsize-256_altform-unplated.png" />
@@ -260,6 +262,14 @@
     <Page Include="SettingsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\Dark.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\Light.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="UserDetailPage.xaml">
       <SubType>Designer</SubType>

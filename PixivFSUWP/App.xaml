@@ -5,13 +5,13 @@
     xmlns:viewmodels="using:PixivFSUWP.ViewModels"
     xmlns:local="using:PixivFSUWP"
     xmlns:converters="using:PixivFSUWP.Converters"
-    RequestedTheme="Light">
+    >
     <Application.Resources>
         <ResourceDictionary>
-            <!--<ResourceDictionary.ThemeDictionaries>
+            <ResourceDictionary.ThemeDictionaries>
                 <ResourceDictionary x:Key="Dark" Source="/Themes/Dark.xaml" />
                 <ResourceDictionary x:Key="Default" Source="/Themes/Light.xaml" />
-            </ResourceDictionary.ThemeDictionaries>-->
+            </ResourceDictionary.ThemeDictionaries>
         <converters:MultiPageVisibilityConverter x:Name="MultiPageVisibilityConverter"/>
         <converters:BookmarkHeartVisibilityConverter x:Name="BookmarkHeartVisibilityConverter"/>
         <AcrylicBrush x:Name="PageBackGround" BackgroundSource="HostBackdrop" TintColor="{ThemeResource SystemAltHighColor}" TintOpacity="0.5" FallbackColor="{ThemeResource SystemAltHighColor}"/>
@@ -30,7 +30,7 @@
                     <RowDefinition MaxHeight="50"/>
                 </Grid.RowDefinitions>
                 <Image Grid.RowSpan="2" Stretch="Uniform" Source="{Binding ImageSource}"/>
-                <Grid Grid.Row="1" Background="#88ffffff">
+                <Grid Grid.Row="1" Background="{ThemeResource WaterfallListViewItemTemplateBackground}">
                     <Grid.RowDefinitions>
                         <RowDefinition/>
                         <RowDefinition/>
