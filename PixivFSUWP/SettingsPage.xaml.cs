@@ -97,6 +97,19 @@ namespace PixivFSUWP
             //ApplicationDataContainer localSettings = ApplicationData.Current.LocalSettings;
             //tbSauceNAO.Text = localSettings.Values["SauceNAOAPI"] as string;//读取设置项
             //tbImgur.Text = localSettings.Values["ImgurAPI"] as string;
+            switch (ApplicationData.Current.LocalSettings.Values["ColorTheme"])
+            {
+                case false:
+                    cboxColorTheme.SelectedIndex = 0;
+                    break;
+                case true:
+                    cboxColorTheme.SelectedIndex = 1;
+                    break;
+                default:
+                    cboxColorTheme.SelectedIndex = 2;
+                    break;
+            }
+            
             _ = calculateCacheSize();
             //等待头像加载完毕
             imgAvatar.ImageSource = await imgTask;
@@ -182,6 +195,26 @@ namespace PixivFSUWP
             //腾讯的一键加群
             await Launcher.LaunchUriAsync(new
                 Uri(@"https://shang.qq.com/wpa/qunwpa?idkey=d6ba54103ced0e2d7c5bbf6422e4f9f6fa4849c91d4521fe9a1beec72626bbb6"));
+        }
+
+        private void ComboBox_DropDownClosed(object sender, object e)
+        {
+            if(sender is ComboBox cb)
+            {
+                switch (cb.SelectedIndex)
+                {
+                    case 2:
+                        ApplicationData.Current.LocalSettings.Values["ColorTheme"] = null;
+                        break;
+                    case 0:
+                        ApplicationData.Current.LocalSettings.Values["ColorTheme"] = false;
+                        break;
+                    case 1:
+                        ApplicationData.Current.LocalSettings.Values["ColorTheme"] = true;
+                        break;
+                }
+                _ = ((Frame.Parent as Grid)?.Parent as MainPage)?.ShowTip(GetResourceString("RestartApplyColorTheme"));
+            }
         }
     }
 }

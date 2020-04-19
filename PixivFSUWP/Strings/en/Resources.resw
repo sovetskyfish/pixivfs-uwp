@@ -181,6 +181,10 @@
     <value>Clear cache</value>
     <comment>Button</comment>
   </data>
+  <data name="ColorTheme.Text" xml:space="preserve">
+    <value>Color Theme</value>
+    <comment>TextBlock</comment>
+  </data>
   <data name="CommentsPlain" xml:space="preserve">
     <value>Comments</value>
     <comment>PlainText</comment>
@@ -197,12 +201,20 @@
     <value>Current User</value>
     <comment>TextBlock</comment>
   </data>
+  <data name="DarkColorTheme.Content" xml:space="preserve">
+    <value>Dark</value>
+    <comment>ComboBoxItem</comment>
+  </data>
   <data name="DateAsc.Content" xml:space="preserve">
     <value>Date ascending</value>
     <comment>ComboBoxItem</comment>
   </data>
   <data name="DateDesc.Content" xml:space="preserve">
     <value>Date descending</value>
+    <comment>ComboBoxItem</comment>
+  </data>
+  <data name="DefaultColorTheme.Content" xml:space="preserve">
+    <value>Use System Default</value>
     <comment>ComboBoxItem</comment>
   </data>
   <data name="DeleteBookmarkPlain" xml:space="preserve">
@@ -312,6 +324,10 @@ Do you want to disable them?</value>
   </data>
   <data name="LastWeek.Content" xml:space="preserve">
     <value>Last week</value>
+    <comment>ComboBoxItem</comment>
+  </data>
+  <data name="LightColorTheme.Content" xml:space="preserve">
+    <value>Light</value>
     <comment>ComboBoxItem</comment>
   </data>
   <data name="LinkPlain" xml:space="preserve">
@@ -500,6 +516,10 @@ Do you want to disable them?</value>
   </data>
   <data name="RequestingPlain" xml:space="preserve">
     <value>Requesting</value>
+    <comment>PlainText</comment>
+  </data>
+  <data name="RestartApplyColorTheme" xml:space="preserve">
+    <value>Restart the application to take effect</value>
     <comment>PlainText</comment>
   </data>
   <data name="RetryPlain" xml:space="preserve">
