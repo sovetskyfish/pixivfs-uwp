@@ -2,64 +2,112 @@
     x:Class="PixivFSUWP.BigImage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:PixivFSUWP"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="using:PixivFSUWP"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d" SizeChanged="Page_SizeChanged" Background="{StaticResource PageBackGround}">
+    Background="{StaticResource PageBackGround}"
+    SizeChanged="Page_SizeChanged"
+    mc:Ignorable="d">
     <Page.Resources>
         <Storyboard x:Name="storyTipShow">
-            <DoubleAnimation Storyboard.TargetName="grdTip"
-                             Storyboard.TargetProperty="Opacity"
-                             From="0.0" To="1.0" Duration="0:0:0.2"/>
+            <DoubleAnimation
+                Storyboard.TargetName="grdTip"
+                Storyboard.TargetProperty="Opacity"
+                From="0.0"
+                To="1.0"
+                Duration="0:0:0.2" />
         </Storyboard>
         <Storyboard x:Name="storyTipHide">
-            <DoubleAnimation Storyboard.TargetName="grdTip"
-                             Storyboard.TargetProperty="Opacity"
-                             From="1.0" To="0.0" Duration="0:0:0.2"/>
+            <DoubleAnimation
+                Storyboard.TargetName="grdTip"
+                Storyboard.TargetProperty="Opacity"
+                From="1.0"
+                To="0.0"
+                Duration="0:0:0.2" />
         </Storyboard>
     </Page.Resources>
     <Grid x:Name="layoutRoot">
         <Grid.RowDefinitions>
-            <RowDefinition Height="32"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="32" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <Rectangle Grid.RowSpan="2" Fill="{StaticResource NavigationViewTopPaneBackground}"/>
-        <TextBlock x:Name="txtTitle" Margin="10,0,0,0" FontSize="12" VerticalAlignment="Center" HorizontalAlignment="Left"/>
-        <CommandBar Grid.Row="1" DefaultLabelPosition="Right" Background="Transparent">
+        <Rectangle Grid.RowSpan="2" Fill="{StaticResource NavigationViewTopPaneBackground}" />
+        <TextBlock
+            x:Name="txtTitle"
+            Margin="10,0,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Center"
+            FontSize="12" />
+        <CommandBar
+            Grid.Row="1"
+            Background="Transparent"
+            DefaultLabelPosition="Right">
             <CommandBar.Content>
-                <InkToolbar x:Name="inkToolbar" Visibility="Collapsed"
-                            VerticalAlignment="Center" InitialControls="None"
-                            TargetInkCanvas="{x:Bind mainCanvas}">
-                    <InkToolbarBallpointPenButton/>
-                    <InkToolbarPencilButton/>
-                    <InkToolbarEraserButton/>
-                    <InkToolbarStencilButton/>
+                <InkToolbar
+                    x:Name="inkToolbar"
+                    VerticalAlignment="Center"
+                    InitialControls="None"
+                    TargetInkCanvas="{x:Bind mainCanvas}"
+                    Visibility="Collapsed">
+                    <InkToolbarBallpointPenButton />
+                    <InkToolbarPencilButton />
+                    <InkToolbarEraserButton />
+                    <InkToolbarStencilButton />
                 </InkToolbar>
             </CommandBar.Content>
-            <AppBarButton x:Name="btnSaveImage" Icon="Save" x:Uid="SaveImage" Click="BtnSaveImage_Click"/>
-            <AppBarToggleButton x:Name="btnDraw" Icon="Edit" x:Uid="Draw" Unchecked="BtnDraw_Unchecked" Checked="BtnDraw_Checked"/>
+            <AppBarButton
+                x:Name="btnSaveImage"
+                x:Uid="SaveImage"
+                Click="BtnSaveImage_Click"
+                Icon="Save" />
+            <AppBarToggleButton
+                x:Name="btnDraw"
+                x:Uid="Draw"
+                Checked="BtnDraw_Checked"
+                Icon="Edit"
+                Unchecked="BtnDraw_Unchecked" />
         </CommandBar>
-        <ScrollViewer ZoomMode="Enabled" x:Name="scrollRoot" 
-                      MinZoomFactor="1" Grid.Row="2"
-                      HorizontalContentAlignment="Center"
-                      VerticalContentAlignment="Center"
-                      HorizontalScrollBarVisibility="Auto"
-                      VerticalScrollBarVisibility="Auto"
-                      HorizontalScrollMode="Enabled" 
-                      VerticalScrollMode="Enabled">
+        <ScrollViewer
+            x:Name="scrollRoot"
+            Grid.Row="2"
+            HorizontalContentAlignment="Center"
+            VerticalContentAlignment="Center"
+            HorizontalScrollBarVisibility="Auto"
+            HorizontalScrollMode="Enabled"
+            MinZoomFactor="1"
+            VerticalScrollBarVisibility="Auto"
+            VerticalScrollMode="Enabled"
+            ZoomMode="Enabled">
             <Grid x:Name="gridImg">
-                <Grid x:Name="paper" Background="White" Visibility="Collapsed"/>
-                <Image x:Name="mainImg"/>
-                <InkCanvas x:Name="mainCanvas" Visibility="Collapsed"/>
+                <Grid
+                    x:Name="paper"
+                    Background="White"
+                    Visibility="Collapsed" />
+                <Image x:Name="mainImg" />
+                <InkCanvas x:Name="mainCanvas" Visibility="Collapsed" />
             </Grid>
         </ScrollViewer>
-        <Grid x:Name="grdTip" HorizontalAlignment="Center" Grid.RowSpan="3"
-              VerticalAlignment="Bottom" Margin="20" Visibility="Collapsed" Opacity="0">
+        <Grid
+            x:Name="grdTip"
+            Grid.RowSpan="3"
+            Margin="20"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Bottom"
+            Opacity="0"
+            Visibility="Collapsed">
             <Grid.Background>
-                <AcrylicBrush BackgroundSource="Backdrop" TintOpacity="0.2" TintColor="White" FallbackColor="White"/>
+                <AcrylicBrush
+                    BackgroundSource="Backdrop"
+                    FallbackColor="{ThemeResource SystemAltHighColor}"
+                    TintColor="{ThemeResource SystemAltHighColor}"
+                    TintOpacity="0.2" />
             </Grid.Background>
-            <TextBlock x:Name="txtTip" Margin="10" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            <TextBlock
+                x:Name="txtTip"
+                Margin="10"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center" />
         </Grid>
     </Grid>
 </Page>

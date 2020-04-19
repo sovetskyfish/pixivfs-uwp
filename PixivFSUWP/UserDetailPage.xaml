@@ -2,88 +2,83 @@
     x:Class="PixivFSUWP.UserDetailPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:PixivFSUWP"
     xmlns:controls="using:PixivFSUWP.Controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="using:PixivFSUWP"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+    mc:Ignorable="d">
     <Page.Resources>
         <Storyboard x:Name="storyFade">
-            <DoubleAnimation Storyboard.TargetName="detailBackground"
-                             Storyboard.TargetProperty="TintOpacity"
-                             From="0.4" To="0.0" Duration="0:0:0.2"/>
-            <DoubleAnimation Storyboard.TargetName="grdDetail"
-                             Storyboard.TargetProperty="Opacity"
-                             From="1.0" To="0.0" Duration="0:0:0.2"/>
-            <DoubleAnimation Storyboard.TargetName="grdUserButton"
-                             Storyboard.TargetProperty="Opacity"
-                             From="0.0" To="1.0" Duration="0:0:0.2"/>
+            <DoubleAnimation
+                Storyboard.TargetName="detailBackground"
+                Storyboard.TargetProperty="TintOpacity"
+                From="0.4"
+                To="0.0"
+                Duration="0:0:0.2" />
+            <DoubleAnimation
+                Storyboard.TargetName="grdDetail"
+                Storyboard.TargetProperty="Opacity"
+                From="1.0"
+                To="0.0"
+                Duration="0:0:0.2" />
+            <DoubleAnimation
+                Storyboard.TargetName="grdUserButton"
+                Storyboard.TargetProperty="Opacity"
+                From="0.0"
+                To="1.0"
+                Duration="0:0:0.2" />
         </Storyboard>
         <Storyboard x:Name="storyShow">
-            <DoubleAnimation Storyboard.TargetName="detailBackground"
-                             Storyboard.TargetProperty="TintOpacity"
-                             From="0.0" To="0.4" Duration="0:0:0.2"/>
-            <DoubleAnimation Storyboard.TargetName="grdDetail"
-                             Storyboard.TargetProperty="Opacity"
-                             From="0.0" To="1.0" Duration="0:0:0.2"/>
-            <DoubleAnimation Storyboard.TargetName="grdUserButton"
-                             Storyboard.TargetProperty="Opacity"
-                             From="1.0" To="0.0" Duration="0:0:0.2"/>
+            <DoubleAnimation
+                Storyboard.TargetName="detailBackground"
+                Storyboard.TargetProperty="TintOpacity"
+                From="0.0"
+                To="0.4"
+                Duration="0:0:0.2" />
+            <DoubleAnimation
+                Storyboard.TargetName="grdDetail"
+                Storyboard.TargetProperty="Opacity"
+                From="0.0"
+                To="1.0"
+                Duration="0:0:0.2" />
+            <DoubleAnimation
+                Storyboard.TargetName="grdUserButton"
+                Storyboard.TargetProperty="Opacity"
+                From="1.0"
+                To="0.0"
+                Duration="0:0:0.2" />
         </Storyboard>
     </Page.Resources>
     <Grid Background="{StaticResource PageBackGround}">
-        <VisualStateManager.VisualStateGroups>
-            <VisualStateGroup x:Name="AdaptiveStates">
-                <VisualState x:Name="C6">
-                    <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="1100" />
-                    </VisualState.StateTriggers>
-                    <VisualState.Setters>
-                        <Setter Target="WaterfallContent.Colums" Value="6"/>
-                    </VisualState.Setters>
-                </VisualState>
-                <VisualState x:Name="C5">
-                    <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="900" />
-                    </VisualState.StateTriggers>
-                    <VisualState.Setters>
-                        <Setter Target="WaterfallContent.Colums" Value="5"/>
-                    </VisualState.Setters>
-                </VisualState>
-                <VisualState x:Name="C4">
-                    <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="700" />
-                    </VisualState.StateTriggers>
-                    <VisualState.Setters>
-                        <Setter Target="WaterfallContent.Colums" Value="4"/>
-                    </VisualState.Setters>
-                </VisualState>
-                <VisualState x:Name="C3">
-                    <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="0" />
-                    </VisualState.StateTriggers>
-                    <VisualState.Setters>
-                        <Setter Target="WaterfallContent.Colums" Value="3"/>
-                    </VisualState.Setters>
-                </VisualState>
-            </VisualStateGroup>
-        </VisualStateManager.VisualStateGroups>
-        <controls:WaterfallListView ScrollViewer.VerticalScrollBarVisibility="Hidden" Margin="3 0"
-            x:Name="WaterfallListView" SelectionMode="None" ItemContainerTransitions="{x:Null}" Holding="WaterfallListView_Holding"
-            ItemTemplate="{StaticResource WaterfallListViewItemTemplate}" RightTapped="WaterfallListView_RightTapped"
-            IsItemClickEnabled="True" ItemClick="WaterfallListView_ItemClick">
+        <controls:WaterfallListView
+            x:Name="WaterfallListView"
+            Margin="3,0"
+            Holding="WaterfallListView_Holding"
+            IsItemClickEnabled="True"
+            ItemClick="WaterfallListView_ItemClick"
+            ItemContainerTransitions="{x:Null}"
+            ItemTemplate="{StaticResource WaterfallListViewItemTemplate}"
+            RightTapped="WaterfallListView_RightTapped"
+            ScrollViewer.VerticalScrollBarVisibility="Hidden"
+            SelectionMode="None">
             <ListView.Resources>
                 <MenuFlyout x:Name="quickActions">
                     <MenuFlyout.Items>
-                        <MenuFlyoutItem x:Name="quickStar" x:Uid="QuickBookmark" Click="QuickStar_Click">
+                        <MenuFlyoutItem
+                            x:Name="quickStar"
+                            x:Uid="QuickBookmark"
+                            Click="QuickStar_Click">
                             <MenuFlyoutItem.Icon>
-                                <FontIcon Glyph="&#xE734;"/>
+                                <FontIcon Glyph="&#xE734;" />
                             </MenuFlyoutItem.Icon>
                         </MenuFlyoutItem>
-                        <MenuFlyoutItem x:Name="quickSave" x:Uid="QuickDownload" Click="QuickSave_Click">
+                        <MenuFlyoutItem
+                            x:Name="quickSave"
+                            x:Uid="QuickDownload"
+                            Click="QuickSave_Click">
                             <MenuFlyoutItem.Icon>
-                                <FontIcon Glyph="&#xE74E;"/>
+                                <FontIcon Glyph="&#xE74E;" />
                             </MenuFlyoutItem.Icon>
                         </MenuFlyoutItem>
                     </MenuFlyout.Items>
@@ -91,190 +86,500 @@
             </ListView.Resources>
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
-                    <controls:WaterfallContentPanel x:Name="WaterfallContent" Loaded="WaterfallContent_Loaded" TopOffset="76" ItemMargin="2">
+                    <controls:WaterfallContentPanel
+                        x:Name="WaterfallContent"
+                        ItemMargin="2"
+                        Loaded="WaterfallContent_Loaded"
+                        TopOffset="76">
                         <controls:WaterfallContentPanel.ChildrenTransitions>
                             <TransitionCollection>
-                                <PopupThemeTransition FromVerticalOffset="150"/>
+                                <PopupThemeTransition FromVerticalOffset="150" />
                             </TransitionCollection>
                         </controls:WaterfallContentPanel.ChildrenTransitions>
                     </controls:WaterfallContentPanel>
                 </ItemsPanelTemplate>
             </ListView.ItemsPanel>
         </controls:WaterfallListView>
-        <Grid HorizontalAlignment="Right" VerticalAlignment="Bottom" x:Name="grdUserButton"
-              Margin="20" Height="70" Visibility="Collapsed">
-            <Button Style="{StaticResource ButtonRevealStyleWithAcrylic}" HorizontalAlignment="Center"
-                        BorderThickness="1.5" VerticalAlignment="Stretch" Click="Button_Click">
+        <Grid
+            x:Name="grdUserButton"
+            Height="70"
+            Margin="20"
+            HorizontalAlignment="Right"
+            VerticalAlignment="Bottom"
+            Visibility="Collapsed">
+            <Button
+                HorizontalAlignment="Center"
+                VerticalAlignment="Stretch"
+                BorderThickness="1.5"
+                Click="Button_Click"
+                Style="{StaticResource ButtonRevealStyleWithAcrylic}">
                 <Button.Background>
-                    <AcrylicBrush BackgroundSource="Backdrop" TintOpacity="0.2" TintColor="White" FallbackColor="White"/>
+                    <AcrylicBrush
+                        BackgroundSource="Backdrop"
+                        FallbackColor="{ThemeResource SystemAltHighColor}"
+                        TintColor="{ThemeResource SystemAltHighColor}"
+                        TintOpacity="0.2" />
                 </Button.Background>
                 <Grid>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="50"/>
-                        <ColumnDefinition/>
+                        <ColumnDefinition Width="50" />
+                        <ColumnDefinition />
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
-                        <RowDefinition/>
-                        <RowDefinition/>
+                        <RowDefinition />
+                        <RowDefinition />
                     </Grid.RowDefinitions>
-                    <Ellipse Grid.RowSpan="2" Width="50" Height="50">
+                    <Ellipse
+                        Grid.RowSpan="2"
+                        Width="50"
+                        Height="50">
                         <Ellipse.Fill>
-                            <ImageBrush x:Name="imgAuthor"/>
+                            <ImageBrush x:Name="imgAuthor" />
                         </Ellipse.Fill>
                     </Ellipse>
-                    <TextBlock x:Name="txtAuthor" Margin="10,0" Grid.Column="1" FontSize="16" FontWeight="Bold" VerticalAlignment="Bottom"/>
-                    <TextBlock x:Name="txtAuthorAccount" Margin="10,0" Grid.Row="1" Grid.Column="1" FontSize="14" Foreground="Gray" VerticalAlignment="Top"/>
+                    <TextBlock
+                        x:Name="txtAuthor"
+                        Grid.Column="1"
+                        Margin="10,0"
+                        VerticalAlignment="Bottom"
+                        FontSize="16"
+                        FontWeight="Bold" />
+                    <TextBlock
+                        x:Name="txtAuthorAccount"
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        Margin="10,0"
+                        VerticalAlignment="Top"
+                        FontSize="14"
+                        Foreground="Gray" />
                 </Grid>
             </Button>
         </Grid>
-        <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" x:Name="grdDetail">
+        <Grid
+            x:Name="grdDetail"
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Stretch">
             <Grid.Background>
-                <AcrylicBrush x:Name="detailBackground" BackgroundSource="Backdrop" TintOpacity="0.2" TintColor="White" FallbackColor="White"/>
+                <AcrylicBrush
+                    x:Name="detailBackground"
+                    BackgroundSource="Backdrop"
+                    FallbackColor="{ThemeResource SystemAltHighColor}"
+                    TintColor="{ThemeResource SystemAltHighColor}"
+                    TintOpacity="0.2" />
             </Grid.Background>
             <Grid.RowDefinitions>
-                <RowDefinition Height="75"/>
-                <RowDefinition/>
+                <RowDefinition Height="75" />
+                <RowDefinition />
             </Grid.RowDefinitions>
-            <StackPanel Orientation="Vertical" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">
-                <Grid VerticalAlignment="Center" HorizontalAlignment="Stretch" Margin="15">
-                    <StackPanel VerticalAlignment="Center" 
-                        HorizontalAlignment="Stretch" 
+            <StackPanel
+                Grid.Row="1"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Orientation="Vertical">
+                <Grid
+                    Margin="15"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Center">
+                    <StackPanel
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Center"
                         Orientation="Vertical">
                         <Grid>
-                            <Ellipse Fill="White" Width="105" Height="105"
-                             HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                            <Ellipse Width="100" Height="100" 
-                             HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <Ellipse
+                                Width="105"
+                                Height="105"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                Fill="White" />
+                            <Ellipse
+                                Width="100"
+                                Height="100"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center">
                                 <Ellipse.Fill>
-                                    <ImageBrush x:Name="imgAvatar" Stretch="UniformToFill"/>
+                                    <ImageBrush x:Name="imgAvatar" Stretch="UniformToFill" />
                                 </Ellipse.Fill>
                             </Ellipse>
                         </Grid>
-                        <TextBlock Margin="5" x:Name="txtUsername" FontSize="20" FontWeight="Bold" 
-                           HorizontalAlignment="Center"/>
-                        <TextBlock x:Name="txtAccount" FontSize="14" Foreground="Gray"
-                           HorizontalAlignment="Center"/>
+                        <TextBlock
+                            x:Name="txtUsername"
+                            Margin="5"
+                            HorizontalAlignment="Center"
+                            FontSize="20"
+                            FontWeight="Bold" />
+                        <TextBlock
+                            x:Name="txtAccount"
+                            HorizontalAlignment="Center"
+                            FontSize="14"
+                            Foreground="Gray" />
                     </StackPanel>
                 </Grid>
-                <Grid HorizontalAlignment="Center" Margin="15">
+                <Grid Margin="15" HorizontalAlignment="Center">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="1*"/>
-                        <ColumnDefinition Width="20"/>
-                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*" />
+                        <ColumnDefinition Width="20" />
+                        <ColumnDefinition Width="1*" />
                     </Grid.ColumnDefinitions>
-                    <Grid Width="Auto" Grid.Column="0">
+                    <Grid Grid.Column="0" Width="Auto">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="15"/>
-                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="15" />
+                            <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
                         </Grid.RowDefinitions>
-                        <TextBlock Margin="2" VerticalAlignment="Center" Grid.Row="0" FontWeight="Bold" x:Uid="PersonalWebsite"/>
-                        <TextBlock x:Name="txtWebPage" VerticalAlignment="Center" Grid.Row="0" Grid.Column="2" TextTrimming="CharacterEllipsis"/>
-                        <TextBlock Margin="2" VerticalAlignment="Center" Grid.Row="1" FontWeight="Bold" x:Uid="Sex"/>
-                        <TextBlock x:Name="txtGender" VerticalAlignment="Center" Grid.Row="1" Grid.Column="2" TextTrimming="CharacterEllipsis"/>
-                        <TextBlock Margin="2" VerticalAlignment="Center" Grid.Row="2" FontWeight="Bold" x:Uid="Birthday"/>
-                        <TextBlock x:Name="txtBirthday" VerticalAlignment="Center" Grid.Row="2" Grid.Column="2" TextTrimming="CharacterEllipsis"/>
-                        <TextBlock Margin="2" VerticalAlignment="Center" Grid.Row="3" FontWeight="Bold" x:Uid="LivingPlace"/>
-                        <TextBlock x:Name="txtRegion" VerticalAlignment="Center" Grid.Row="3" Grid.Column="2" TextTrimming="CharacterEllipsis"/>
-                        <TextBlock Margin="2" VerticalAlignment="Center" Grid.Row="4" FontWeight="Bold" x:Uid="Job"/>
-                        <TextBlock x:Name="txtJob" VerticalAlignment="Center" Grid.Row="4" Grid.Column="2" TextTrimming="CharacterEllipsis"/>
-                        <TextBlock Margin="2" VerticalAlignment="Center" Grid.Row="5" FontWeight="Bold" x:Uid="PC"/>
-                        <TextBlock x:Name="txtPC" VerticalAlignment="Center" Grid.Row="5" Grid.Column="2" TextTrimming="CharacterEllipsis"/>
-                        <TextBlock Margin="2" VerticalAlignment="Center" Grid.Row="6" FontWeight="Bold" x:Uid="Monitor"/>
-                        <TextBlock x:Name="txtMonitor" VerticalAlignment="Center" Grid.Row="6" Grid.Column="2" TextTrimming="CharacterEllipsis"/>
-                        <TextBlock Margin="2" VerticalAlignment="Center" Grid.Row="7" FontWeight="Bold" x:Uid="Tool"/>
-                        <TextBlock x:Name="txtTool" VerticalAlignment="Center" Grid.Row="7" Grid.Column="2" TextTrimming="CharacterEllipsis"/>
+                        <TextBlock
+                            x:Uid="PersonalWebsite"
+                            Grid.Row="0"
+                            Margin="2"
+                            VerticalAlignment="Center"
+                            FontWeight="Bold" />
+                        <TextBlock
+                            x:Name="txtWebPage"
+                            Grid.Row="0"
+                            Grid.Column="2"
+                            VerticalAlignment="Center"
+                            TextTrimming="CharacterEllipsis" />
+                        <TextBlock
+                            x:Uid="Sex"
+                            Grid.Row="1"
+                            Margin="2"
+                            VerticalAlignment="Center"
+                            FontWeight="Bold" />
+                        <TextBlock
+                            x:Name="txtGender"
+                            Grid.Row="1"
+                            Grid.Column="2"
+                            VerticalAlignment="Center"
+                            TextTrimming="CharacterEllipsis" />
+                        <TextBlock
+                            x:Uid="Birthday"
+                            Grid.Row="2"
+                            Margin="2"
+                            VerticalAlignment="Center"
+                            FontWeight="Bold" />
+                        <TextBlock
+                            x:Name="txtBirthday"
+                            Grid.Row="2"
+                            Grid.Column="2"
+                            VerticalAlignment="Center"
+                            TextTrimming="CharacterEllipsis" />
+                        <TextBlock
+                            x:Uid="LivingPlace"
+                            Grid.Row="3"
+                            Margin="2"
+                            VerticalAlignment="Center"
+                            FontWeight="Bold" />
+                        <TextBlock
+                            x:Name="txtRegion"
+                            Grid.Row="3"
+                            Grid.Column="2"
+                            VerticalAlignment="Center"
+                            TextTrimming="CharacterEllipsis" />
+                        <TextBlock
+                            x:Uid="Job"
+                            Grid.Row="4"
+                            Margin="2"
+                            VerticalAlignment="Center"
+                            FontWeight="Bold" />
+                        <TextBlock
+                            x:Name="txtJob"
+                            Grid.Row="4"
+                            Grid.Column="2"
+                            VerticalAlignment="Center"
+                            TextTrimming="CharacterEllipsis" />
+                        <TextBlock
+                            x:Uid="PC"
+                            Grid.Row="5"
+                            Margin="2"
+                            VerticalAlignment="Center"
+                            FontWeight="Bold" />
+                        <TextBlock
+                            x:Name="txtPC"
+                            Grid.Row="5"
+                            Grid.Column="2"
+                            VerticalAlignment="Center"
+                            TextTrimming="CharacterEllipsis" />
+                        <TextBlock
+                            x:Uid="Monitor"
+                            Grid.Row="6"
+                            Margin="2"
+                            VerticalAlignment="Center"
+                            FontWeight="Bold" />
+                        <TextBlock
+                            x:Name="txtMonitor"
+                            Grid.Row="6"
+                            Grid.Column="2"
+                            VerticalAlignment="Center"
+                            TextTrimming="CharacterEllipsis" />
+                        <TextBlock
+                            x:Uid="Tool"
+                            Grid.Row="7"
+                            Margin="2"
+                            VerticalAlignment="Center"
+                            FontWeight="Bold" />
+                        <TextBlock
+                            x:Name="txtTool"
+                            Grid.Row="7"
+                            Grid.Column="2"
+                            VerticalAlignment="Center"
+                            TextTrimming="CharacterEllipsis" />
                     </Grid>
-                    <Grid Width="Auto" Grid.Column="2">
+                    <Grid Grid.Column="2" Width="Auto">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="15"/>
-                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="15" />
+                            <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
                         </Grid.RowDefinitions>
-                        <TextBlock Margin="2" VerticalAlignment="Center" Grid.Row="0" FontWeight="Bold" x:Uid="Scanner"/>
-                        <TextBlock x:Name="txtScanner" VerticalAlignment="Center" Grid.Row="0" Grid.Column="2" TextTrimming="CharacterEllipsis"/>
-                        <TextBlock Margin="2" VerticalAlignment="Center" Grid.Row="1" FontWeight="Bold" x:Uid="Tablet"/>
-                        <TextBlock x:Name="txtTablet" VerticalAlignment="Center" Grid.Row="1" Grid.Column="2" TextTrimming="CharacterEllipsis"/>
-                        <TextBlock Margin="2" VerticalAlignment="Center" Grid.Row="2" FontWeight="Bold" x:Uid="Mouse"/>
-                        <TextBlock x:Name="txtMouse" VerticalAlignment="Center" Grid.Row="2" Grid.Column="2" TextTrimming="CharacterEllipsis"/>
-                        <TextBlock Margin="2" VerticalAlignment="Center" Grid.Row="3" FontWeight="Bold" x:Uid="Printer"/>
-                        <TextBlock x:Name="txtPrinter" VerticalAlignment="Center" Grid.Row="3" Grid.Column="2" TextTrimming="CharacterEllipsis"/>
-                        <TextBlock Margin="2" VerticalAlignment="Center" Grid.Row="4" FontWeight="Bold" x:Uid="Desktop"/>
-                        <TextBlock x:Name="txtDesktop" VerticalAlignment="Center" Grid.Row="4" Grid.Column="2" TextTrimming="CharacterEllipsis"/>
-                        <TextBlock Margin="2" VerticalAlignment="Center" Grid.Row="5" FontWeight="Bold" x:Uid="Music"/>
-                        <TextBlock x:Name="txtMusic" VerticalAlignment="Center" Grid.Row="5" Grid.Column="2" TextTrimming="CharacterEllipsis"/>
-                        <TextBlock Margin="2" VerticalAlignment="Center" Grid.Row="6" FontWeight="Bold" x:Uid="Desk"/>
-                        <TextBlock x:Name="txtDesk" VerticalAlignment="Center" Grid.Row="6" Grid.Column="2" TextTrimming="CharacterEllipsis"/>
-                        <TextBlock Margin="2" VerticalAlignment="Center" Grid.Row="7" FontWeight="Bold" x:Uid="Chair"/>
-                        <TextBlock x:Name="txtChair" VerticalAlignment="Center" Grid.Row="7" Grid.Column="2" TextTrimming="CharacterEllipsis"/>
+                        <TextBlock
+                            x:Uid="Scanner"
+                            Grid.Row="0"
+                            Margin="2"
+                            VerticalAlignment="Center"
+                            FontWeight="Bold" />
+                        <TextBlock
+                            x:Name="txtScanner"
+                            Grid.Row="0"
+                            Grid.Column="2"
+                            VerticalAlignment="Center"
+                            TextTrimming="CharacterEllipsis" />
+                        <TextBlock
+                            x:Uid="Tablet"
+                            Grid.Row="1"
+                            Margin="2"
+                            VerticalAlignment="Center"
+                            FontWeight="Bold" />
+                        <TextBlock
+                            x:Name="txtTablet"
+                            Grid.Row="1"
+                            Grid.Column="2"
+                            VerticalAlignment="Center"
+                            TextTrimming="CharacterEllipsis" />
+                        <TextBlock
+                            x:Uid="Mouse"
+                            Grid.Row="2"
+                            Margin="2"
+                            VerticalAlignment="Center"
+                            FontWeight="Bold" />
+                        <TextBlock
+                            x:Name="txtMouse"
+                            Grid.Row="2"
+                            Grid.Column="2"
+                            VerticalAlignment="Center"
+                            TextTrimming="CharacterEllipsis" />
+                        <TextBlock
+                            x:Uid="Printer"
+                            Grid.Row="3"
+                            Margin="2"
+                            VerticalAlignment="Center"
+                            FontWeight="Bold" />
+                        <TextBlock
+                            x:Name="txtPrinter"
+                            Grid.Row="3"
+                            Grid.Column="2"
+                            VerticalAlignment="Center"
+                            TextTrimming="CharacterEllipsis" />
+                        <TextBlock
+                            x:Uid="Desktop"
+                            Grid.Row="4"
+                            Margin="2"
+                            VerticalAlignment="Center"
+                            FontWeight="Bold" />
+                        <TextBlock
+                            x:Name="txtDesktop"
+                            Grid.Row="4"
+                            Grid.Column="2"
+                            VerticalAlignment="Center"
+                            TextTrimming="CharacterEllipsis" />
+                        <TextBlock
+                            x:Uid="Music"
+                            Grid.Row="5"
+                            Margin="2"
+                            VerticalAlignment="Center"
+                            FontWeight="Bold" />
+                        <TextBlock
+                            x:Name="txtMusic"
+                            Grid.Row="5"
+                            Grid.Column="2"
+                            VerticalAlignment="Center"
+                            TextTrimming="CharacterEllipsis" />
+                        <TextBlock
+                            x:Uid="Desk"
+                            Grid.Row="6"
+                            Margin="2"
+                            VerticalAlignment="Center"
+                            FontWeight="Bold" />
+                        <TextBlock
+                            x:Name="txtDesk"
+                            Grid.Row="6"
+                            Grid.Column="2"
+                            VerticalAlignment="Center"
+                            TextTrimming="CharacterEllipsis" />
+                        <TextBlock
+                            x:Uid="Chair"
+                            Grid.Row="7"
+                            Margin="2"
+                            VerticalAlignment="Center"
+                            FontWeight="Bold" />
+                        <TextBlock
+                            x:Name="txtChair"
+                            Grid.Row="7"
+                            Grid.Column="2"
+                            VerticalAlignment="Center"
+                            TextTrimming="CharacterEllipsis" />
                     </Grid>
                 </Grid>
-                <StackPanel Margin="15" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-                    <Button Style="{StaticResource ButtonRevealStyle}"
-                              Background="#99F3F3F3" BorderThickness="1.5" Height="70" 
-                              Width="70">
+                <StackPanel
+                    Margin="15"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Orientation="Horizontal">
+                    <Button
+                        Width="70"
+                        Height="70"
+                        Background="#99F3F3F3"
+                        BorderThickness="1.5"
+                        Style="{StaticResource ButtonRevealStyle}">
                         <StackPanel Margin="5">
-                            <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}"
-                                  FontSize="20" Glyph="&#xE72D;"/>
-                            <TextBlock Margin="0,5,0,0" x:Uid="Share"/>
+                            <FontIcon
+                                FontFamily="{StaticResource SymbolThemeFontFamily}"
+                                FontSize="20"
+                                Glyph="&#xE72D;" />
+                            <TextBlock x:Uid="Share" Margin="0,5,0,0" />
                         </StackPanel>
                         <Button.Flyout>
                             <CommandBarFlyout x:Name="btnShareFlyout">
-                                <AppBarButton x:Name="btnShare" Icon="Share" Click="BtnShare_Click" x:Uid="btnShare"/>
-                                <AppBarButton x:Name="btnLink" Icon="Link" Click="BtnLink_Click" x:Uid="btnLink"/>
-                                <AppBarButton x:Name="btnAppLink" Icon="PreviewLink" Click="BtnAppLink_Click" x:Uid="btnAppLink"/>
+                                <AppBarButton
+                                    x:Name="btnShare"
+                                    x:Uid="btnShare"
+                                    Click="BtnShare_Click"
+                                    Icon="Share" />
+                                <AppBarButton
+                                    x:Name="btnLink"
+                                    x:Uid="btnLink"
+                                    Click="BtnLink_Click"
+                                    Icon="Link" />
+                                <AppBarButton
+                                    x:Name="btnAppLink"
+                                    x:Uid="btnAppLink"
+                                    Click="BtnAppLink_Click"
+                                    Icon="PreviewLink" />
                             </CommandBarFlyout>
                         </Button.Flyout>
                     </Button>
-                    <Button Style="{StaticResource ButtonRevealStyle}" x:Name="btnWorks" Click="BtnWorks_Click"
-                              Margin="5,0,0,0" Background="#99F3F3F3" BorderThickness="1.5" Height="70" IsEnabled="False"
-                              Width="70">
+                    <Button
+                        x:Name="btnWorks"
+                        Width="70"
+                        Height="70"
+                        Margin="5,0,0,0"
+                        Background="#99F3F3F3"
+                        BorderThickness="1.5"
+                        Click="BtnWorks_Click"
+                        IsEnabled="False"
+                        Style="{StaticResource ButtonRevealStyle}">
                         <StackPanel Margin="5">
-                            <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}"
-                                  FontSize="20" Glyph="&#xEDC6;"/>
-                            <TextBlock Margin="0,5,0,0" x:Uid="Work"/>
+                            <FontIcon
+                                FontFamily="{StaticResource SymbolThemeFontFamily}"
+                                FontSize="20"
+                                Glyph="&#xEDC6;" />
+                            <TextBlock x:Uid="Work" Margin="0,5,0,0" />
                         </StackPanel>
                     </Button>
-                    <ToggleButton x:Name="btnFollow" Style="{StaticResource ToggleButtonRevealStyle}" 
-                              Margin="5,0,0,0" Background="#99F3F3F3" BorderThickness="1.5" Height="70" 
-                              Width="70" Click="BtnFollow_Click">
+                    <ToggleButton
+                        x:Name="btnFollow"
+                        Width="70"
+                        Height="70"
+                        Margin="5,0,0,0"
+                        Background="#99F3F3F3"
+                        BorderThickness="1.5"
+                        Click="BtnFollow_Click"
+                        Style="{StaticResource ToggleButtonRevealStyle}">
                         <StackPanel Margin="5">
-                            <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}" 
-                                  FontSize="20" Glyph="&#xE8FA;"/>
-                            <TextBlock x:Name="txtBtnFollow" Margin="0,5,0,0" x:Uid="NotFollowing"/>
+                            <FontIcon
+                                FontFamily="{StaticResource SymbolThemeFontFamily}"
+                                FontSize="20"
+                                Glyph="&#xE8FA;" />
+                            <TextBlock
+                                x:Name="txtBtnFollow"
+                                x:Uid="NotFollowing"
+                                Margin="0,5,0,0" />
                         </StackPanel>
                     </ToggleButton>
-                    <ToggleButton x:Name="btnPin" Style="{StaticResource ToggleButtonRevealStyle}" 
-                              Margin="5,0,0,0" Background="#99F3F3F3" BorderThickness="1.5" Height="70" 
-                              Width="70">
+                    <ToggleButton
+                        x:Name="btnPin"
+                        Width="70"
+                        Height="70"
+                        Margin="5,0,0,0"
+                        Background="#99F3F3F3"
+                        BorderThickness="1.5"
+                        Style="{StaticResource ToggleButtonRevealStyle}">
                         <StackPanel Margin="5">
-                            <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}" 
-                                  FontSize="20" Glyph="&#xE840;"/>
-                            <TextBlock x:Name="txtBtnPin" Margin="0,5,0,0" x:Uid="Unpinned"/>
+                            <FontIcon
+                                FontFamily="{StaticResource SymbolThemeFontFamily}"
+                                FontSize="20"
+                                Glyph="&#xE840;" />
+                            <TextBlock
+                                x:Name="txtBtnPin"
+                                x:Uid="Unpinned"
+                                Margin="0,5,0,0" />
                         </StackPanel>
                     </ToggleButton>
                 </StackPanel>
             </StackPanel>
         </Grid>
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:Name="AdaptiveStates">
+                <VisualState x:Name="C6">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="1100" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="WaterfallContent.Colums" Value="6" />
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="C5">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="900" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="WaterfallContent.Colums" Value="5" />
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="C4">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="700" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="WaterfallContent.Colums" Value="4" />
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="C3">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="0" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="WaterfallContent.Colums" Value="3" />
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
     </Grid>
 </Page>

@@ -2,21 +2,28 @@
     x:Class="PixivFSUWP.MainPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:PixivFSUWP"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="using:PixivFSUWP"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d" Loaded="Page_Loaded"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+    Loaded="Page_Loaded"
+    mc:Ignorable="d">
     <Page.Resources>
         <Storyboard x:Name="storyTipShow">
-            <DoubleAnimation Storyboard.TargetName="grdTip"
-                             Storyboard.TargetProperty="Opacity"
-                             From="0.0" To="1.0" Duration="0:0:0.2"/>
+            <DoubleAnimation
+                Storyboard.TargetName="grdTip"
+                Storyboard.TargetProperty="Opacity"
+                From="0.0"
+                To="1.0"
+                Duration="0:0:0.2" />
         </Storyboard>
         <Storyboard x:Name="storyTipHide">
-            <DoubleAnimation Storyboard.TargetName="grdTip"
-                             Storyboard.TargetProperty="Opacity"
-                             From="1.0" To="0.0" Duration="0:0:0.2"/>
+            <DoubleAnimation
+                Storyboard.TargetName="grdTip"
+                Storyboard.TargetProperty="Opacity"
+                From="1.0"
+                To="0.0"
+                Duration="0:0:0.2" />
         </Storyboard>
     </Page.Resources>
     <Page.Transitions>
@@ -25,58 +32,109 @@
         </TransitionCollection>
     </Page.Transitions>
     <Grid x:Name="LayoutRoot">
-        <Frame x:Name="ContentFrame"/>
-        <NavigationView PaneDisplayMode="Top" x:Name="NavControl"
-                        SelectionChanged="NavControl_SelectionChanged"
-                        IsSettingsVisible="False" BackRequested="NavControl_BackRequested">
+        <Frame x:Name="ContentFrame" />
+        <NavigationView
+            x:Name="NavControl"
+            BackRequested="NavControl_BackRequested"
+            IsSettingsVisible="False"
+            PaneDisplayMode="Top"
+            SelectionChanged="NavControl_SelectionChanged">
             <NavigationView.PaneHeader>
-                <Image Source="Assets/PixivHeader.png"/>
+                <Image Source="{ThemeResource PixivHeader}" />
             </NavigationView.PaneHeader>
             <NavigationView.PaneFooter>
                 <StackPanel Orientation="Horizontal">
-                    <AppBarButton Width="48" x:Name="btnReport" Click="btnReport_Click">
-                        <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}" 
-                                  FontSize="16" Glyph="&#xED15;"/>
+                    <AppBarButton
+                        x:Name="btnReport"
+                        Width="48"
+                        Click="btnReport_Click">
+                        <FontIcon
+                            FontFamily="{StaticResource SymbolThemeFontFamily}"
+                            FontSize="16"
+                            Glyph="&#xED15;" />
                     </AppBarButton>
-                    <AppBarButton Width="48" x:Name="btnMe" Click="BtnMe_Click">
+                    <AppBarButton
+                        x:Name="btnMe"
+                        Width="48"
+                        Click="BtnMe_Click">
                         <Grid Margin="-7">
-                            <ProgressRing x:Name="avatarRing" Height="20" Width="20" IsActive="True"/>
-                            <Ellipse VerticalAlignment="Center" Height="24" Width="24">
+                            <ProgressRing
+                                x:Name="avatarRing"
+                                Width="20"
+                                Height="20"
+                                IsActive="True" />
+                            <Ellipse
+                                Width="24"
+                                Height="24"
+                                VerticalAlignment="Center">
                                 <Ellipse.Fill>
-                                    <ImageBrush x:Name="imgAvatar" Stretch="UniformToFill"/>
+                                    <ImageBrush x:Name="imgAvatar" Stretch="UniformToFill" />
                                 </Ellipse.Fill>
                             </Ellipse>
                         </Grid>
                     </AppBarButton>
-                    <AppBarButton Width="48" x:Name="btnSearch" Click="BtnSearch_Click">
-                        <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}" 
-                                  FontSize="16" Glyph="&#xE721;"/>
+                    <AppBarButton
+                        x:Name="btnSearch"
+                        Width="48"
+                        Click="BtnSearch_Click">
+                        <FontIcon
+                            FontFamily="{StaticResource SymbolThemeFontFamily}"
+                            FontSize="16"
+                            Glyph="&#xE721;" />
                     </AppBarButton>
-                    <AppBarButton Width="48" x:Name="btnSetting" Click="BtnSetting_Click">
-                        <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}" 
-                                  FontSize="16" Glyph="&#xE713;"/>
+                    <AppBarButton
+                        x:Name="btnSetting"
+                        Width="48"
+                        Click="BtnSetting_Click">
+                        <FontIcon
+                            FontFamily="{StaticResource SymbolThemeFontFamily}"
+                            FontSize="16"
+                            Glyph="&#xE713;" />
                     </AppBarButton>
-                    <AppBarButton Width="48" x:Name="btnExperimentalWarning" Click="btnExperimentalWarning_Click" Visibility="Collapsed">
-                        <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}" 
-                                  FontSize="16" Glyph="&#xE7BA;"/>
+                    <AppBarButton
+                        x:Name="btnExperimentalWarning"
+                        Width="48"
+                        Click="btnExperimentalWarning_Click"
+                        Visibility="Collapsed">
+                        <FontIcon
+                            FontFamily="{StaticResource SymbolThemeFontFamily}"
+                            FontSize="16"
+                            Glyph="&#xE7BA;" />
                     </AppBarButton>
                 </StackPanel>
             </NavigationView.PaneFooter>
             <NavigationView.MenuItems>
-                <NavigationViewItem x:Uid="Recommended"/>
-                <NavigationViewItem x:Uid="Bookmarked"/>
-                <NavigationViewItem x:Uid="Following"/>
-                <NavigationViewItem x:Uid="Ranking"/>
-                <NavigationViewItemSeparator x:Name="NavSeparator" Visibility="Collapsed"/>
-                <NavigationViewItem Content="PlaceHolder" x:Name="NavPlaceholder" Visibility="Collapsed" IsEnabled="False"/>
+                <NavigationViewItem x:Uid="Recommended" />
+                <NavigationViewItem x:Uid="Bookmarked" />
+                <NavigationViewItem x:Uid="Following" />
+                <NavigationViewItem x:Uid="Ranking" />
+                <NavigationViewItemSeparator x:Name="NavSeparator" Visibility="Collapsed" />
+                <NavigationViewItem
+                    x:Name="NavPlaceholder"
+                    Content="PlaceHolder"
+                    IsEnabled="False"
+                    Visibility="Collapsed" />
             </NavigationView.MenuItems>
         </NavigationView>
-        <Grid x:Name="grdTip" HorizontalAlignment="Center"
-              VerticalAlignment="Bottom" Margin="20" Visibility="Collapsed" Opacity="0">
+        <Grid
+            x:Name="grdTip"
+            Margin="20"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Bottom"
+            Opacity="0"
+            Visibility="Collapsed">
             <Grid.Background>
-                <AcrylicBrush BackgroundSource="Backdrop" TintOpacity="0.2" TintColor="White" FallbackColor="White"/>
+                <AcrylicBrush
+                    BackgroundSource="Backdrop"
+                    FallbackColor="{ThemeResource SystemAltHighColor}"
+                    TintColor="{ThemeResource SystemAltHighColor}"
+                    TintOpacity="0.2" />
             </Grid.Background>
-            <TextBlock x:Name="txtTip" Margin="10" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            <TextBlock
+                x:Name="txtTip"
+                Margin="10"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center" />
         </Grid>
     </Grid>
 </Page>
