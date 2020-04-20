@@ -79,6 +79,7 @@
                     <TextBox x:Name="tbImgur" Margin="200,0" Width="400" HorizontalAlignment="Left" TextChanged="API_TextChanged"/>
                 </Grid>
             </StackPanel>
+            <!--颜色主题-->
             <StackPanel Margin="0 10">
                 <TextBlock Margin="15 0" FontSize="18" FontWeight="Bold" x:Uid="ColorTheme"/>
                 <ComboBox Margin="15 10 15 0" Width="300" DropDownClosed="ComboBox_DropDownClosed" x:Name="cboxColorTheme">

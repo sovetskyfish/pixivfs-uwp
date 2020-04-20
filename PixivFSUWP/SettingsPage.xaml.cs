@@ -97,6 +97,7 @@ namespace PixivFSUWP
             //ApplicationDataContainer localSettings = ApplicationData.Current.LocalSettings;
             //tbSauceNAO.Text = localSettings.Values["SauceNAOAPI"] as string;//读取设置项
             //tbImgur.Text = localSettings.Values["ImgurAPI"] as string;
+            // 获取储存的颜色主题信息
             switch (ApplicationData.Current.LocalSettings.Values["ColorTheme"])
             {
                 case false:
@@ -201,6 +202,7 @@ namespace PixivFSUWP
         {
             if(sender is ComboBox cb)
             {
+                // 保存颜色主题信息
                 switch (cb.SelectedIndex)
                 {
                     case 2:
