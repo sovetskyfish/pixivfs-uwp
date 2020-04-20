@@ -695,22 +695,22 @@ Do you want to disable them?</target>
         </trans-unit>
         <trans-unit id="ColorTheme.Text" translate="yes" xml:space="preserve">
           <source>Color Theme</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">色彩佈景主題</target>
+          <target state="new">Color Theme</target>
           <note from="MultilingualBuild" annotates="source" priority="2">TextBlock</note>
         </trans-unit>
         <trans-unit id="DarkColorTheme.Content" translate="yes" xml:space="preserve">
           <source>Dark</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">深色</target>
+          <target state="new">Dark</target>
           <note from="MultilingualBuild" annotates="source" priority="2">ComboBoxItem</note>
         </trans-unit>
         <trans-unit id="DefaultColorTheme.Content" translate="yes" xml:space="preserve">
           <source>Use System Default</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">使用系統預設值</target>
+          <target state="new">Use System Default</target>
           <note from="MultilingualBuild" annotates="source" priority="2">ComboBoxItem</note>
         </trans-unit>
         <trans-unit id="LightColorTheme.Content" translate="yes" xml:space="preserve">
           <source>Light</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">精簡</target>
+          <target state="new">Light</target>
           <note from="MultilingualBuild" annotates="source" priority="2">ComboBoxItem</note>
         </trans-unit>
         <trans-unit id="RestartApplyColorTheme" translate="yes" xml:space="preserve">
