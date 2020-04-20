@@ -30,7 +30,7 @@
                         SelectionChanged="NavControl_SelectionChanged"
                         IsSettingsVisible="False" BackRequested="NavControl_BackRequested">
             <NavigationView.PaneHeader>
-                <Image Source="Assets/PixivHeader.png"/>
+                <Image Source="{ThemeResource PixivHeader}"/>
             </NavigationView.PaneHeader>
             <NavigationView.PaneFooter>
                 <StackPanel Orientation="Horizontal">
