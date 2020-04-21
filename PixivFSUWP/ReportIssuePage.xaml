@@ -20,7 +20,7 @@
             <TextBlock Margin="15,15,15,0">You are going to report an issue. We've collected some details.</TextBlock>
             <TextBlock Margin="15,5,15,0">您正准备汇报一个问题，我们收集了一些细节。</TextBlock>
         </StackPanel>
-        <ScrollViewer Margin="25,15,25,0" Background="LightGray" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+        <ScrollViewer Margin="25,15,25,0" Background="{ThemeResource SystemChromeDisabledHighColor}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
                           HorizontalScrollMode="Disabled" VerticalScrollBarVisibility="Visible" Grid.Row="1">
             <TextBlock x:Name="txtDetails" Margin="10" TextWrapping="Wrap" HorizontalAlignment="Stretch"/>
         </ScrollViewer>

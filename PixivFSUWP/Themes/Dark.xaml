@@ -4,5 +4,4 @@
     xmlns:local="using:PixivFSUWP.Themes">
     <x:String x:Key="PixivHeader">/Assets/PixivHeader_L.png</x:String>
     <x:String x:Key="PixivText">/Assets/PixivText_L.png</x:String>
-    <SolidColorBrush x:Key="WaterfallListViewItemTemplateBackground" Color="#88000000" />
 </ResourceDictionary>

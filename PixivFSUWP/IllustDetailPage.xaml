@@ -54,7 +54,7 @@
             </ListView>
             <StackPanel x:Name="stkAuthor" Margin="15,15,15,0" Height="70" Orientation="Horizontal">
                 <Button Style="{StaticResource ButtonRevealStyle}" 
-                        BorderThickness="1.5" Background="#99F3F3F3" 
+                        BorderThickness="1.5" Background="{ThemeResource SystemChromeLowColor}" 
                         VerticalAlignment="Stretch" Click="Button_Click">
                     <Grid>
                         <Grid.ColumnDefinitions>
@@ -75,7 +75,7 @@
                     </Grid>
                 </Button>
                 <Button Style="{StaticResource ButtonRevealStyle}" x:Name="btnPlay" Click="BtnPlay_Click"
-                              Margin="5,0,0,0" Background="#99F3F3F3" BorderThickness="1.5" Height="70" 
+                              Margin="5,0,0,0" Background="{ThemeResource SystemChromeLowColor}" BorderThickness="1.5" Height="70" 
                               Width="70" Visibility="Collapsed">
                     <StackPanel Margin="5">
                         <FontIcon x:Name="iconPlay" FontFamily="{StaticResource SymbolThemeFontFamily}"
@@ -84,7 +84,7 @@
                     </StackPanel>
                 </Button>
                 <Button Style="{StaticResource ButtonRevealStyle}" x:Name="btnSaveGif" Click="BtnSaveGif_Click"
-                              Margin="5,0,0,0" Background="#99F3F3F3" BorderThickness="1.5" Height="70" 
+                              Margin="5,0,0,0" Background="{ThemeResource SystemChromeLowColor}" BorderThickness="1.5" Height="70" 
                               Width="70" Visibility="Collapsed">
                     <StackPanel Margin="5">
                         <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}"
@@ -93,7 +93,7 @@
                     </StackPanel>
                 </Button>
                 <Button Style="{StaticResource ButtonRevealStyle}" 
-                              Margin="5,0,0,0" Background="#99F3F3F3" BorderThickness="1.5" Height="70" 
+                              Margin="5,0,0,0" Background="{ThemeResource SystemChromeLowColor}" BorderThickness="1.5" Height="70" 
                               Width="70">
                     <StackPanel Margin="5">
                         <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}"
@@ -109,7 +109,7 @@
                     </Button.Flyout>
                 </Button>
                 <ToggleButton x:Name="btnBookmark" Style="{StaticResource ToggleButtonRevealStyle}" 
-                              Margin="5,0,0,0" Background="#99F3F3F3" BorderThickness="1.5" Height="70" 
+                              Margin="5,0,0,0" Background="{ThemeResource SystemChromeLowColor}" BorderThickness="1.5" Height="70" 
                               Width="70" Click="BtnBookmark_Click">
                     <StackPanel Margin="5">
                         <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}"
@@ -118,7 +118,7 @@
                     </StackPanel>
                 </ToggleButton>
                 <ToggleButton x:Name="btnFollow" Style="{StaticResource ToggleButtonRevealStyle}" 
-                              Margin="5,0,0,0" Background="#99F3F3F3" BorderThickness="1.5" Height="70" 
+                              Margin="5,0,0,0" Background="{ThemeResource SystemChromeLowColor}" BorderThickness="1.5" Height="70" 
                               Width="70" Click="BtnFollow_Click">
                     <StackPanel Margin="5">
                         <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}" 
@@ -131,7 +131,7 @@
             <StackPanel Margin="15,15,15,0" Orientation="Horizontal">
                 <TextBlock x:Name="txtCommentTitle" Height="Auto" FontSize="20" FontWeight="Bold"/>
                 <ToggleButton x:Uid="NewComment" Height="Auto" Style="{StaticResource ToggleButtonRevealStyle}" Visibility="Collapsed"
-                        Margin="5,0,0,0" Background="#99F3F3F3" BorderThickness="1.5" x:Name="btnNewComment" IsChecked="False"/>
+                        Margin="5,0,0,0" Background="{ThemeResource SystemChromeLowColor}" BorderThickness="1.5" x:Name="btnNewComment" IsChecked="False"/>
             </StackPanel>
             <StackPanel Margin="17,15,15,0" Width="600" Orientation="Vertical" HorizontalAlignment="Left" Visibility="{x:Bind Path=btnNewComment.IsChecked, Mode=OneWay}">
                 <TextBox TextWrapping="Wrap" AcceptsReturn="True" x:Name="txtComment" Height="80" PlaceholderText="编写评论..."/>
@@ -144,7 +144,7 @@
                       ScrollViewer.VerticalScrollMode="Disabled" ScrollViewer.HorizontalScrollMode="Disabled">
                 <ListView.ItemTemplate>
                     <DataTemplate x:DataType="viewmodels:CommentViewModel">
-                        <Border Background="#99F3F3F3" Margin="5,10" BorderThickness="1.5">
+                        <Border Background="{ThemeResource SystemChromeLowColor}" Margin="5,10" BorderThickness="1.5">
                             <Border.BorderBrush>
                                 <RevealBorderBrush Color="Transparent" FallbackColor="LightGray"/>
                             </Border.BorderBrush>

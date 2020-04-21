@@ -30,7 +30,7 @@
                     <RowDefinition MaxHeight="50"/>
                 </Grid.RowDefinitions>
                 <Image Grid.RowSpan="2" Stretch="Uniform" Source="{Binding ImageSource}"/>
-                <Grid Grid.Row="1" Background="{ThemeResource WaterfallListViewItemTemplateBackground}">
+                <Grid Grid.Row="1" Background="{ThemeResource SystemAltMediumColor}">
                     <Grid.RowDefinitions>
                         <RowDefinition/>
                         <RowDefinition/>

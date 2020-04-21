@@ -231,7 +231,7 @@
                 </Grid>
                 <StackPanel Margin="15" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
                     <Button Style="{StaticResource ButtonRevealStyle}"
-                              Background="#99F3F3F3" BorderThickness="1.5" Height="70" 
+                              Background="{ThemeResource SystemChromeLowColor}" BorderThickness="1.5" Height="70" 
                               Width="70">
                         <StackPanel Margin="5">
                             <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}"
@@ -247,7 +247,7 @@
                         </Button.Flyout>
                     </Button>
                     <Button Style="{StaticResource ButtonRevealStyle}" x:Name="btnWorks" Click="BtnWorks_Click"
-                              Margin="5,0,0,0" Background="#99F3F3F3" BorderThickness="1.5" Height="70" IsEnabled="False"
+                              Margin="5,0,0,0" Background="{ThemeResource SystemChromeLowColor}" BorderThickness="1.5" Height="70" IsEnabled="False"
                               Width="70">
                         <StackPanel Margin="5">
                             <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}"
@@ -256,7 +256,7 @@
                         </StackPanel>
                     </Button>
                     <ToggleButton x:Name="btnFollow" Style="{StaticResource ToggleButtonRevealStyle}" 
-                              Margin="5,0,0,0" Background="#99F3F3F3" BorderThickness="1.5" Height="70" 
+                              Margin="5,0,0,0" Background="{ThemeResource SystemChromeLowColor}" BorderThickness="1.5" Height="70" 
                               Width="70" Click="BtnFollow_Click">
                         <StackPanel Margin="5">
                             <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}" 
@@ -265,7 +265,7 @@
                         </StackPanel>
                     </ToggleButton>
                     <ToggleButton x:Name="btnPin" Style="{StaticResource ToggleButtonRevealStyle}" 
-                              Margin="5,0,0,0" Background="#99F3F3F3" BorderThickness="1.5" Height="70" 
+                              Margin="5,0,0,0" Background="{ThemeResource SystemChromeLowColor}" BorderThickness="1.5" Height="70" 
                               Width="70">
                         <StackPanel Margin="5">
                             <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}" 
