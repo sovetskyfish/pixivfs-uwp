@@ -71,7 +71,7 @@
                             </Ellipse.Fill>
                         </Ellipse>
                         <TextBlock x:Name="txtAuthor" Margin="10,0" Grid.Column="1" FontSize="16" FontWeight="Bold" VerticalAlignment="Bottom"/>
-                        <TextBlock x:Name="txtAuthorAccount" Margin="10,0" Grid.Row="1" Grid.Column="1" FontSize="14" Foreground="Gray" VerticalAlignment="Top"/>
+                        <TextBlock x:Name="txtAuthorAccount" Margin="10,0" Grid.Row="1" Grid.Column="1" FontSize="14" Foreground="{ThemeResource SystemChromeDisabledLowColor}" VerticalAlignment="Top"/>
                     </Grid>
                 </Button>
                 <Button Style="{StaticResource ButtonRevealStyle}" x:Name="btnPlay" Click="BtnPlay_Click"
@@ -137,7 +137,7 @@
                 <TextBox TextWrapping="Wrap" AcceptsReturn="True" x:Name="txtComment" Height="80" PlaceholderText="编写评论..."/>
                 <StackPanel Margin="0 5 0 0" Orientation="Horizontal">
                     <Button x:Name="btnPublishComment" Click="btnPublishComment_Click">发表评论</Button>
-                    <TextBlock Margin="5 0 0 0" VerticalAlignment="Center" FontSize="12" Foreground="Gray">*请带着鼓励和建设性的态度发表评论</TextBlock>
+                    <TextBlock Margin="5 0 0 0" VerticalAlignment="Center" FontSize="12" Foreground="{ThemeResource SystemChromeDisabledLowColor}">*请带着鼓励和建设性的态度发表评论</TextBlock>
                 </StackPanel>
             </StackPanel>
             <ListView x:Name="listComments" Margin="0,15" IncrementalLoadingTrigger="None" SelectionMode="None"
@@ -170,10 +170,10 @@
                                         </Ellipse.Fill>
                                     </Ellipse>
                                     <TextBlock Margin="5,0" Grid.Column="1" FontSize="14" FontWeight="Bold" VerticalAlignment="Bottom" Text="{Binding UserName}"/>
-                                    <TextBlock Margin="5,0" Grid.Row="1" Grid.Column="1" FontSize="12" Foreground="Gray" VerticalAlignment="Top" Text="{Binding UserAccount}"/>
+                                    <TextBlock Margin="5,0" Grid.Row="1" Grid.Column="1" FontSize="12" Foreground="{ThemeResource SystemChromeDisabledLowColor}" VerticalAlignment="Top" Text="{Binding UserAccount}"/>
                                 </Grid>
                                 <TextBlock Grid.Row="1" Margin="0,5,0,0" Text="{Binding Comment}" TextWrapping="WrapWholeWords"/>
-                                <TextBlock Grid.Row="2" Margin="0,3,0,0" Text="{Binding DateTime}" FontSize="12" Foreground="Gray"/>
+                                <TextBlock Grid.Row="2" Margin="0,3,0,0" Text="{Binding DateTime}" FontSize="12" Foreground="{ThemeResource SystemChromeDisabledLowColor}"/>
                                 <ListView Grid.Row="3" Margin="10,5,0,0" Visibility="{Binding ChildrenComments,Converter={StaticResource ChildrenCommentVisibilityConverter}}"
                                           ItemsSource="{Binding ChildrenComments}" SelectionMode="None"
                                           ScrollViewer.VerticalScrollMode="Disabled" ScrollViewer.HorizontalScrollMode="Disabled">
@@ -201,10 +201,10 @@
                                                             </Ellipse.Fill>
                                                         </Ellipse>
                                                         <TextBlock Margin="5,0" Grid.Column="1" FontSize="14" FontWeight="Bold" VerticalAlignment="Bottom" Text="{Binding UserName}"/>
-                                                        <TextBlock Margin="5,0" Grid.Row="1" Grid.Column="1" FontSize="12" Foreground="Gray" VerticalAlignment="Top" Text="{Binding UserAccount}"/>
+                                                        <TextBlock Margin="5,0" Grid.Row="1" Grid.Column="1" FontSize="12" Foreground="{ThemeResource SystemChromeDisabledLowColor}" VerticalAlignment="Top" Text="{Binding UserAccount}"/>
                                                     </Grid>
                                                     <TextBlock Grid.Row="1" Text="{Binding Comment}" TextWrapping="WrapWholeWords"/>
-                                                    <TextBlock Grid.Row="2" Margin="0,3,0,0" Text="{Binding DateTime}" FontSize="12" Foreground="Gray"/>
+                                                    <TextBlock Grid.Row="2" Margin="0,3,0,0" Text="{Binding DateTime}" FontSize="12" Foreground="{ThemeResource SystemChromeDisabledLowColor}"/>
                                                 </Grid>
                                             </Border>
                                         </DataTemplate>
