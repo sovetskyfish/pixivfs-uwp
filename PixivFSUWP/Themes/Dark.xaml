@@ -4,4 +4,5 @@
     xmlns:local="using:PixivFSUWP.Themes">
     <x:String x:Key="PixivHeader">/Assets/PixivHeader_L.png</x:String>
     <x:String x:Key="PixivText">/Assets/PixivText_L.png</x:String>
+    <x:Double x:Key="PageBackGroundTintOpacity">0.5</x:Double>
 </ResourceDictionary>

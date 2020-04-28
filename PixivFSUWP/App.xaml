@@ -14,7 +14,7 @@
             </ResourceDictionary.ThemeDictionaries>
         <converters:MultiPageVisibilityConverter x:Name="MultiPageVisibilityConverter"/>
         <converters:BookmarkHeartVisibilityConverter x:Name="BookmarkHeartVisibilityConverter"/>
-        <AcrylicBrush x:Name="PageBackGround" BackgroundSource="HostBackdrop" TintColor="{ThemeResource SystemAltHighColor}" TintOpacity="0.5" FallbackColor="{ThemeResource SystemAltHighColor}"/>
+        <AcrylicBrush x:Name="PageBackGround" BackgroundSource="HostBackdrop" TintColor="{ThemeResource SystemAltHighColor}" TintOpacity="{ThemeResource PageBackGroundTintOpacity}" FallbackColor="{ThemeResource SystemAltHighColor}"/>
         <ControlTemplate x:Name="ScrollViewerScrollBarlessTemplate" TargetType="ScrollViewer">
             <Grid Background="{TemplateBinding Background}">
                 <ScrollContentPresenter x:Name="ScrollContentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Margin="{TemplateBinding Padding}"/>
