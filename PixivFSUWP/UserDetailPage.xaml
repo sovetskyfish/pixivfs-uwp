@@ -123,7 +123,7 @@
                         </Ellipse.Fill>
                     </Ellipse>
                     <TextBlock x:Name="txtAuthor" Margin="10,0" Grid.Column="1" FontSize="16" FontWeight="Bold" VerticalAlignment="Bottom"/>
-                    <TextBlock x:Name="txtAuthorAccount" Margin="10,0" Grid.Row="1" Grid.Column="1" FontSize="14" Foreground="{ThemeResource SystemChromeDisabledLowColor}" VerticalAlignment="Top"/>
+                    <TextBlock x:Name="txtAuthorAccount" Margin="10,0" Grid.Row="1" Grid.Column="1" FontSize="14" Foreground="{ThemeResource SystemBaseMediumColor}" VerticalAlignment="Top"/>
                 </Grid>
             </Button>
         </Grid>
@@ -152,7 +152,7 @@
                         </Grid>
                         <TextBlock Margin="5" x:Name="txtUsername" FontSize="20" FontWeight="Bold" 
                            HorizontalAlignment="Center"/>
-                        <TextBlock x:Name="txtAccount" FontSize="14" Foreground="{ThemeResource SystemChromeDisabledLowColor}"
+                        <TextBlock x:Name="txtAccount" FontSize="14" Foreground="{ThemeResource SystemBaseMediumColor}"
                            HorizontalAlignment="Center"/>
                     </StackPanel>
                 </Grid>

@@ -28,7 +28,7 @@
                     </Ellipse.Fill>
                 </Ellipse>
                 <TextBlock Text="{Binding DisplayName}" Margin="10,0" Grid.Column="1" VerticalAlignment="Bottom"/>
-                <TextBlock Text="{Binding Account}" Margin="10,0" Grid.Row="1" Grid.Column="1" Foreground="{ThemeResource SystemChromeDisabledLowColor}" VerticalAlignment="Top"/>
+                <TextBlock Text="{Binding Account}" Margin="10,0" Grid.Row="1" Grid.Column="1" Foreground="{ThemeResource SystemBaseMediumColor}" VerticalAlignment="Top"/>
                 <TextBlock Text="{Binding Contributions,Converter={StaticResource ContributionsConverter}}" Grid.RowSpan="2" Grid.Column="2" VerticalAlignment="Center"/>
             </Grid>
         </DataTemplate>
@@ -59,12 +59,12 @@
                 <TextBlock Margin="0,2" HorizontalTextAlignment="Left" Grid.Column="2" x:Name="txtID"/>
                 <StackPanel Margin="0,2" Grid.Row="1" Grid.Column="2" Orientation="Horizontal">
                     <TextBlock HorizontalTextAlignment="Left" x:Name="txtName"/>
-                    <TextBlock HorizontalTextAlignment="Left" x:Name="txtAccount" Foreground="{ThemeResource SystemChromeDisabledLowColor}"/>
+                    <TextBlock HorizontalTextAlignment="Left" x:Name="txtAccount" Foreground="{ThemeResource SystemBaseMediumColor}"/>
                 </StackPanel>
                 <TextBlock Margin="0,2" Grid.Row="2" Grid.Column="2" HorizontalTextAlignment="Left" x:Name="txtEmail"/>
                 <StackPanel Grid.Row="3" Grid.ColumnSpan="3">
                     <Button Style="{StaticResource ButtonRevealStyle}" BorderThickness="1.5" Margin="0,5,0,0" x:Name="btnLogout" Click="BtnLogout_Click" HorizontalAlignment="Stretch" x:Uid="Logout"/>
-                    <TextBlock FontSize="12" Foreground="{ThemeResource SystemChromeDisabledLowColor}" x:Uid="LogoutWarning"/>
+                    <TextBlock FontSize="12" Foreground="{ThemeResource SystemBaseMediumColor}" x:Uid="LogoutWarning"/>
                 </StackPanel>
             </Grid>
             <!--TODO：完善UI-->
