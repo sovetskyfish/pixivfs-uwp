@@ -135,6 +135,9 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\Pixiv_Logo.xaml.cs">
+      <DependentUpon>Pixiv_Logo.xaml</DependentUpon>
+    </Compile>
     <Compile Include="BigImage.xaml.cs">
       <DependentUpon>BigImage.xaml</DependentUpon>
     </Compile>
@@ -217,8 +220,10 @@
     <Content Include="Assets\GH_64.png" />
     <Content Include="Assets\LoginBG.jpg" />
     <Content Include="Assets\PixivHeader.png" />
+    <Content Include="Assets\PixivHeader_L.png" />
     <Content Include="Assets\PixivText.png" />
     <None Include="Package.StoreAssociation.xml" />
+    <Content Include="Assets\PixivText_L.png" />
     <Content Include="Assets\QQ_64.png" />
     <Content Include="Assets\SauceNAO.png" />
     <Content Include="Assets\Square44x44Logo.targetsize-256_altform-unplated.png" />
@@ -235,6 +240,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Controls\Pixiv_Logo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="BigImage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -262,6 +271,14 @@
     <Page Include="SettingsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\Dark.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\Light.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="UserDetailPage.xaml">
       <SubType>Designer</SubType>

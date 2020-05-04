@@ -30,7 +30,10 @@
                         SelectionChanged="NavControl_SelectionChanged"
                         IsSettingsVisible="False" BackRequested="NavControl_BackRequested">
             <NavigationView.PaneHeader>
-                <Image Source="Assets/PixivHeader.png"/>
+                <Viewbox Height="20" Margin="20 0">
+                    <ctrl:Pixiv_Logo xmlns:ctrl="using:PixivFSUWP.Controls"/>
+                </Viewbox>
+                <!--<Image Source="{ThemeResource PixivHeader}"/>-->
             </NavigationView.PaneHeader>
             <NavigationView.PaneFooter>
                 <StackPanel Orientation="Horizontal">
@@ -74,7 +77,7 @@
         <Grid x:Name="grdTip" HorizontalAlignment="Center"
               VerticalAlignment="Bottom" Margin="20" Visibility="Collapsed" Opacity="0">
             <Grid.Background>
-                <AcrylicBrush BackgroundSource="Backdrop" TintOpacity="0.2" TintColor="White" FallbackColor="White"/>
+                <AcrylicBrush BackgroundSource="Backdrop" TintOpacity="0.2" TintColor="{ThemeResource SystemAltHighColor}" FallbackColor="{ThemeResource SystemAltHighColor}"/>
             </Grid.Background>
             <TextBlock x:Name="txtTip" Margin="10" VerticalAlignment="Center" HorizontalAlignment="Center"/>
         </Grid>

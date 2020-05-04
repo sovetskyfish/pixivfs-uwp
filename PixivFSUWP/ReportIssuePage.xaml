@@ -20,7 +20,7 @@
             <TextBlock Margin="15,15,15,0">You are going to report an issue. We've collected some details.</TextBlock>
             <TextBlock Margin="15,5,15,0">您正准备汇报一个问题，我们收集了一些细节。</TextBlock>
         </StackPanel>
-        <ScrollViewer Margin="25,15,25,0" Background="LightGray" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+        <ScrollViewer Margin="25,15,25,0" Background="{ThemeResource SystemChromeDisabledHighColor}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
                           HorizontalScrollMode="Disabled" VerticalScrollBarVisibility="Visible" Grid.Row="1">
             <TextBlock x:Name="txtDetails" Margin="10" TextWrapping="Wrap" HorizontalAlignment="Stretch"/>
         </ScrollViewer>
@@ -28,7 +28,7 @@
         <StackPanel Orientation="Vertical" Grid.Row="3">
             <TextBlock Margin="25 10 25 0">Don't worry. The information you just copied does not contain any private data.</TextBlock>
             <TextBlock Margin="25 5 25 0">不要担心，您刚刚所复制的信息不会携带您的任何隐私数据。</TextBlock>
-            <Button x:Name="btnGitHub" Margin="25 15 25 0" Background="#25c6ff" HorizontalAlignment="Stretch" Click="BtnGitHub_Click">Create a new issue on GitHub (RECOMMENDED)/在GitHub上创建新的Issue（推荐）</Button>
+            <Button x:Name="btnGitHub" Margin="25 15 25 0" Background="{ThemeResource SystemAccentColor}" HorizontalAlignment="Stretch" Click="BtnGitHub_Click">Create a new issue on GitHub (RECOMMENDED)/在GitHub上创建新的Issue（推荐）</Button>
             <Button x:Name="btnEmail" Margin="25 10 25 25" HorizontalAlignment="Stretch" Click="BtnEmail_Click">Send an Email to 🐟/给🐟发送邮件</Button>
         </StackPanel>
     </Grid>

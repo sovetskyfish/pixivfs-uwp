@@ -561,4 +561,24 @@
 您想关闭它们吗？</value>
     <comment>PlainText</comment>
   </data>
+  <data name="ColorTheme.Text" xml:space="preserve">
+    <value>颜色主题</value>
+    <comment>TextBlock</comment>
+  </data>
+  <data name="DarkColorTheme.Content" xml:space="preserve">
+    <value>深色</value>
+    <comment>ComboBoxItem</comment>
+  </data>
+  <data name="DefaultColorTheme.Content" xml:space="preserve">
+    <value>跟随系统</value>
+    <comment>ComboBoxItem</comment>
+  </data>
+  <data name="LightColorTheme.Content" xml:space="preserve">
+    <value>浅色</value>
+    <comment>ComboBoxItem</comment>
+  </data>
+  <data name="RestartApplyColorTheme" xml:space="preserve">
+    <value>重新启动以应用设置</value>
+    <comment>PlainText</comment>
+  </data>
 </root>

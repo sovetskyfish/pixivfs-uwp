@@ -34,6 +34,15 @@ namespace PixivFSUWP
             this.InitializeComponent();
             this.Suspending += OnSuspending;
             this.UnhandledException += App_UnhandledException;
+            switch (localSettings.Values["ColorTheme"])
+            {
+                case false:
+                    Current.RequestedTheme = ApplicationTheme.Light;
+                    break;
+                case true:
+                    Current.RequestedTheme = ApplicationTheme.Dark;
+                    break;
+            }
         }
 
         private void App_UnhandledException(object sender, Windows.UI.Xaml.UnhandledExceptionEventArgs e)

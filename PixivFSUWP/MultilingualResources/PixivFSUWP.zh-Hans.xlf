@@ -693,6 +693,31 @@ Do you want to disable them?</source>
 您想关闭它们吗？</target>
           <note from="MultilingualBuild" annotates="source" priority="2">PlainText</note>
         </trans-unit>
+        <trans-unit id="ColorTheme.Text" translate="yes" xml:space="preserve">
+          <source>Color Theme</source>
+          <target state="translated">颜色主题</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">TextBlock</note>
+        </trans-unit>
+        <trans-unit id="DarkColorTheme.Content" translate="yes" xml:space="preserve">
+          <source>Dark</source>
+          <target state="translated">深色</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">ComboBoxItem</note>
+        </trans-unit>
+        <trans-unit id="DefaultColorTheme.Content" translate="yes" xml:space="preserve">
+          <source>Use System Default</source>
+          <target state="translated">跟随系统</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">ComboBoxItem</note>
+        </trans-unit>
+        <trans-unit id="LightColorTheme.Content" translate="yes" xml:space="preserve">
+          <source>Light</source>
+          <target state="translated">浅色</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">ComboBoxItem</note>
+        </trans-unit>
+        <trans-unit id="RestartApplyColorTheme" translate="yes" xml:space="preserve">
+          <source>Restart the application to take effect</source>
+          <target state="translated">重新启动以应用设置</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">PlainText</note>
+        </trans-unit>
       </group>
     </body>
   </file>

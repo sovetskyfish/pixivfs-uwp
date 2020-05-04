@@ -26,7 +26,7 @@
                                         <Storyboard>
                                             <ObjectAnimationUsingKeyFrames Storyboard.TargetName="RootGrid"
                                                      Storyboard.TargetProperty="Background">
-                                                <DiscreteObjectKeyFrame KeyTime="0" Value="#25c6ff" />
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemAccentColorLight1}" />
                                             </ObjectAnimationUsingKeyFrames>
                                             <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter"
                                                      Storyboard.TargetProperty="BorderBrush">
@@ -43,7 +43,7 @@
                                         <Storyboard>
                                             <ObjectAnimationUsingKeyFrames Storyboard.TargetName="RootGrid"
                                                      Storyboard.TargetProperty="Background">
-                                                <DiscreteObjectKeyFrame KeyTime="0" Value="#15b6ef" />
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemAccentColorLight2}" />
                                             </ObjectAnimationUsingKeyFrames>
                                             <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter"
                                                      Storyboard.TargetProperty="BorderBrush">
@@ -79,7 +79,7 @@
         <Grid Height="480" Width="400"
               HorizontalAlignment="Center" VerticalAlignment="Center">
             <Grid.Background>
-                <AcrylicBrush BackgroundSource="Backdrop" TintOpacity="0.4" TintColor="White" FallbackColor="#99ffffff"/>
+                <AcrylicBrush BackgroundSource="Backdrop" TintOpacity="0.4" TintColor="{ThemeResource SystemAltHighColor}" FallbackColor="{ThemeResource SystemAltMediumColor}"/>
             </Grid.Background>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
@@ -87,7 +87,11 @@
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
             <TextBlock HorizontalAlignment="Center" Margin="0,150,0,0" x:Uid="LoginBanner"/>
-            <Image Source="Assets/PixivText.png"/>
+
+            <Viewbox Margin="80 20 80 0">
+                <ctrl:Pixiv_Logo xmlns:ctrl="using:PixivFSUWP.Controls"/>
+            </Viewbox>
+            <!--<Image Source="{ThemeResource PixivText}"/>-->
             <StackPanel x:Name="stkTxts" Grid.Row="1" Margin="20,20,20,10" HorizontalAlignment="Stretch" VerticalAlignment="Center">
                 <TextBlock Margin="5" x:Uid="Username"/>
                 <TextBox x:Name="txtUserName" Margin="5"/>
@@ -96,7 +100,8 @@
             </StackPanel>
             <StackPanel x:Name="stkBtns" Margin="20,10,20,20" HorizontalAlignment="Stretch" VerticalAlignment="Center" Grid.Row="2">
                 <CheckBox x:Name="chkExperimental" x:Uid="ExperimentalConnection" Margin="5,3"/>
-                <Button x:Name="btnLogin" Click="BtnLogin_Click" Style="{StaticResource LoginButtonStyle}" Background="#25c6ff" Foreground="White" Margin="5,3" HorizontalAlignment="Stretch" x:Uid="Login"/>
+                <Button x:Name="btnLogin" Click="BtnLogin_Click" Margin="5,3" HorizontalAlignment="Stretch" x:Uid="Login"
+                        Style="{StaticResource LoginButtonStyle}" Background="{ThemeResource SystemAccentColor}" Foreground="{ThemeResource ButtonForegroundThemeBrush}"/>
                 <Button x:Name="btnReg" Click="BtnReg_Click" Margin="5,3" HorizontalAlignment="Stretch" x:Uid="Register"/>
             </StackPanel>
             <Grid x:Name="grdLoading" Margin="20" Visibility="Collapsed" Grid.Row="1" Grid.RowSpan="2">
@@ -114,7 +119,7 @@
             <Button Style="{StaticResource ButtonRevealStyleWithAcrylic}" HorizontalAlignment="Center"
                         BorderThickness="1.5" VerticalAlignment="Stretch" Click="Button_Click">
                 <Button.Background>
-                    <AcrylicBrush BackgroundSource="Backdrop" TintOpacity="0.2" TintColor="White" FallbackColor="White"/>
+                    <AcrylicBrush BackgroundSource="Backdrop" TintOpacity="0.2" TintColor="{ThemeResource SystemAltHighColor}" FallbackColor="{ThemeResource SystemAltHighColor}"/>
                 </Button.Background>
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -133,7 +138,7 @@
             <Button Style="{StaticResource ButtonRevealStyleWithAcrylic}" HorizontalAlignment="Center"
                         BorderThickness="1.5" VerticalAlignment="Stretch" x:Name="btnReport" Click="btnReport_Click">
                 <Button.Background>
-                    <AcrylicBrush BackgroundSource="Backdrop" TintOpacity="0.2" TintColor="White" FallbackColor="White"/>
+                    <AcrylicBrush BackgroundSource="Backdrop" TintOpacity="0.2" TintColor="{ThemeResource SystemAltHighColor}" FallbackColor="{ThemeResource SystemAltHighColor}"/>
                 </Button.Background>
                 <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}" 
                                   FontSize="16" Glyph="&#xED15;"/>

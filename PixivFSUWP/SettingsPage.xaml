@@ -28,7 +28,7 @@
                     </Ellipse.Fill>
                 </Ellipse>
                 <TextBlock Text="{Binding DisplayName}" Margin="10,0" Grid.Column="1" VerticalAlignment="Bottom"/>
-                <TextBlock Text="{Binding Account}" Margin="10,0" Grid.Row="1" Grid.Column="1" Foreground="Gray" VerticalAlignment="Top"/>
+                <TextBlock Text="{Binding Account}" Margin="10,0" Grid.Row="1" Grid.Column="1" Foreground="{ThemeResource SystemBaseMediumColor}" VerticalAlignment="Top"/>
                 <TextBlock Text="{Binding Contributions,Converter={StaticResource ContributionsConverter}}" Grid.RowSpan="2" Grid.Column="2" VerticalAlignment="Center"/>
             </Grid>
         </DataTemplate>
@@ -59,12 +59,12 @@
                 <TextBlock Margin="0,2" HorizontalTextAlignment="Left" Grid.Column="2" x:Name="txtID"/>
                 <StackPanel Margin="0,2" Grid.Row="1" Grid.Column="2" Orientation="Horizontal">
                     <TextBlock HorizontalTextAlignment="Left" x:Name="txtName"/>
-                    <TextBlock HorizontalTextAlignment="Left" x:Name="txtAccount" Foreground="Gray"/>
+                    <TextBlock HorizontalTextAlignment="Left" x:Name="txtAccount" Foreground="{ThemeResource SystemBaseMediumColor}"/>
                 </StackPanel>
                 <TextBlock Margin="0,2" Grid.Row="2" Grid.Column="2" HorizontalTextAlignment="Left" x:Name="txtEmail"/>
                 <StackPanel Grid.Row="3" Grid.ColumnSpan="3">
                     <Button Style="{StaticResource ButtonRevealStyle}" BorderThickness="1.5" Margin="0,5,0,0" x:Name="btnLogout" Click="BtnLogout_Click" HorizontalAlignment="Stretch" x:Uid="Logout"/>
-                    <TextBlock FontSize="12" Foreground="Gray" x:Uid="LogoutWarning"/>
+                    <TextBlock FontSize="12" Foreground="{ThemeResource SystemBaseMediumColor}" x:Uid="LogoutWarning"/>
                 </StackPanel>
             </Grid>
             <!--TODO：完善UI-->
@@ -78,6 +78,15 @@
                     <TextBlock x:Uid="ImgurAPI" Margin="20,0" HorizontalAlignment="Left" VerticalAlignment="Center" HorizontalTextAlignment="Right"/>
                     <TextBox x:Name="tbImgur" Margin="200,0" Width="400" HorizontalAlignment="Left" TextChanged="API_TextChanged"/>
                 </Grid>
+            </StackPanel>
+            <!--颜色主题-->
+            <StackPanel Margin="0 10">
+                <TextBlock Margin="15 0" FontSize="18" FontWeight="Bold" x:Uid="ColorTheme"/>
+                <ComboBox Margin="15 10 15 0" Width="300" DropDownClosed="ComboBox_DropDownClosed" x:Name="cboxColorTheme">
+                    <ComboBoxItem x:Uid="LightColorTheme"/>
+                    <ComboBoxItem x:Uid="DarkColorTheme"/>
+                    <ComboBoxItem x:Uid="DefaultColorTheme"/>
+                </ComboBox>
             </StackPanel>
             <!--缓存管理-->
             <StackPanel Margin="0,10">
