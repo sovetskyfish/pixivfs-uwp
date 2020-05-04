@@ -135,6 +135,9 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\Pixiv_Logo.xaml.cs">
+      <DependentUpon>Pixiv_Logo.xaml</DependentUpon>
+    </Compile>
     <Compile Include="BigImage.xaml.cs">
       <DependentUpon>BigImage.xaml</DependentUpon>
     </Compile>
@@ -237,6 +240,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Controls\Pixiv_Logo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="BigImage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
