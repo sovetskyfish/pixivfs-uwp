@@ -31,6 +31,7 @@ namespace PixivFSUWP.Data
         public static BookmarkIllustsCollection BookmarkList { get; private set; }
         public static FollowingIllustsCollection FollowingList { get; private set; }
         public static RankingIllustsCollection RankingList { get; private set; }
+        public static MainPage TheMainPage { get; set; }
 
         public static void RefreshRecommendList()
         {
