@@ -143,7 +143,6 @@ namespace PixivFSUWP
                 StorageFile file = await cacheFile.CopyAsync(ApplicationData.Current.LocalFolder, "WallpaperImage", NameCollisionOption.ReplaceExisting);
                 if (!await settings.TrySetWallpaperImageAsync(file))
                 {
-                    Debug.WriteLine(file.Path);
                     var messageDialog = new MessageDialog("更换壁纸失败");
                     await messageDialog.ShowAsync();
                 }
