@@ -244,16 +244,14 @@ namespace PixivFSUWP
         {
 
             var Item = e.ClickedItem as ViewModels.ImageItemViewModel;
-            var tmpFileName = illust.OriginalUrls[0].ToString().Split('/').Last();
             await Data.OverAll.ShowNewWindow(typeof(BigImage), new Data.BigImageDetail()
             {
                 Title = illust.Title,
                 Width = Item.ImageSource.PixelWidth,
                 Height = Item.ImageSource.PixelHeight,
                 Author = illust.Author,
-                Image = await Data.OverAll.ImageToBytes(Item.ImageSource),
-                ImageCache = await Data.CacheManager.GetCachedFileAsync(tmpFileName)
-        });
+                Image = await Data.OverAll.ImageToBytes(Item.ImageSource)
+            });
         }
 
         private async void ScrollViewer_ViewChanged(object sender, ScrollViewerViewChangedEventArgs e)
