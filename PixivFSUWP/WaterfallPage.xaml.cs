@@ -172,13 +172,11 @@ namespace PixivFSUWP
                         i.Stars--;
                         i.NotifyChange("StarsString");
                         i.NotifyChange("IsBookmarked");
-                        await ((Frame.Parent as Grid)?.Parent as MainPage)?.
-                            ShowTip(string.Format(GetResourceString("DeletedBookmarkPlain"), title));
+                        await TheMainPage?.ShowTip(string.Format(GetResourceString("DeletedBookmarkPlain"), title));
                     }
                     else
                     {
-                        await ((Frame.Parent as Grid)?.Parent as MainPage)?.
-                            ShowTip(string.Format(GetResourceString("BookmarkDeleteFailedPlain"), title));
+                        await TheMainPage?.ShowTip(string.Format(GetResourceString("BookmarkDeleteFailedPlain"), title));
                     }
                 }
                 else
@@ -201,13 +199,11 @@ namespace PixivFSUWP
                         i.Stars++;
                         i.NotifyChange("StarsString");
                         i.NotifyChange("IsBookmarked");
-                        await ((Frame.Parent as Grid)?.Parent as MainPage)?.
-                            ShowTip(string.Format(GetResourceString("WorkBookmarkedPlain"), title));
+                        await TheMainPage?.ShowTip(string.Format(GetResourceString("WorkBookmarkedPlain"), title));
                     }
                     else
                     {
-                        await ((Frame.Parent as Grid)?.Parent as MainPage)?.
-                            ShowTip(string.Format(GetResourceString("WorkBookmarkFailedPlain"), title));
+                        await TheMainPage?.ShowTip(string.Format(GetResourceString("WorkBookmarkFailedPlain"), title));
                     }
                 }
             }
@@ -244,17 +240,14 @@ namespace PixivFSUWP
                     }
                     var updateStatus = await CachedFileManager.CompleteUpdatesAsync(file);
                     if (updateStatus == FileUpdateStatus.Complete)
-                        await ((Frame.Parent as Grid)?.Parent as MainPage)?.
-                                ShowTip(string.Format(GetResourceString("WorkSavedPlain"), i.Title));
+                        await TheMainPage?.ShowTip(string.Format(GetResourceString("WorkSavedPlain"), i.Title));
                     else
-                        await ((Frame.Parent as Grid)?.Parent as MainPage)?.
-                                ShowTip(string.Format(GetResourceString("WorkSaveFailedPlain"), i.Title));
+                        await TheMainPage?.ShowTip(string.Format(GetResourceString("WorkSaveFailedPlain"), i.Title));
                 }
             }
             catch
             {
-                await ((Frame.Parent as Grid)?.Parent as MainPage)?.
-                                ShowTip(string.Format(GetResourceString("WorkSaveFailedPlain"), i.Title));
+                await TheMainPage?.ShowTip(string.Format(GetResourceString("WorkSaveFailedPlain"), i.Title));
             }
         }
     }

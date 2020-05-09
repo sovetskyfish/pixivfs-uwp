@@ -45,7 +45,7 @@ namespace PixivFSUWP
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
-            ((Frame.Parent as Grid)?.Parent as MainPage)?.SelectNavPlaceholder(GetResourceString("SettingsPagePlain"));
+            TheMainPage?.SelectNavPlaceholder(GetResourceString("SettingsPagePlain"));
         }
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)
@@ -54,7 +54,7 @@ namespace PixivFSUWP
             if (!_backflag)
             {
                 Data.Backstack.Default.Push(typeof(SettingsPage), null);
-                ((Frame.Parent as Grid)?.Parent as MainPage)?.UpdateNavButtonState();
+                TheMainPage?.UpdateNavButtonState();
             }
         }
 
@@ -154,7 +154,7 @@ namespace PixivFSUWP
             catch { }
             finally
             {
-                ((Frame.Parent as Grid).Parent as MainPage).Frame.Navigate(typeof(LoginPage));
+                TheMainPage.Frame.Navigate(typeof(LoginPage));
             }
         }
 
@@ -215,7 +215,7 @@ namespace PixivFSUWP
                         ApplicationData.Current.LocalSettings.Values["ColorTheme"] = true;
                         break;
                 }
-                _ = ((Frame.Parent as Grid)?.Parent as MainPage)?.ShowTip(GetResourceString("RestartApplyColorTheme"));
+                _ = TheMainPage?.ShowTip(GetResourceString("RestartApplyColorTheme"));
             }
         }
     }

@@ -39,6 +39,7 @@ namespace PixivFSUWP
             view.TitleBar.ButtonInactiveForegroundColor = Colors.Gray;
             view.Title = "";
             btnExperimentalWarning.Visibility = GlobalBaseAPI.ExperimentalConnection ? Visibility.Visible : Visibility.Collapsed;
+            TheMainPage = this;
         }
 
         bool _programmablechange = false;
