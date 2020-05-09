@@ -1,6 +1,8 @@
 ﻿using Microsoft.Graphics.Canvas;
+using PixivFSUWP.Data;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -12,6 +14,7 @@ using Windows.Graphics.Imaging;
 using Windows.Storage;
 using Windows.Storage.Pickers;
 using Windows.Storage.Provider;
+using Windows.System.UserProfile;
 using Windows.UI;
 using Windows.UI.Popups;
 using Windows.UI.ViewManagement;
@@ -129,6 +132,28 @@ namespace PixivFSUWP
                 await saveStrokes();
             else
                 await saveImage();
+        }
+
+        private async void btnSetWallpaper_Click(object sender, RoutedEventArgs e)
+        {
+            if (UserProfilePersonalizationSettings.IsSupported())
+            {
+                UserProfilePersonalizationSettings settings = UserProfilePersonalizationSettings.Current;
+                StorageFile cacheFile = await CacheManager.GetCachedFileAsync(parameter.FileName);
+                StorageFile file = await cacheFile.CopyAsync(ApplicationData.Current.LocalFolder, "WallpaperImage", NameCollisionOption.ReplaceExisting);
+                if (!await settings.TrySetWallpaperImageAsync(file))
+                {
+                    var messageDialog = new MessageDialog("更换壁纸失败");
+                    await messageDialog.ShowAsync();
+                }
+                else
+                    await ShowTip("已更换壁纸");
+            }
+            else
+            {
+                var messageDialog = new MessageDialog("您的设备不支持更换壁纸");
+                await messageDialog.ShowAsync();
+            }
         }
 
         List<(string, int)> tips = new List<(string, int)>();
@@ -254,5 +279,6 @@ namespace PixivFSUWP
                 await ShowTip(GetResourceString("NoInkPlain"));
             }
         }
+
     }
 }
