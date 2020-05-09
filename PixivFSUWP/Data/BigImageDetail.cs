@@ -15,6 +15,6 @@ namespace PixivFSUWP.Data
         public int Width { get; set; }
         public int Height { get; set; }
         public byte[] Image { get; set; }
-        public StorageFile ImageCache { get; set; }
+        public string FileName { get; set; }
     }
 }

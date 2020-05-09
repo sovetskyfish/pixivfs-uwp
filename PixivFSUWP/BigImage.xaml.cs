@@ -1,4 +1,5 @@
 ﻿using Microsoft.Graphics.Canvas;
+using PixivFSUWP.Data;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -137,8 +138,9 @@ namespace PixivFSUWP
         {
             if (UserProfilePersonalizationSettings.IsSupported())
             {
-                UserProfilePersonalizationSettings settings = UserProfilePersonalizationSettings.Current;               
-                StorageFile file = await parameter.ImageCache.CopyAsync(ApplicationData.Current.LocalFolder, "WallpaperImage", NameCollisionOption.ReplaceExisting);
+                UserProfilePersonalizationSettings settings = UserProfilePersonalizationSettings.Current;
+                StorageFile cacheFile = await CacheManager.GetCachedFileAsync(parameter.FileName);
+                StorageFile file = await cacheFile.CopyAsync(ApplicationData.Current.LocalFolder, "WallpaperImage", NameCollisionOption.ReplaceExisting);
                 if (!await settings.TrySetWallpaperImageAsync(file))
                 {
                     Debug.WriteLine(file.Path);

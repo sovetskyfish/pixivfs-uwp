@@ -252,8 +252,8 @@ namespace PixivFSUWP
                 Height = Item.ImageSource.PixelHeight,
                 Author = illust.Author,
                 Image = await Data.OverAll.ImageToBytes(Item.ImageSource),
-                ImageCache = await Data.CacheManager.GetCachedFileAsync(tmpFileName)
-        });
+                FileName = tmpFileName
+            });
         }
 
         private async void ScrollViewer_ViewChanged(object sender, ScrollViewerViewChangedEventArgs e)
