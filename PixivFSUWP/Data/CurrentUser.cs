@@ -44,9 +44,9 @@ namespace PixivFSUWP.Data
             toret.Email = Source.MailAddress;
             toret.IsMailAuthorized = Source.IsMailAuthorized;
             toret.IsPremium = Source.IsPremium;
-            toret.Avatar16 = Source.ProfileImageUrls.Px16X16.ToString();
-            toret.Avatar50 = Source.ProfileImageUrls.Px50X50.ToString();
-            toret.Avatar170 = Source.ProfileImageUrls.Px170X170.ToString();
+            toret.Avatar16 = Source.ProfileImageUrls.Px16X16?.ToString();
+            toret.Avatar50 = Source.ProfileImageUrls.Px50X50?.ToString();
+            toret.Avatar170 = Source.ProfileImageUrls.Px170X170?.ToString();
             return toret;
         }
     }

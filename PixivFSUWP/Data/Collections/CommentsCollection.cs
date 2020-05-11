@@ -72,28 +72,28 @@ namespace PixivFSUWP.Data.Collections
             {
                 if (!HasMoreItems) return new LoadMoreItemsResult() { Count = 0 };
                 LoadMoreItemsResult toret = new LoadMoreItemsResult() { Count = 0 };
-                JsonObject commentres = null;
+                PixivCS.Objects.IllustComments commentres = null;
                 try
                 {
                     if (nexturl == "begin")
                         commentres = await new PixivCS
                             .PixivAppAPI(OverAll.GlobalBaseAPI)
-                            .IllustComments(illustid, IncludeTotalComments: true);
+                            .GetIllustCommentsAsync(illustid, IncludeTotalComments: true);
                     else
                     {
                         Uri next = new Uri(nexturl);
                         string getparam(string param) => HttpUtility.ParseQueryString(next.Query).Get(param);
                         commentres = await new PixivCS
                             .PixivAppAPI(OverAll.GlobalBaseAPI)
-                            .IllustComments(illustid, getparam("offset"), bool.Parse(getparam("include_total_comments")));
+                            .GetIllustCommentsAsync(illustid, getparam("offset"), bool.Parse(getparam("include_total_comments")));
                     }
                 }
                 catch
                 {
                     return toret;
                 }
-                nexturl = commentres["next_url"].TryGetString();
-                foreach (var recillust in commentres["comments"].GetArray())
+                nexturl = commentres.NextUrl?.ToString();
+                foreach (var recillust in commentres.Comments)
                 {
                     await Task.Run(() => pause.WaitOne());
                     if (_emergencyStop)
@@ -102,7 +102,7 @@ namespace PixivFSUWP.Data.Collections
                         Clear();
                         return new LoadMoreItemsResult() { Count = 0 };
                     }
-                    IllustCommentItem recommendi = IllustCommentItem.FromJsonValue(recillust.GetObject());
+                    IllustCommentItem recommendi = IllustCommentItem.FromObject(recillust);
                     var recommendmodel = ViewModels.CommentViewModel.FromItem(recommendi);
                     //查找是否存在子回复
                     var children = from item

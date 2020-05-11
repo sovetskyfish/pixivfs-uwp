@@ -46,5 +46,25 @@ namespace PixivFSUWP.Data
             }
             return toret;
         }
+        public static IllustCommentItem FromObject(PixivCS.Objects.Comment Source)
+        {
+            IllustCommentItem toret = new IllustCommentItem();
+            toret.ID = (int)Source.Id;
+            toret.Comment = Source.CommentComment;
+            toret.DateTime = Source.Date;
+            toret.UserName = Source.User.Name;
+            toret.UserAccount = Source.User.Account;
+            toret.AvatarUrl = Source.User.ProfileImageUrls.Medium?.ToString();
+            if (Source.ParentComment.CommentComment != null)
+            {
+                //有父级评论
+                toret.ParentCommentID = (int)Source.ParentComment.Id;
+            }
+            else
+            {
+                toret.ParentCommentID = -1;
+            }
+            return toret;
+        }
     }
 }
