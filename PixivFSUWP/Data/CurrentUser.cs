@@ -34,5 +34,20 @@ namespace PixivFSUWP.Data
             toret.Avatar170 = Source["profile_image_urls"].GetObject()["px_170x170"].TryGetString();
             return toret;
         }
+
+        public static CurrentUser FromObject(PixivCS.Objects.ResponseUser Source)
+        {
+            CurrentUser toret = new CurrentUser();
+            toret.ID = Convert.ToInt32(Source.Id);
+            toret.Username = Source.Name;
+            toret.UserAccount = Source.Account;
+            toret.Email = Source.MailAddress;
+            toret.IsMailAuthorized = Source.IsMailAuthorized;
+            toret.IsPremium = Source.IsPremium;
+            toret.Avatar16 = Source.ProfileImageUrls.Px16X16.ToString();
+            toret.Avatar50 = Source.ProfileImageUrls.Px50X50.ToString();
+            toret.Avatar170 = Source.ProfileImageUrls.Px170X170.ToString();
+            return toret;
+        }
     }
 }

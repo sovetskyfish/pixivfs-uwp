@@ -101,14 +101,14 @@ namespace PixivFSUWP
             ringProgress.IsActive = true;
             grdLoading.Visibility = Visibility.Visible;
             bool success;
-            JsonObject res = null;
+            PixivCS.Objects.AuthResult res = null;
             //异步执行登录
             try
             {
                 if (useToken)
-                    res = await GlobalBaseAPI.Auth(refreshToken);
+                    res = await GlobalBaseAPI.AuthAsync(refreshToken);
                 else
-                    res = await GlobalBaseAPI.Auth(username, password);
+                    res = await GlobalBaseAPI.AuthAsync(username, password);
                 success = true;
             }
             catch
@@ -119,7 +119,7 @@ namespace PixivFSUWP
                     useToken = false;
                     try
                     {
-                        res = await GlobalBaseAPI.Auth(username, password);
+                        res = await GlobalBaseAPI.AuthAsync(username, password);
                         success = true;
                     }
                     catch
@@ -145,7 +145,7 @@ namespace PixivFSUWP
                     vault.Add(new PasswordCredential(refreshTokenResource, username, Data.OverAll.GlobalBaseAPI.RefreshToken));
                 }
                 //保存当前的身份信息
-                currentUser = Data.CurrentUser.FromJsonValue(res["response"].GetObject()["user"].GetObject());
+                currentUser = Data.CurrentUser.FromObject(res.Response.User);
                 //如果取消了登录，则避免跳转到主页面
                 if (isCancelled) resetView();
                 else Frame.Navigate(typeof(MainPage));
