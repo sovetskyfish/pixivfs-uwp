@@ -281,7 +281,7 @@ namespace PixivFSUWP
                 try
                 {
                     await new PixivAppAPI(Data.OverAll.GlobalBaseAPI)
-                        .IllustBookmarkAdd(illustID.ToString());
+                        .PostIllustBookmarkAddAsync(illustID.ToString());
                     res = true;
                 }
                 catch
@@ -305,7 +305,7 @@ namespace PixivFSUWP
                 try
                 {
                     await new PixivAppAPI(Data.OverAll.GlobalBaseAPI)
-                        .IllustBookmarkDelete(illustID.ToString());
+                        .PostIllustBookmarkDeleteAsync(illustID.ToString());
                     res = true;
                 }
                 catch
@@ -335,7 +335,7 @@ namespace PixivFSUWP
                 try
                 {
                     await new PixivAppAPI(Data.OverAll.GlobalBaseAPI)
-                        .UserFollowAdd(illust.AuthorID.ToString());
+                        .PostUserFollowAddAsync(illust.AuthorID.ToString());
                     res = true;
                 }
                 catch
@@ -358,7 +358,7 @@ namespace PixivFSUWP
                 try
                 {
                     await new PixivAppAPI(Data.OverAll.GlobalBaseAPI)
-                        .UserFollowDelete(illust.AuthorID.ToString());
+                        .PostUserFollowDeleteAsync(illust.AuthorID.ToString());
                     res = true;
                 }
                 catch
@@ -470,8 +470,8 @@ namespace PixivFSUWP
                 btnPublishComment.IsEnabled = false;
                 btnNewComment.IsEnabled = false;
                 var res = await new PixivAppAPI(Data.OverAll.GlobalBaseAPI)
-                    .IllustCommentAdd(illustID.ToString(), txtComment.Text);
-                Data.IllustCommentItem newItem = Data.IllustCommentItem.FromJsonValue(res["comment"].GetObject());
+                    .PostIllustCommentAddAsync(illustID.ToString(), txtComment.Text);
+                Data.IllustCommentItem newItem = Data.IllustCommentItem.FromObject(res.Comment);
                 ViewModels.CommentViewModel viewModel = ViewModels.CommentViewModel.FromItem(newItem);
                 _ = viewModel.LoadAvatarAsync();
                 (listComments.ItemsSource as CommentsCollection).Insert(0, viewModel);
