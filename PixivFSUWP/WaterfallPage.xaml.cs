@@ -185,7 +185,7 @@ namespace PixivFSUWP
                     try
                     {
                         await new PixivAppAPI(Data.OverAll.GlobalBaseAPI)
-                            .IllustBookmarkAdd(i.ItemId.ToString());
+                            .PostIllustBookmarkAddAsync(i.ItemId.ToString());
                         res = true;
                     }
                     catch
@@ -229,8 +229,8 @@ namespace PixivFSUWP
                 {
                     CachedFileManager.DeferUpdates(file);
                     var res = await new PixivAppAPI(Data.OverAll.GlobalBaseAPI)
-                        .IllustDetail(i.ItemId.ToString());
-                    var illust = Data.IllustDetail.FromJsonValue(res);
+                        .GetIllustDetailAsync(i.ItemId.ToString());
+                    var illust = Data.IllustDetail.FromObject(res);
                     using (var imgstream = await Data.OverAll.DownloadImage(illust.OriginalUrls[0]))
                     {
                         using (var filestream = await file.OpenAsync(FileAccessMode.ReadWrite))
