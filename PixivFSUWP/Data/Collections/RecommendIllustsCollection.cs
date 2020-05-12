@@ -23,7 +23,7 @@ namespace PixivFSUWP.Data.Collections
 
         public bool HasMoreItems
         {
-            get => nexturl != "";
+            get => !string.IsNullOrEmpty(nexturl);
         }
 
         public IAsyncOperation<LoadMoreItemsResult> LoadMoreItemsAsync(uint count)
