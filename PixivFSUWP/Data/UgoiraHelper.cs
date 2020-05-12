@@ -20,16 +20,16 @@ namespace PixivFSUWP.Data
             Dictionary<string, SoftwareBitmap> frameimgs = new Dictionary<string, SoftwareBitmap>();
             try
             {
-                var res = await new PixivAppAPI(OverAll.GlobalBaseAPI).UgoiraMetadata(IllustID);
-                if (res.Stringify().Contains("error")) return null;
-                var framesarray = res["ugoira_metadata"].GetObject()["frames"].GetArray();
+                var res = await new PixivAppAPI(OverAll.GlobalBaseAPI).GetUgoiraMetadataAsync(IllustID);
+                if (res.UgoiraMetadataUgoiraMetadata == null) return null;
+                var framesarray = res.UgoiraMetadataUgoiraMetadata.Frames;
                 foreach (var i in framesarray)
                 {
-                    var file = i.GetObject()["file"].GetString();
+                    var file = i.File;
                     framefiles.Add(file);
-                    framedelays.Add(file, (int)i.GetObject()["delay"].GetNumber());
+                    framedelays.Add(file, (int)i.Delay);
                 }
-                var zipurl = res["ugoira_metadata"].GetObject()["zip_urls"].GetObject()["medium"].GetString();
+                var zipurl = res.UgoiraMetadataUgoiraMetadata.ZipUrls.Medium?.ToString();
                 using (var zipfile = await OverAll.DownloadImage(zipurl))
                 {
                     using (ZipArchive ziparc = new ZipArchive(zipfile, ZipArchiveMode.Read))
