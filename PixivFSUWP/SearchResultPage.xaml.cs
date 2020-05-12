@@ -118,7 +118,7 @@ namespace PixivFSUWP
                     try
                     {
                         await new PixivAppAPI(Data.OverAll.GlobalBaseAPI)
-                            .IllustBookmarkDelete(i.ItemId.ToString());
+                            .PostIllustBookmarkDeleteAsync(i.ItemId.ToString());
                         res = true;
                     }
                     catch
