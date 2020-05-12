@@ -19,21 +19,6 @@ namespace PixivFSUWP.Data
         public int Width { get; set; }
         public int Height { get; set; }
 
-        public static WaterfallItem FromJsonValue(JsonObject Source)
-        {
-            var toret = new WaterfallItem();
-            toret.Id = (int)Source["id"].GetNumber();
-            toret.Title = Source["title"].TryGetString();
-            toret.Author = Source["user"].GetObject()["name"].TryGetString();
-            toret.ImageUri = Source["image_urls"].GetObject()["medium"].TryGetString();
-            toret.Stars = (int)Source["total_bookmarks"].GetNumber();
-            toret.Pages = (int)Source["page_count"].GetNumber();
-            toret.IsBookmarked = Source["is_bookmarked"].GetBoolean();
-            toret.Width = (int)Source["width"].GetNumber();
-            toret.Height = (int)Source["height"].GetNumber();
-            return toret;
-        }
-
         public static WaterfallItem FromObject(PixivCS.Objects.UserPreviewIllust Source)
         {
             var toret = new WaterfallItem();
