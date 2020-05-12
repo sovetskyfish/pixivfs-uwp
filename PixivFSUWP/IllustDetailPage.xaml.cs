@@ -112,9 +112,9 @@ namespace PixivFSUWP
                 iconStar.Visibility = Visibility.Collapsed;
                 stkAuthor.Visibility = Visibility.Collapsed;
                 var res = await new PixivAppAPI(Data.OverAll.GlobalBaseAPI)
-                    .IllustDetail(illustID.ToString());
+                    .GetIllustDetailAsync(illustID.ToString());
                 ImageList.ItemsSource = new ObservableCollection<ViewModels.ImageItemViewModel>();
-                illust = Data.IllustDetail.FromJsonValue(res);
+                illust = Data.IllustDetail.FromObject(res);
                 imgAuthor.ImageSource = await Data.OverAll.LoadImageAsync(illust.AuthorAvatarUrl);
                 txtTitle.Text = illust.Title;
                 btnBookmark.IsChecked = illust.IsBookmarked;
