@@ -62,11 +62,11 @@ namespace PixivFSUWP
         {
             try
             {
-                var res = await new PixivAppAPI(Data.OverAll.GlobalBaseAPI).TrendingTagsIllust();
-                var array = res["trend_tags"].GetArray();
+                var res = await new PixivAppAPI(Data.OverAll.GlobalBaseAPI).GetTrendingTagsIllustAsync();
+                var array = res.TrendTags;
                 List<ViewModels.TagViewModel> toret = new List<ViewModels.TagViewModel>();
                 foreach (var i in array)
-                    toret.Add(new ViewModels.TagViewModel() { Tag = i.GetObject()["tag"].GetString() });
+                    toret.Add(new ViewModels.TagViewModel() { Tag = i.Tag });
                 return toret;
             }
             catch
