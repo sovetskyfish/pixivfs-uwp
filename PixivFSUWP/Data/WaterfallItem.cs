@@ -33,5 +33,20 @@ namespace PixivFSUWP.Data
             toret.Height = (int)Source["height"].GetNumber();
             return toret;
         }
+
+        public static WaterfallItem FromObject(PixivCS.Objects.UserPreviewIllust Source)
+        {
+            var toret = new WaterfallItem();
+            toret.Id = (int)Source.Id;
+            toret.Title = Source.Title;
+            toret.Author = Source.User.Name;
+            toret.ImageUri = Source.ImageUrls.Medium?.ToString();
+            toret.Stars = (int)Source.TotalBookmarks;
+            toret.Pages = (int)Source.PageCount;
+            toret.IsBookmarked = Source.IsBookmarked;
+            toret.Width = (int)Source.Width;
+            toret.Height = (int)Source.Height;
+            return toret;
+        }
     }
 }

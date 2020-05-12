@@ -71,20 +71,20 @@ namespace PixivFSUWP.Data.Collections
             {
                 if (!HasMoreItems) return new LoadMoreItemsResult() { Count = 0 };
                 LoadMoreItemsResult toret = new LoadMoreItemsResult() { Count = 0 };
-                JsonObject bookmarkres = null;
+                PixivCS.Objects.UserIllusts bookmarkres = null;
                 try
                 {
                     if (nexturl == "begin")
                         bookmarkres = await new PixivCS
                             .PixivAppAPI(OverAll.GlobalBaseAPI)
-                            .UserBookmarksIllust(userID);
+                            .GetUserBookmarksIllustAsync(userID);
                     else
                     {
                         Uri next = new Uri(nexturl);
                         string getparam(string param) => HttpUtility.ParseQueryString(next.Query).Get(param);
                         bookmarkres = await new PixivCS
                             .PixivAppAPI(OverAll.GlobalBaseAPI)
-                            .UserBookmarksIllust(userID, getparam("restrict"),
+                            .GetUserBookmarksIllustAsync(userID, getparam("restrict"),
                             getparam("filter"), getparam("max_bookmark_id"));
                     }
                 }
@@ -92,8 +92,8 @@ namespace PixivFSUWP.Data.Collections
                 {
                     return toret;
                 }
-                nexturl = bookmarkres["next_url"].TryGetString();
-                foreach (var recillust in bookmarkres["illusts"].GetArray())
+                nexturl = bookmarkres.NextUrl?.ToString();
+                foreach (var recillust in bookmarkres.Illusts)
                 {
                     await Task.Run(() => pause.WaitOne());
                     if (_emergencyStop)
@@ -102,7 +102,7 @@ namespace PixivFSUWP.Data.Collections
                         Clear();
                         return new LoadMoreItemsResult() { Count = 0 };
                     }
-                    WaterfallItem recommendi = WaterfallItem.FromJsonValue(recillust.GetObject());
+                    WaterfallItem recommendi = WaterfallItem.FromObject(recillust);
                     var recommendmodel = ViewModels.WaterfallItemViewModel.FromItem(recommendi);
                     await recommendmodel.LoadImageAsync();
                     Add(recommendmodel);
