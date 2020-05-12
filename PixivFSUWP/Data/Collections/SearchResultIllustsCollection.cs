@@ -98,7 +98,7 @@ namespace PixivFSUWP.Data.Collections
                 {
                     return toret;
                 }
-                nexturl = searchres.NextUrl?.ToString();
+                nexturl = searchres.NextUrl?.ToString() ?? "";
                 foreach (var recillust in searchres.Illusts)
                 {
                     await Task.Run(() => pause.WaitOne());

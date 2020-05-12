@@ -41,7 +41,7 @@ namespace PixivFSUWP.Data
             toret.AuthorID = (int)Source.Illust.User.Id;
             toret.Author = Source.Illust.User.Name;
             toret.AuthorAccount = Source.Illust.User.Account;
-            toret.AuthorAvatarUrl = Source.Illust.User.ProfileImageUrls.Medium?.ToString();
+            toret.AuthorAvatarUrl = Source.Illust.User.ProfileImageUrls.Medium?.ToString() ?? "";
             toret.IsUserFollowed = Source.Illust.User.IsFollowed.HasValue ? Source.Illust.User.IsFollowed.Value : false;
             var tags = Source.Illust.Tags;
             toret.Tags = new List<string>();
@@ -52,7 +52,7 @@ namespace PixivFSUWP.Data
             foreach (var tool in tools)
                 toret.Tools.Add(tool);
             toret.CreateDate = Source.Illust.CreateDate;
-            toret.MediumUrl = Source.Illust.ImageUrls.SquareMedium?.ToString();
+            toret.MediumUrl = Source.Illust.ImageUrls.SquareMedium?.ToString() ?? "";
             var pgCount = (int)Source.Illust.PageCount;
             toret.OriginalUrls = new List<string>();
             if (pgCount == 1) toret.OriginalUrls.Add(Source.Illust.MetaSinglePage.OriginalImageUrl?.ToString());

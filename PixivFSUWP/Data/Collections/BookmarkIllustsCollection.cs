@@ -92,7 +92,7 @@ namespace PixivFSUWP.Data.Collections
                 {
                     return toret;
                 }
-                nexturl = bookmarkres.NextUrl?.ToString();
+                nexturl = bookmarkres.NextUrl?.ToString() ?? "";
                 foreach (var recillust in bookmarkres.Illusts)
                 {
                     await Task.Run(() => pause.WaitOne());

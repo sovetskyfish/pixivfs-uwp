@@ -29,7 +29,7 @@ namespace PixivFSUWP.Data
                     framefiles.Add(file);
                     framedelays.Add(file, (int)i.Delay);
                 }
-                var zipurl = res.UgoiraMetadataUgoiraMetadata.ZipUrls.Medium?.ToString();
+                var zipurl = res.UgoiraMetadataUgoiraMetadata.ZipUrls.Medium?.ToString() ?? "";
                 using (var zipfile = await OverAll.DownloadImage(zipurl))
                 {
                     using (ZipArchive ziparc = new ZipArchive(zipfile, ZipArchiveMode.Read))

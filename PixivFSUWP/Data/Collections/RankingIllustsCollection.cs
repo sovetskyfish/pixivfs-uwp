@@ -83,7 +83,7 @@ namespace PixivFSUWP.Data.Collections
                 {
                     return toret;
                 }
-                nexturl = rankingres.NextUrl?.ToString();
+                nexturl = rankingres.NextUrl?.ToString() ?? "";
                 foreach (var recillust in rankingres.Illusts)
                 {
                     await Task.Run(() => pause.WaitOne());

@@ -25,7 +25,7 @@ namespace PixivFSUWP.Data
             toret.DateTime = Source.Date;
             toret.UserName = Source.User.Name;
             toret.UserAccount = Source.User.Account;
-            toret.AvatarUrl = Source.User.ProfileImageUrls.Medium?.ToString();
+            toret.AvatarUrl = Source.User.ProfileImageUrls.Medium?.ToString() ?? "";
             if (Source.ParentComment.CommentComment != null)
             {
                 //有父级评论
