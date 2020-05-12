@@ -89,8 +89,8 @@ namespace PixivFSUWP
         async Task loadContents()
         {
             var res = await new PixivAppAPI(Data.OverAll.GlobalBaseAPI)
-                    .UserDetail(userid.ToString());
-            detail = Data.UserDetail.FromJsomValue(res);
+                    .GetUserDetailAsync(userid.ToString());
+            detail = Data.UserDetail.FromObject(res);
             string _getText(string input) => (input == "") ? GetResourceString("PrivatePlain") : input;
             txtUsername.Text = detail.Name;
             txtAuthor.Text = detail.Name;
