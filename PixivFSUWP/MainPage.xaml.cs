@@ -235,6 +235,25 @@ namespace PixivFSUWP
                             break;
                     }
                 }
+                if (param.GetType() == typeof((WaterfallPage.ListContent, int?)))
+                {
+                    _programmablechange = true;
+                    switch ((((WaterfallPage.ListContent, int?))param).Item1)
+                    {
+                        case WaterfallPage.ListContent.Recommend:
+                            NavSelect(0);
+                            break;
+                        case WaterfallPage.ListContent.Bookmark:
+                            NavSelect(1);
+                            break;
+                        case WaterfallPage.ListContent.Following:
+                            NavSelect(2);
+                            break;
+                        case WaterfallPage.ListContent.Ranking:
+                            NavSelect(3);
+                            break;
+                    }
+                }
                 UpdateNavButtonState();
             }
         }
