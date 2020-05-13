@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.Foundation;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Data;
@@ -75,6 +76,14 @@ namespace PixivFSUWP.Controls
             {
                 busyLoading = false;
             }
+        }
+
+        public void ScrollToItem(UIElement element)
+        {
+            var transform = TransformToVisual(element);
+            Point absolutePosition = transform.TransformPoint(new Point(0, 0));
+            var scrollViewer = GetTemplateChild("ScrollViewer") as ScrollViewer;
+            scrollViewer.ChangeView(null, -absolutePosition.Y - 75, null, true);
         }
     }
 }

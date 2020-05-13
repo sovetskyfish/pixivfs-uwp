@@ -20,6 +20,7 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using PixivFSUWP.Interfaces;
 using static PixivFSUWP.Data.OverAll;
+using Windows.UI.Core;
 
 // https://go.microsoft.com/fwlink/?LinkId=234238 上介绍了“空白页”项模板
 
@@ -52,10 +53,16 @@ namespace PixivFSUWP
             this.InitializeComponent();
         }
 
+        int? clicked = null;
+
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
             if (e.Parameter is ListContent) listContent = (ListContent)e.Parameter;
+            else
+            {
+                (listContent, clicked) = ((ListContent, int?))e.Parameter;
+            }
             switch (listContent)
             {
                 case ListContent.Recommend:
@@ -97,21 +104,53 @@ namespace PixivFSUWP
             base.OnNavigatedFrom(e);
             if (!_backflag)
             {
-                Data.Backstack.Default.Push(typeof(WaterfallPage), listContent);
-                ((Frame.Parent as Grid)?.Parent as MainPage)?.UpdateNavButtonState();
+                Data.Backstack.Default.Push(typeof(WaterfallPage), (listContent, clickedIndex));
+                TheMainPage?.UpdateNavButtonState();
             }
         }
 
         private void WaterfallContent_Loaded(object sender, RoutedEventArgs e)
         {
-            if (ActualWidth < 700) (sender as Controls.WaterfallContentPanel).Colums = 3;
-            else if (ActualWidth < 900) (sender as Controls.WaterfallContentPanel).Colums = 4;
-            else if (ActualWidth < 1100) (sender as Controls.WaterfallContentPanel).Colums = 5;
-            else (sender as Controls.WaterfallContentPanel).Colums = 6;
+            var WaterfallContent = sender as Controls.WaterfallContentPanel;
+            if (ActualWidth < 700) WaterfallContent.Colums = 3;
+            else if (ActualWidth < 900) WaterfallContent.Colums = 4;
+            else if (ActualWidth < 1100) WaterfallContent.Colums = 5;
+            else WaterfallContent.Colums = 6;
+            if (clicked != null)
+            {
+                _ = Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+                {
+                    try
+                    {
+                        var element = WaterfallListView.ContainerFromIndex(clicked.Value) as UIElement;
+                        WaterfallListView.ScrollToItem(element);
+                    }
+                    catch
+                    { }
+                });
+            }
         }
+
+        //记录点击的项目索引
+        int? clickedIndex = null;
 
         private void WaterfallListView_ItemClick(object sender, ItemClickEventArgs e)
         {
+            switch (listContent)
+            {
+                case ListContent.Recommend:
+                    clickedIndex = Data.OverAll.RecommendList.IndexOf(e.ClickedItem as ViewModels.WaterfallItemViewModel);
+                    break;
+                case ListContent.Bookmark:
+                    clickedIndex = Data.OverAll.BookmarkList.IndexOf(e.ClickedItem as ViewModels.WaterfallItemViewModel);
+                    break;
+                case ListContent.Following:
+                    clickedIndex = Data.OverAll.FollowingList.IndexOf(e.ClickedItem as ViewModels.WaterfallItemViewModel);
+                    break;
+                case ListContent.Ranking:
+                    clickedIndex = Data.OverAll.RankingList.IndexOf(e.ClickedItem as ViewModels.WaterfallItemViewModel);
+                    break;
+            }
             Frame.Navigate(typeof(IllustDetailPage),
                 (e.ClickedItem as ViewModels
                 .WaterfallItemViewModel).ItemId);
