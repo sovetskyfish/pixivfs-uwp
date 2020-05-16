@@ -76,7 +76,7 @@
     </Page.Resources>
     <Grid>
         <Image Source="Assets/LoginBG.jpg" Stretch="UniformToFill"/>
-        <Grid Height="480" Width="400"
+        <Grid MinHeight="480" Width="400"
               HorizontalAlignment="Center" VerticalAlignment="Center">
             <Grid.Background>
                 <AcrylicBrush BackgroundSource="Backdrop" TintOpacity="0.4" TintColor="{ThemeResource SystemAltHighColor}" FallbackColor="{ThemeResource SystemAltMediumColor}"/>
@@ -103,6 +103,8 @@
                 <Button x:Name="btnLogin" Click="BtnLogin_Click" Margin="5,3" HorizontalAlignment="Stretch" x:Uid="Login"
                         Style="{StaticResource LoginButtonStyle}" Background="{ThemeResource SystemAccentColor}" Foreground="{ThemeResource ButtonForegroundThemeBrush}"/>
                 <Button x:Name="btnReg" Click="BtnReg_Click" Margin="5,3" HorizontalAlignment="Stretch" x:Uid="Register"/>
+                <HyperlinkButton x:Name="btnTrouble" Click="BtnTrouble_Click" Grid.Row="2" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="5" x:Uid="LoginFailed"/>
+                
             </StackPanel>
             <Grid x:Name="grdLoading" Margin="20" Visibility="Collapsed" Grid.Row="1" Grid.RowSpan="2">
                 <Grid.RowDefinitions>
@@ -112,7 +114,6 @@
                 </Grid.RowDefinitions>
                 <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" x:Uid="LoggingIn"/>
                 <ProgressRing x:Name="ringProgress" IsActive="False" Margin="20" Height="100" Width="100" Grid.Row="1"/>
-                <Button x:Name="btnTrouble" Click="BtnTrouble_Click" Grid.Row="2" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="5" x:Uid="LoginFailed"/>
             </Grid>
         </Grid>
         <Grid HorizontalAlignment="Right" VerticalAlignment="Bottom">
