@@ -77,10 +77,10 @@ namespace PixivFSUWP
 
         async Task loadContents()
         {
-            var tags = await getTrendingTags();
-            progressRing.IsActive = false;
-            progressRing.Visibility = Visibility.Collapsed;
             stkMain.Visibility = Visibility.Visible;
+            var tags = await getTrendingTags();
+            //progressRing.IsActive = false;
+            progressRing.Visibility = Visibility.Collapsed;
             panelTags.ItemsSource = tags;
         }
 
@@ -102,7 +102,7 @@ namespace PixivFSUWP
                 await Task.Delay(200);
             }
             else stkMain.Visibility = Visibility.Collapsed;
-            progressRing.IsActive = true;
+            //progressRing.IsActive = true;
             progressRing.Visibility = Visibility.Visible;
             (panelTags.ItemsSource as List<ViewModels.TagViewModel>).Clear();
             panelTags.ItemsSource = null;
