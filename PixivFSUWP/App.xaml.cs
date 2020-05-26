@@ -14,6 +14,7 @@ using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
 
 namespace PixivFSUWP
@@ -24,6 +25,10 @@ namespace PixivFSUWP
     sealed partial class App : Application
     {
         Windows.Storage.ApplicationDataContainer localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
+        // 什么叫流畅设计啊(后仰
+        public static NavigationTransitionInfo FromRightTransitionInfo = new SlideNavigationTransitionInfo() { Effect = SlideNavigationTransitionEffect.FromRight };
+        public static NavigationTransitionInfo FromLeftTransitionInfo = new SlideNavigationTransitionInfo() { Effect = SlideNavigationTransitionEffect.FromLeft };
+        public static NavigationTransitionInfo DrillInTransitionInfo = new DrillInNavigationTransitionInfo();
 
         /// <summary>
         /// 初始化单一实例应用程序对象。这是执行的创作代码的第一行，
@@ -146,7 +151,7 @@ namespace PixivFSUWP
                     //}
                     //else 
                     //不再在程序起始时弹出反馈窗口
-                    rootFrame.Navigate(typeof(LoginPage), e.Arguments);
+                    rootFrame.Navigate(typeof(LoginPage), e.Arguments, App.FromRightTransitionInfo);
                 }
                 // 确保当前窗口处于活动状态
                 Window.Current.Activate();

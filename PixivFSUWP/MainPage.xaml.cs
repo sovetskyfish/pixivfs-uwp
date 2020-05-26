@@ -57,22 +57,22 @@ namespace PixivFSUWP
             {
                 case 0:
                     OverAll.RefreshRecommendList();
-                    ContentFrame.Navigate(typeof(WaterfallPage), WaterfallPage.ListContent.Recommend);
+                    ContentFrame.Navigate(typeof(WaterfallPage), WaterfallPage.ListContent.Recommend, App.FromRightTransitionInfo);
                     await HideNacPlaceHolder();
                     break;
                 case 1:
                     OverAll.RefreshBookmarkList();
-                    ContentFrame.Navigate(typeof(WaterfallPage), WaterfallPage.ListContent.Bookmark);
+                    ContentFrame.Navigate(typeof(WaterfallPage), WaterfallPage.ListContent.Bookmark, App.FromRightTransitionInfo);
                     await HideNacPlaceHolder();
                     break;
                 case 2:
                     OverAll.RefreshFollowingList();
-                    ContentFrame.Navigate(typeof(WaterfallPage), WaterfallPage.ListContent.Following);
+                    ContentFrame.Navigate(typeof(WaterfallPage), WaterfallPage.ListContent.Following, App.FromRightTransitionInfo);
                     await HideNacPlaceHolder();
                     break;
                 case 3:
                     OverAll.RefreshRankingList();
-                    ContentFrame.Navigate(typeof(WaterfallPage), WaterfallPage.ListContent.Ranking);
+                    ContentFrame.Navigate(typeof(WaterfallPage), WaterfallPage.ListContent.Ranking, App.FromRightTransitionInfo);
                     await HideNacPlaceHolder();
                     break;
             }
@@ -101,7 +101,7 @@ namespace PixivFSUWP
 
         private void BtnSetting_Click(object sender, RoutedEventArgs e)
         {
-            ContentFrame.Navigate(typeof(SettingsPage));
+            ContentFrame.Navigate(typeof(SettingsPage), null, App.FromRightTransitionInfo);
         }
 
         private async void Page_Loaded(object sender, RoutedEventArgs e)
@@ -129,7 +129,7 @@ namespace PixivFSUWP
                         {
                             var query = OverAll.AppUri.Query;
                             var id = Convert.ToInt32(query.Split('=')[1]);
-                            ContentFrame.Navigate(typeof(IllustDetailPage), id);
+                            ContentFrame.Navigate(typeof(IllustDetailPage), id, App.FromRightTransitionInfo);
                             //已经处理完了
                             OverAll.AppUri = null;
                         }
@@ -144,7 +144,7 @@ namespace PixivFSUWP
                         {
                             var query = OverAll.AppUri.Query;
                             var id = Convert.ToInt32(query.Split('=')[1]);
-                            ContentFrame.Navigate(typeof(UserDetailPage), id);
+                            ContentFrame.Navigate(typeof(UserDetailPage), id, App.FromRightTransitionInfo);
                             //已经处理完了
                             OverAll.AppUri = null;
                         }
@@ -190,7 +190,7 @@ namespace PixivFSUWP
 
         private void BtnMe_Click(object sender, RoutedEventArgs e)
         {
-            ContentFrame.Navigate(typeof(UserDetailPage), currentUser.ID);
+            ContentFrame.Navigate(typeof(UserDetailPage), currentUser.ID, App.FromRightTransitionInfo);
         }
 
         private async void BtnSearch_Click(object sender, RoutedEventArgs e)
@@ -200,7 +200,7 @@ namespace PixivFSUWP
                 if (ContentFrame.Content is SearchPage)
                     await (ContentFrame.Content as SearchPage).ShowSearch();
                 else
-                    ContentFrame.Navigate(typeof(SearchPage));
+                    ContentFrame.Navigate(typeof(SearchPage), null, App.FromRightTransitionInfo);
             }
             //吞掉异常，这个异常没有意义
             catch { }

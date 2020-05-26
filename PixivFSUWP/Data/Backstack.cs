@@ -26,7 +26,7 @@ namespace PixivFSUWP.Data
         {
             if (!CanBack) throw new InvalidOperationException();
             (var page, var param) = base.Pop();
-            Frame.Navigate(page, param);
+            Frame.Navigate(page, param, App.FromLeftTransitionInfo);
             return param;
         }
     }

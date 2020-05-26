@@ -157,7 +157,7 @@ namespace PixivFSUWP
                         param.Duration = "within_last_month";
                         break;
                 }
-                resultFrame.Navigate(typeof(SearchResultPage), param);
+                resultFrame.Navigate(typeof(SearchResultPage), param, App.FromRightTransitionInfo);
                 (resultFrame.Content as SearchResultPage).ItemsSource.CollectionChanged += ItemsSource_CollectionChanged;
             }
             storyFade.Begin();
@@ -199,25 +199,25 @@ namespace PixivFSUWP
             //读取设置项
             if (localSettings.Values["SauceNAOAPI"] as string == null)
             {
-                Frame.Navigate(typeof(SettingsPage));
+                Frame.Navigate(typeof(SettingsPage),null, App.FromRightTransitionInfo);
                 SAUCENAO_API_KEY = sauceNAOAPI;
                 return;
             }
             else if ((localSettings.Values["SauceNAOAPI"] as string).Length == 0)
             {
-                Frame.Navigate(typeof(SettingsPage));
+                Frame.Navigate(typeof(SettingsPage), null, App.FromRightTransitionInfo);
                 SAUCENAO_API_KEY = sauceNAOAPI;
                 return;
             }
             if (localSettings.Values["ImgurAPI"] as string == null)
             {
-                Frame.Navigate(typeof(SettingsPage));
+                Frame.Navigate(typeof(SettingsPage), null, App.FromRightTransitionInfo);
                 IMGUR_API_KEY = imgurAPI;
                 return;
             }
             else if ((localSettings.Values["ImgurAPI"] as string).Length == 0)
             {
-                Frame.Navigate(typeof(SettingsPage));
+                Frame.Navigate(typeof(SettingsPage), null, App.FromRightTransitionInfo);
                 IMGUR_API_KEY = imgurAPI;
                 return;
             }
@@ -241,13 +241,13 @@ namespace PixivFSUWP
             ImgurNaoAPI imgurNaoApi = new ImgurNaoAPI(SAUCENAO_API_KEY, IMGUR_API_KEY);
             string image = imgurNaoApi.UpLoad(await StorageFileExt.AsByteArray(file)).GetNamedString("link");
             int retPid = (int)imgurNaoApi.DownLoad(image).GetNamedNumber("pixiv_id");
-            Frame.Navigate(typeof(IllustDetailPage), retPid);
+            Frame.Navigate(typeof(IllustDetailPage), retPid, App.FromRightTransitionInfo);
         }
         private void GoPixivID_QuerySubmitted(AutoSuggestBox sender, AutoSuggestBoxQuerySubmittedEventArgs args)
         {
             try
             {
-                Frame.Navigate(typeof(IllustDetailPage), Convert.ToInt32(asbGTPID.Text));
+                Frame.Navigate(typeof(IllustDetailPage), Convert.ToInt32(asbGTPID.Text), App.FromRightTransitionInfo);
             }
             catch
             {
