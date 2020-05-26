@@ -235,7 +235,7 @@ namespace PixivFSUWP
                             break;
                     }
                 }
-                if (param.GetType() == typeof((WaterfallPage.ListContent, int?)))
+                if (param is ValueTuple<WaterfallPage.ListContent, int?>)
                 {
                     _programmablechange = true;
                     switch ((((WaterfallPage.ListContent, int?))param).Item1)
