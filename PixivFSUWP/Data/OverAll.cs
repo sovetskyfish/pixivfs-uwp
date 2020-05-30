@@ -31,7 +31,16 @@ namespace PixivFSUWP.Data
         public static BookmarkIllustsCollection BookmarkList { get; private set; }
         public static FollowingIllustsCollection FollowingList { get; private set; }
         public static RankingIllustsCollection RankingList { get; private set; }
+        public static SearchResultIllustsCollection SearchResultList { get; private set; }
         public static MainPage TheMainPage { get; set; }
+
+        public struct SearchParam
+        {
+            public string Word;
+            public string SearchTarget;
+            public string Sort;
+            public string Duration;
+        }
 
         public static void RefreshRecommendList()
         {
@@ -55,6 +64,17 @@ namespace PixivFSUWP.Data
         {
             RankingList?.StopLoading();
             RankingList = new RankingIllustsCollection();
+        }
+
+        public static void NewSearchResultList(SearchParam param)
+        {
+            SearchResultList?.StopLoading();
+            SearchResultList = new SearchResultIllustsCollection(param.Word, param.SearchTarget, param.Sort, param.Duration);
+        }
+
+        public static void SearchResultStop()
+        {
+            SearchResultList?.StopLoading();
         }
 
         //携带缓存的图像下载

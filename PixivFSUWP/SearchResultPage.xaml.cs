@@ -30,16 +30,6 @@ namespace PixivFSUWP
     /// </summary>
     public sealed partial class SearchResultPage : Page
     {
-        public struct SearchParam
-        {
-            public string Word;
-            public string SearchTarget;
-            public string Sort;
-            public string Duration;
-        }
-
-        SearchParam param;
-
         public SearchResultIllustsCollection ItemsSource;
 
         public SearchResultPage()
@@ -50,16 +40,14 @@ namespace PixivFSUWP
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
-            if (e.Parameter is SearchParam) param = (SearchParam)e.Parameter;
-            ItemsSource = new SearchResultIllustsCollection(param.Word, param.SearchTarget,
-                param.Sort, param.Duration);
+            ItemsSource = Data.OverAll.SearchResultList;
+            Data.OverAll.SearchResultList.ResumeLoading();
             WaterfallListView.ItemsSource = ItemsSource;
         }
 
         protected override void OnNavigatingFrom(NavigatingCancelEventArgs e)
         {
             base.OnNavigatingFrom(e);
-            ItemsSource?.StopLoading();
             ItemsSource = null;
         }
 
