@@ -241,7 +241,7 @@ namespace PixivFSUWP
             //ImgurNaoAPI imgurNaoApi = new ImgurNaoAPI(SAUCENAO_API_KEY, IMGUR_API_KEY);
             //string image = imgurNaoApi.UpLoad(await StorageFileExt.AsByteArray(file)).GetNamedString("link");
             //int retPid = (int)imgurNaoApi.DownLoad(image).GetNamedNumber("pixiv_id");
-            //Frame.Navigate(typeof(IllustDetailPage), retPid, App.FromRightTransitionInfo);
+            //Frame.Navigate(typeof(IllustDetailPage), retPid);
         }
         private void GoPixivID_QuerySubmitted(AutoSuggestBox sender, AutoSuggestBoxQuerySubmittedEventArgs args)
         {
