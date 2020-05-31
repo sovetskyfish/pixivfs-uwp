@@ -38,7 +38,7 @@ namespace PixivFSUWP
         public SearchPage()
         {
             this.InitializeComponent();
-            _ = loadContents();
+            //_ = loadContents();
         }
 
         private bool _backflag { get; set; } = false;
@@ -79,8 +79,8 @@ namespace PixivFSUWP
         async Task loadContents()
         {
             var tags = await getTrendingTags();
-            progressRing.IsActive = false;
-            progressRing.Visibility = Visibility.Collapsed;
+            //progressRing.IsActive = false;
+            //progressRing.Visibility = Visibility.Collapsed;
             stkMain.Visibility = Visibility.Visible;
             panelTags.ItemsSource = tags;
         }
@@ -95,8 +95,8 @@ namespace PixivFSUWP
             }
             else
             {
-                resultFrame.Navigate(typeof(SearchResultPage));
-                (resultFrame.Content as SearchResultPage).ItemsSource.CollectionChanged += ItemsSource_CollectionChanged;
+                resultFrame.Navigate(typeof(WaterfallPage));
+                //(resultFrame.Content as SearchResultPage).ItemsSource.CollectionChanged += ItemsSource_CollectionChanged;
                 grdSearchPanel.Visibility = Visibility.Collapsed;
                 if (txtWord.Text.Trim() != lastWord || cbSearchTarget.SelectedIndex != lastIndex1 ||
                     cbSort.SelectedIndex != lastIndex2 || cbDuration.SelectedIndex != lastIndex3)
@@ -105,8 +105,8 @@ namespace PixivFSUWP
                     lastIndex1 = cbSearchTarget.SelectedIndex;
                     lastIndex2 = cbSort.SelectedIndex;
                     lastIndex3 = cbDuration.SelectedIndex;
-                    searchProgressRing.IsActive = true;
-                    searchProgressRing.Visibility = Visibility.Visible;
+                    //searchProgressRing.IsActive = true;
+                    //searchProgressRing.Visibility = Visibility.Visible;
                 }
             }
             ((Frame.Parent as Grid)?.Parent as MainPage)?.SelectNavPlaceholder(GetResourceString("SearchPagePlain"));
@@ -116,16 +116,16 @@ namespace PixivFSUWP
         {
             if (grdSearchPanel.Visibility == Visibility.Collapsed)
             {
-                searchProgressRing.Visibility = Visibility.Collapsed;
-                searchProgressRing.IsActive = false;
+                //searchProgressRing.Visibility = Visibility.Collapsed;
+                //searchProgressRing.IsActive = false;
                 grdSearchPanel.Visibility = Visibility.Visible;
                 stkMain.Visibility = Visibility.Collapsed;
                 storyShow.Begin();
                 await Task.Delay(200);
             }
             else stkMain.Visibility = Visibility.Collapsed;
-            progressRing.IsActive = true;
-            progressRing.Visibility = Visibility.Visible;
+            //progressRing.IsActive = true;
+            //progressRing.Visibility = Visibility.Visible;
             (panelTags.ItemsSource as List<ViewModels.TagViewModel>).Clear();
             panelTags.ItemsSource = null;
             await loadContents();
@@ -137,8 +137,8 @@ namespace PixivFSUWP
             if (txtWord.Text.Trim() != lastWord || cbSearchTarget.SelectedIndex != lastIndex1 ||
                 cbSort.SelectedIndex != lastIndex2 || cbDuration.SelectedIndex != lastIndex3)
             {
-                if (resultFrame.Content != null)
-                    (resultFrame.Content as SearchResultPage).ItemsSource.CollectionChanged -= ItemsSource_CollectionChanged;
+                //if (resultFrame.Content != null)
+                    //(resultFrame.Content as SearchResultPage).ItemsSource.CollectionChanged -= ItemsSource_CollectionChanged;
                 var param = new OverAll.SearchParam()
                 {
                     Word = txtWord.Text.Trim()
@@ -180,8 +180,8 @@ namespace PixivFSUWP
                         break;
                 }
                 OverAll.NewSearchResultList(param);
-                resultFrame.Navigate(typeof(SearchResultPage));
-                (resultFrame.Content as SearchResultPage).ItemsSource.CollectionChanged += ItemsSource_CollectionChanged;
+                resultFrame.Navigate(typeof(WaterfallPage));
+                //(resultFrame.Content as WaterfallPage).ItemsSource.CollectionChanged += ItemsSource_CollectionChanged;
             }
             storyFade.Begin();
             await Task.Delay(200);
@@ -193,15 +193,9 @@ namespace PixivFSUWP
                 lastIndex1 = cbSearchTarget.SelectedIndex;
                 lastIndex2 = cbSort.SelectedIndex;
                 lastIndex3 = cbDuration.SelectedIndex;
-                searchProgressRing.IsActive = true;
-                searchProgressRing.Visibility = Visibility.Visible;
+                //searchProgressRing.IsActive = true;
+                //searchProgressRing.Visibility = Visibility.Visible;
             }
-        }
-
-        private void ItemsSource_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
-        {
-            searchProgressRing.Visibility = Visibility.Collapsed;
-            searchProgressRing.IsActive = false;
         }
 
         private void BtnTag_Click(object sender, RoutedEventArgs e)

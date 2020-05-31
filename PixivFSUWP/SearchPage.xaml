@@ -155,10 +155,10 @@
                 </ItemsControl>
             </StackPanel>
         </Grid>
-        <ProgressRing x:Name="progressRing" Margin="0 75 0 0" VerticalAlignment="Center"
+        <!--ProgressRing x:Name="progressRing" Margin="0 75 0 0" VerticalAlignment="Center"
                       HorizontalAlignment="Center" Width="75" Height="75" IsActive="True"/>
         <ProgressRing x:Name="searchProgressRing" Margin="0 75 0 0" VerticalAlignment="Center"
                       HorizontalAlignment="Center" Width="75" Height="75" IsActive="False" 
-                      Visibility="Collapsed"/>
+                      Visibility="Collapsed"/-->
     </Grid>
 </Page>
