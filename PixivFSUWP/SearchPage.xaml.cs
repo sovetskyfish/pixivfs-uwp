@@ -238,18 +238,18 @@ namespace PixivFSUWP
                 return;
             }
             // 
-            ImgurNaoAPI imgurNaoApi = new ImgurNaoAPI(SAUCENAO_API_KEY, IMGUR_API_KEY);
-            string image = imgurNaoApi.UpLoad(await StorageFileExt.AsByteArray(file)).GetNamedString("link");
-            int retPid = (int)imgurNaoApi.DownLoad(image).GetNamedNumber("pixiv_id");
-            Frame.Navigate(typeof(IllustDetailPage), retPid, App.FromRightTransitionInfo);
+            //ImgurNaoAPI imgurNaoApi = new ImgurNaoAPI(SAUCENAO_API_KEY, IMGUR_API_KEY);
+            //string image = imgurNaoApi.UpLoad(await StorageFileExt.AsByteArray(file)).GetNamedString("link");
+            //int retPid = (int)imgurNaoApi.DownLoad(image).GetNamedNumber("pixiv_id");
+            //Frame.Navigate(typeof(IllustDetailPage), retPid, App.FromRightTransitionInfo);
         }
         private void GoPixivID_QuerySubmitted(AutoSuggestBox sender, AutoSuggestBoxQuerySubmittedEventArgs args)
         {
             try
             {
-                Frame.Navigate(typeof(IllustDetailPage), Convert.ToInt32(asbGTPID.Text), App.FromRightTransitionInfo);
+                Frame.Navigate(typeof(IllustDetailPage), int.Parse(asbGTPID.Text), App.FromRightTransitionInfo);
             }
-            catch
+            catch(OverflowException)
             {
                 //吞了异常。一般是由于输入的数字过大，超过了Int32的限制导致
             }
