@@ -38,7 +38,6 @@ namespace PixivFSUWP
         public SearchPage()
         {
             this.InitializeComponent();
-            _ = loadContents();
         }
 
         private bool _backflag { get; set; } = false;
