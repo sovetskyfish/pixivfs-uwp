@@ -7,8 +7,7 @@
     xmlns:converters="using:PixivFSUWP.Converters"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    mc:Ignorable="d">
     <Page.Resources>
         <converters:ContributionsConverter x:Key="ContributionsConverter"/>
         <DataTemplate x:Key="contributorTemplate" x:DataType="viewmodels:ContributorViewModel">
