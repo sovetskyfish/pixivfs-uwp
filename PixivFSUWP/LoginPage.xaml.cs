@@ -150,17 +150,14 @@ namespace PixivFSUWP
                 if (isCancelled) resetView();
                 else Frame.Navigate(typeof(MainPage),null, App.FromRightTransitionInfo);
             }
-            else
-            {
-                resetView();
-                btnTrouble.Visibility = Visibility.Visible;
-            }
+            else btnTrouble.Visibility = Visibility.Visible;
         }
 
         private async void BtnTrouble_Click(object sender, RoutedEventArgs e)
         {
             await Launcher.LaunchUriAsync(new
                 Uri(@"https://github.com/tobiichiamane/pixivfs-uwp/blob/master/TroubleShoot.md"));
+            resetView();
         }
 
         private void resetView()
