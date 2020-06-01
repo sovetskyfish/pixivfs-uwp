@@ -75,8 +75,7 @@ namespace PixivFSUWP
         {
             (((Frame.Parent as Grid).Parent as Page).Parent as Frame)
                 .Navigate(typeof(IllustDetailPage),
-                (e.ClickedItem as ViewModels
-                .WaterfallItemViewModel).ItemId);
+                (e.ClickedItem as ViewModels.WaterfallItemViewModel).ItemId, App.FromRightTransitionInfo);
         }
 
         ViewModels.WaterfallItemViewModel tapped = null;

@@ -132,7 +132,7 @@ namespace PixivFSUWP
         {
             Frame.Navigate(typeof(IllustDetailPage),
                 (e.ClickedItem as ViewModels
-                .WaterfallItemViewModel).ItemId);
+                .WaterfallItemViewModel).ItemId, App.FromRightTransitionInfo);
         }
 
         private async void BtnWorks_Click(object sender, RoutedEventArgs e)

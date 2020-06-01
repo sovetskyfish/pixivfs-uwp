@@ -401,7 +401,7 @@ namespace PixivFSUWP
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            Frame.Navigate(typeof(UserDetailPage), illust.AuthorID);
+            Frame.Navigate(typeof(UserDetailPage), illust.AuthorID, App.FromRightTransitionInfo);
         }
 
         private void BtnPlay_Click(object sender, RoutedEventArgs e)

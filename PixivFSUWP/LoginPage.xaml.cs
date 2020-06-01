@@ -148,16 +148,19 @@ namespace PixivFSUWP
                 currentUser = Data.CurrentUser.FromObject(res.Response.User);
                 //如果取消了登录，则避免跳转到主页面
                 if (isCancelled) resetView();
-                else Frame.Navigate(typeof(MainPage));
+                else Frame.Navigate(typeof(MainPage),null, App.FromRightTransitionInfo);
             }
-            else btnTrouble.Visibility = Visibility.Visible;
+            else
+            {
+                resetView();
+                btnTrouble.Visibility = Visibility.Visible;
+            }
         }
 
         private async void BtnTrouble_Click(object sender, RoutedEventArgs e)
         {
             await Launcher.LaunchUriAsync(new
                 Uri(@"https://github.com/tobiichiamane/pixivfs-uwp/blob/master/TroubleShoot.md"));
-            resetView();
         }
 
         private void resetView()

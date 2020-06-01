@@ -154,7 +154,7 @@ namespace PixivFSUWP
             catch { }
             finally
             {
-                TheMainPage.Frame.Navigate(typeof(LoginPage));
+                TheMainPage.Frame.Navigate(typeof(LoginPage), null, App.FromRightTransitionInfo);
             }
         }
 

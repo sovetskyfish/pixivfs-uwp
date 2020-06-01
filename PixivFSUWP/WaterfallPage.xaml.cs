@@ -153,7 +153,7 @@ namespace PixivFSUWP
             }
             Frame.Navigate(typeof(IllustDetailPage),
                 (e.ClickedItem as ViewModels
-                .WaterfallItemViewModel).ItemId);
+                .WaterfallItemViewModel).ItemId, App.DrillInTransitionInfo);
         }
 
         ViewModels.WaterfallItemViewModel tapped = null;
