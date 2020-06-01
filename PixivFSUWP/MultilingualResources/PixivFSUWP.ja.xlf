@@ -27,14 +27,16 @@
           <note from="MultilingualBuild" annotates="source" priority="2">PlainText</note>
         </trans-unit>
         <trans-unit id="Bookmarked.Content" translate="yes" xml:space="preserve">
-          <source>Bookmarked</source>
-          <target state="translated">ブックマーク</target>
+          <source>Mark</source>
+          <target state="needs-review-translation">ブックマーク</target>
           <note from="MultilingualBuild" annotates="source" priority="2">NavigationViewItem</note>
+          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
         </trans-unit>
         <trans-unit id="BookmarkedPlain" translate="yes" xml:space="preserve">
-          <source>Marked</source>
-          <target state="translated">ブックマークに追加しました</target>
+          <source>Mark</source>
+          <target state="needs-review-translation">ブックマークに追加しました</target>
           <note from="MultilingualBuild" annotates="source" priority="2">PlainText</note>
+          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
         </trans-unit>
         <trans-unit id="btnAppLink.ToolTipService.ToolTip" translate="yes" xml:space="preserve">
           <source>Copy app URL</source>
@@ -132,14 +134,16 @@
           <note from="MultilingualBuild" annotates="source" priority="2">PlainText</note>
         </trans-unit>
         <trans-unit id="Following.Content" translate="yes" xml:space="preserve">
-          <source>Following</source>
-          <target state="translated">フォロー</target>
+          <source>Follow</source>
+          <target state="needs-review-translation">フォロー</target>
           <note from="MultilingualBuild" annotates="source" priority="2">NavigationViewItem</note>
+          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
         </trans-unit>
         <trans-unit id="FollowingPlain" translate="yes" xml:space="preserve">
-          <source>Followed</source>
-          <target state="translated">フォロー</target>
+          <source>Follow</source>
+          <target state="needs-review-translation">フォロー</target>
           <note from="MultilingualBuild" annotates="source" priority="2">PlainText</note>
+          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
         </trans-unit>
         <trans-unit id="FullyMatchTag.Content" translate="yes" xml:space="preserve">
           <source>Fully match tag</source>
@@ -277,24 +281,28 @@
           <note from="MultilingualBuild" annotates="source" priority="2">PlainText</note>
         </trans-unit>
         <trans-unit id="NotBookmarked.Text" translate="yes" xml:space="preserve">
-          <source>Unmarked</source>
-          <target state="translated">ブックマーク</target>
+          <source>Mark</source>
+          <target state="needs-review-translation">ブックマーク</target>
           <note from="MultilingualBuild" annotates="source" priority="2">TextBlock</note>
+          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
         </trans-unit>
         <trans-unit id="NotBookmarkedPlain" translate="yes" xml:space="preserve">
-          <source>Unmarked</source>
-          <target state="translated">ブックマーク</target>
+          <source>Mark</source>
+          <target state="needs-review-translation">ブックマーク</target>
           <note from="MultilingualBuild" annotates="source" priority="2">PlainText</note>
+          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
         </trans-unit>
         <trans-unit id="NotFollowing.Text" translate="yes" xml:space="preserve">
-          <source>Unfollowed</source>
-          <target state="translated">フォロー</target>
+          <source>Follow</source>
+          <target state="needs-review-translation">フォロー</target>
           <note from="MultilingualBuild" annotates="source" priority="2">TextBlock</note>
+          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
         </trans-unit>
         <trans-unit id="NotFollowingPlain" translate="yes" xml:space="preserve">
-          <source>Unfollowed</source>
-          <target state="translated">フォロー</target>
+          <source>Follow</source>
+          <target state="needs-review-translation">フォロー</target>
           <note from="MultilingualBuild" annotates="source" priority="2">PlainText</note>
+          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
         </trans-unit>
         <trans-unit id="OKPlain" translate="yes" xml:space="preserve">
           <source>OK</source>
@@ -332,9 +340,10 @@
           <note from="MultilingualBuild" annotates="source" priority="2">TextBlock</note>
         </trans-unit>
         <trans-unit id="PinnedPlain" translate="yes" xml:space="preserve">
-          <source>Pinned</source>
-          <target state="translated">固定された</target>
+          <source>Pin</source>
+          <target state="needs-review-translation">固定された</target>
           <note from="MultilingualBuild" annotates="source" priority="2">PlainText</note>
+          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
         </trans-unit>
         <trans-unit id="PixivUserPlain" translate="yes" xml:space="preserve">
           <source>Pixiv user</source>
@@ -542,9 +551,10 @@
           <note from="MultilingualBuild" annotates="source" priority="2">PlainText</note>
         </trans-unit>
         <trans-unit id="Unpinned.Text" translate="yes" xml:space="preserve">
-          <source>Unpinned</source>
-          <target state="translated">固定されていない</target>
+          <source>Pin</source>
+          <target state="needs-review-translation">固定されていない</target>
           <note from="MultilingualBuild" annotates="source" priority="2">TextBlock</note>
+          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
         </trans-unit>
         <trans-unit id="UserDetailPagePlain" translate="yes" xml:space="preserve">
           <source>User</source>
@@ -572,9 +582,10 @@
           <note from="MultilingualBuild" annotates="source" priority="2">TextBlock</note>
         </trans-unit>
         <trans-unit id="Work.Text" translate="yes" xml:space="preserve">
-          <source>Workd</source>
-          <target state="translated">作品</target>
+          <source>Works</source>
+          <target state="needs-review-translation">作品</target>
           <note from="MultilingualBuild" annotates="source" priority="2">TextBlock</note>
+          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
         </trans-unit>
         <trans-unit id="WorkBookmarkedPlain" translate="yes" xml:space="preserve">
           <source>「{0}」bookmarked</source>
