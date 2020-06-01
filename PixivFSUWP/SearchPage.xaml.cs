@@ -31,9 +31,9 @@ namespace PixivFSUWP
     public sealed partial class SearchPage : Page, IGoBackFlag
     {
         string lastWord = null;
-        int lastIndex1 = -1;
-        int lastIndex2 = -1;
-        int lastIndex3 = -1;
+        int lastSearchTarget = -1;
+        int lastSort = -1;
+        int lastDuration = -1;
 
         public SearchPage()
         {
@@ -104,8 +104,8 @@ namespace PixivFSUWP
             {
                 resultFrame.Navigate(typeof(WaterfallPage), e.Parameter);
                 grdSearchPanel.Visibility = Visibility.Collapsed;
-                if (txtWord.Text.Trim() != lastWord || cbSearchTarget.SelectedIndex != lastIndex1 ||
-                    cbSort.SelectedIndex != lastIndex2 || cbDuration.SelectedIndex != lastIndex3)
+                if (txtWord.Text.Trim() != lastWord || cbSearchTarget.SelectedIndex != lastSearchTarget ||
+                    cbSort.SelectedIndex != lastSort || cbDuration.SelectedIndex != lastDuration)
                 {
                     lastWord = txtWord.Text.Trim();
                     lastSearchTarget = cbSearchTarget.SelectedIndex;
@@ -138,8 +138,8 @@ namespace PixivFSUWP
         private async void TxtWord_QuerySubmitted(AutoSuggestBox sender, AutoSuggestBoxQuerySubmittedEventArgs args)
         {
             if (string.IsNullOrWhiteSpace(txtWord.Text)) return;
-            if (txtWord.Text.Trim() != lastWord || cbSearchTarget.SelectedIndex != lastIndex1 ||
-                cbSort.SelectedIndex != lastIndex2 || cbDuration.SelectedIndex != lastIndex3)
+            if (txtWord.Text.Trim() != lastWord || cbSearchTarget.SelectedIndex != lastSearchTarget ||
+                cbSort.SelectedIndex != lastSort || cbDuration.SelectedIndex != lastDuration)
             {
                 if (resultFrame.Content != null)
                     (resultFrame.Content as WaterfallPage).ItemsSource.CollectionChanged -= ItemsSource_CollectionChanged;
@@ -190,13 +190,13 @@ namespace PixivFSUWP
             storyFade.Begin();
             await Task.Delay(200);
             grdSearchPanel.Visibility = Visibility.Collapsed;
-            if (txtWord.Text.Trim() != lastWord || cbSearchTarget.SelectedIndex != lastIndex1 ||
-                cbSort.SelectedIndex != lastIndex2 || cbDuration.SelectedIndex != lastIndex3)
+            if (txtWord.Text.Trim() != lastWord || cbSearchTarget.SelectedIndex != lastSearchTarget ||
+                cbSort.SelectedIndex != lastSort || cbDuration.SelectedIndex != lastDuration)
             {
                 lastWord = txtWord.Text.Trim();
-                lastIndex1 = cbSearchTarget.SelectedIndex;
-                lastIndex2 = cbSort.SelectedIndex;
-                lastIndex3 = cbDuration.SelectedIndex;
+                lastSearchTarget = cbSearchTarget.SelectedIndex;
+                lastSort = cbSort.SelectedIndex;
+                lastDuration = cbDuration.SelectedIndex;
                 searchProgressRing.IsActive = true;
                 searchProgressRing.Visibility = Visibility.Visible;
             }
