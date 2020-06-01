@@ -108,9 +108,9 @@ namespace PixivFSUWP
                     cbSort.SelectedIndex != lastIndex2 || cbDuration.SelectedIndex != lastIndex3)
                 {
                     lastWord = txtWord.Text.Trim();
-                    lastIndex1 = cbSearchTarget.SelectedIndex;
-                    lastIndex2 = cbSort.SelectedIndex;
-                    lastIndex3 = cbDuration.SelectedIndex;
+                    lastSearchTarget = cbSearchTarget.SelectedIndex;
+                    lastSort = cbSort.SelectedIndex;
+                    lastDuration = cbDuration.SelectedIndex;
                 }
             }
             ((Frame.Parent as Grid)?.Parent as MainPage)?.SelectNavPlaceholder(GetResourceString("SearchPagePlain"));
