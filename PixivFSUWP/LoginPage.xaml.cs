@@ -148,7 +148,7 @@ namespace PixivFSUWP
                 currentUser = Data.CurrentUser.FromObject(res.Response.User);
                 //如果取消了登录，则避免跳转到主页面
                 if (isCancelled) resetView();
-                else Frame.Navigate(typeof(MainPage));
+                else Frame.Navigate(typeof(MainPage),null, App.FromRightTransitionInfo);
             }
             else btnTrouble.Visibility = Visibility.Visible;
         }

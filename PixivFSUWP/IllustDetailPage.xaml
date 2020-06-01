@@ -8,8 +8,7 @@
     xmlns:converters="using:PixivFSUWP.Converters"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d" SizeChanged="Page_SizeChanged"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    mc:Ignorable="d" SizeChanged="Page_SizeChanged">
     <Page.Resources>
         <converters:ChildrenCommentVisibilityConverter x:Name="ChildrenCommentVisibilityConverter"/>
     </Page.Resources>

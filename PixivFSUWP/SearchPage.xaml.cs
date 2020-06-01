@@ -19,7 +19,6 @@ using Windows.UI.Xaml.Media.Imaging;
 using PixivFSUWP.Interfaces;
 using static PixivFSUWP.Data.OverAll;
 using Windows.Data.Json;
-using PixivFSUWP.Data;
 
 // https://go.microsoft.com/fwlink/?LinkId=234238 上介绍了“空白页”项模板
 
@@ -38,7 +37,7 @@ namespace PixivFSUWP
         public SearchPage()
         {
             this.InitializeComponent();
-            //_ = loadContents();
+            _ = loadContents();
         }
 
         private bool _backflag { get; set; } = false;
@@ -51,17 +50,10 @@ namespace PixivFSUWP
         protected override void OnNavigatedFrom(NavigationEventArgs e)
         {
             base.OnNavigatedFrom(e);
+            (resultFrame.Content as SearchResultPage)?.ItemsSource?.StopLoading();
             if (!_backflag)
             {
-                if (e.Parameter is ValueTuple<int, int?> tuple)
-                {
-                    Data.Backstack.Default.Push
-                        (typeof(SearchPage),
-                        new ValueTuple<WaterfallPage.ListContent, int?>
-                        (WaterfallPage.ListContent.SearchResult, tuple.Item2));
-                }
-                else
-                    Data.Backstack.Default.Push(typeof(SearchPage), WaterfallPage.ListContent.SearchResult);
+                Data.Backstack.Default.Push(typeof(SearchPage), null);
                 ((Frame.Parent as Grid)?.Parent as MainPage)?.UpdateNavButtonState();
             }
         }
@@ -85,37 +77,16 @@ namespace PixivFSUWP
 
         async Task loadContents()
         {
+            stkMain.Visibility = Visibility.Visible;
             var tags = await getTrendingTags();
             //progressRing.IsActive = false;
-            //progressRing.Visibility = Visibility.Collapsed;
-            stkMain.Visibility = Visibility.Visible;
+            progressRing.Visibility = Visibility.Collapsed;
             panelTags.ItemsSource = tags;
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
-            if (e.Parameter is WaterfallPage.ListContent)
-            {
-                _ = loadContents();
-                SearchResultList?.StopLoading();
-            }
-            else if(e.Parameter is ValueTuple<WaterfallPage.ListContent,int?>)
-            {
-                resultFrame.Navigate(typeof(WaterfallPage), e.Parameter); ;
-                //(resultFrame.Content as WaterfallPage).ItemsSource.CollectionChanged += ItemsSource_CollectionChanged;
-                grdSearchPanel.Visibility = Visibility.Collapsed;
-                if (txtWord.Text.Trim() != lastWord || cbSearchTarget.SelectedIndex != lastIndex1 ||
-                    cbSort.SelectedIndex != lastIndex2 || cbDuration.SelectedIndex != lastIndex3)
-                {
-                    lastWord = txtWord.Text.Trim();
-                    lastIndex1 = cbSearchTarget.SelectedIndex;
-                    lastIndex2 = cbSort.SelectedIndex;
-                    lastIndex3 = cbDuration.SelectedIndex;
-                    //searchProgressRing.IsActive = true;
-                    //searchProgressRing.Visibility = Visibility.Visible;
-                }
-            }
             ((Frame.Parent as Grid)?.Parent as MainPage)?.SelectNavPlaceholder(GetResourceString("SearchPagePlain"));
         }
 
@@ -123,8 +94,8 @@ namespace PixivFSUWP
         {
             if (grdSearchPanel.Visibility == Visibility.Collapsed)
             {
-                //searchProgressRing.Visibility = Visibility.Collapsed;
-                //searchProgressRing.IsActive = false;
+                searchProgressRing.Visibility = Visibility.Collapsed;
+                searchProgressRing.IsActive = false;
                 grdSearchPanel.Visibility = Visibility.Visible;
                 stkMain.Visibility = Visibility.Collapsed;
                 storyShow.Begin();
@@ -132,7 +103,7 @@ namespace PixivFSUWP
             }
             else stkMain.Visibility = Visibility.Collapsed;
             //progressRing.IsActive = true;
-            //progressRing.Visibility = Visibility.Visible;
+            progressRing.Visibility = Visibility.Visible;
             (panelTags.ItemsSource as List<ViewModels.TagViewModel>).Clear();
             panelTags.ItemsSource = null;
             await loadContents();
@@ -144,9 +115,9 @@ namespace PixivFSUWP
             if (txtWord.Text.Trim() != lastWord || cbSearchTarget.SelectedIndex != lastIndex1 ||
                 cbSort.SelectedIndex != lastIndex2 || cbDuration.SelectedIndex != lastIndex3)
             {
-                //if (resultFrame.Content != null)
-                    //(resultFrame.Content as WaterfallPage).ItemsSource.CollectionChanged -= ItemsSource_CollectionChanged;
-                var param = new OverAll.SearchParam()
+                if (resultFrame.Content != null)
+                    (resultFrame.Content as SearchResultPage).ItemsSource.CollectionChanged -= ItemsSource_CollectionChanged;
+                var param = new SearchResultPage.SearchParam()
                 {
                     Word = txtWord.Text.Trim()
                 };
@@ -186,9 +157,8 @@ namespace PixivFSUWP
                         param.Duration = "within_last_month";
                         break;
                 }
-                OverAll.RefreshSearchResultList(param);
-                resultFrame.Navigate(typeof(WaterfallPage), WaterfallPage.ListContent.SearchResult);
-                //(resultFrame.Content as WaterfallPage).ItemsSource.CollectionChanged += ItemsSource_CollectionChanged;
+                resultFrame.Navigate(typeof(SearchResultPage), param, App.FromRightTransitionInfo);
+                (resultFrame.Content as SearchResultPage).ItemsSource.CollectionChanged += ItemsSource_CollectionChanged;
             }
             storyFade.Begin();
             await Task.Delay(200);
@@ -200,9 +170,15 @@ namespace PixivFSUWP
                 lastIndex1 = cbSearchTarget.SelectedIndex;
                 lastIndex2 = cbSort.SelectedIndex;
                 lastIndex3 = cbDuration.SelectedIndex;
-                //searchProgressRing.IsActive = true;
-                //searchProgressRing.Visibility = Visibility.Visible;
+                searchProgressRing.IsActive = true;
+                searchProgressRing.Visibility = Visibility.Visible;
             }
+        }
+
+        private void ItemsSource_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        {
+            searchProgressRing.Visibility = Visibility.Collapsed;
+            searchProgressRing.IsActive = false;
         }
 
         private void BtnTag_Click(object sender, RoutedEventArgs e)
@@ -223,25 +199,25 @@ namespace PixivFSUWP
             //读取设置项
             if (localSettings.Values["SauceNAOAPI"] as string == null)
             {
-                Frame.Navigate(typeof(SettingsPage));
+                Frame.Navigate(typeof(SettingsPage),null, App.FromRightTransitionInfo);
                 SAUCENAO_API_KEY = sauceNAOAPI;
                 return;
             }
             else if ((localSettings.Values["SauceNAOAPI"] as string).Length == 0)
             {
-                Frame.Navigate(typeof(SettingsPage));
+                Frame.Navigate(typeof(SettingsPage), null, App.FromRightTransitionInfo);
                 SAUCENAO_API_KEY = sauceNAOAPI;
                 return;
             }
             if (localSettings.Values["ImgurAPI"] as string == null)
             {
-                Frame.Navigate(typeof(SettingsPage));
+                Frame.Navigate(typeof(SettingsPage), null, App.FromRightTransitionInfo);
                 IMGUR_API_KEY = imgurAPI;
                 return;
             }
             else if ((localSettings.Values["ImgurAPI"] as string).Length == 0)
             {
-                Frame.Navigate(typeof(SettingsPage));
+                Frame.Navigate(typeof(SettingsPage), null, App.FromRightTransitionInfo);
                 IMGUR_API_KEY = imgurAPI;
                 return;
             }
@@ -271,9 +247,9 @@ namespace PixivFSUWP
         {
             try
             {
-                Frame.Navigate(typeof(IllustDetailPage), Convert.ToInt32(asbGTPID.Text));
+                Frame.Navigate(typeof(IllustDetailPage), int.Parse(asbGTPID.Text), App.FromRightTransitionInfo);
             }
-            catch
+            catch(OverflowException)
             {
                 //吞了异常。一般是由于输入的数字过大，超过了Int32的限制导致
             }

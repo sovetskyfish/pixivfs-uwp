@@ -134,11 +134,11 @@
     <comment>PlainText</comment>
   </data>
   <data name="Bookmarked.Content" xml:space="preserve">
-    <value>Bookmarked</value>
+    <value>Mark</value>
     <comment>NavigationViewItem</comment>
   </data>
   <data name="BookmarkedPlain" xml:space="preserve">
-    <value>Marked</value>
+    <value>Mark</value>
     <comment>PlainText</comment>
   </data>
   <data name="btnAppLink.ToolTipService.ToolTip" xml:space="preserve">
@@ -271,11 +271,11 @@ Do you want to disable them?</value>
     <comment>PlainText</comment>
   </data>
   <data name="Following.Content" xml:space="preserve">
-    <value>Following</value>
+    <value>Follow</value>
     <comment>NavigationViewItem</comment>
   </data>
   <data name="FollowingPlain" xml:space="preserve">
-    <value>Followed</value>
+    <value>Follow</value>
     <comment>PlainText</comment>
   </data>
   <data name="FullyMatchTag.Content" xml:space="preserve">
@@ -411,19 +411,19 @@ Do you want to disable them?</value>
     <comment>PlainText</comment>
   </data>
   <data name="NotBookmarked.Text" xml:space="preserve">
-    <value>Unmarked</value>
+    <value>Mark</value>
     <comment>TextBlock</comment>
   </data>
   <data name="NotBookmarkedPlain" xml:space="preserve">
-    <value>Unmarked</value>
+    <value>Mark</value>
     <comment>PlainText</comment>
   </data>
   <data name="NotFollowing.Text" xml:space="preserve">
-    <value>Unfollowed</value>
+    <value>Follow</value>
     <comment>TextBlock</comment>
   </data>
   <data name="NotFollowingPlain" xml:space="preserve">
-    <value>Unfollowed</value>
+    <value>Follow</value>
     <comment>PlainText</comment>
   </data>
   <data name="OKPlain" xml:space="preserve">
@@ -455,7 +455,7 @@ Do you want to disable them?</value>
     <comment>TextBlock</comment>
   </data>
   <data name="PinnedPlain" xml:space="preserve">
-    <value>Pinned</value>
+    <value>Pin</value>
     <comment>PlainText</comment>
   </data>
   <data name="PixivUserPlain" xml:space="preserve">
@@ -639,7 +639,7 @@ Do you want to disable them?</value>
     <comment>PlainText</comment>
   </data>
   <data name="Unpinned.Text" xml:space="preserve">
-    <value>Unpinned</value>
+    <value>Pin</value>
     <comment>TextBlock</comment>
   </data>
   <data name="UserDetailPagePlain" xml:space="preserve">
@@ -663,7 +663,7 @@ Do you want to disable them?</value>
     <comment>TextBlock</comment>
   </data>
   <data name="Work.Text" xml:space="preserve">
-    <value>Workd</value>
+    <value>Works</value>
     <comment>TextBlock</comment>
   </data>
   <data name="WorkBookmarkedPlain" xml:space="preserve">
