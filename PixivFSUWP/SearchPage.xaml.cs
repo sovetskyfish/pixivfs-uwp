@@ -53,8 +53,15 @@ namespace PixivFSUWP
             base.OnNavigatedFrom(e);
             if (!_backflag)
             {
-                Data.Backstack.Default.Push(typeof(SearchPage), null);
-                Data.OverAll.SearchResultList?.PauseLoading();
+                if (e.Parameter is ValueTuple<int, int?> tuple)
+                {
+                    Data.Backstack.Default.Push
+                        (typeof(SearchPage),
+                        new ValueTuple<WaterfallPage.ListContent, int?>
+                        (WaterfallPage.ListContent.SearchResult, tuple.Item2));
+                }
+                else
+                    Data.Backstack.Default.Push(typeof(SearchPage), WaterfallPage.ListContent.SearchResult);
                 ((Frame.Parent as Grid)?.Parent as MainPage)?.UpdateNavButtonState();
             }
         }
@@ -88,15 +95,15 @@ namespace PixivFSUWP
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
-            if (e?.Parameter is Frame)
+            if (e.Parameter is WaterfallPage.ListContent)
             {
                 _ = loadContents();
                 SearchResultList?.StopLoading();
             }
-            else
+            else if(e.Parameter is ValueTuple<WaterfallPage.ListContent,int?>)
             {
-                resultFrame.Navigate(typeof(WaterfallPage));
-                //(resultFrame.Content as SearchResultPage).ItemsSource.CollectionChanged += ItemsSource_CollectionChanged;
+                resultFrame.Navigate(typeof(WaterfallPage), e.Parameter); ;
+                //(resultFrame.Content as WaterfallPage).ItemsSource.CollectionChanged += ItemsSource_CollectionChanged;
                 grdSearchPanel.Visibility = Visibility.Collapsed;
                 if (txtWord.Text.Trim() != lastWord || cbSearchTarget.SelectedIndex != lastIndex1 ||
                     cbSort.SelectedIndex != lastIndex2 || cbDuration.SelectedIndex != lastIndex3)
@@ -138,7 +145,7 @@ namespace PixivFSUWP
                 cbSort.SelectedIndex != lastIndex2 || cbDuration.SelectedIndex != lastIndex3)
             {
                 //if (resultFrame.Content != null)
-                    //(resultFrame.Content as SearchResultPage).ItemsSource.CollectionChanged -= ItemsSource_CollectionChanged;
+                    //(resultFrame.Content as WaterfallPage).ItemsSource.CollectionChanged -= ItemsSource_CollectionChanged;
                 var param = new OverAll.SearchParam()
                 {
                     Word = txtWord.Text.Trim()
@@ -179,8 +186,8 @@ namespace PixivFSUWP
                         param.Duration = "within_last_month";
                         break;
                 }
-                OverAll.NewSearchResultList(param);
-                resultFrame.Navigate(typeof(WaterfallPage));
+                OverAll.RefreshSearchResultList(param);
+                resultFrame.Navigate(typeof(WaterfallPage), WaterfallPage.ListContent.SearchResult);
                 //(resultFrame.Content as WaterfallPage).ItemsSource.CollectionChanged += ItemsSource_CollectionChanged;
             }
             storyFade.Begin();

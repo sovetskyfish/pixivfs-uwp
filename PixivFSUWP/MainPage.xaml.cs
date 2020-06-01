@@ -190,7 +190,7 @@ namespace PixivFSUWP
 
         private void BtnMe_Click(object sender, RoutedEventArgs e)
         {
-            ContentFrame.Navigate(typeof(UserDetailPage), currentUser.ID);
+            ContentFrame.Navigate(typeof(UserDetailPage), new ValueTuple<int, bool>(currentUser.ID, true));
         }
 
         private async void BtnSearch_Click(object sender, RoutedEventArgs e)
@@ -200,7 +200,7 @@ namespace PixivFSUWP
                 if (ContentFrame.Content is SearchPage)
                     await (ContentFrame.Content as SearchPage).ShowSearch();
                 else
-                    ContentFrame.Navigate(typeof(SearchPage),ContentFrame);
+                    ContentFrame.Navigate(typeof(SearchPage), WaterfallPage.ListContent.SearchResult);
             }
             //吞掉异常，这个异常没有意义
             catch { }

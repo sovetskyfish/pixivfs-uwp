@@ -37,7 +37,8 @@ namespace PixivFSUWP
             Recommend,
             Bookmark,
             Following,
-            Ranking
+            Ranking,
+            SearchResult,
         }
 
         public SearchResultIllustsCollection ItemsSource;
@@ -60,38 +61,34 @@ namespace PixivFSUWP
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
-            if(e.Parameter != null)
+            if (e.Parameter is ListContent) listContent = (ListContent)e.Parameter;
+            else if(e.Parameter is ValueTuple<ListContent,int?> tuple)
             {
-                if (e.Parameter is ListContent) listContent = (ListContent)e.Parameter;
-                else
-                {
-                    (listContent, clicked) = ((ListContent, int?))e.Parameter;
-                }
-                switch (listContent)
-                {
-                    case ListContent.Recommend:
-                        WaterfallListView.ItemsSource = Data.OverAll.RecommendList;
-                        Data.OverAll.RecommendList.ResumeLoading();
-                        break;
-                    case ListContent.Bookmark:
-                        WaterfallListView.ItemsSource = Data.OverAll.BookmarkList;
-                        Data.OverAll.BookmarkList.ResumeLoading();
-                        break;
-                    case ListContent.Following:
-                        WaterfallListView.ItemsSource = Data.OverAll.FollowingList;
-                        Data.OverAll.FollowingList.ResumeLoading();
-                        break;
-                    case ListContent.Ranking:
-                        WaterfallListView.ItemsSource = Data.OverAll.RankingList;
-                        Data.OverAll.RankingList.ResumeLoading();
-                        break;
-                }
+                (listContent, clicked) = tuple;
             }
-            else
+            switch (listContent)
             {
-                ItemsSource = Data.OverAll.SearchResultList;
-                Data.OverAll.SearchResultList.ResumeLoading();
-                WaterfallListView.ItemsSource = ItemsSource;
+                case ListContent.Recommend:
+                    WaterfallListView.ItemsSource = Data.OverAll.RecommendList;
+                    Data.OverAll.RecommendList.ResumeLoading();
+                    break;
+                case ListContent.Bookmark:
+                    WaterfallListView.ItemsSource = Data.OverAll.BookmarkList;
+                    Data.OverAll.BookmarkList.ResumeLoading();
+                    break;
+                case ListContent.Following:
+                    WaterfallListView.ItemsSource = Data.OverAll.FollowingList;
+                    Data.OverAll.FollowingList.ResumeLoading();
+                    break;
+                case ListContent.Ranking:
+                    WaterfallListView.ItemsSource = Data.OverAll.RankingList;
+                    Data.OverAll.RankingList.ResumeLoading();
+                    break;
+                case ListContent.SearchResult:
+                    ItemsSource = Data.OverAll.SearchResultList;
+                    Data.OverAll.SearchResultList.ResumeLoading();
+                    WaterfallListView.ItemsSource = ItemsSource;
+                    break;
             }
         }
 
@@ -110,6 +107,9 @@ namespace PixivFSUWP
                     break;
                 case ListContent.Ranking:
                     Data.OverAll.RankingList.PauseLoading();
+                    break;
+                case ListContent.SearchResult:
+                    Data.OverAll.SearchResultList.PauseLoading();
                     break;
             }
             base.OnNavigatedFrom(e);
@@ -162,12 +162,16 @@ namespace PixivFSUWP
                 case ListContent.Ranking:
                     clickedIndex = Data.OverAll.RankingList.IndexOf(e.ClickedItem as ViewModels.WaterfallItemViewModel);
                     break;
+                case ListContent.SearchResult:
+                    clickedIndex = Data.OverAll.SearchResultList.IndexOf(e.ClickedItem as ViewModels.WaterfallItemViewModel);
+                    break;
             }
-            if(ItemsSource != null)
+
+            if (ItemsSource != null)
                 (((Frame.Parent as Grid).Parent as Page).Parent as Frame)
                 .Navigate(typeof(IllustDetailPage),
-                (e.ClickedItem as ViewModels
-                .WaterfallItemViewModel).ItemId);  
+                (new ValueTuple<int, int?>((e.ClickedItem as ViewModels
+                .WaterfallItemViewModel).ItemId, clickedIndex)));
             else
                 Frame.Navigate(typeof(IllustDetailPage),
                 (e.ClickedItem as ViewModels

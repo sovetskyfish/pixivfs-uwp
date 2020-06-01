@@ -21,6 +21,8 @@ using Windows.Storage.Provider;
 using PixivFSUWP.Interfaces;
 using static PixivFSUWP.Data.OverAll;
 using PixivFSUWP.Data.Collections;
+using PixivFSUWP.Data;
+using Windows.System;
 
 // https://go.microsoft.com/fwlink/?LinkId=234238 上介绍了“空白页”项模板
 
@@ -66,22 +68,37 @@ namespace PixivFSUWP
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             TheMainPage?.SelectNavPlaceholder(GetResourceString("UserDetailPagePlain"));
-            userid = (int)e.Parameter;
-            itemsSource = new UserIllustsCollection(userid.ToString());
+
+            //治标不治本的加载逻辑……反正个人插画也不会太多,全部重载就好)
+            if (e.Parameter is ValueTuple<int, bool> tuple) 
+            {
+                Data.OverAll.UserList?.StopLoading();
+                userid = tuple.Item1;
+                _ = loadContents();
+                //Data.OverAll.RefreshUserList(userid.ToString()); 治 本 (需删除85行并修改Collection中的瀑布流控制逻辑)
+            }
+            else if(e.Parameter is int id)
+            {
+                userid = id;
+                grdDetail.Visibility = Visibility.Collapsed;
+            }
+            Data.OverAll.RefreshUserList(userid.ToString()); //治 标
+            Data.OverAll.UserList.ResumeLoading();
+            itemsSource = OverAll.UserList;
             itemsSource.CollectionChanged += ItemsSource_CollectionChanged;
             WaterfallListView.ItemsSource = itemsSource;
             base.OnNavigatedTo(e);
-            _ = loadContents();
         }
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)
         {
-            itemsSource?.StopLoading();
+            OverAll.UserList?.StopLoading();
             itemsSource = null;
             base.OnNavigatedFrom(e);
             if (!_backflag)
             {
                 Data.Backstack.Default.Push(typeof(UserDetailPage), userid);
+                Data.OverAll.UserList.PauseLoading();
                 TheMainPage?.UpdateNavButtonState();
             }
         }
