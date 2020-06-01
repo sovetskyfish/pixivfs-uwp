@@ -171,7 +171,8 @@ namespace PixivFSUWP
                 (((Frame.Parent as Grid).Parent as Page).Parent as Frame)
                 .Navigate(typeof(IllustDetailPage),
                 (new ValueTuple<int, int?>((e.ClickedItem as ViewModels
-                .WaterfallItemViewModel).ItemId, clickedIndex)));
+                .WaterfallItemViewModel).ItemId, clickedIndex)), 
+                App.DrillInTransitionInfo);
             else
                 Frame.Navigate(typeof(IllustDetailPage),
                 (e.ClickedItem as ViewModels

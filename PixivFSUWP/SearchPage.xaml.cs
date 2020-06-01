@@ -19,6 +19,7 @@ using Windows.UI.Xaml.Media.Imaging;
 using PixivFSUWP.Interfaces;
 using static PixivFSUWP.Data.OverAll;
 using Windows.Data.Json;
+using PixivFSUWP.Data;
 
 // https://go.microsoft.com/fwlink/?LinkId=234238 上介绍了“空白页”项模板
 
@@ -50,12 +51,20 @@ namespace PixivFSUWP
         protected override void OnNavigatedFrom(NavigationEventArgs e)
         {
             base.OnNavigatedFrom(e);
-            (resultFrame.Content as SearchResultPage)?.ItemsSource?.StopLoading();
             if (!_backflag)
             {
-                Data.Backstack.Default.Push(typeof(SearchPage), null);
-                ((Frame.Parent as Grid)?.Parent as MainPage)?.UpdateNavButtonState();
+                Data.OverAll.SearchResultList?.PauseLoading();
+                if (e.Parameter is ValueTuple<int, int?> tuple)
+                {
+                    Data.Backstack.Default.Push
+                        (typeof(SearchPage),
+                        new ValueTuple<WaterfallPage.ListContent, int?>
+                        (WaterfallPage.ListContent.SearchResult, tuple.Item2));
+                }
+                else
+                    Data.Backstack.Default.Push(typeof(SearchPage), WaterfallPage.ListContent.SearchResult);               
             }
+            ((Frame.Parent as Grid)?.Parent as MainPage)?.UpdateNavButtonState();
         }
 
         async Task<List<ViewModels.TagViewModel>> getTrendingTags()
@@ -87,6 +96,24 @@ namespace PixivFSUWP
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
+            if (e.Parameter is WaterfallPage.ListContent)
+            {
+                _ = loadContents();
+                SearchResultList?.StopLoading();
+            }
+            else if (e.Parameter is ValueTuple<WaterfallPage.ListContent, int?>)
+            {
+                resultFrame.Navigate(typeof(WaterfallPage), e.Parameter);
+                grdSearchPanel.Visibility = Visibility.Collapsed;
+                if (txtWord.Text.Trim() != lastWord || cbSearchTarget.SelectedIndex != lastIndex1 ||
+                    cbSort.SelectedIndex != lastIndex2 || cbDuration.SelectedIndex != lastIndex3)
+                {
+                    lastWord = txtWord.Text.Trim();
+                    lastIndex1 = cbSearchTarget.SelectedIndex;
+                    lastIndex2 = cbSort.SelectedIndex;
+                    lastIndex3 = cbDuration.SelectedIndex;
+                }
+            }
             ((Frame.Parent as Grid)?.Parent as MainPage)?.SelectNavPlaceholder(GetResourceString("SearchPagePlain"));
         }
 
@@ -116,8 +143,8 @@ namespace PixivFSUWP
                 cbSort.SelectedIndex != lastIndex2 || cbDuration.SelectedIndex != lastIndex3)
             {
                 if (resultFrame.Content != null)
-                    (resultFrame.Content as SearchResultPage).ItemsSource.CollectionChanged -= ItemsSource_CollectionChanged;
-                var param = new SearchResultPage.SearchParam()
+                    (resultFrame.Content as WaterfallPage).ItemsSource.CollectionChanged -= ItemsSource_CollectionChanged;
+                var param = new OverAll.SearchParam()
                 {
                     Word = txtWord.Text.Trim()
                 };
@@ -157,8 +184,9 @@ namespace PixivFSUWP
                         param.Duration = "within_last_month";
                         break;
                 }
-                resultFrame.Navigate(typeof(SearchResultPage), param, App.FromRightTransitionInfo);
-                (resultFrame.Content as SearchResultPage).ItemsSource.CollectionChanged += ItemsSource_CollectionChanged;
+                OverAll.RefreshSearchResultList(param);
+                resultFrame.Navigate(typeof(WaterfallPage), WaterfallPage.ListContent.SearchResult, App.FromRightTransitionInfo);
+                (resultFrame.Content as WaterfallPage).ItemsSource.CollectionChanged += ItemsSource_CollectionChanged;
             }
             storyFade.Begin();
             await Task.Delay(200);
