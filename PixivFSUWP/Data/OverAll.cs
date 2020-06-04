@@ -17,6 +17,7 @@ using PixivCS;
 using Windows.Data.Json;
 using System.Linq;
 using PixivFSUWP.Data.Collections;
+using System.Threading;
 
 namespace PixivFSUWP.Data
 {
@@ -58,7 +59,10 @@ namespace PixivFSUWP.Data
         }
 
         //携带缓存的图像下载
-        public static async Task<MemoryStream> DownloadImage(string Uri)
+        public static async Task<MemoryStream> DownloadImage(string Uri, ManualResetEvent PauseEvent = null, Func<long, long, Task> ProgressCallback = null)
+            => await DownloadImage(Uri, CancellationToken.None, PauseEvent, ProgressCallback);
+
+        public static async Task<MemoryStream> DownloadImage(string Uri, CancellationToken CancellationToken, ManualResetEvent PauseEvent = null, Func<long, long, Task> ProgressCallback = null)
         {
             //var Uri = _Uri;
             //if (Uri.StartsWith("https"))
@@ -70,12 +74,24 @@ namespace PixivFSUWP.Data
             if (cachedFile == null)
             {
                 //没有对应的缓存文件
-                using (var resStream = await (await new PixivAppAPI(GlobalBaseAPI).RequestCall("GET",
-                      Uri, new Dictionary<string, string>() { { "Referer", "https://app-api.pixiv.net/" } })).
-                      Content.ReadAsStreamAsync())
+                var res = await new PixivAppAPI(GlobalBaseAPI).RequestCall("GET",
+                      Uri, new Dictionary<string, string>() { { "Referer", "https://app-api.pixiv.net/" } });
+                //读取长度
+                var length = res.Content.Headers.ContentLength.Value;
+                using (var resStream = await res.Content.ReadAsStreamAsync())
                 {
                     var memStream = new MemoryStream();
-                    await resStream.CopyToAsync(memStream);
+                    memStream.Position = 0;
+                    var bytesCounter = 0L;
+                    int bytesRead;
+                    byte[] buffer = new byte[4096];
+                    while ((bytesRead = await resStream.ReadAsync(buffer, 0, 4096, CancellationToken)) != 0)
+                    {
+                        PauseEvent?.WaitOne();
+                        bytesCounter += bytesRead;
+                        await memStream.WriteAsync(buffer, 0, bytesRead, CancellationToken);
+                        _ = ProgressCallback?.Invoke(bytesCounter, length);
+                    }
                     memStream.Position = 0;
                     var newCachedFile = await CacheManager.CreateCacheFileAsync(tmpFileName);
                     using (var fileStream = await newCachedFile.Value.File.OpenStreamForWriteAsync())
@@ -92,6 +108,8 @@ namespace PixivFSUWP.Data
                 {
                     var memStream = new MemoryStream();
                     await fileStream.CopyToAsync(memStream);
+                    var length = memStream.Length;
+                    _ = ProgressCallback?.Invoke(length, length);
                     memStream.Position = 0;
                     return memStream;
                 }
