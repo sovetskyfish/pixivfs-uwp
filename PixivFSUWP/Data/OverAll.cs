@@ -77,7 +77,7 @@ namespace PixivFSUWP.Data
                 var res = await new PixivAppAPI(GlobalBaseAPI).RequestCall("GET",
                       Uri, new Dictionary<string, string>() { { "Referer", "https://app-api.pixiv.net/" } });
                 //读取长度
-                var length = res.Content.Headers.ContentLength.Value;
+                var length = res.Content.Headers.ContentLength ?? -1;
                 using (var resStream = await res.Content.ReadAsStreamAsync())
                 {
                     var memStream = new MemoryStream();
