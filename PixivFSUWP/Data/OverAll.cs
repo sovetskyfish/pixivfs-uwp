@@ -96,7 +96,10 @@ namespace PixivFSUWP.Data
                         }
                     }
                     catch (TaskCanceledException)
-                    { }
+                    {
+                        memStream.Position = 0;
+                        return memStream;
+                    }
                     catch
                     {
                         throw;
