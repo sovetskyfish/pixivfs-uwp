@@ -148,7 +148,7 @@
                                 <controls:TagsPanel.ChildrenTransitions>
                                     <TransitionCollection>
                                         <PopupThemeTransition FromVerticalOffset="150"/>
-                                        <AddDeleteThemeTransition/>
+                                        <!--<AddDeleteThemeTransition/>-->
                                     </TransitionCollection>
                                 </controls:TagsPanel.ChildrenTransitions>
                             </controls:TagsPanel>
