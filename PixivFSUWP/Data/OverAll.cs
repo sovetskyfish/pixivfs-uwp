@@ -85,12 +85,21 @@ namespace PixivFSUWP.Data
                     var bytesCounter = 0L;
                     int bytesRead;
                     byte[] buffer = new byte[4096];
-                    while ((bytesRead = await resStream.ReadAsync(buffer, 0, 4096, CancellationToken)) != 0)
+                    try
                     {
-                        PauseEvent?.WaitOne();
-                        bytesCounter += bytesRead;
-                        await memStream.WriteAsync(buffer, 0, bytesRead, CancellationToken);
-                        _ = ProgressCallback?.Invoke(bytesCounter, length);
+                        while ((bytesRead = await resStream.ReadAsync(buffer, 0, 4096, CancellationToken)) != 0)
+                        {
+                            PauseEvent?.WaitOne();
+                            bytesCounter += bytesRead;
+                            await memStream.WriteAsync(buffer, 0, bytesRead, CancellationToken);
+                            _ = ProgressCallback?.Invoke(bytesCounter, length);
+                        }
+                    }
+                    catch (TaskCanceledException)
+                    { }
+                    catch
+                    {
+                        throw;
                     }
                     memStream.Position = 0;
                     var newCachedFile = await CacheManager.CreateCacheFileAsync(tmpFileName);
