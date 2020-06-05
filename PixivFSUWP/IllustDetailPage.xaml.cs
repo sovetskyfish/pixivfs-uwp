@@ -51,6 +51,8 @@ namespace PixivFSUWP
         bool _busy = false;
         bool _playing = true;
 
+        CancellationTokenSource cancellation = new CancellationTokenSource();
+
         public IllustDetailPage()
         {
             this.InitializeComponent();
@@ -87,6 +89,7 @@ namespace PixivFSUWP
         protected override void OnNavigatedFrom(NavigationEventArgs e)
         {
             _emergencyStop = true;
+            cancellation.Cancel();
             ugoiraPlayer.Source = null;
             if (!_busy)
                 (ImageList.ItemsSource as ObservableCollection<ViewModels.ImageItemViewModel>)?.Clear();
@@ -115,7 +118,7 @@ namespace PixivFSUWP
                     .GetIllustDetailAsync(illustID.ToString());
                 ImageList.ItemsSource = new ObservableCollection<ViewModels.ImageItemViewModel>();
                 illust = Data.IllustDetail.FromObject(res);
-                imgAuthor.ImageSource = await Data.OverAll.LoadImageAsync(illust.AuthorAvatarUrl);
+                imgAuthor.ImageSource = await Data.OverAll.LoadImageAsync(illust.AuthorAvatarUrl, cancellation.Token);
                 txtTitle.Text = illust.Title;
                 btnBookmark.IsChecked = illust.IsBookmarked;
                 btnFollow.IsChecked = illust.IsUserFollowed;
@@ -165,7 +168,7 @@ namespace PixivFSUWP
                     btnSaveGif.IsEnabled = false;
                     btnSaveGif.Visibility = Visibility.Visible;
                     txtLoadingStatus.Text = GetResourceString("LoadingPreviewPlain");
-                    ugoiraPlayer.Source = await Data.OverAll.LoadImageAsync(illust.OriginalUrls[0]);
+                    ugoiraPlayer.Source = await Data.OverAll.LoadImageAsync(illust.OriginalUrls[0], cancellation.Token);
                     txtLoadingStatus.Text = GetResourceString("DownloadingUgoiraPlain");
                     if (_emergencyStop)
                     {
@@ -181,6 +184,7 @@ namespace PixivFSUWP
                 else
                 {
                     int counter = 0;
+                    txtLoadingProgress.Visibility = Visibility.Visible;
                     foreach (var i in illust.OriginalUrls)
                     {
                         if (_emergencyStop)
@@ -191,14 +195,26 @@ namespace PixivFSUWP
                         (ImageList.ItemsSource as ObservableCollection<ViewModels.ImageItemViewModel>)
                             .Add(new ViewModels.ImageItemViewModel()
                             {
-                                ImageSource = await Data.OverAll.LoadImageAsync(i, 1, 1)
+                                ImageSource = await Data.OverAll.LoadImageAsync(i, 1, 1, cancellation.Token, null, async (loaded, length) =>
+                                {
+                                    await Task.Run(async () =>
+                                    {
+                                        int progress = (int)(loaded * 100 / length);
+                                        await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
+                                        {
+                                            txtLoadingProgress.Text = $"{progress}%";
+                                        });
+                                    });
+                                })
                             });
                     }
+                    txtLoadingProgress.Visibility = Visibility.Collapsed;
                     txtLoadingStatus.Text = string.Format(GetResourceString("PageInfoPlain"), illust.OriginalUrls.Count);
                 }
             }
             finally
             {
+                txtLoadingProgress.Visibility = Visibility.Collapsed;
                 _busy = false;
                 if (_emergencyStop)
                 {

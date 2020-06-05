@@ -21,7 +21,10 @@
                 <FontIcon x:Name="iconStar" Margin="15,0,0,3" FontFamily="{StaticResource SymbolThemeFontFamily}" FontSize="10" Glyph="&#xE734;" VerticalAlignment="Bottom"/>
                 <TextBlock x:Name="txtBookmarkStatus" Margin="3,0,0,0" FontSize="12" VerticalAlignment="Bottom"/>
             </StackPanel>
-            <TextBlock x:Name="txtLoadingStatus" Margin="15,15,0,0" FontSize="12" VerticalAlignment="Bottom"/>
+            <StackPanel Margin="15,15,0,0" VerticalAlignment="Bottom" Orientation="Horizontal">
+                <TextBlock x:Name="txtLoadingStatus" FontSize="12"/>
+                <TextBlock x:Name="txtLoadingProgress" Margin="5,0,0,0" FontSize="12" Visibility="Collapsed"/>
+            </StackPanel>
             <Image x:Name="ugoiraPlayer" HorizontalAlignment="Left" Margin="15,10,0,0" MaxHeight="1" Visibility="Collapsed"/>
             <ListView ScrollViewer.VerticalScrollBarVisibility="Disabled" 
                       ScrollViewer.HorizontalScrollBarVisibility="Hidden"
