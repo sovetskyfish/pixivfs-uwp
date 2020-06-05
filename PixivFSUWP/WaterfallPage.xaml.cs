@@ -21,6 +21,7 @@ using Windows.UI.Xaml.Navigation;
 using PixivFSUWP.Interfaces;
 using static PixivFSUWP.Data.OverAll;
 using Windows.UI.Core;
+using PixivFSUWP.Data.Collections;
 
 // https://go.microsoft.com/fwlink/?LinkId=234238 上介绍了“空白页”项模板
 
@@ -36,9 +37,11 @@ namespace PixivFSUWP
             Recommend,
             Bookmark,
             Following,
-            Ranking
+            Ranking,
+            SearchResult,
         }
 
+        public SearchResultIllustsCollection ItemsSource;
         private bool _backflag { get; set; } = false;
 
         public void SetBackFlag(bool value)
@@ -59,9 +62,9 @@ namespace PixivFSUWP
         {
             base.OnNavigatedTo(e);
             if (e.Parameter is ListContent) listContent = (ListContent)e.Parameter;
-            else
+            else if(e.Parameter is ValueTuple<ListContent,int?> tuple)
             {
-                (listContent, clicked) = ((ListContent, int?))e.Parameter;
+                (listContent, clicked) = tuple;
             }
             switch (listContent)
             {
@@ -80,6 +83,11 @@ namespace PixivFSUWP
                 case ListContent.Ranking:
                     WaterfallListView.ItemsSource = Data.OverAll.RankingList;
                     Data.OverAll.RankingList.ResumeLoading();
+                    break;
+                case ListContent.SearchResult:
+                    ItemsSource = Data.OverAll.SearchResultList;
+                    Data.OverAll.SearchResultList.ResumeLoading();
+                    WaterfallListView.ItemsSource = ItemsSource;
                     break;
             }
         }
@@ -100,6 +108,9 @@ namespace PixivFSUWP
                 case ListContent.Ranking:
                     Data.OverAll.RankingList.PauseLoading();
                     break;
+                case ListContent.SearchResult:
+                    Data.OverAll.SearchResultList.PauseLoading();
+                    break;
             }
             base.OnNavigatedFrom(e);
             if (!_backflag)
@@ -107,6 +118,7 @@ namespace PixivFSUWP
                 Data.Backstack.Default.Push(typeof(WaterfallPage), (listContent, clickedIndex));
                 TheMainPage?.UpdateNavButtonState();
             }
+            ItemsSource = null;
         }
 
         private void WaterfallContent_Loaded(object sender, RoutedEventArgs e)
@@ -150,8 +162,19 @@ namespace PixivFSUWP
                 case ListContent.Ranking:
                     clickedIndex = Data.OverAll.RankingList.IndexOf(e.ClickedItem as ViewModels.WaterfallItemViewModel);
                     break;
+                case ListContent.SearchResult:
+                    clickedIndex = Data.OverAll.SearchResultList.IndexOf(e.ClickedItem as ViewModels.WaterfallItemViewModel);
+                    break;
             }
-            Frame.Navigate(typeof(IllustDetailPage),
+
+            if (ItemsSource != null)
+                (((Frame.Parent as Grid).Parent as Page).Parent as Frame)
+                .Navigate(typeof(IllustDetailPage),
+                (new ValueTuple<int, int?>((e.ClickedItem as ViewModels
+                .WaterfallItemViewModel).ItemId, clickedIndex)), 
+                App.DrillInTransitionInfo);
+            else
+                Frame.Navigate(typeof(IllustDetailPage),
                 (e.ClickedItem as ViewModels
                 .WaterfallItemViewModel).ItemId, App.DrillInTransitionInfo);
         }

@@ -80,7 +80,15 @@ namespace PixivFSUWP
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             ((Frame.Parent as Grid)?.Parent as MainPage)?.SelectNavPlaceholder(GetResourceString("DetailPlain"));
-            illustID = (int)e.Parameter;
+            //为了适配SearchResult的参数传递而添加这个判断
+            if(e.Parameter is int id)
+            {
+                illustID = id;
+            }
+            else if(e.Parameter is ValueTuple<int,int?> param)
+            {
+                illustID = param.Item1;
+            }
             //System.Diagnostics.Debug.WriteLine("View Pixiv ID = " + illustID.ToString());
             base.OnNavigatedTo(e);
             _ = loadContent();
@@ -417,7 +425,7 @@ namespace PixivFSUWP
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            Frame.Navigate(typeof(UserDetailPage), illust.AuthorID, App.FromRightTransitionInfo);
+            Frame.Navigate(typeof(UserDetailPage), new ValueTuple<int, bool>(illust.AuthorID, true), App.FromRightTransitionInfo);
         }
 
         private void BtnPlay_Click(object sender, RoutedEventArgs e)

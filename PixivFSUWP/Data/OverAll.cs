@@ -32,7 +32,17 @@ namespace PixivFSUWP.Data
         public static BookmarkIllustsCollection BookmarkList { get; private set; }
         public static FollowingIllustsCollection FollowingList { get; private set; }
         public static RankingIllustsCollection RankingList { get; private set; }
+        public static SearchResultIllustsCollection SearchResultList { get; private set; }
+        public static UserIllustsCollection UserList { get; private set; }
         public static MainPage TheMainPage { get; set; }
+
+        public struct SearchParam
+        {
+            public string Word;
+            public string SearchTarget;
+            public string Sort;
+            public string Duration;
+        }
 
         public static void RefreshRecommendList()
         {
@@ -58,6 +68,17 @@ namespace PixivFSUWP.Data
             RankingList = new RankingIllustsCollection();
         }
 
+        public static void RefreshSearchResultList(SearchParam param)
+        {
+            SearchResultList?.StopLoading();
+            SearchResultList = new SearchResultIllustsCollection(param.Word, param.SearchTarget, param.Sort, param.Duration);
+        }
+
+        public static void RefreshUserList(string userId)
+        {
+            UserList?.StopLoading();
+            UserList = new UserIllustsCollection(userId); 
+        }
         //携带缓存的图像下载
         public static async Task<MemoryStream> DownloadImage(string Uri, ManualResetEvent PauseEvent = null, Func<long, long, Task> ProgressCallback = null)
             => await DownloadImage(Uri, CancellationToken.None, PauseEvent, ProgressCallback);
