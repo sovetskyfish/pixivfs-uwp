@@ -121,18 +121,24 @@ namespace PixivFSUWP.Data
             return string.Format("data:image/png;base64,{0}", Convert.ToBase64String((await DownloadImage(Uri)).ToArray()));
         }
 
-        public static async Task<BitmapImage> LoadImageAsync(string Uri)
+        public static async Task<BitmapImage> LoadImageAsync(string Uri, ManualResetEvent PauseEvent = null, Func<long, long, Task> ProgressCallback = null)
+            => await LoadImageAsync(Uri, CancellationToken.None, PauseEvent, ProgressCallback);
+
+        public static async Task<BitmapImage> LoadImageAsync(string Uri, CancellationToken CancellationToken, ManualResetEvent PauseEvent = null, Func<long, long, Task> ProgressCallback = null)
         {
             var toret = new BitmapImage();
-            using (var memStream = await DownloadImage(Uri))
+            using (var memStream = await DownloadImage(Uri, CancellationToken, PauseEvent, ProgressCallback))
                 await toret.SetSourceAsync(memStream.AsRandomAccessStream());
             return toret;
         }
 
-        public static async Task<WriteableBitmap> LoadImageAsync(string Uri, int Width, int Height)
+        public static async Task<WriteableBitmap> LoadImageAsync(string Uri, int Width, int Height, ManualResetEvent PauseEvent = null, Func<long, long, Task> ProgressCallback = null)
+            => await LoadImageAsync(Uri, Width, Height, PauseEvent, ProgressCallback);
+
+        public static async Task<WriteableBitmap> LoadImageAsync(string Uri, int Width, int Height, CancellationToken CancellationToken, ManualResetEvent PauseEvent = null, Func<long, long, Task> ProgressCallback = null)
         {
             var toret = new WriteableBitmap(Width, Height);
-            using (var memStream = await DownloadImage(Uri))
+            using (var memStream = await DownloadImage(Uri, CancellationToken, PauseEvent, ProgressCallback))
                 await toret.SetSourceAsync(memStream.AsRandomAccessStream());
             return toret;
         }
