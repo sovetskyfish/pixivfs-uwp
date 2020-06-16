@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Lumia.Imaging.Compositing;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -17,10 +19,19 @@ namespace PixivFSUWP.Data
 
     public class DownloadJob
     {
-        public string Title { get; set; }
-        public string Uri { get; set; }
-        public string FilePath { get; set; }
-        public int Progress { get; set; }
+        public string Title { get; }
+        public string Uri { get; }
+        public string FilePath { get; }
+        public int Progress { get; private set; }
+
+        public DownloadJob(string Title, string Uri, string FilePath)
+        {
+            this.Title = Title;
+            this.Uri = Uri;
+            this.FilePath = FilePath;
+            Progress = 0;
+            Downloading = false;
+        }
 
         //下载状态
         public bool Downloading { get; private set; }
@@ -91,7 +102,42 @@ namespace PixivFSUWP.Data
     public static class DownloadManager
     {
         //下载任务列表
-        static List<DownloadJob> downloadJobs = new List<DownloadJob>();
+        public static ObservableCollection<DownloadJob> DownloadJobs = new ObservableCollection<DownloadJob>();
 
+        //添加下载任务
+        public static void NewJob(string Title, string Uri, string FilePath)
+        {
+            var job = new DownloadJob(Title, Uri, FilePath);
+            job.DownloadCompleted += Job_DownloadCompleted;
+            DownloadJobs.Add(job);
+            _ = job.Download();
+        }
+
+        //有任务下载完成时的事件
+        public static event Action<string, bool> DownloadCompleted;
+
+        //下载完成时
+        private static void Job_DownloadCompleted(DownloadJob source, DownloadCompletedEventArgs args)
+        {
+            DownloadJobs.Remove(source);
+            DownloadCompleted?.Invoke(source.Title, args.HasError);
+        }
+
+        //移除下载任务
+        public static void RemoveJob(int Index)
+        {
+            var job = DownloadJobs[Index];
+            job.DownloadCompleted -= Job_DownloadCompleted;
+            job.Cancel();
+            DownloadJobs.Remove(job);
+        }
+
+        //移除下载任务
+        public static void RemoveJob(DownloadJob Job)
+        {
+            Job.DownloadCompleted -= Job_DownloadCompleted;
+            Job.Cancel();
+            DownloadJobs.Remove(Job);
+        }
     }
 }
