@@ -158,6 +158,7 @@
     <Compile Include="Data\ContributorsHelper.cs" />
     <Compile Include="Data\CurrentUser.cs" />
     <Compile Include="Data\Collections\FollowingIllustsCollection.cs" />
+    <Compile Include="Data\DownloadManager.cs" />
     <Compile Include="Data\IllustCommentItem.cs" />
     <Compile Include="Data\IllustDetail.cs" />
     <Compile Include="Data\CacheManager.cs" />
