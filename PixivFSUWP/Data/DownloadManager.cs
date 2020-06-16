@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -17,12 +18,22 @@ namespace PixivFSUWP.Data
         public bool HasError { get; set; }
     }
 
-    public class DownloadJob
+    public class DownloadJob : INotifyPropertyChanged
     {
         public string Title { get; }
         public string Uri { get; }
         public string FilePath { get; }
-        public int Progress { get; private set; }
+
+        private int progress;
+        public int Progress
+        {
+            get => progress;
+            private set
+            {
+                progress = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Progress"));
+            }
+        }
 
         public DownloadJob(string Title, string Uri, string FilePath)
         {
@@ -44,6 +55,9 @@ namespace PixivFSUWP.Data
 
         //下载完成时的事件
         public event Action<DownloadJob, DownloadCompletedEventArgs> DownloadCompleted;
+
+        //通知属性更改
+        public event PropertyChangedEventHandler PropertyChanged;
 
         //进行下载
         public async Task Download()
