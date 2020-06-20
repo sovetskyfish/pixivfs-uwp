@@ -209,10 +209,10 @@
     </AppxManifest>
     <None Include="Assets\AppLogo.kra" />
     <None Include="PixivFSUWP_TemporaryKey.pfx" />
-    <PRIResource Include="Strings\zh-Hans\Resources.resw" />
-    <PRIResource Include="Strings\zh-Hant\Resources.resw" />
     <PRIResource Include="Strings\ja\Resources.resw" />
     <PRIResource Include="Strings\en\Resources.resw" />
+    <PRIResource Include="Strings\zh-Hans\Resources.resw" />
+    <PRIResource Include="Strings\zh-Hant\Resources.resw" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\GH_64.png" />
@@ -309,8 +309,6 @@
   </ItemGroup>
   <ItemGroup>
     <XliffResource Include="MultilingualResources\PixivFSUWP.ja.xlf" />
-    <XliffResource Include="MultilingualResources\PixivFSUWP.zh-Hans.xlf" />
-    <XliffResource Include="MultilingualResources\PixivFSUWP.zh-Hant.xlf" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>

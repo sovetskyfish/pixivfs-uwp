@@ -1,5 +1,110 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
   <resheader name="resmimetype">
     <value>text/microsoft-resx</value>
   </resheader>
@@ -45,7 +150,7 @@
     <comment>ToolTip</comment>
   </data>
   <data name="btnShare.ToolTipService.ToolTip" xml:space="preserve">
-    <value>Windows分享</value>
+    <value>Windows 分享</value>
     <comment>ToolTip</comment>
   </data>
   <data name="CancelPlain" xml:space="preserve">
@@ -129,7 +234,7 @@
     <comment>PlainText</comment>
   </data>
   <data name="GifFilePlain" xml:space="preserve">
-    <value>Gif文件</value>
+    <value>Gif 文件</value>
     <comment>PlainText</comment>
   </data>
   <data name="ImageFilePlain" xml:space="preserve">
@@ -197,7 +302,7 @@
     <comment>Button</comment>
   </data>
   <data name="LogoutWarning.Text" xml:space="preserve">
-    <value>*这将在您的所有Windows设备上退出登录</value>
+    <value>*这将在您的所有 Windows 设备上退出登录</value>
     <comment>TextBlock</comment>
   </data>
   <data name="MalePlain" xml:space="preserve">
@@ -277,7 +382,7 @@
     <comment>PlainText</comment>
   </data>
   <data name="PixivUserPlain" xml:space="preserve">
-    <value>Pixiv用户</value>
+    <value>Pixiv 用户</value>
     <comment>PlainText</comment>
   </data>
   <data name="PlayingUgoiraPlain" xml:space="preserve">
@@ -505,11 +610,11 @@
     <comment>AutoSuggestBox +</comment>
   </data>
   <data name="ImgurAPI.Text" xml:space="preserve">
-    <value>Imgur API密钥</value>
+    <value>Imgur API 密钥</value>
     <comment>TextBlock +</comment>
   </data>
   <data name="SauceNaoAPI.Text" xml:space="preserve">
-    <value>SauceNAO API密钥</value>
+    <value>SauceNAO API 密钥</value>
     <comment>TextBlock +</comment>
   </data>
   <data name="SearchMore.Text" xml:space="preserve">
@@ -545,7 +650,7 @@
     <comment>PlainText</comment>
   </data>
   <data name="Contributors.Text" xml:space="preserve">
-    <value>来自GitHub的参与者</value>
+    <value>来自 GitHub 的参与者</value>
     <comment>TextBlock</comment>
   </data>
   <data name="Developers.Text" xml:space="preserve">
@@ -579,6 +684,66 @@
   </data>
   <data name="RestartApplyColorTheme" xml:space="preserve">
     <value>重新启动以应用设置</value>
+    <comment>PlainText</comment>
+  </data>
+  <data name="ContributorsReadingErrorPlain" xml:space="preserve">
+    <value>出错啦：无法正常读取开发人员列表。</value>
+    <comment>PlainText</comment>
+  </data>
+  <data name="ReleasedID" xml:space="preserve">
+    <value>包名：</value>
+    <comment>PlainText</comment>
+  </data>
+  <data name="ReleasedTIme" xml:space="preserve">
+    <value>时间：</value>
+    <comment>PlainText</comment>
+  </data>
+  <data name="ReleasedVersion" xml:space="preserve">
+    <value>版本：</value>
+    <comment>PlainText</comment>
+  </data>
+  <data name="CancelButtonPlain" xml:space="preserve">
+    <value>取消</value>
+    <comment>PlainText</comment>
+  </data>
+  <data name="CopiedInfoPlain" xml:space="preserve">
+    <value>有价值的信息已经被复制到剪贴板。</value>
+    <comment>PlainText</comment>
+  </data>
+  <data name="Copy.Content" xml:space="preserve">
+    <value>全部复制</value>
+    <comment>HyperlinkButton</comment>
+  </data>
+  <data name="Info.Text" xml:space="preserve">
+    <value>不要担心，您刚刚所复制的信息不会携带您的任何隐私数据。</value>
+    <comment>TextBlock</comment>
+  </data>
+  <data name="NoButtonPlain" xml:space="preserve">
+    <value>没有</value>
+    <comment>PlainText</comment>
+  </data>
+  <data name="PrimayButtonPlain" xml:space="preserve">
+    <value>GitHub</value>
+    <comment>PlainText</comment>
+  </data>
+  <data name="Report.Text" xml:space="preserve">
+    <value>您正准备汇报一个问题，我们收集了一些细节。</value>
+    <comment>TextBlock</comment>
+  </data>
+  <data name="ReportIssueTitlePlain" xml:space="preserve">
+    <value>报告问题</value>
+    <comment>PlainText</comment>
+  </data>
+  <data name="SecondButtonPlain" xml:space="preserve">
+    <value>邮件</value>
+    <comment>PlainText</comment>
+  </data>
+  <data name="YesButtonPlain" xml:space="preserve">
+    <value>当然</value>
+    <comment>PlainText</comment>
+  </data>
+  <data name="CopiedPlain" xml:space="preserve">
+    <value>已复制</value>
     <comment>PlainText</comment>
   </data>
 </root>

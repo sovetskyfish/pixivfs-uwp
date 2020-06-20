@@ -1,21 +1,13 @@
 ﻿using PixivFSUWP.Interfaces;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading.Tasks;
 using Windows.ApplicationModel;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
 using Windows.Security.Credentials;
 using Windows.System;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using static PixivFSUWP.Data.OverAll;
 using Windows.Storage;
@@ -61,14 +53,14 @@ namespace PixivFSUWP
         async Task loadContentsAsync()
         {
             var imgTask = LoadImageAsync(currentUser.Avatar170);
-            txtVersion.Text = string.Format("版本：{0} version-{1}.{2}.{3} {4}",
+            txtVersion.Text = GetResourceString("ReleasedVersion") + string.Format("{0} version-{1}.{2}.{3} {4}",
                 Package.Current.DisplayName,
                 Package.Current.Id.Version.Major,
                 Package.Current.Id.Version.Minor,
                 Package.Current.Id.Version.Build,
                 Package.Current.Id.Architecture);
-            txtPkgName.Text = string.Format("包名：{0}", Package.Current.Id.Name);
-            txtInsDate.Text = string.Format("时间：{0}", Package.Current.InstalledDate.ToLocalTime().DateTime);
+            txtPkgName.Text = GetResourceString("ReleasedID") + string.Format("{0}", Package.Current.Id.Name);
+            txtInsDate.Text = GetResourceString("ReleasedTime") + string.Format("{0}", Package.Current.InstalledDate.ToLocalTime().DateTime);
             txtID.Text = currentUser.ID.ToString();
             txtName.Text = currentUser.Username;
             txtAccount.Text = "@" + currentUser.UserAccount;
@@ -125,7 +117,7 @@ namespace PixivFSUWP
             {
                 progressLoadingContributors.Visibility = Visibility.Collapsed;
                 progressLoadingContributors.IsActive = false;
-                txtContributors.Text = "Failed to load contributors.";
+                txtContributors.Text = GetResourceString("ContributorsReadingErrorPlain");
                 return;
             }
             var enumerable = from item in res select ViewModels.ContributorViewModel.FromItem(item);

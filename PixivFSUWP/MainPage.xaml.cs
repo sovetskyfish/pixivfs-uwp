@@ -1,24 +1,13 @@
 ﻿using PixivFSUWP.Data;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading.Tasks;
-using Windows.ApplicationModel.Core;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
+using Windows.System;
 using Windows.UI;
 using Windows.UI.Popups;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
 using static PixivFSUWP.Data.OverAll;
 
 // https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x804 上介绍了“空白页”项模板
@@ -260,8 +249,37 @@ namespace PixivFSUWP
 
         private async void btnReport_Click(object sender, RoutedEventArgs e)
         {
-            //在新窗口中打开发送反馈的窗口
-            await ShowNewWindow(typeof(ReportIssuePage), null);
+            ////在新窗口中打开发送反馈的窗口
+            //await ShowNewWindow(typeof(ReportIssuePage), null);
+            var reportIssue = new ContentDialog()
+            {               
+                Content = new ReportIssuePage(),
+                FullSizeDesired = false,
+
+                Title = GetResourceString("ReportIssueTitlePlain"),
+                PrimaryButtonText = GetResourceString("PrimayButtonPlain"),
+                SecondaryButtonText = GetResourceString("SecondButtonPlain"),
+                CloseButtonText = GetResourceString("CancelButtonPlain"),        
+                
+                PrimaryButtonStyle = (Style)this.Resources["AccentButtonStyle"],
+                SecondaryButtonStyle = (Style)this.Resources["ButtonRevealStyle"],
+                CloseButtonStyle = (Style)this.Resources["ButtonRevealStyle"],
+            };
+            var a = await reportIssue.ShowAsync();
+            if (a == ContentDialogResult.Primary)
+            {
+                await Launcher.LaunchUriAsync(new
+                Uri(@"https://github.com/tobiichiamane/pixivfs-uwp/issues/new/choose"));
+            }
+            else if (a == ContentDialogResult.Secondary)
+            {
+                await Launcher.LaunchUriAsync(new
+                Uri(@"mailto:tobiichiamane@outlook.jp"));
+            }
+            else
+            {
+                
+            }
         }
 
         /// <summary>
@@ -270,16 +288,16 @@ namespace PixivFSUWP
         private async void btnExperimentalWarning_Click(object sender, RoutedEventArgs e)
         {
             MessageDialog warningDialog = new MessageDialog(GetResourceString("ExperimentalWarningPlain"));
-            warningDialog.Commands.Add(new UICommand("Yes", async (_) =>
+            warningDialog.Commands.Add(new UICommand(GetResourceString("YesButtonPlain"), async (_) =>
              {
                  //关闭直连
                  Windows.Storage.ApplicationDataContainer localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
                  localSettings.Values["directConnection"] = false;
                  //通知重启应用生效
-                 MessageDialog restartDialog = new MessageDialog("请重启本程序来应用更改。\nPlease restart this app to apply the changes.");
+                 MessageDialog restartDialog = new MessageDialog(GetResourceString("RestartApplyColorTheme"));
                  await restartDialog.ShowAsync();
              }));
-            warningDialog.Commands.Add(new UICommand("No"));
+            warningDialog.Commands.Add(new UICommand(GetResourceString("NoButtonPlain")));
             await warningDialog.ShowAsync();
         }
     }

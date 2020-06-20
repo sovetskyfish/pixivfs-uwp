@@ -1,24 +1,12 @@
 ﻿using Microsoft.Toolkit.Uwp.Helpers;
 using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.ApplicationModel;
-using Windows.ApplicationModel.Core;
 using Windows.ApplicationModel.DataTransfer;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
 using Windows.System;
 using Windows.UI.Popups;
-using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
+using static PixivFSUWP.Data.OverAll;
 
 // https://go.microsoft.com/fwlink/?LinkId=234238 上介绍了“空白页”项模板
 
@@ -32,9 +20,7 @@ namespace PixivFSUWP
         public ReportIssuePage()
         {
             this.InitializeComponent();
-            CoreApplication.GetCurrentView().TitleBar.ExtendViewIntoTitleBar = true;
-            var view = ApplicationView.GetForCurrentView();
-            view.Title = "Report an issue/问题反馈";
+
             txtDetails.Text += "General:\n";
             txtDetails.Text += string.Format("OS version: build {0}\n", SystemInformation.OperatingSystemVersion.Build);
             txtDetails.Text += string.Format("App version: {0}.{1}.{2} {3}\n",
@@ -61,7 +47,7 @@ namespace PixivFSUWP
             dataPackage.RequestedOperation = DataPackageOperation.Copy;
             dataPackage.SetText(txtDetails.Text);
             Clipboard.SetContent(dataPackage);
-            MessageDialog dialog = new MessageDialog("Valuable information has been copied to clipboard./有价值的信息已经被复制到剪贴板。", "Copied/已复制");
+            MessageDialog dialog = new MessageDialog(GetResourceString("CopiedInfoPlain"), GetResourceString("CopiedPlain"));
             await dialog.ShowAsync();
         }
 
