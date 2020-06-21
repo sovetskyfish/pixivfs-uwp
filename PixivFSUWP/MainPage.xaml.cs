@@ -1,24 +1,12 @@
 ﻿using PixivFSUWP.Data;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading.Tasks;
-using Windows.ApplicationModel.Core;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
 using Windows.UI;
 using Windows.UI.Popups;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
 using static PixivFSUWP.Data.OverAll;
 
 // https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x804 上介绍了“空白页”项模板
@@ -269,14 +257,14 @@ namespace PixivFSUWP
         /// </summary>
         private async void btnExperimentalWarning_Click(object sender, RoutedEventArgs e)
         {
-            MessageDialog warningDialog = new MessageDialog(GetResourceString("ExperimentalWarningPlain"));
+            var warningDialog = new MessageDialog(GetResourceString("ExperimentalWarningPlain"));
             warningDialog.Commands.Add(new UICommand("Yes", async (_) =>
              {
                  //关闭直连
                  Windows.Storage.ApplicationDataContainer localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
                  localSettings.Values["directConnection"] = false;
                  //通知重启应用生效
-                 MessageDialog restartDialog = new MessageDialog("请重启本程序来应用更改。\nPlease restart this app to apply the changes.");
+                 var restartDialog = new MessageDialog("请重启本程序来应用更改。\nPlease restart this app to apply the changes.");
                  await restartDialog.ShowAsync();
              }));
             warningDialog.Commands.Add(new UICommand("No"));

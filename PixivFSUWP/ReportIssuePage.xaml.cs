@@ -1,24 +1,13 @@
 ﻿using Microsoft.Toolkit.Uwp.Helpers;
 using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Core;
 using Windows.ApplicationModel.DataTransfer;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
 using Windows.System;
 using Windows.UI.Popups;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
 
 // https://go.microsoft.com/fwlink/?LinkId=234238 上介绍了“空白页”项模板
 
@@ -32,9 +21,11 @@ namespace PixivFSUWP
         public ReportIssuePage()
         {
             this.InitializeComponent();
+
             CoreApplication.GetCurrentView().TitleBar.ExtendViewIntoTitleBar = true;
             var view = ApplicationView.GetForCurrentView();
             view.Title = "Report an issue/问题反馈";
+
             txtDetails.Text += "General:\n";
             txtDetails.Text += string.Format("OS version: build {0}\n", SystemInformation.OperatingSystemVersion.Build);
             txtDetails.Text += string.Format("App version: {0}.{1}.{2} {3}\n",

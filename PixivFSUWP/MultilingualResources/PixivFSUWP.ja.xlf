@@ -69,9 +69,10 @@
           <note from="MultilingualBuild" annotates="source" priority="2">PlainText</note>
         </trans-unit>
         <trans-unit id="CreatingTimelinePlain" translate="yes" xml:space="preserve">
-          <source>Generating Windows® Timeline™</source>
-          <target state="translated">Windows® Timeline™を作成しています</target>
+          <source>Generating Windows® Timeline™...</source>
+          <target state="needs-review-translation">Windows® Timeline™を作成しています</target>
           <note from="MultilingualBuild" annotates="source" priority="2">PlainText</note>
+          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
         </trans-unit>
         <trans-unit id="CurrentUser.Text" translate="yes" xml:space="preserve">
           <source>Current User</source>
@@ -724,10 +725,85 @@ Do you want to disable them?</target>
           <target state="new">Light</target>
           <note from="MultilingualBuild" annotates="source" priority="2">ComboBoxItem</note>
         </trans-unit>
-        <trans-unit id="RestartApplyColorTheme" translate="yes" xml:space="preserve">
-          <source>Restart the application to take effect</source>
-          <target state="new">Restart the application to take effect</target>
+        <trans-unit id="ContributorsReadingErrorPlain" translate="yes" xml:space="preserve">
+          <source>Error : Failed to load contributors.</source>
+          <target state="new">Error : Failed to load contributors.</target>
           <note from="MultilingualBuild" annotates="source" priority="2">PlainText</note>
+        </trans-unit>
+        <trans-unit id="RestartApplyColorTheme" translate="yes" xml:space="preserve">
+          <source>Please restart the application to take effect.</source>
+          <target state="new">Please restart the application to take effect.</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">PlainText</note>
+        </trans-unit>
+        <trans-unit id="ReleasedID" translate="yes" xml:space="preserve">
+          <source>ID : </source>
+          <target state="new">ID : </target>
+          <note from="MultilingualBuild" annotates="source" priority="2">PlainText</note>
+        </trans-unit>
+        <trans-unit id="ReleasedTime" translate="yes" xml:space="preserve">
+          <source>TIme : </source>
+          <target state="new">TIme : </target>
+          <note from="MultilingualBuild" annotates="source" priority="2">PlainText</note>
+        </trans-unit>
+        <trans-unit id="ReleasedVersion" translate="yes" xml:space="preserve">
+          <source>Version : </source>
+          <target state="new">Version : </target>
+          <note from="MultilingualBuild" annotates="source" priority="2">PlainText</note>
+        </trans-unit>
+        <trans-unit id="Info.Text" translate="yes" xml:space="preserve">
+          <source>Don't worry. The information you just copied does not contain any private data.</source>
+          <target state="new">Don't worry. The information you just copied does not contain any private data.</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">TextBlock (❌Unworkable)</note>
+        </trans-unit>
+        <trans-unit id="Report.Text" translate="yes" xml:space="preserve">
+          <source>You are going to report an issue. We've collected some details.</source>
+          <target state="new">You are going to report an issue. We've collected some details.</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">TextBlock (❌Unworkable)</note>
+        </trans-unit>
+        <trans-unit id="ReportIssueTitlePlain" translate="yes" xml:space="preserve">
+          <source>Report An Issue</source>
+          <target state="new">Report An Issue</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">PlainText (❌Unworkable)</note>
+        </trans-unit>
+        <trans-unit id="Copy.Content" translate="yes" xml:space="preserve">
+          <source>Copy All</source>
+          <target state="new">Copy All</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">HyperlinkButton (❌Unworkable)</note>
+        </trans-unit>
+        <trans-unit id="NoButtonPlain" translate="yes" xml:space="preserve">
+          <source>Not Yet</source>
+          <target state="new">Not Yet</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">PlainText (❌Unworkable)</note>
+        </trans-unit>
+        <trans-unit id="YesButtonPlain" translate="yes" xml:space="preserve">
+          <source>Sure</source>
+          <target state="new">Sure</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">PlainText (❌Unworkable)</note>
+        </trans-unit>
+        <trans-unit id="CancelButtonPlain" translate="yes" xml:space="preserve">
+          <source>Cancel</source>
+          <target state="new">Cancel</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">PlainText (❌Unworkable)</note>
+        </trans-unit>
+        <trans-unit id="PrimayButtonPlain" translate="yes" xml:space="preserve">
+          <source>GitHub</source>
+          <target state="new">GitHub</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">PlainText (❌Unworkable)</note>
+        </trans-unit>
+        <trans-unit id="SecondButtonPlain" translate="yes" xml:space="preserve">
+          <source>Email</source>
+          <target state="new">Email</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">PlainText (❌Unworkable)</note>
+        </trans-unit>
+        <trans-unit id="CopiedInfoPlain" translate="yes" xml:space="preserve">
+          <source>Valuable information has been copied to clipboard.</source>
+          <target state="new">Valuable information has been copied to clipboard.</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">PlainText (❌Unworkable)</note>
+        </trans-unit>
+        <trans-unit id="CopiedPlain" translate="yes" xml:space="preserve">
+          <source>Copied</source>
+          <target state="new">Copied</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">PlainText (❌Unworkable)</note>
         </trans-unit>
       </group>
     </body>
