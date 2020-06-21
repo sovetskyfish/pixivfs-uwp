@@ -171,7 +171,7 @@
   </data>
   <data name="CancelButtonPlain" xml:space="preserve">
     <value>Cancel</value>
-    <comment>PlainText</comment>
+    <comment>PlainText (❌Unworkable)</comment>
   </data>
   <data name="CancelPlain" xml:space="preserve">
     <value>Cancel</value>
@@ -211,10 +211,10 @@
   </data>
   <data name="Copy.Content" xml:space="preserve">
     <value>Copy All</value>
-    <comment>HyperlinkButton</comment>
+    <comment>HyperlinkButton (❌Unworkable)</comment>
   </data>
   <data name="CreatingTimelinePlain" xml:space="preserve">
-    <value>Generating Windows® Timeline™</value>
+    <value>Generating Windows® Timeline™...</value>
     <comment>PlainText</comment>
   </data>
   <data name="CurrentUser.Text" xml:space="preserve">
@@ -328,7 +328,7 @@ Do you want to disable them?</value>
   </data>
   <data name="Info.Text" xml:space="preserve">
     <value>Don't worry. The information you just copied does not contain any private data.</value>
-    <comment>TextBlock</comment>
+    <comment>TextBlock (❌Unworkable)</comment>
   </data>
   <data name="Job.Text" xml:space="preserve">
     <value>Job</value>
@@ -428,7 +428,7 @@ Do you want to disable them?</value>
   </data>
   <data name="NoButtonPlain" xml:space="preserve">
     <value>Not Yet</value>
-    <comment>PlainText</comment>
+    <comment>PlainText (❌Unworkable)</comment>
   </data>
   <data name="NoCaptionPlain" xml:space="preserve">
     <value>No caption</value>
@@ -500,7 +500,7 @@ Do you want to disable them?</value>
   </data>
   <data name="PrimayButtonPlain" xml:space="preserve">
     <value>GitHub</value>
-    <comment>PlainText</comment>
+    <comment>PlainText (❌Unworkable)</comment>
   </data>
   <data name="Printer.Text" xml:space="preserve">
     <value>Printer</value>
@@ -560,11 +560,11 @@ Do you want to disable them?</value>
   </data>
   <data name="Report.Text" xml:space="preserve">
     <value>You are going to report an issue. We've collected some details.</value>
-    <comment>TextBlock</comment>
+    <comment>TextBlock (❌Unworkable)</comment>
   </data>
   <data name="ReportIssueTitlePlain" xml:space="preserve">
     <value>Report An Issue</value>
-    <comment>PlainText</comment>
+    <comment>PlainText (❌Unworkable)</comment>
   </data>
   <data name="RequestingPlain" xml:space="preserve">
     <value>Requesting</value>
@@ -644,7 +644,7 @@ Do you want to disable them?</value>
   </data>
   <data name="SecondButtonPlain" xml:space="preserve">
     <value>Email</value>
-    <comment>PlainText</comment>
+    <comment>PlainText (❌Unworkable)</comment>
   </data>
   <data name="SettingsPagePlain" xml:space="preserve">
     <value>Settings</value>
@@ -744,6 +744,6 @@ Do you want to disable them?</value>
   </data>
   <data name="YesButtonPlain" xml:space="preserve">
     <value>Sure</value>
-    <comment>PlainText</comment>
+    <comment>PlainText (❌Unworkable)</comment>
   </data>
 </root>

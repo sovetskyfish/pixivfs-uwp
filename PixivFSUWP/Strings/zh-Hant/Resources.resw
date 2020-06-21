@@ -1,110 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
-  <!-- 
-    Microsoft ResX Schema 
-    
-    Version 2.0
-    
-    The primary goals of this format is to allow a simple XML format 
-    that is mostly human readable. The generation and parsing of the 
-    various data types are done through the TypeConverter classes 
-    associated with the data types.
-    
-    Example:
-    
-    ... ado.net/XML headers & schema ...
-    <resheader name="resmimetype">text/microsoft-resx</resheader>
-    <resheader name="version">2.0</resheader>
-    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
-    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
-    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
-    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
-    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
-        <value>[base64 mime encoded serialized .NET Framework object]</value>
-    </data>
-    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
-        <comment>This is a comment</comment>
-    </data>
-                
-    There are any number of "resheader" rows that contain simple 
-    name/value pairs.
-    
-    Each data row contains a name, and value. The row also contains a 
-    type or mimetype. Type corresponds to a .NET class that support 
-    text/value conversion through the TypeConverter architecture. 
-    Classes that don't support this are serialized and stored with the 
-    mimetype set.
-    
-    The mimetype is used for serialized objects, and tells the 
-    ResXResourceReader how to depersist the object. This is currently not 
-    extensible. For a given mimetype the value must be set accordingly:
-    
-    Note - application/x-microsoft.net.object.binary.base64 is the format 
-    that the ResXResourceWriter will generate, however the reader can 
-    read any of the formats listed below.
-    
-    mimetype: application/x-microsoft.net.object.binary.base64
-    value   : The object must be serialized with 
-            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
-            : and then encoded with base64 encoding.
-    
-    mimetype: application/x-microsoft.net.object.soap.base64
-    value   : The object must be serialized with 
-            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
-            : and then encoded with base64 encoding.
-
-    mimetype: application/x-microsoft.net.object.bytearray.base64
-    value   : The object must be serialized into a byte array 
-            : using a System.ComponentModel.TypeConverter
-            : and then encoded with base64 encoding.
-    -->
-  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
-    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
-    <xsd:element name="root" msdata:IsDataSet="true">
-      <xsd:complexType>
-        <xsd:choice maxOccurs="unbounded">
-          <xsd:element name="metadata">
-            <xsd:complexType>
-              <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" />
-              </xsd:sequence>
-              <xsd:attribute name="name" use="required" type="xsd:string" />
-              <xsd:attribute name="type" type="xsd:string" />
-              <xsd:attribute name="mimetype" type="xsd:string" />
-              <xsd:attribute ref="xml:space" />
-            </xsd:complexType>
-          </xsd:element>
-          <xsd:element name="assembly">
-            <xsd:complexType>
-              <xsd:attribute name="alias" type="xsd:string" />
-              <xsd:attribute name="name" type="xsd:string" />
-            </xsd:complexType>
-          </xsd:element>
-          <xsd:element name="data">
-            <xsd:complexType>
-              <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
-              </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
-              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
-              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
-              <xsd:attribute ref="xml:space" />
-            </xsd:complexType>
-          </xsd:element>
-          <xsd:element name="resheader">
-            <xsd:complexType>
-              <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-              </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" />
-            </xsd:complexType>
-          </xsd:element>
-        </xsd:choice>
-      </xsd:complexType>
-    </xsd:element>
-  </xsd:schema>
   <resheader name="resmimetype">
     <value>text/microsoft-resx</value>
   </resheader>
@@ -130,7 +25,7 @@
     <comment>TextBlock</comment>
   </data>
   <data name="BookmarkDeleteFailedPlain" xml:space="preserve">
-    <value>作品「{0}」收藏剔除不成功</value>
+    <value>收藏作品「{0}」剔除不成功</value>
     <comment>PlainText</comment>
   </data>
   <data name="Bookmarked.Content" xml:space="preserve">
@@ -149,9 +44,29 @@
     <value>拷貝網站 URL</value>
     <comment>ToolTip</comment>
   </data>
+  <data name="BtnSauceNAO.Content" xml:space="preserve">
+    <value>以圖搜圖</value>
+    <comment>Button +</comment>
+  </data>
   <data name="btnShare.ToolTipService.ToolTip" xml:space="preserve">
     <value>Windows 自帶分享</value>
     <comment>ToolTip</comment>
+  </data>
+  <data name="Cache.Text" xml:space="preserve">
+    <value>暫存檔案</value>
+    <comment>TextBlock</comment>
+  </data>
+  <data name="CacheSize.Text" xml:space="preserve">
+    <value>暫存檔案共計：</value>
+    <comment>TextBlock</comment>
+  </data>
+  <data name="Calculating.Text" xml:space="preserve">
+    <value>計算中...</value>
+    <comment>TextBlock</comment>
+  </data>
+  <data name="CancelButtonPlain" xml:space="preserve">
+    <value>撤消</value>
+    <comment>PlainText (❌Unworkable)</comment>
   </data>
   <data name="CancelPlain" xml:space="preserve">
     <value>放棄</value>
@@ -161,24 +76,60 @@
     <value>凳子</value>
     <comment>TextBlock</comment>
   </data>
+  <data name="ClearCache.Content" xml:space="preserve">
+    <value>釋放暫存檔案</value>
+    <comment>Button</comment>
+  </data>
+  <data name="ColorTheme.Text" xml:space="preserve">
+    <value>色彩</value>
+    <comment>TextBlock</comment>
+  </data>
   <data name="CommentsPlain" xml:space="preserve">
     <value>評論</value>
     <comment>PlainText</comment>
   </data>
+  <data name="Contributors.Text" xml:space="preserve">
+    <value>來自 GitHub 的參與人</value>
+    <comment>TextBlock</comment>
+  </data>
+  <data name="ContributorsReadingErrorPlain" xml:space="preserve">
+    <value>出錯啦：無法獲取開發人名單資訊。</value>
+    <comment>PlainText</comment>
+  </data>
+  <data name="CopiedInfoPlain" xml:space="preserve">
+    <value>有價值的訊息已張貼到剪切板。</value>
+    <comment>PlainText</comment>
+  </data>
+  <data name="CopiedPlain" xml:space="preserve">
+    <value>完成操作</value>
+    <comment>PlainText</comment>
+  </data>
+  <data name="Copy.Content" xml:space="preserve">
+    <value>全部拷貝</value>
+    <comment>HyperlinkButton (❌Unworkable)</comment>
+  </data>
   <data name="CreatingTimelinePlain" xml:space="preserve">
-    <value>正在在時間軸上創建新的活動歷程</value>
+    <value>正在在時間軸上創建新的活動歷程...</value>
     <comment>PlainText</comment>
   </data>
   <data name="CurrentUser.Text" xml:space="preserve">
     <value>當前登錄的賬戶</value>
     <comment>TextBlock</comment>
   </data>
+  <data name="DarkColorTheme.Content" xml:space="preserve">
+    <value>深色</value>
+    <comment>ComboBoxItem</comment>
+  </data>
   <data name="DateAsc.Content" xml:space="preserve">
-    <value>按日期升序排序</value>
+    <value>按日期升列</value>
     <comment>ComboBoxItem</comment>
   </data>
   <data name="DateDesc.Content" xml:space="preserve">
-    <value>按日期降序排序</value>
+    <value>按日期降列</value>
+    <comment>ComboBoxItem</comment>
+  </data>
+  <data name="DefaultColorTheme.Content" xml:space="preserve">
+    <value>使用系統設定</value>
     <comment>ComboBoxItem</comment>
   </data>
   <data name="DeleteBookmarkPlain" xml:space="preserve">
@@ -186,8 +137,12 @@
     <comment>PlainText</comment>
   </data>
   <data name="DeletedBookmarkPlain" xml:space="preserve">
-    <value>作品「{0}」收藏剔除完成</value>
+    <value>收藏作品「{0}」剔除完成</value>
     <comment>PlainText</comment>
+  </data>
+  <data name="DeleteInvalid.Content" xml:space="preserve">
+    <value>剔除無效檔案</value>
+    <comment>Button</comment>
   </data>
   <data name="Desk.Text" xml:space="preserve">
     <value>桌子</value>
@@ -201,6 +156,10 @@
     <value>詳情</value>
     <comment>PlainText</comment>
   </data>
+  <data name="Developers.Text" xml:space="preserve">
+    <value>開發人員</value>
+    <comment>TextBlock</comment>
+  </data>
   <data name="DownloadingUgoiraPlain" xml:space="preserve">
     <value>正在下載動態剪影</value>
     <comment>PlainText</comment>
@@ -212,6 +171,14 @@
   <data name="Email.Text" xml:space="preserve">
     <value>電子郵箱：</value>
     <comment>TextBlock</comment>
+  </data>
+  <data name="ExperimentalConnection.Content" xml:space="preserve">
+    <value>直連（實驗性，可避開 GWF 網路封鎖）</value>
+    <comment>CheckBox</comment>
+  </data>
+  <data name="ExperimentalWarningPlain" xml:space="preserve">
+    <value>您已啓用實驗性功能，或者會帶來維持應用程式穩定性的困難，請確認您是否要停用？</value>
+    <comment>PlainText</comment>
   </data>
   <data name="FemalePlain" xml:space="preserve">
     <value>女性</value>
@@ -237,9 +204,25 @@
     <value>Gif 檔案</value>
     <comment>PlainText</comment>
   </data>
+  <data name="GoPixivID.PlaceholderText" xml:space="preserve">
+    <value>Pixiv ID</value>
+    <comment>AutoSuggestBox +</comment>
+  </data>
+  <data name="GoToPixivID.Text" xml:space="preserve">
+    <value>直擊作品</value>
+    <comment>TextBlock +</comment>
+  </data>
   <data name="ImageFilePlain" xml:space="preserve">
     <value>相片檔案</value>
     <comment>PlainText</comment>
+  </data>
+  <data name="ImgurAPI.Text" xml:space="preserve">
+    <value>Imgur API 金匙</value>
+    <comment>TextBlock +</comment>
+  </data>
+  <data name="Info.Text" xml:space="preserve">
+    <value>不用擔心，以上的訊息不會包含您個人隱私數據。</value>
+    <comment>TextBlock (❌Unworkable)</comment>
   </data>
   <data name="Job.Text" xml:space="preserve">
     <value>現時工作</value>
@@ -259,6 +242,10 @@
   </data>
   <data name="LastWeek.Content" xml:space="preserve">
     <value>过去一周内</value>
+    <comment>ComboBoxItem</comment>
+  </data>
+  <data name="LightColorTheme.Content" xml:space="preserve">
+    <value>淺色</value>
     <comment>ComboBoxItem</comment>
   </data>
   <data name="LinkPlain" xml:space="preserve">
@@ -294,7 +281,7 @@
     <comment>TextBlock</comment>
   </data>
   <data name="LoginFailed.Content" xml:space="preserve">
-    <value>登錄不成功，點擊查閲相關錯誤排解並重登賬戶</value>
+    <value>登入不成功，點擊查閲相關錯誤排解並重登賬戶</value>
     <comment>Button</comment>
   </data>
   <data name="Logout.Content" xml:space="preserve">
@@ -303,6 +290,10 @@
   </data>
   <data name="LogoutWarning.Text" xml:space="preserve">
     <value>*本次操作將會在所有裝有 Windows 設備上同步退登賬戶</value>
+    <comment>TextBlock</comment>
+  </data>
+  <data name="MainDeveloper.Text" xml:space="preserve">
+    <value>承建開發人</value>
     <comment>TextBlock</comment>
   </data>
   <data name="MalePlain" xml:space="preserve">
@@ -324,6 +315,14 @@
   <data name="MyInkPlain" xml:space="preserve">
     <value>我的臨摹</value>
     <comment>PlainText</comment>
+  </data>
+  <data name="NewComment.Content" xml:space="preserve">
+    <value>撰寫評論</value>
+    <comment>ToggleButton</comment>
+  </data>
+  <data name="NoButtonPlain" xml:space="preserve">
+    <value>沒有</value>
+    <comment>PlainText (❌Unworkable)</comment>
   </data>
   <data name="NoCaptionPlain" xml:space="preserve">
     <value>暫無介紹</value>
@@ -354,15 +353,15 @@
     <comment>PlainText</comment>
   </data>
   <data name="PageInfoPlain" xml:space="preserve">
-    <value>共 {0} 张作品，點擊或觸摸檢查詳情</value>
+    <value>共 {0} 张作品，點擊或觸摸檢查詳情。</value>
     <comment>PlainText</comment>
   </data>
   <data name="PartiallyMatchTag.Content" xml:space="preserve">
-    <value>部分配對標簽</value>
+    <value>配對部分標簽</value>
     <comment>ComboBoxItem</comment>
   </data>
   <data name="PartiallyMatchTitleAndCap.Content" xml:space="preserve">
-    <value>部分配對標題及其簡介</value>
+    <value>配對部分標題及其簡介</value>
     <comment>ComboBoxItem</comment>
   </data>
   <data name="Password.Text" xml:space="preserve">
@@ -392,6 +391,10 @@
   <data name="PlayPlain" xml:space="preserve">
     <value>播放</value>
     <comment>PlainText</comment>
+  </data>
+  <data name="PrimayButtonPlain" xml:space="preserve">
+    <value>GitHub</value>
+    <comment>PlainText (❌Unworkable)</comment>
   </data>
   <data name="Printer.Text" xml:space="preserve">
     <value>打印機</value>
@@ -425,6 +428,10 @@
     <value>墨跡原件訊息</value>
     <comment>PlainText</comment>
   </data>
+  <data name="Recalculating" xml:space="preserve">
+    <value>重新計算中...</value>
+    <comment>PlainText</comment>
+  </data>
   <data name="Recommended.Content" xml:space="preserve">
     <value>推薦</value>
     <comment>NavigationViewItem</comment>
@@ -433,13 +440,41 @@
     <value>注冊</value>
     <comment>Button</comment>
   </data>
+  <data name="ReleasedID" xml:space="preserve">
+    <value>程式包：</value>
+    <comment>PlainText</comment>
+  </data>
+  <data name="ReleasedTime" xml:space="preserve">
+    <value>安裝日期： </value>
+    <comment>PlainText</comment>
+  </data>
+  <data name="ReleasedVersion" xml:space="preserve">
+    <value>具體型號：</value>
+    <comment>PlainText</comment>
+  </data>
+  <data name="Report.Text" xml:space="preserve">
+    <value>我們收集了少少您的裝置清單，來協助您更好地反應意見。</value>
+    <comment>TextBlock (❌Unworkable)</comment>
+  </data>
+  <data name="ReportIssueTitlePlain" xml:space="preserve">
+    <value>傳送意見反應</value>
+    <comment>PlainText (❌Unworkable)</comment>
+  </data>
   <data name="RequestingPlain" xml:space="preserve">
     <value>請求中</value>
+    <comment>PlainText</comment>
+  </data>
+  <data name="RestartApplyColorTheme" xml:space="preserve">
+    <value>已做出變更，請重啓應用程序來使用設定。</value>
     <comment>PlainText</comment>
   </data>
   <data name="RetryPlain" xml:space="preserve">
     <value>重試</value>
     <comment>PlainText</comment>
+  </data>
+  <data name="SauceNaoAPI.Text" xml:space="preserve">
+    <value>SauceNAO API 金匙</value>
+    <comment>TextBlock +</comment>
   </data>
   <data name="Save.Text" xml:space="preserve">
     <value>便捷存儲</value>
@@ -489,6 +524,10 @@
     <value>搜尋更多作品…</value>
     <comment>AutoSuggestBox</comment>
   </data>
+  <data name="SearchMore.Text" xml:space="preserve">
+    <value>更多功能</value>
+    <comment>TextBlock +</comment>
+  </data>
   <data name="SearchOptions.Text" xml:space="preserve">
     <value>搜尋選項</value>
     <comment>TextBlock</comment>
@@ -496,6 +535,10 @@
   <data name="SearchPagePlain" xml:space="preserve">
     <value>搜尋</value>
     <comment>PlainText</comment>
+  </data>
+  <data name="SecondButtonPlain" xml:space="preserve">
+    <value>Email</value>
+    <comment>PlainText (❌Unworkable)</comment>
   </data>
   <data name="SettingsPagePlain" xml:space="preserve">
     <value>設定</value>
@@ -578,7 +621,7 @@
     <comment>PlainText</comment>
   </data>
   <data name="WorkBookmarkFailedPlain" xml:space="preserve">
-    <value>作品「{0}」收藏不成功</value>
+    <value>作品「{0}」收藏成功</value>
     <comment>PlainText</comment>
   </data>
   <data name="WorkPlain" xml:space="preserve">
@@ -593,156 +636,8 @@
     <value>作品「{0}」存儲不成功</value>
     <comment>PlainText</comment>
   </data>
-  <data name="ExperimentalConnection.Content" xml:space="preserve">
-    <value>直連（實驗性，可避開 GWF 網路封鎖）</value>
-    <comment>CheckBox</comment>
-  </data>
-  <data name="NewComment.Content" xml:space="preserve">
-    <value>撰寫評論</value>
-    <comment>ToggleButton</comment>
-  </data>
-  <data name="BtnSauceNAO.Content" xml:space="preserve">
-    <value>以圖搜圖</value>
-    <comment>Button +</comment>
-  </data>
-  <data name="GoPixivID.PlaceholderText" xml:space="preserve">
-    <value>Pixiv ID</value>
-    <comment>AutoSuggestBox +</comment>
-  </data>
-  <data name="ImgurAPI.Text" xml:space="preserve">
-    <value>Imgur API 金匙</value>
-    <comment>TextBlock +</comment>
-  </data>
-  <data name="SauceNaoAPI.Text" xml:space="preserve">
-    <value>SauceNAO API 金匙</value>
-    <comment>TextBlock +</comment>
-  </data>
-  <data name="SearchMore.Text" xml:space="preserve">
-    <value>更多功能</value>
-    <comment>TextBlock +</comment>
-  </data>
-  <data name="GoToPixivID.Text" xml:space="preserve">
-    <value>直連作品</value>
-    <comment>TextBlock +</comment>
-  </data>
-  <data name="Cache.Text" xml:space="preserve">
-    <value>暫存檔案</value>
-    <comment>TextBlock</comment>
-  </data>
-  <data name="CacheSize.Text" xml:space="preserve">
-    <value>暫存檔案共計：</value>
-    <comment>TextBlock</comment>
-  </data>
-  <data name="Calculating.Text" xml:space="preserve">
-    <value>計算中...</value>
-    <comment>TextBlock</comment>
-  </data>
-  <data name="ClearCache.Content" xml:space="preserve">
-    <value>釋放暫存檔案</value>
-    <comment>Button</comment>
-  </data>
-  <data name="DeleteInvalid.Content" xml:space="preserve">
-    <value>剔除無效檔案</value>
-    <comment>Button</comment>
-  </data>
-  <data name="Recalculating" xml:space="preserve">
-    <value>重新計算中...</value>
-    <comment>PlainText</comment>
-  </data>
-  <data name="Contributors.Text" xml:space="preserve">
-    <value>來自 GitHub 的參與人</value>
-    <comment>TextBlock</comment>
-  </data>
-  <data name="Developers.Text" xml:space="preserve">
-    <value>開發人員</value>
-    <comment>TextBlock</comment>
-  </data>
-  <data name="MainDeveloper.Text" xml:space="preserve">
-    <value>承建開發人</value>
-    <comment>TextBlock</comment>
-  </data>
-  <data name="ColorTheme.Text" xml:space="preserve">
-    <value>色彩</value>
-    <comment>TextBlock</comment>
-  </data>
-  <data name="ContributorsReadingErrorPlain" xml:space="preserve">
-    <value>出錯啦：無法獲取開發人名單資訊。</value>
-    <comment>PlainText</comment>
-  </data>
-  <data name="DarkColorTheme.Content" xml:space="preserve">
-    <value>深色</value>
-    <comment>ComboBoxItem</comment>
-  </data>
-  <data name="DefaultColorTheme.Content" xml:space="preserve">
-    <value>使用系統設定</value>
-    <comment>ComboBoxItem</comment>
-  </data>
-  <data name="LightColorTheme.Content" xml:space="preserve">
-    <value>淺色</value>
-    <comment>ComboBoxItem</comment>
-  </data>
-  <data name="ReleasedID" xml:space="preserve">
-    <value>程序包：</value>
-    <comment>PlainText</comment>
-  </data>
-  <data name="ReleasedTime" xml:space="preserve">
-    <value>安裝日期：</value>
-    <comment>PlainText</comment>
-  </data>
-  <data name="ReleasedVersion" xml:space="preserve">
-    <value>具體型號：</value>
-    <comment>PlainText</comment>
-  </data>
-  <data name="RestartApplyColorTheme" xml:space="preserve">
-    <value>已做出變更，請重啓應用程序來使用設定</value>
-    <comment>PlainText</comment>
-  </data>
-  <data name="CancelButtonPlain" xml:space="preserve">
-    <value>撤消</value>
-    <comment>PlainText</comment>
-  </data>
-  <data name="CopiedInfoPlain" xml:space="preserve">
-    <value>有價值的訊息已張貼到剪切板。</value>
-    <comment>PlainText</comment>
-  </data>
-  <data name="Copy.Content" xml:space="preserve">
-    <value>全部拷貝</value>
-    <comment>HyperlinkButton</comment>
-  </data>
-  <data name="ExperimentalWarningPlain" xml:space="preserve">
-    <value>您已啓用實驗性功能，或者會帶來維持應用程式穩定性的困難，請確認您是否要停用？</value>
-    <comment>PlainText</comment>
-  </data>
-  <data name="Info.Text" xml:space="preserve">
-    <value>不用擔心，以上的訊息不會包含您個人隱私數據。</value>
-    <comment>TextBlock</comment>
-  </data>
-  <data name="NoButtonPlain" xml:space="preserve">
-    <value>沒有</value>
-    <comment>PlainText</comment>
-  </data>
-  <data name="PrimayButtonPlain" xml:space="preserve">
-    <value>GitHub</value>
-    <comment>PlainText</comment>
-  </data>
-  <data name="Report.Text" xml:space="preserve">
-    <value>我們收集了少少您的裝置清單，來協助您更好地反應意見。</value>
-    <comment>TextBlock</comment>
-  </data>
-  <data name="ReportIssueTitlePlain" xml:space="preserve">
-    <value>傳送意見反應</value>
-    <comment>PlainText</comment>
-  </data>
-  <data name="SecondButtonPlain" xml:space="preserve">
-    <value>Email</value>
-    <comment>PlainText</comment>
-  </data>
   <data name="YesButtonPlain" xml:space="preserve">
     <value>當然</value>
-    <comment>PlainText</comment>
-  </data>
-  <data name="CopiedPlain" xml:space="preserve">
-    <value>完成操作</value>
-    <comment>PlainText</comment>
+    <comment>PlainText (❌Unworkable)</comment>
   </data>
 </root>

@@ -1,9 +1,11 @@
 ﻿using Microsoft.Toolkit.Uwp.Helpers;
 using System;
 using Windows.ApplicationModel;
+using Windows.ApplicationModel.Core;
 using Windows.ApplicationModel.DataTransfer;
 using Windows.System;
 using Windows.UI.Popups;
+using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using static PixivFSUWP.Data.OverAll;
@@ -20,6 +22,10 @@ namespace PixivFSUWP
         public ReportIssuePage()
         {
             this.InitializeComponent();
+
+            CoreApplication.GetCurrentView().TitleBar.ExtendViewIntoTitleBar = true;
+            var view = ApplicationView.GetForCurrentView();
+            view.Title = "Report an issue/问题反馈";
 
             txtDetails.Text += "General:\n";
             txtDetails.Text += string.Format("OS version: build {0}\n", SystemInformation.OperatingSystemVersion.Build);

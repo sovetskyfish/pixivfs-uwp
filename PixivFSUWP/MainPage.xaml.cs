@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Windows.System;
 using Windows.UI;
 using Windows.UI.Popups;
 using Windows.UI.ViewManagement;
@@ -249,37 +248,8 @@ namespace PixivFSUWP
 
         private async void btnReport_Click(object sender, RoutedEventArgs e)
         {
-            ////在新窗口中打开发送反馈的窗口
-            //await ShowNewWindow(typeof(ReportIssuePage), null);
-            var reportIssue = new ContentDialog()
-            {               
-                Content = new ReportIssuePage(),
-                FullSizeDesired = false,
-
-                Title = GetResourceString("ReportIssueTitlePlain"),
-                PrimaryButtonText = GetResourceString("PrimayButtonPlain"),
-                SecondaryButtonText = GetResourceString("SecondButtonPlain"),
-                CloseButtonText = GetResourceString("CancelButtonPlain"),        
-                
-                PrimaryButtonStyle = (Style)this.Resources["AccentButtonStyle"],
-                SecondaryButtonStyle = (Style)this.Resources["ButtonRevealStyle"],
-                CloseButtonStyle = (Style)this.Resources["ButtonRevealStyle"],
-            };
-            var a = await reportIssue.ShowAsync();
-            if (a == ContentDialogResult.Primary)
-            {
-                await Launcher.LaunchUriAsync(new
-                Uri(@"https://github.com/tobiichiamane/pixivfs-uwp/issues/new/choose"));
-            }
-            else if (a == ContentDialogResult.Secondary)
-            {
-                await Launcher.LaunchUriAsync(new
-                Uri(@"mailto:tobiichiamane@outlook.jp"));
-            }
-            else
-            {
-                
-            }
+            //在新窗口中打开发送反馈的窗口
+            await ShowNewWindow(typeof(ReportIssuePage), null);
         }
 
         /// <summary>
@@ -287,17 +257,17 @@ namespace PixivFSUWP
         /// </summary>
         private async void btnExperimentalWarning_Click(object sender, RoutedEventArgs e)
         {
-            MessageDialog warningDialog = new MessageDialog(GetResourceString("ExperimentalWarningPlain"));
-            warningDialog.Commands.Add(new UICommand(GetResourceString("YesButtonPlain"), async (_) =>
+            var warningDialog = new MessageDialog(GetResourceString("ExperimentalWarningPlain"));
+            warningDialog.Commands.Add(new UICommand("Sure", async (_) =>
              {
                  //关闭直连
                  Windows.Storage.ApplicationDataContainer localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
                  localSettings.Values["directConnection"] = false;
                  //通知重启应用生效
-                 MessageDialog restartDialog = new MessageDialog(GetResourceString("RestartApplyColorTheme"));
+                 var restartDialog = new MessageDialog("请重启本程序来应用更改。\nPlease restart this app to apply the changes.");
                  await restartDialog.ShowAsync();
              }));
-            warningDialog.Commands.Add(new UICommand(GetResourceString("NoButtonPlain")));
+            warningDialog.Commands.Add(new UICommand("Not Yet"));
             await warningDialog.ShowAsync();
         }
     }
