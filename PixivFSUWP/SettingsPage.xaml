@@ -35,7 +35,7 @@
     </Page.Resources>
     
     <ScrollViewer Background="{StaticResource PageBackGround}" VerticalScrollBarVisibility="Hidden">
-        <StackPanel  Grid.Row="1" Margin="0,75,0,0">
+        <StackPanel Margin="0,75,0,0">
             <TextBlock Margin="15,20,15,0" FontSize="18" FontWeight="Bold" x:Uid="CurrentUser"/>
             <Grid Margin="15,15,15,10" Width="Auto" HorizontalAlignment="Left">
                 <Grid.RowDefinitions>
