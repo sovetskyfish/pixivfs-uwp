@@ -258,7 +258,7 @@ namespace PixivFSUWP
         private async void btnExperimentalWarning_Click(object sender, RoutedEventArgs e)
         {
             var warningDialog = new MessageDialog(GetResourceString("ExperimentalWarningPlain"));
-            warningDialog.Commands.Add(new UICommand("Sure", async (_) =>
+            warningDialog.Commands.Add(new UICommand("Yes", async (_) =>
              {
                  //关闭直连
                  Windows.Storage.ApplicationDataContainer localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
@@ -267,7 +267,7 @@ namespace PixivFSUWP
                  var restartDialog = new MessageDialog("请重启本程序来应用更改。\nPlease restart this app to apply the changes.");
                  await restartDialog.ShowAsync();
              }));
-            warningDialog.Commands.Add(new UICommand("Not Yet"));
+            warningDialog.Commands.Add(new UICommand("No"));
             await warningDialog.ShowAsync();
         }
     }
