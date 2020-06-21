@@ -114,12 +114,12 @@
         <trans-unit id="CopiedInfoPlain" translate="yes" xml:space="preserve">
           <source>Valuable information has been copied to clipboard.</source>
           <target state="translated">有價值的訊息已張貼到剪切板。</target>
-          <note from="MultilingualBuild" annotates="source" priority="2">PlainText</note>
+          <note from="MultilingualBuild" annotates="source" priority="2">PlainText (❌Unworkable)</note>
         </trans-unit>
         <trans-unit id="CopiedPlain" translate="yes" xml:space="preserve">
           <source>Copied</source>
           <target state="translated">完成操作</target>
-          <note from="MultilingualBuild" annotates="source" priority="2">PlainText</note>
+          <note from="MultilingualBuild" annotates="source" priority="2">PlainText (❌Unworkable)</note>
         </trans-unit>
         <trans-unit id="Copy.Content" translate="yes" xml:space="preserve">
           <source>Copy All</source>

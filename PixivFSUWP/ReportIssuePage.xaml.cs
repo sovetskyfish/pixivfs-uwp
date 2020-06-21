@@ -8,7 +8,6 @@ using Windows.UI.Popups;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using static PixivFSUWP.Data.OverAll;
 
 // https://go.microsoft.com/fwlink/?LinkId=234238 上介绍了“空白页”项模板
 
@@ -53,7 +52,7 @@ namespace PixivFSUWP
             dataPackage.RequestedOperation = DataPackageOperation.Copy;
             dataPackage.SetText(txtDetails.Text);
             Clipboard.SetContent(dataPackage);
-            MessageDialog dialog = new MessageDialog(GetResourceString("CopiedInfoPlain"), GetResourceString("CopiedPlain"));
+            MessageDialog dialog = new MessageDialog("Valuable information has been copied to clipboard./有价值的信息已经被复制到剪贴板。", "Copied/已复制");
             await dialog.ShowAsync();
         }
 

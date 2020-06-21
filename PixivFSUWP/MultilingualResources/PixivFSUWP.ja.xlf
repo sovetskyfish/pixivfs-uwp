@@ -798,12 +798,12 @@ Do you want to disable them?</target>
         <trans-unit id="CopiedInfoPlain" translate="yes" xml:space="preserve">
           <source>Valuable information has been copied to clipboard.</source>
           <target state="new">Valuable information has been copied to clipboard.</target>
-          <note from="MultilingualBuild" annotates="source" priority="2">PlainText</note>
+          <note from="MultilingualBuild" annotates="source" priority="2">PlainText (❌Unworkable)</note>
         </trans-unit>
         <trans-unit id="CopiedPlain" translate="yes" xml:space="preserve">
           <source>Copied</source>
           <target state="new">Copied</target>
-          <note from="MultilingualBuild" annotates="source" priority="2">PlainText</note>
+          <note from="MultilingualBuild" annotates="source" priority="2">PlainText (❌Unworkable)</note>
         </trans-unit>
       </group>
     </body>

@@ -591,11 +591,11 @@
   </data>
   <data name="CopiedInfoPlain" xml:space="preserve">
     <value>有价值的信息已经被复制到剪贴板。</value>
-    <comment>PlainText</comment>
+    <comment>PlainText (❌Unworkable)</comment>
   </data>
   <data name="CopiedPlain" xml:space="preserve">
     <value>已复制</value>
-    <comment>PlainText</comment>
+    <comment>PlainText (❌Unworkable)</comment>
   </data>
   <data name="Copy.Content" xml:space="preserve">
     <value>全部复制</value>

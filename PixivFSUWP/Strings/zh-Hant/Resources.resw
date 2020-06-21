@@ -98,11 +98,11 @@
   </data>
   <data name="CopiedInfoPlain" xml:space="preserve">
     <value>有價值的訊息已張貼到剪切板。</value>
-    <comment>PlainText</comment>
+    <comment>PlainText (❌Unworkable)</comment>
   </data>
   <data name="CopiedPlain" xml:space="preserve">
     <value>完成操作</value>
-    <comment>PlainText</comment>
+    <comment>PlainText (❌Unworkable)</comment>
   </data>
   <data name="Copy.Content" xml:space="preserve">
     <value>全部拷貝</value>
