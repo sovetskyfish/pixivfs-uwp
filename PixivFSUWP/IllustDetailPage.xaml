@@ -130,6 +130,31 @@
                 </ToggleButton>
             </StackPanel>
             <TextBlock x:Name="txtCaption" Margin="15,15,15,0" Height="Auto" TextWrapping="WrapWholeWords"/>
+            <ItemsControl x:Name="panelTags" Margin="15 5 0 0">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate x:DataType="viewmodels:TagViewModel">
+                        <Grid Width="Auto" VerticalAlignment="Stretch">
+                            <Button x:Name="btnTag" Tag="{Binding Tag}" HorizontalAlignment="Stretch" 
+                                        Style="{StaticResource ButtonRevealStyle}" Height="25">
+                                <Grid Background="Transparent" Margin="0 -5">
+                                    <TextBlock Text="{Binding Tag}" FontSize="12"/>
+                                </Grid>
+                            </Button>
+                        </Grid>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <controls:TagsPanel ItemHorizontalMargin="5" ItemHeight="25" ItemVerticalMargin="5">
+                            <controls:TagsPanel.ChildrenTransitions>
+                                <TransitionCollection>
+                                    <PopupThemeTransition FromVerticalOffset="150"/>
+                                </TransitionCollection>
+                            </controls:TagsPanel.ChildrenTransitions>
+                        </controls:TagsPanel>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+            </ItemsControl>
             <StackPanel Margin="15,15,15,0" Orientation="Horizontal">
                 <TextBlock x:Name="txtCommentTitle" Height="Auto" FontSize="20" FontWeight="Bold"/>
                 <ToggleButton x:Uid="NewComment" Height="Auto" Style="{StaticResource ToggleButtonRevealStyle}" Visibility="Collapsed"

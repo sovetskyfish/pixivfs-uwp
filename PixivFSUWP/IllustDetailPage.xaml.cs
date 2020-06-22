@@ -81,11 +81,11 @@ namespace PixivFSUWP
         {
             ((Frame.Parent as Grid)?.Parent as MainPage)?.SelectNavPlaceholder(GetResourceString("DetailPlain"));
             //为了适配SearchResult的参数传递而添加这个判断
-            if(e.Parameter is int id)
+            if (e.Parameter is int id)
             {
                 illustID = id;
             }
-            else if(e.Parameter is ValueTuple<int,int?> param)
+            else if (e.Parameter is ValueTuple<int, int?> param)
             {
                 illustID = param.Item1;
             }
@@ -140,6 +140,13 @@ namespace PixivFSUWP
                 txtAuthor.Text = illust.Author;
                 txtAuthorAccount.Text = string.Format("@{0}", illust.AuthorAccount);
                 txtCaption.Text = (illust.Caption == "") ? GetResourceString("NoCaptionPlain") : Regex.Replace(illust.Caption.Replace("<br />", "\n"), "<[^>]+>", "");
+                //加载Tags
+                List<ViewModels.TagViewModel> tags = new List<ViewModels.TagViewModel>();
+                foreach (var i in illust.Tags)
+                {
+                    tags.Add(new ViewModels.TagViewModel() { Tag = i });
+                }
+                panelTags.ItemsSource = tags;
                 txtCommentTitle.Text = GetResourceString("CommentsPlain");
                 btnNewComment.Visibility = Visibility.Visible;
                 listComments.ItemsSource = new CommentsCollection(illustID.ToString());
