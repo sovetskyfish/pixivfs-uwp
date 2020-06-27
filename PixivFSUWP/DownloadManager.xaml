@@ -16,6 +16,8 @@
             <ListViewItem>
                 <Grid>
                     <StackPanel Orientation="Horizontal">
+                        <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}" 
+                                  Glyph="&#xE896;"/>
                         <TextBlock x:Uid="DownloadingCaption"/>
                     </StackPanel>
                 </Grid>
@@ -23,6 +25,8 @@
             <ListViewItem>
                 <Grid>
                     <StackPanel Orientation="Horizontal">
+                        <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}" 
+                                  Glyph="&#xE8A5;"/>
                         <TextBlock x:Uid="DownloadedCaption"/>
                     </StackPanel>
                 </Grid>

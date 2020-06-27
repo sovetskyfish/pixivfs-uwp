@@ -277,6 +277,10 @@
     <value>Downloading ugoira</value>
     <comment>PlainText</comment>
   </data>
+  <data name="DownloadsPlain" xml:space="preserve">
+    <value>Downloads</value>
+    <comment>PlainText</comment>
+  </data>
   <data name="Draw.Label" xml:space="preserve">
     <value>Draw</value>
     <comment>AppBarButton</comment>

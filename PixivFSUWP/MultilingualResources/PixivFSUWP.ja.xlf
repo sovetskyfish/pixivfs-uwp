@@ -815,6 +815,11 @@ Do you want to disable them?</target>
           <target state="new">Downloading</target>
           <note from="MultilingualBuild" annotates="source" priority="2">TextBlock</note>
         </trans-unit>
+        <trans-unit id="DownloadsPlain" translate="yes" xml:space="preserve">
+          <source>Downloads</source>
+          <target state="new">Downloads</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">PlainText</note>
+        </trans-unit>
       </group>
     </body>
   </file>

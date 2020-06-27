@@ -1,4 +1,6 @@
-﻿using System;
+﻿using PixivFSUWP.Data;
+using PixivFSUWP.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -20,11 +22,34 @@ namespace PixivFSUWP
     /// <summary>
     /// 可用于自身或导航至 Frame 内部的空白页。
     /// </summary>
-    public sealed partial class DownloadManager : Page
+    public sealed partial class DownloadManager : Page, IGoBackFlag
     {
+        bool _backflag = false;
+
         public DownloadManager()
         {
             this.InitializeComponent();
+        }
+
+        public void SetBackFlag(bool value)
+        {
+            _backflag = value;
+        }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
+            OverAll.TheMainPage.SelectNavPlaceholder(OverAll.GetResourceString("DownloadsPlain"));
+        }
+
+        protected override void OnNavigatedFrom(NavigationEventArgs e)
+        {
+            if (!_backflag)
+            {
+                Backstack.Default.Push(typeof(DownloadManager), null);
+                ((Frame.Parent as Grid)?.Parent as MainPage)?.UpdateNavButtonState();
+            }
+            base.OnNavigatedFrom(e);
         }
     }
 }
