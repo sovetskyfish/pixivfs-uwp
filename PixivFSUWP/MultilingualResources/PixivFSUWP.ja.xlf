@@ -805,6 +805,16 @@ Do you want to disable them?</target>
           <target state="new">Copied</target>
           <note from="MultilingualBuild" annotates="source" priority="2">PlainText (❌Unworkable)</note>
         </trans-unit>
+        <trans-unit id="DownloadedCaption.Text" translate="yes" xml:space="preserve">
+          <source>Downloaded</source>
+          <target state="new">Downloaded</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">TextBlock</note>
+        </trans-unit>
+        <trans-unit id="DownloadingCaption.Text" translate="yes" xml:space="preserve">
+          <source>Downloading</source>
+          <target state="new">Downloading</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">TextBlock</note>
+        </trans-unit>
       </group>
     </body>
   </file>

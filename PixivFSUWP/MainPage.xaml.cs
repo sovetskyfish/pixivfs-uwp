@@ -270,5 +270,10 @@ namespace PixivFSUWP
             warningDialog.Commands.Add(new UICommand("No"));
             await warningDialog.ShowAsync();
         }
+
+        private void btnDownload_Click(object sender, RoutedEventArgs e)
+        {
+            ContentFrame.Navigate(typeof(DownloadManager));
+        }
     }
 }

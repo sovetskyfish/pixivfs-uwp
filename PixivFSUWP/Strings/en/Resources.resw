@@ -265,6 +265,14 @@
     <value>Developers</value>
     <comment>TextBlock</comment>
   </data>
+  <data name="DownloadedCaption.Text" xml:space="preserve">
+    <value>Downloaded</value>
+    <comment>TextBlock</comment>
+  </data>
+  <data name="DownloadingCaption.Text" xml:space="preserve">
+    <value>Downloading</value>
+    <comment>TextBlock</comment>
+  </data>
   <data name="DownloadingUgoiraPlain" xml:space="preserve">
     <value>Downloading ugoira</value>
     <comment>PlainText</comment>

@@ -171,6 +171,9 @@
     <Compile Include="Data\UserDetail.cs" />
     <Compile Include="Data\Collections\UserIllustsCollection.cs" />
     <Compile Include="Data\WaterfallItem.cs" />
+    <Compile Include="DownloadManager.xaml.cs">
+      <DependentUpon>DownloadManager.xaml</DependentUpon>
+    </Compile>
     <Compile Include="IllustDetailPage.xaml.cs">
       <DependentUpon>IllustDetailPage.xaml</DependentUpon>
     </Compile>
@@ -243,6 +246,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="BigImage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DownloadManager.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
