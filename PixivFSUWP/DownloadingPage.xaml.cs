@@ -25,6 +25,11 @@ namespace PixivFSUWP
         public DownloadingPage()
         {
             this.InitializeComponent();
+            //直接进行数据绑定
+            lstDownloading.ItemsSource = Data.DownloadManager.DownloadJobs;
+            //！测试数据！
+            Data.DownloadManager.DownloadJobs.Add(new Data.DownloadJob("Foo1", "i.pximg.net/114514", "d:\\14514.png"));
+            Data.DownloadManager.DownloadJobs.Add(new Data.DownloadJob("Foo2", "i.pximg.net/98e", "d:\\98e.png"));
         }
     }
 }

@@ -52,5 +52,18 @@ namespace PixivFSUWP
             }
             base.OnNavigatedFrom(e);
         }
+
+        private void NavControl_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
+        {
+            if (args.SelectedItem == NavControl.MenuItems[1])
+            {
+                //选择了“下载中”
+                ContentFrame.Navigate(typeof(DownloadingPage));
+            }
+            else
+            {
+                //选择了“下载完毕”
+            }
+        }
     }
 }

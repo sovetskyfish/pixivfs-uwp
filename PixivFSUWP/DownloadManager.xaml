@@ -13,7 +13,7 @@
     <Grid Margin="0 75 0 0">
         <NavigationView PaneDisplayMode="Left" IsBackButtonVisible="Collapsed"
                         IsSettingsVisible="False" IsPaneToggleButtonVisible="False"
-                        x:Name="NavControl">
+                        x:Name="NavControl" SelectionChanged="NavControl_SelectionChanged">
             <NavigationView.MenuItems>
                 <NavigationViewItemHeader x:Uid="DownloadManager"/>
                 <NavigationViewItem x:Uid="DownloadingCaption"/>
