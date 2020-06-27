@@ -805,20 +805,25 @@ Do you want to disable them?</target>
           <target state="new">Copied</target>
           <note from="MultilingualBuild" annotates="source" priority="2">PlainText (❌Unworkable)</note>
         </trans-unit>
-        <trans-unit id="DownloadedCaption.Text" translate="yes" xml:space="preserve">
-          <source>Downloaded</source>
-          <target state="new">Downloaded</target>
-          <note from="MultilingualBuild" annotates="source" priority="2">TextBlock</note>
-        </trans-unit>
-        <trans-unit id="DownloadingCaption.Text" translate="yes" xml:space="preserve">
-          <source>Downloading</source>
-          <target state="new">Downloading</target>
-          <note from="MultilingualBuild" annotates="source" priority="2">TextBlock</note>
-        </trans-unit>
         <trans-unit id="DownloadsPlain" translate="yes" xml:space="preserve">
           <source>Downloads</source>
           <target state="new">Downloads</target>
           <note from="MultilingualBuild" annotates="source" priority="2">PlainText</note>
+        </trans-unit>
+        <trans-unit id="DownloadedCaption.Content" translate="yes" xml:space="preserve">
+          <source>Downloaded</source>
+          <target state="new">Downloaded</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">NavigationViewItem</note>
+        </trans-unit>
+        <trans-unit id="DownloadingCaption.Content" translate="yes" xml:space="preserve">
+          <source>Downloading</source>
+          <target state="new">Downloading</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">NavigationViewItem</note>
+        </trans-unit>
+        <trans-unit id="DownloadManager.Content" translate="yes" xml:space="preserve">
+          <source>Download Manager</source>
+          <target state="new">Download Manager</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">NavigationViewItemHeader</note>
         </trans-unit>
       </group>
     </body>

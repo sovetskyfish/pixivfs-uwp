@@ -6,31 +6,22 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
-
+    <Page.Resources>
+        <SolidColorBrush x:Key="NavigationViewExpandedPaneBackground" Color="Transparent"/>
+        <SolidColorBrush x:Key="NavigationViewDefaultPaneBackground" Color="Transparent"/>
+    </Page.Resources>
     <Grid Margin="0 75 0 0">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="128"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
-        <ListView>
-            <ListViewItem>
-                <Grid>
-                    <StackPanel Orientation="Horizontal">
-                        <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}" 
-                                  Glyph="&#xE896;"/>
-                        <TextBlock x:Uid="DownloadingCaption"/>
-                    </StackPanel>
-                </Grid>
-            </ListViewItem>
-            <ListViewItem>
-                <Grid>
-                    <StackPanel Orientation="Horizontal">
-                        <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}" 
-                                  Glyph="&#xE8A5;"/>
-                        <TextBlock x:Uid="DownloadedCaption"/>
-                    </StackPanel>
-                </Grid>
-            </ListViewItem>
-        </ListView>
+        <NavigationView PaneDisplayMode="Left" IsBackButtonVisible="Collapsed"
+                        IsSettingsVisible="False" IsPaneToggleButtonVisible="False"
+                        x:Name="NavControl">
+            <NavigationView.MenuItems>
+                <NavigationViewItemHeader x:Uid="DownloadManager"/>
+                <NavigationViewItem x:Uid="DownloadingCaption"/>
+                <NavigationViewItem x:Uid="DownloadedCaption"/>
+            </NavigationView.MenuItems>
+            <ScrollViewer>
+                <Frame x:Name="ContentFrame"/>
+            </ScrollViewer>
+        </NavigationView>
     </Grid>
 </Page>

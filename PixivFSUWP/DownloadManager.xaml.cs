@@ -40,6 +40,7 @@ namespace PixivFSUWP
         {
             base.OnNavigatedTo(e);
             OverAll.TheMainPage.SelectNavPlaceholder(OverAll.GetResourceString("DownloadsPlain"));
+            NavControl.SelectedItem = NavControl.MenuItems[1];
         }
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)
