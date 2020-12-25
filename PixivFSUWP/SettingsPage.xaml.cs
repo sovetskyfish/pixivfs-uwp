@@ -153,7 +153,7 @@ namespace PixivFSUWP
         private async void BtnGithub_Click(object sender, RoutedEventArgs e)
         {
             await Launcher.LaunchUriAsync(new
-                Uri(@"https://github.com/tobiichiamane/pixivfs-uwp"));
+                Uri(@"https://github.com/sovetskyfish/pixivfs-uwp"));
         }
 
         private void API_TextChanged(object sender, TextChangedEventArgs e)
