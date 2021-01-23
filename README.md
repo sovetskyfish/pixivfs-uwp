@@ -1,3 +1,6 @@
+**This project is deprecated due to my ever worse health condition (and those hard-to-maintenance code I wrote when drunk😂).**
+**Use [Pixeval](https://github.com/Rinacm/Pixeval) if you want a more comfortable experience, or wait for Win32/UWP support of [PixEz-Flutter](https://github.com/Notsfsssf/pixez-flutter). These projects are developed by two of my friends and are way more usable than Pixiv UWP.**
+
 # Pixiv UWP 2 [![编译状态](https://dev.azure.com/tobiichiamane/pixivfs-uwp/_apis/build/status/tobiichiamane.pixivfs-uwp?branchName=master)](https://dev.azure.com/tobiichiamane/pixivfs-uwp/_build?definitionId=1)
 
 [<img src='https://developer.microsoft.com/store/badges/images/English_get-it-from-MS.png' alt='English badge' width=284 height=104/>](https://www.microsoft.com/store/apps/9PM8K64J71PL?cid=storebadge&ocid=badge)
